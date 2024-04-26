@@ -84,9 +84,11 @@ animations = [{
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_ree2y")
+metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_t6xx4")
 animation = &"run"
 frame_progress = 0.204453
+metadata/_edit_lock_ = true
