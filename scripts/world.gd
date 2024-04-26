@@ -6,7 +6,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	flatland_polygon.polygon = flatlond_collider.polygon
+	flatland_polygon.polygon = flatland_collider.polygon
 
 
 
