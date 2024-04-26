@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3fbeq4r0lddw"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_q6a1s"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_q6a1s")
+
+[node name="Flatland" type="StaticBody2D" parent="."]
+
+[node name="FlatlandCollider" type="CollisionPolygon2D" parent="Flatland"]
+position = Vector2(0, 1.19209e-07)
+scale = Vector2(0.999416, 0.998047)
+polygon = PackedVector2Array(-3057.79, -1.19443e-07, -2945.72, -1.19443e-07, -2945.72, 384.752, 3602.1, 384.752, 3602.1, -1.19443e-07, 3778.21, -1.19443e-07, 3778.21, 513.002, -3057.79, 521.018)
+
+[node name="FlatlandPolygon" type="Polygon2D" parent="Flatland/FlatlandCollider"]
