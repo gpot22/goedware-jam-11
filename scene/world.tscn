@@ -10,18 +10,22 @@ script = ExtResource("1_q6a1s")
 [node name="Flatland" type="StaticBody2D" parent="."]
 
 [node name="FlatlandCollider" type="CollisionPolygon2D" parent="Flatland"]
-position = Vector2(1064, -1216)
+position = Vector2(0.00012207, 0)
 scale = Vector2(0.999416, 0.998047)
 polygon = PackedVector2Array(-3057.79, -1.19443e-07, -2945.72, -1.19443e-07, -2945.72, 384.752, 3602.1, 384.752, 3602.1, -1.19443e-07, 3778.21, -1.19443e-07, 3778.21, 513.002, -3057.79, 521.018)
+metadata/_edit_lock_ = true
 
 [node name="FlatlandPolygon" type="Polygon2D" parent="Flatland/FlatlandCollider"]
+metadata/_edit_lock_ = true
 
 [node name="Testland" type="StaticBody2D" parent="."]
 
 [node name="TestlandCollider" type="CollisionPolygon2D" parent="Testland"]
 polygon = PackedVector2Array(0, 0, 64, 0, 64, 144, 192, 144, 192, 192, 64, 192, 64, 320, 128, 320, 224, 352, 296, 352, 304, 320, 384, 320, 384, 408, 448, 408, 448, 352, 512, 352, 544, 408, 608, 408, 624, 352, 704, 352, 728, 280, 768, 280, 768, 64, 856, 64, 848, 448, 0, 448)
+metadata/_edit_lock_ = true
 
 [node name="TestlandPolygon" type="Polygon2D" parent="Testland/TestlandCollider"]
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_rvpe0")]
 position = Vector2(168, 296)
