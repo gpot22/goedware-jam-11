@@ -95,3 +95,4 @@ func update_animations(direction):
 		sprite.flip_h = (direction > 0)
 		animation_player.play("walk")
 		
+		

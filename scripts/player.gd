@@ -5,12 +5,14 @@ const VEL = 230.0
 const ACC = 1600.0
 const FRIC = 2000.0
 const JUMP_VEL = -360.0
+const DASH_VEL = 600.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
+@onready var collider = $CollisionShape2D
 
 var jumpUp = false
 var states = {
@@ -20,17 +22,20 @@ var states = {
 	"gapple": false
 }
 
+var direction = 1
 
 func _physics_process(delta):
 	apply_graivity(delta)
-	var direction = Input.get_axis("left", "right")  # if left, -1; if right, +1, else 0
-	
+	var input_axis = Input.get_axis("left", "right")  # if left, -1; if right, +1, else 0
+	if input_axis != 0:
+		direction = input_axis
 	handle_jump()
-	handle_movement(delta, direction)
+	handle_movement(delta, input_axis)
 	
 	handle_dash()
 	handle_grapple()
-	update_animations(direction)
+	update_animations(input_axis)
+	update_collider(direction)
 	move_and_slide()  # ** automatically applies "delta"
 
 func apply_graivity(delta):
@@ -56,8 +61,8 @@ func handle_jump():
 		if Input.is_action_just_released("jump") and velocity.y < JUMP_VEL/3:
 			velocity.y = JUMP_VEL / 3
 
-func handle_movement(delta, direction):
-	if direction:
+func handle_movement(delta, input_axis):
+	if input_axis:
 		velocity.x = move_toward(velocity.x, VEL*direction, ACC*delta)  # player acceleration
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRIC*delta)  # player friction
@@ -65,6 +70,7 @@ func handle_movement(delta, direction):
 func handle_dash():
 	if Input.is_action_just_pressed("dash"):
 		animation_player.play("dash")
+		velocity.x += DASH_VEL*direction
 		states["dash"] = true
 		await animation_player.animation_finished
 		states["dash"] = false
@@ -76,10 +82,10 @@ func handle_grapple():
 		await animation_player.animation_finished
 		states["grapple"] = false
 		
-func update_animations(direction):
+func update_animations(input_axis):
+	sprite.flip_h = direction < 0
 	if states.values().has(true): return
-	if direction != 0:
-		sprite.flip_h = direction < 0
+	if input_axis != 0:
 		if not is_on_floor():
 			if velocity.y < 0:
 				animation_player.play("jump_idle")
@@ -89,4 +95,10 @@ func update_animations(direction):
 			animation_player.play("run")
 	elif is_on_floor():
 		animation_player.play("idle")
+
+func update_collider(direction):
+	
+	if (collider.position.x < 0 and direction > 0) or (collider.position.x > 0 and direction < 0):
+		return
+	collider.position.x *= -1
 		
