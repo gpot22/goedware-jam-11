@@ -8,6 +8,7 @@
 script = ExtResource("1_q6a1s")
 
 [node name="Flatland" type="StaticBody2D" parent="."]
+position = Vector2(992, -2408)
 
 [node name="FlatlandCollider" type="CollisionPolygon2D" parent="Flatland"]
 position = Vector2(0.00012207, 0)
