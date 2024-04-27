@@ -1,11 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3fbeq4r0lddw"]
+[gd_scene load_steps=5 format=3 uid="uid://b3fbeq4r0lddw"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_q6a1s"]
+[ext_resource type="Texture2D" uid="uid://blmwxd6h8stvx" path="res://bg.png" id="2_7n0rf"]
 [ext_resource type="PackedScene" uid="uid://cwrkcklv0yvjo" path="res://scene/player.tscn" id="2_rvpe0"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="3_3ak8q"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_q6a1s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -641.0
+offset_top = -531.0
+offset_right = 4159.0
+offset_bottom = 813.0
+texture = ExtResource("2_7n0rf")
 
 [node name="Flatland" type="StaticBody2D" parent="."]
 position = Vector2(992, -2408)
@@ -33,3 +41,7 @@ position = Vector2(168, 296)
 floor_constant_speed = true
 floor_snap_length = 2.0
 script = ExtResource("3_3ak8q")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(167, 287)
+zoom = Vector2(2, 2)
