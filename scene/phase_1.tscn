@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvjok3ypqpmux"]
+
+[ext_resource type="Script" path="res://scene/phase_1.gd" id="1_5e1dh"]
+[ext_resource type="Texture2D" uid="uid://diy4i8h2bmv8s" path="res://map.png" id="1_n7ftw"]
+[ext_resource type="Texture2D" uid="uid://bhsrkpf08t5da" path="res://phase1player.png" id="2_708s6"]
+
+[node name="Phase1" type="Node2D"]
+script = ExtResource("1_5e1dh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_n7ftw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(137, 140)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_708s6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(399, 225)
