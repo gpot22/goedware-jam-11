@@ -41,7 +41,6 @@ func apply_graivity(delta):
 
 func idle_movement():
 	idle_timer -= 1
-	print(idle_timer)
 	if idle_timer <= 0:
 		idle_state = (idle_state+1)%2
 		idle_timer = int(60 * rng.randf_range(3, 7)) if idle_state == 1 else int(60*rng.randf_range(1, 3))
