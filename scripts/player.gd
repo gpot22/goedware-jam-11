@@ -9,6 +9,8 @@ const JUMP_VEL = -360.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var bulletScene = preload('res://scene/bullet.tscn')
+
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 func _physics_process(delta):
@@ -21,6 +23,8 @@ func _physics_process(delta):
 	
 	update_animations(direction)
 	move_and_slide()  # ** automatically applies "delta"
+	
+	handle_shoot()
 
 func apply_graivity(delta):
 	if not is_on_floor():
@@ -49,4 +53,11 @@ func update_animations(direction):
 			animated_sprite_2d.play("jump")
 		else:
 			animated_sprite_2d.play("run")
+
+func handle_shoot():
+	if Input.is_action_just_pressed("shoot"):
+		var bullet = bulletScene.instantiate()
+		
+		get_parent().add_child(bullet)
+		bullet.position = Vector2(get_position().x+10, get_position().y-10)
 		
