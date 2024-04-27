@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3fbeq4r0lddw"]
+[gd_scene load_steps=6 format=3 uid="uid://b3fbeq4r0lddw"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_q6a1s"]
 [ext_resource type="Texture2D" uid="uid://blmwxd6h8stvx" path="res://bg.png" id="2_7n0rf"]
 [ext_resource type="PackedScene" uid="uid://cwrkcklv0yvjo" path="res://scene/player.tscn" id="2_rvpe0"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="3_3ak8q"]
+[ext_resource type="PackedScene" uid="uid://dwjkhg54nugkq" path="res://scene/enemy.tscn" id="5_rbobu"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_q6a1s")
@@ -30,14 +31,14 @@ metadata/_edit_lock_ = true
 [node name="Testland" type="StaticBody2D" parent="."]
 
 [node name="TestlandCollider" type="CollisionPolygon2D" parent="Testland"]
-polygon = PackedVector2Array(0, 0, 64, 0, 64, 144, 192, 144, 192, 192, 64, 192, 64, 320, 128, 320, 224, 352, 296, 352, 304, 320, 384, 320, 384, 408, 448, 408, 448, 352, 512, 352, 544, 408, 608, 408, 624, 352, 704, 352, 728, 280, 768, 280, 768, 64, 856, 64, 848, 448, 0, 448)
+polygon = PackedVector2Array(0, 0, 64, 0, 64, 144, 192, 144, 192, 192, 64, 192, 64, 320, 128, 320, 224, 352, 296, 352, 296, 388, 384, 388, 384, 408, 448, 408, 448, 352, 512, 352, 544, 408, 608, 408, 624, 352, 704, 352, 728, 280, 768, 280, 768, 64, 856, 64, 848, 448, 0, 448)
 metadata/_edit_lock_ = true
 
 [node name="TestlandPolygon" type="Polygon2D" parent="Testland/TestlandCollider"]
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_rvpe0")]
-position = Vector2(168, 296)
+position = Vector2(318, 317)
 floor_constant_speed = true
 floor_snap_length = 2.0
 script = ExtResource("3_3ak8q")
@@ -45,3 +46,6 @@ script = ExtResource("3_3ak8q")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(167, 287)
 zoom = Vector2(2, 2)
+
+[node name="Enemy" parent="." instance=ExtResource("5_rbobu")]
+position = Vector2(210, 322)
