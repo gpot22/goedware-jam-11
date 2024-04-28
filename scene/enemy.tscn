@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwjkhg54nugkq"]
+
+[ext_resource type="Texture2D" uid="uid://cuw1lcc2psans" path="res://assets/sprites/enemy1.png" id="1_h7lmb"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ulni5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ffjm"]
+size = Vector2(9, 17)
+
+[sub_resource type="Animation" id="Animation_cly4o"]
+resource_name = "walk"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_856cq"]
+resource_name = "idle"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_74umc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_18rhq"]
+resource_name = "attack"
+length = 0.45
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 9, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6hau3"]
+_data = {
+"RESET": SubResource("Animation_74umc"),
+"attack": SubResource("Animation_18rhq"),
+"idle": SubResource("Animation_856cq"),
+"walk": SubResource("Animation_cly4o")
+}
+
+[node name="Enemy" type="CharacterBody2D"]
+position = Vector2(0, -10)
+script = ExtResource("1_ulni5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_8ffjm")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2.38419e-07)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_h7lmb")
+hframes = 10
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6hau3")
+}
+
+[node name="RayCastFloor" type="RayCast2D" parent="."]
+position = Vector2(-5, 1)
+exclude_parent = false
+target_position = Vector2(0, 22)
+
+[node name="RayCastWall" type="RayCast2D" parent="."]
+position = Vector2(-5, 1)
+exclude_parent = false
+target_position = Vector2(-5, 0)
+
+[node name="RayCastPlayerDetect" type="RayCast2D" parent="."]
+exclude_parent = false
+target_position = Vector2(-153, 0)
+
+[node name="RayCastAttack" type="RayCast2D" parent="."]
+exclude_parent = false
+target_position = Vector2(-38, 0)

@@ -15,6 +15,7 @@ func _ready():
 	flatland_polygon.polygon = flatland_collider.polygon
 	testland_polygon.polygon = testland_collider.polygon
 
+
 func _process(delta):
 	camera_2d.set_position(Vector2(player.get_position().x, player.get_position().y-35))
 
