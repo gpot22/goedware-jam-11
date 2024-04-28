@@ -17,7 +17,6 @@ offset_bottom = 813.0
 texture = ExtResource("2_7n0rf")
 
 [node name="Flatland" type="StaticBody2D" parent="."]
-position = Vector2(992, -2408)
 
 [node name="FlatlandCollider" type="CollisionPolygon2D" parent="Flatland"]
 position = Vector2(0.00012207, 0)
@@ -29,6 +28,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Testland" type="StaticBody2D" parent="."]
+position = Vector2(1360, -1760)
 
 [node name="TestlandCollider" type="CollisionPolygon2D" parent="Testland"]
 polygon = PackedVector2Array(0, 0, 64, 0, 64, 144, 192, 144, 192, 192, 64, 192, 64, 320, 128, 320, 224, 352, 296, 352, 296, 388, 384, 388, 384, 408, 448, 408, 448, 352, 512, 352, 544, 408, 608, 408, 624, 352, 704, 352, 728, 280, 768, 280, 768, 64, 856, 64, 848, 448, 0, 448)

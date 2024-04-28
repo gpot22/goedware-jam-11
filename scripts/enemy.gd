@@ -14,27 +14,59 @@ var time_count = 0
 
 var idle_timer = 0
 var idle_state = 0  # 0 = not moving, 1 = moving
+var hostile_timer = 0
+var attack_timer = 0
+var attack_charge_time = 60
+var state = 'idle'
+var player = null
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var ray_cast_floor = $RayCastFloor
 @onready var ray_cast_wall = $RayCastWall
+@onready var ray_cast_player_detect = $RayCastPlayerDetect
+@onready var ray_cast_attack = $RayCastAttack
 
 var isAttacking = false
 var direction = -1
+var face_dir = -1
 
 func _physics_process(delta):
 	apply_graivity(delta)
 	
 	#if Input.is_action_just_pressed("dash"):
 		#attack()
-	idle_movement()
-	avoid_edge()
+	detect_player()
+	attack_player()
+	if state == 'idle':
+		idle_movement()
+		avoid_edge()
+	elif state == 'hostile':
+		hostile_timer -= 1
+		if hostile_timer == 0:
+			state = 'idle'
+		if player.position.x < position.x:
+			set_direction(-1)
+		else:
+			set_direction(1)
+		
+	elif state == 'attack':
+		display_attack_timer()
+		attack_timer -= 1
+		if attack_timer == 0:
+			attack()
+			state = 'hostile'
 	handle_movement(delta, direction)
 	update_animations(direction)
 	move_and_slide()  # ** automatically applies "delta"
-	
 
+func display_attack_timer():
+	if attack_timer == attack_charge_time:
+		print(2)
+	if attack_timer == attack_charge_time/2:
+		print(1)
+	if attack_timer == 1:
+		print(0)
 func apply_graivity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -49,13 +81,22 @@ func idle_movement():
 		else:
 			set_direction(-1) if rng.randf() < 0.5 else set_direction(1)
 
-func set_direction(d):
-	if d == direction: return
-	direction = d
-	if ray_cast_wall.position.x < 0 and direction > 0 or ray_cast_wall.position.x > 0 and direction < 0:
-		ray_cast_wall.position.x *= -1
-		ray_cast_wall.scale.x *= -1
-		ray_cast_floor.position.x *= -1
+func detect_player():
+	if ray_cast_player_detect.is_colliding() and ray_cast_player_detect.get_collider().name == "Player" and state != "attack":
+		state = "hostile"
+		hostile_timer = 60 * 2
+		player = ray_cast_player_detect.get_collider()
+
+func attack_player():
+	if ray_cast_attack.is_colliding() and ray_cast_attack.get_collider().name == "Player":
+		if state != 'attack':
+			attack_timer = attack_charge_time
+			direction = 0
+		state = "attack"
+		player = ray_cast_player_detect.get_collider()
+	elif state == "attack" and attack_timer >= attack_charge_time/2:
+		state = 'hostile'
+		
 		
 func avoid_edge():
 	if not ray_cast_floor.is_colliding() or ray_cast_wall.is_colliding():
@@ -63,24 +104,38 @@ func avoid_edge():
 		
 func flip_direction():
 	direction *= -1
+	face_dir *= -1
 	ray_cast_wall.position.x *= -1
 	ray_cast_wall.scale.x *= -1
 	ray_cast_floor.position.x *= -1
+	ray_cast_player_detect.scale.x *= -1
+	ray_cast_attack.scale.x *= -1
+	
+func set_direction(d):
+	if d == direction: return
+	direction = d
+	face_dir = d
+	if ray_cast_wall.position.x < 0 and direction > 0 or ray_cast_wall.position.x > 0 and direction < 0:
+		ray_cast_wall.position.x *= -1
+		ray_cast_wall.scale.x *= -1
+		ray_cast_floor.position.x *= -1
+		ray_cast_player_detect.scale.x *= -1
+		ray_cast_attack.scale.x *= -1
 
 func handle_movement(delta, direction):
 	if isAttacking:
 		velocity.x = move_toward(velocity.x, 0, FRIC*delta)
 	else:
 		if direction:
-			velocity.x = VEL*direction
+			var m = 2 if state == 'hostile' else 1
+			velocity.x = VEL*direction * m
 		else:
 			velocity.x = move_toward(velocity.x, 0, VEL)
 	
 func attack():
 	if isAttacking: return
 	isAttacking = true
-	var d = velocity.x / abs(velocity.x)
-	velocity.x = RECOIL*d
+	velocity.x = RECOIL*face_dir
 	animation_player.play("attack")
 	await animation_player.animation_finished
 	animation_player.stop()

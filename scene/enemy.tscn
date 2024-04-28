@@ -103,9 +103,18 @@ libraries = {
 
 [node name="RayCastFloor" type="RayCast2D" parent="."]
 position = Vector2(-5, 1)
+exclude_parent = false
 target_position = Vector2(0, 22)
 
 [node name="RayCastWall" type="RayCast2D" parent="."]
 position = Vector2(-5, 1)
 exclude_parent = false
 target_position = Vector2(-5, 0)
+
+[node name="RayCastPlayerDetect" type="RayCast2D" parent="."]
+exclude_parent = false
+target_position = Vector2(-153, 0)
+
+[node name="RayCastAttack" type="RayCast2D" parent="."]
+exclude_parent = false
+target_position = Vector2(-38, 0)
