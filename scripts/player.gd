@@ -126,9 +126,28 @@ func update_animations(input_axis):
 func update_direction(input_axis):
 	if input_axis != 0:
 		direction = input_axis
-	if (collider.position.x < 0 and direction > 0) or (collider.position.x > 0 and direction < 0):
-		return
-	collider.position.x *= -1
+	update_collider(input_axis)
+	#if (collider.position.x < 0 and direction > 0) or (collider.position.x > 0 and direction < 0):
+		#return
+	#collider.position.x *= -1
+		
+
+func update_collider(input_axis):
+	var m = 1 if direction >= 0 else -1
+	if input_axis != 0 and is_on_floor():  # running
+		var shape: CapsuleShape2D = CapsuleShape2D.new()
+		shape.radius = 20
+		shape.height = 56
+		collider.shape = shape
+		collider.position = Vector2(-2*m, -10)
+		collider.rotation_degrees = 90
+	else:
+		var shape: CapsuleShape2D = CapsuleShape2D.new()
+		shape.radius = 16
+		shape.height = 56
+		collider.shape = shape
+		collider.position = Vector2(-10*m, -14)
+		collider.rotation_degrees = 0
 	if has_node("pistol"):
-		$pistol.position.x *= -1
+		$pistol.position.x = abs($pistol.position.x) * -m
 		
