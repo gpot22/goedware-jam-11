@@ -1,6 +1,6 @@
 extends Area2D
 
-const VEL = 1000
+const VEL = 1600
 const RANGE = 1200
 var travelled_distance = 0
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_q6a1s"]
 [ext_resource type="Texture2D" uid="uid://blmwxd6h8stvx" path="res://bg.png" id="2_7n0rf"]
 [ext_resource type="PackedScene" uid="uid://cwrkcklv0yvjo" path="res://scene/player.tscn" id="2_rvpe0"]
-[ext_resource type="PackedScene" uid="uid://dwjkhg54nugkq" path="res://scene/enemy.tscn" id="5_rbobu"]
+[ext_resource type="PackedScene" uid="uid://dwjkhg54nugkq" path="res://scene/enemy_bob.tscn" id="5_rbobu"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_q6a1s")
@@ -43,9 +43,9 @@ floor_snap_length = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(167, 287)
-zoom = Vector2(2, 2)
+zoom = Vector2(0.5, 0.5)
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy" parent="Enemies" groups=["Enemy"] instance=ExtResource("5_rbobu")]
-position = Vector2(210, 322)
+[node name="Bob" parent="Enemies" groups=["Enemy"] instance=ExtResource("5_rbobu")]
+position = Vector2(375, 317)

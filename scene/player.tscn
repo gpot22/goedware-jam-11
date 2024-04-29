@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bc61jflp4x12c" path="res://scene/pistol.tscn" id="3_ii3tf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l74r8"]
-radius = 16.0
+radius = 13.0
 height = 56.0
 
 [sub_resource type="Animation" id="Animation_8yvx8"]
@@ -172,17 +172,14 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_6k5ke")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-10, -14)
-scale = Vector2(0.5, 0.5)
+position = Vector2(-24, -28)
 shape = SubResource("CapsuleShape2D_l74r8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -17)
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -34)
 texture = ExtResource("1_n3cjb")
 hframes = 49
 
@@ -192,5 +189,4 @@ libraries = {
 }
 
 [node name="pistol" parent="." instance=ExtResource("3_ii3tf")]
-position = Vector2(-8, -8)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-9, -24)

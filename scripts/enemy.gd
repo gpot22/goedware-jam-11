@@ -1,10 +1,9 @@
 extends CharacterBody2D
 
 
-const VEL = 50.0
+const VEL = 90.0
 const FRIC = 200.0
-const RECOIL = -100.0
-const JUMP_VEL = -360.0
+const RECOIL = -180.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
