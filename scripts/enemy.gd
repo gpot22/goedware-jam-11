@@ -20,6 +20,8 @@ var attack_charge_time = 60
 var state = 'idle'
 var player = null
 
+var health = 100
+
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var ray_cast_floor = $RayCastFloor
@@ -59,6 +61,8 @@ func _physics_process(delta):
 	handle_movement(delta, direction)
 	update_animations(direction)
 	move_and_slide()  # ** automatically applies "delta"
+	
+	check_health()
 
 func display_attack_timer():
 	if attack_timer == attack_charge_time:
@@ -149,4 +153,11 @@ func update_animations(direction):
 		sprite.flip_h = (direction > 0)
 		animation_player.play("walk")
 		
+func take_damage():
+	print('ouch')
+	health -= 50
+
+func check_health():
+	if health <= 0:
+		queue_free()
 		

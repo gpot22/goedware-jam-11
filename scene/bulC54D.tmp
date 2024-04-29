@@ -4,19 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://yyb80ru741t0" path="res://bullet.png" id="1_ee060"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jiw06"]
-size = Vector2(480, 80)
+size = Vector2(4, 1)
 
-[node name="Bullet" type="Area2D"]
-top_level = true
-scale = Vector2(0.1, 0.1)
+[node name="Bullet" type="CharacterBody2D"]
 script = ExtResource("1_7ngoc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.01, 0.01)
 texture = ExtResource("1_ee060")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_jiw06")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

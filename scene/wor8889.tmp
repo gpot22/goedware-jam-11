@@ -9,6 +9,7 @@
 script = ExtResource("1_q6a1s")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 offset_left = -641.0
 offset_top = -531.0
 offset_right = 4159.0
