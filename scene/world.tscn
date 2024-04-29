@@ -501,8 +501,9 @@ floor_constant_speed = true
 floor_snap_length = 2.0
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
-position = Vector2(1, -29)
-scale = Vector2(2.0625, 2.0625)
+position = Vector2(0, -30)
+scale = Vector2(2, 2)
+range_layer_min = -2
 texture = SubResource("GradientTexture2D_hg3f6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -516,6 +517,7 @@ position_smoothing_enabled = true
 position = Vector2(-455, 42)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -1
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2(1920, 1280)
