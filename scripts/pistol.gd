@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const BULLET = preload("res://scene/bullet.tscn")
+const BULLET = preload('res://scene/phase2/player/bullet.tscn')
 @onready var bullet_spawn = $WeaponPivot/PistolSprite/BulletSpawn
 @onready var player = get_parent()
 @onready var ap = $AnimationPlayer

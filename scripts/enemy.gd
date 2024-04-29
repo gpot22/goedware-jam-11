@@ -65,14 +65,11 @@ func _physics_process(delta):
 
 func display_attack_timer():
 	if attack_timer == attack_charge_time:
-		#print(2)
-		pass
+		print(2)
 	if attack_timer == attack_charge_time/2:
-		pass
-		#print(1)
+		print(1)
 	if attack_timer == 1:
-		pass
-		#print(0)
+		print(0)
 func apply_graivity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta

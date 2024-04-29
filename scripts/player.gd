@@ -19,7 +19,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var world_map = $"../World Map"
 
 # PLAYER-RELATED OBJECTS
-var bulletScene = preload('res://scene/bullet.tscn')
+#var bulletScene = preload('res://scene/phase2/player/bullet.tscn')
 var camera = null
 
 # PLAYER STATE MANAGERS
