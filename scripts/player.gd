@@ -48,7 +48,6 @@ func _ready():
 
 # PLAYER LOOP
 func _physics_process(delta):
-	print(grappling)
 	if !grappling:
 		apply_graivity(delta)
 	
