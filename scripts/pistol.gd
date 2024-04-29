@@ -39,17 +39,6 @@ func shoot():
 	await ap.animation_finished
 	ap.stop()
 	canShoot = true
-	#print(int(get_rotation_degrees()) % 360)
-	#if Input.is_action_just_pressed("shoot"):
-		#var bullet = bulletScene.instantiate()
-		#bullet.add_collision_exception_with(self)
-		#bullet.add_collision_exception_with(get_parent())
-		#get_parent().add_child(bullet)
-		#bullet.position = Vector2(get_position().x, get_position().y-4)
-		#if get_local_mouse_position().x < 0:
-			#bullet.vel.x = -600*delta
-		#else:
-			#bullet.vel.x = 600*delta
 	
 func toggle_active(a):
 	set_visible(a)

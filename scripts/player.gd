@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 # PLAYER MOVEMENT VARIABLES
-const VEL = 400.0
-const ACC = 1600.0
-const FRIC = 2000.0
-const JUMP_VEL = -500.0
+const VEL = 500.0
+const ACC = 2400.0
+const FRIC = 3000.0
+const JUMP_VEL = -900.0
 const DASH_VEL = 600.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -14,6 +14,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var collider = $CollisionShape2D
+@onready var run_smokes = [$smoke0, $smoke1]
 
 # PLAYER-RELATED OBJECTS
 var bulletScene = preload('res://scene/bullet.tscn')
@@ -28,6 +29,14 @@ var states = {
 	"fall_start": false,
 	"grapple": false
 }
+
+var pistol = null
+var pistol_ipos = null
+
+func _ready():
+	if has_node('pistol'):
+		pistol = $pistol
+		pistol_ipos = Vector2(abs(pistol.position.x), pistol.position.y)
 
 # PLAYER LOOP
 func _physics_process(delta):
@@ -50,11 +59,11 @@ func _physics_process(delta):
 	# apply velocity
 	move_and_slide()
 	
-	if has_node("pistol"):
+	if pistol:
 		if states['dash']:
-			$pistol.toggle_active(false)
+			pistol.toggle_active(false)
 		else:
-			$pistol.toggle_active(true)
+			pistol.toggle_active(true)
 
 # USER INPUT
 func handle_input():
@@ -66,12 +75,12 @@ func handle_input():
 # PLAYER GRAVITY
 func apply_graivity(delta):
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity*2 * delta
 
 # - - - - PLAYER MOVEMENT FUNCTIONS - - - - 
 func handle_movement(delta, input_axis):
 	if input_axis:
-		velocity.x = move_toward(velocity.x, VEL*direction, ACC*delta)  # player acceleration
+		velocity.x = move_toward(velocity.x, VEL*input_axis, ACC*delta)  # player acceleration
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRIC*delta)  # player friction
 	
@@ -86,7 +95,7 @@ func handle_jump():
 			jumpUp = false
 			animate_once('fall_start')
 		if Input.is_action_just_released("jump") and velocity.y < 0:
-			velocity.y = move_toward(velocity.y, 0, 1200)
+			velocity.y = move_toward(velocity.y, 0, 2000)
 		#if Input.is_action_just_released("jump") and velocity.y < JUMP_VEL/3:
 			#velocity.y = JUMP_VEL / 3
 
@@ -111,6 +120,7 @@ func animate_once(anim_name):
 # PLAYER ANIMATIONS
 func update_animations(input_axis):
 	sprite.flip_h = direction < 0
+	sprite.position.x = abs(sprite.position.x) * direction
 	if states.values().has(true): return
 	# if no special state, do one of the following animations
 	if input_axis != 0:
@@ -121,31 +131,43 @@ func update_animations(input_axis):
 				ap.play("fall_idle")
 		else:
 			ap.play("run")
+			for s in run_smokes:
+				s.flip_h = direction < 0
+				s.position.x = abs(s.position.x) * -direction
+				s.play()
 	elif is_on_floor():
 		ap.play("idle")
 		
 # PLAYER COLLIDER
 func update_direction(input_axis):
-	if input_axis != 0:
+	var mouse = get_global_mouse_position()
+	if mouse.x < global_position.x:
+		direction = -1
+	else:
+		direction = 1
+	if input_axis != 0 and is_on_floor():
 		direction = input_axis
 	update_collider(input_axis)
-	if has_node("pistol"):
-		$pistol.position.x = abs($pistol.position.x) * -direction
+	if pistol:
+		var m = 1 if input_axis == 0 or not is_on_floor() else 4
+		var n = 1 if is_on_floor() else 1.8
+		pistol.position.x = pistol_ipos.x * m * direction
+		pistol.position.y = pistol_ipos.y * n
 		
 
 func update_collider(input_axis):
 	if input_axis != 0 and is_on_floor():  # running
 		var shape: CapsuleShape2D = CapsuleShape2D.new()
 		shape.radius = 18
-		shape.height = 60
+		shape.height = 40
 		collider.shape = shape
-		collider.position = Vector2(-7*direction, -18)
+		collider.position = Vector2(25*direction, -18)
 		collider.rotation_degrees = 90
 	else:
 		var shape: CapsuleShape2D = CapsuleShape2D.new()
 		shape.radius = 13
 		shape.height = 56
 		collider.shape = shape
-		collider.position = Vector2(-24*direction, -28)
+		collider.position = Vector2(0, -28)
 		collider.rotation_degrees = 0
 		
