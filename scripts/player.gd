@@ -46,15 +46,21 @@ func _physics_process(delta):
 	
 	# update player anims and collider
 	update_animations(input_axis)
-	update_direction()
+	update_direction(input_axis)
 	# apply velocity
 	move_and_slide()
+	
+	if has_node("pistol"):
+		if states['dash']:
+			$pistol.toggle_active(false)
+		else:
+			$pistol.toggle_active(true)
 
 # USER INPUT
 func handle_input():
 	var input_axis = Input.get_axis("left", "right")
-	if input_axis != 0:
-		direction = input_axis
+	#if input_axis != 0:
+		#direction = input_axis
 	return input_axis
 
 # PLAYER GRAVITY
@@ -85,7 +91,10 @@ func handle_jump():
 func handle_dash():
 	if !Input.is_action_just_pressed("dash"): return
 	velocity.x += DASH_VEL*direction
-	animate_once('dash')
+	ap.play('dash')
+	states['dash'] = true
+	await ap.animation_finished
+	states['dash'] = false
 
 func handle_grapple():
 	if !Input.is_action_just_pressed('grapple'): return
@@ -114,7 +123,9 @@ func update_animations(input_axis):
 		ap.play("idle")
 		
 # PLAYER COLLIDER
-func update_direction():
+func update_direction(input_axis):
+	if input_axis != 0:
+		direction = input_axis
 	if (collider.position.x < 0 and direction > 0) or (collider.position.x > 0 and direction < 0):
 		return
 	collider.position.x *= -1

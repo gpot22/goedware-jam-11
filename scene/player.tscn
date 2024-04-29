@@ -191,5 +191,5 @@ libraries = {
 }
 
 [node name="pistol" parent="." instance=ExtResource("3_ii3tf")]
-position = Vector2(-8, -12)
+position = Vector2(-8, -8)
 scale = Vector2(0.8, 0.8)

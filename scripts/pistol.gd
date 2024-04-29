@@ -7,6 +7,7 @@ const BULLET = preload("res://scene/bullet.tscn")
 @onready var ap = $AnimationPlayer
 
 var canShoot = true
+var active = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -24,7 +25,7 @@ func point_to_cursor():
 		scale.y = 1
 
 func handle_shoot():
-	if canShoot and Input.is_action_just_pressed('shoot'):
+	if active and canShoot and Input.is_action_just_pressed('shoot'):
 		shoot()
 		
 func shoot():
@@ -50,4 +51,6 @@ func shoot():
 		#else:
 			#bullet.vel.x = 600*delta
 	
-	pass
+func toggle_active(a):
+	set_visible(a)
+	active = a
