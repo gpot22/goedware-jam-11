@@ -15,6 +15,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var sprite = $Sprite2D
 @onready var collider = $CollisionShape2D
 @onready var run_smokes = [$smoke0, $smoke1]
+@onready var tile_map = $"../TileMap"
+@onready var world_map = $"../World Map"
 
 # PLAYER-RELATED OBJECTS
 var bulletScene = preload('res://scene/bullet.tscn')
@@ -33,6 +35,12 @@ var states = {
 var pistol = null
 var pistol_ipos = null
 
+var grappling = false
+var grapple_to
+var grapple_speed = 500
+var grapple_vel = Vector2(0, 0)
+var grapple_direction
+
 func _ready():
 	if has_node('pistol'):
 		pistol = $pistol
@@ -40,7 +48,9 @@ func _ready():
 
 # PLAYER LOOP
 func _physics_process(delta):
-	apply_graivity(delta)
+	print(grappling)
+	if !grappling:
+		apply_graivity(delta)
 	
 	# update input_axis and direction
 	# - input axis: control player movement
@@ -51,9 +61,7 @@ func _physics_process(delta):
 	handle_movement(delta, input_axis)
 	handle_jump()
 	handle_dash()
-	handle_grapple()
-	
-	# update player anims and collider
+	handle_grapple(delta)
 	update_animations(input_axis)
 	update_direction(input_axis)
 	# apply velocity
@@ -94,7 +102,7 @@ func handle_jump():
 		if velocity.y > 0 and jumpUp:
 			jumpUp = false
 			animate_once('fall_start')
-		if Input.is_action_just_released("jump") and velocity.y < 0:
+		if Input.is_action_just_released("jump") and velocity.y < 0 and !grappling:
 			velocity.y = move_toward(velocity.y, 0, 2000)
 		#if Input.is_action_just_released("jump") and velocity.y < JUMP_VEL/3:
 			#velocity.y = JUMP_VEL / 3
@@ -107,17 +115,52 @@ func handle_dash():
 	await ap.animation_finished
 	states['dash'] = false
 
-func handle_grapple():
-	if !Input.is_action_just_pressed('grapple'): return
-	animate_once('grapple')
-
+# PLAYER ANIMATIONS
 func animate_once(anim_name):
 	ap.play(anim_name)
 	states[anim_name] = true
 	await ap.animation_finished
 	states[anim_name] = false
 	
-# PLAYER ANIMATIONS
+func handle_grapple(delta):
+	if Input.is_action_just_pressed('grapple'):
+		var platforms = world_map.get_children()
+		var mouse_pos = get_global_mouse_position()
+		for i in platforms:
+			if mouse_pos.x > i.global_position.x - i.get_child(0).shape.size.x and mouse_pos.x < i.global_position.x + i.get_child(0).shape.size.x:
+				if mouse_pos.y > i.global_position.y - i.get_child(0).shape.size.y and mouse_pos.y < i.global_position.y + i.get_child(0).shape.size.y:
+					grappling = true
+					grapple_to = mouse_pos
+					grapple_vel = Vector2(cos(get_angle_to(grapple_to)), sin(get_angle_to(grapple_to)))
+					if grapple_to.x > global_position.x and grapple_to.y > global_position.y:
+						grapple_direction = 'rightdown'
+					elif grapple_to.x < global_position.x and grapple_to.y > global_position.y:
+						grapple_direction = 'leftdown'
+					elif grapple_to.x > global_position.x and grapple_to.y < global_position.y:
+						grapple_direction = 'rightup'
+					elif grapple_to.x < global_position.x and grapple_to.y < global_position.y:
+						grapple_direction = 'leftup'
+		animate_once('grapple')
+	
+	if grappling:
+		if grapple_direction == 'rightup':
+			if global_position.x > grapple_to.x or global_position.y < grapple_to.y:
+				grappling = false
+				return
+		elif grapple_direction == 'leftup':
+			if global_position.x < grapple_to.x or global_position.y < grapple_to.y:
+				grappling = false
+				return
+		elif grapple_direction == 'rightdown':
+			if global_position.x > grapple_to.x or global_position.y > grapple_to.y:
+				grappling = false
+				return
+		elif grapple_direction == 'leftdown':
+			if global_position.x < grapple_to.x or global_position.y > grapple_to.y:
+				grappling = false
+				return
+		velocity = grapple_vel * grapple_speed
+		
 func update_animations(input_axis):
 	sprite.flip_h = direction < 0
 	sprite.position.x = abs(sprite.position.x) * direction

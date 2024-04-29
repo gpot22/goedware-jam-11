@@ -1,6 +1,7 @@
 extends Node2D
 @onready var camera_2d = $Camera2D
 @onready var tile_map = $TileMap
+@onready var arrows_sprite = $AnimatedSprite2D
 
 
 var viewport_width = 800.0
@@ -19,7 +20,6 @@ var tile_scale = 1
 var previous_tile_x = -1
 var previous_tile_y = -1
 var clicking = false
-var selected_tiles = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,24 +51,23 @@ func handle_mouse():
 		#previous_tile_y = tile_y
 	
 	if Input.is_action_just_pressed('select'):
-		selected_tiles.append(Vector2i(previous_tile_x, previous_tile_y))
-		tile_map.set_cell(0, Vector2i(previous_tile_x, previous_tile_y), 0, Vector2i(2,0))
+		arrows_sprite.set_position(Vector2((tile_x+1) * single_tile_size - single_tile_size/2, (tile_y+1) * single_tile_size - single_tile_size/2 - 8))
+		arrows_sprite.visible = true
 		clicking = true
 	
 	if clicking:
 		if previous_tile_x != tile_x or previous_tile_y != tile_y:
 			if tile_x == previous_tile_x: # extend along y
 				for i in range(total_y_tiles):
-					tile_map.set_cell(0, Vector2i(selected_tiles[0].x, i), 0, Vector2i(1,0))
+					tile_map.set_cell(0, Vector2i(previous_tile_x, i), 0, Vector2i(1,0))
 			elif tile_y == previous_tile_y: # extend along x
 				for i in range(total_x_tiles):
-					tile_map.set_cell(0, Vector2i(i, selected_tiles[0].y), 0, Vector2i(1, 0))
+					tile_map.set_cell(0, Vector2i(i, previous_tile_y), 0, Vector2i(1, 0))
+			arrows_sprite.visible = false
 		
 	if Input.is_action_just_released('select'):
 		clicking = false
-	#if clicking:
-		#for i in selected_tiles:
-			#tile_map.set_cell(0, i, 0, Vector2i(2,0))
+	
 	previous_tile_x = tile_x
 	previous_tile_y = tile_y
 

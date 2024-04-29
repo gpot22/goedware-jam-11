@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvjok3ypqpmux"]
+[gd_scene load_steps=10 format=3 uid="uid://cvjok3ypqpmux"]
 
 [ext_resource type="Script" path="res://scene/phase_1.gd" id="1_5e1dh"]
 [ext_resource type="Texture2D" uid="uid://bhsrkpf08t5da" path="res://phase1player.png" id="2_708s6"]
 [ext_resource type="Texture2D" uid="uid://qww1wv53hn4t" path="res://tiles.png" id="2_usmby"]
+[ext_resource type="Texture2D" uid="uid://bcrcq2lnk4dwj" path="res://arrows.png" id="4_afj37"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n4u64"]
 texture = ExtResource("2_usmby")
@@ -13,6 +14,28 @@ texture_region_size = Vector2i(45, 45)
 [sub_resource type="TileSet" id="TileSet_xf1ay"]
 tile_size = Vector2i(45, 45)
 sources/0 = SubResource("TileSetAtlasSource_n4u64")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usi62"]
+atlas = ExtResource("4_afj37")
+region = Rect2(0, 0, 68, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ek0v3"]
+atlas = ExtResource("4_afj37")
+region = Rect2(68, 0, 68, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8aksr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usi62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ek0v3")
+}],
+"loop": true,
+"name": &"arrows",
+"speed": 4.0
+}]
 
 [node name="Phase1" type="Node2D"]
 script = ExtResource("1_5e1dh")
@@ -29,3 +52,10 @@ texture = ExtResource("2_708s6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(399, 225)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(89, -68)
+sprite_frames = SubResource("SpriteFrames_8aksr")
+animation = &"arrows"
+autoplay = "arrows"
