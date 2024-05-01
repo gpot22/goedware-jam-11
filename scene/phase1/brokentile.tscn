@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfdphnpnpia54"]
+
+[ext_resource type="Script" path="res://scene/phase1/brokentile.gd" id="1_02e4h"]
+[ext_resource type="Texture2D" uid="uid://bcnjmsflyrvmm" path="res://broken_tile.png" id="1_qco4r"]
+
+[node name="brokentile" type="CharacterBody2D"]
+script = ExtResource("1_02e4h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qco4r")

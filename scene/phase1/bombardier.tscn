@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbl5fvbals5i3"]
+
+[ext_resource type="Texture2D" uid="uid://87p46uio5htq" path="res://assets/phase1sprites/bombardiersprite.png" id="1_j6dva"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mxqd"]
+atlas = ExtResource("1_j6dva")
+region = Rect2(0, 0, 24, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1gbl"]
+atlas = ExtResource("1_j6dva")
+region = Rect2(24, 0, 24, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mw45q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mxqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1gbl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="bombardier" type="AnimatedSprite2D"]
+position = Vector2(383, 60)
+sprite_frames = SubResource("SpriteFrames_mw45q")
+autoplay = "default"

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlvmpoo884aph"]
+
+[ext_resource type="Texture2D" uid="uid://cxc4mtvyid1cx" path="res://assets/phase1sprites/turretsprite.png" id="1_tfeqb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2jg8"]
+atlas = ExtResource("1_tfeqb")
+region = Rect2(0, 0, 47, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8cyl"]
+atlas = ExtResource("1_tfeqb")
+region = Rect2(47, 0, 47, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qq732"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2jg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8cyl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="turret" type="AnimatedSprite2D"]
+position = Vector2(240, 61)
+sprite_frames = SubResource("SpriteFrames_qq732")
+autoplay = "default"

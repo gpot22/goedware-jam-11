@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceaoit0kfr0d3"]
+
+[ext_resource type="Script" path="res://scene/phase_1_levelgenerator.gd" id="1_g35nc"]
+
+[node name="phase1levelgenerator" type="Node2D"]
+script = ExtResource("1_g35nc")

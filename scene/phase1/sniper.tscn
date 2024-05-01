@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd6khu68tqoqe"]
+
+[ext_resource type="Texture2D" uid="uid://ixeer5bkbuyu" path="res://assets/phase1sprites/snipersprite.png" id="1_w8cwh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyv5j"]
+atlas = ExtResource("1_w8cwh")
+region = Rect2(0, 0, 36, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1w8l"]
+atlas = ExtResource("1_w8cwh")
+region = Rect2(36, 0, 36, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_edssa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyv5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1w8l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="sniper" type="AnimatedSprite2D"]
+position = Vector2(288, 150)
+sprite_frames = SubResource("SpriteFrames_edssa")
+autoplay = "default"

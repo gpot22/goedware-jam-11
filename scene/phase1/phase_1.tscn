@@ -1,0 +1,89 @@
+[gd_scene load_steps=16 format=3 uid="uid://cvjok3ypqpmux"]
+
+[ext_resource type="Script" path="res://scripts/phase_1.gd" id="1_a3ra3"]
+[ext_resource type="Texture2D" uid="uid://qww1wv53hn4t" path="res://tiles.png" id="2_37bkd"]
+[ext_resource type="Texture2D" uid="uid://bhsrkpf08t5da" path="res://phase1player.png" id="3_3ewon"]
+[ext_resource type="Texture2D" uid="uid://bcrcq2lnk4dwj" path="res://arrows.png" id="4_dyoor"]
+[ext_resource type="PackedScene" uid="uid://c4ik3hvdw8hub" path="res://scene/phase1/beef.tscn" id="7_pgkkk"]
+[ext_resource type="PackedScene" uid="uid://bd6khu68tqoqe" path="res://scene/phase1/sniper.tscn" id="8_xeu12"]
+[ext_resource type="PackedScene" uid="uid://dbl5fvbals5i3" path="res://scene/phase1/bombardier.tscn" id="9_7efd6"]
+[ext_resource type="PackedScene" uid="uid://dfdphnpnpia54" path="res://scene/phase1/brokentile.tscn" id="9_kjqd7"]
+[ext_resource type="PackedScene" uid="uid://dlvmpoo884aph" path="res://scene/phase1/turret.tscn" id="10_04trn"]
+[ext_resource type="PackedScene" uid="uid://s2v2ywyiigsd" path="res://scene/phase1/tile.tscn" id="10_4342n"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cfii7"]
+texture = ExtResource("2_37bkd")
+texture_region_size = Vector2i(45, 45)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xf1ay"]
+tile_size = Vector2i(47, 38)
+sources/2 = SubResource("TileSetAtlasSource_cfii7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usi62"]
+atlas = ExtResource("4_dyoor")
+region = Rect2(0, 0, 68, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ek0v3"]
+atlas = ExtResource("4_dyoor")
+region = Rect2(68, 0, 68, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8aksr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usi62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ek0v3")
+}],
+"loop": true,
+"name": &"arrows",
+"speed": 4.0
+}]
+
+[node name="Phase1" type="Node2D"]
+script = ExtResource("1_a3ra3")
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+tile_set = SubResource("TileSet_xf1ay")
+format = 2
+layer_0/y_sort_origin = 1
+layer_0/tile_data = PackedInt32Array(131077, 2, 0, 131078, 2, 0, 131079, 2, 0, 196615, 2, 0, 196614, 2, 0, 196613, 2, 0, 262149, 2, 0, 262150, 2, 0, 262151, 2, 0, 327685, 2, 0, 327686, 2, 0, 327687, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 393221, 2, 0, 393222, 2, 0, 393223, 2, 0, 524293, 2, 0, 524294, 2, 0, 524295, 2, 0, 524296, 2, 0, 458760, 2, 0, 393224, 2, 0, 327688, 2, 0, 262152, 2, 0, 262153, 2, 0, 196617, 2, 0, 196616, 2, 0, 131080, 2, 0, 131081, 2, 0, 327689, 2, 0, 393225, 2, 0, 458761, 2, 0, 524297, 2, 0, 131082, 2, 0, 196618, 2, 0, 262154, 2, 0, 327690, 2, 0, 393226, 2, 0, 458762, 2, 0, 524298, 2, 0, 131083, 2, 0, 196619, 2, 0, 327691, 2, 0, 393227, 2, 0, 458763, 2, 0, 524299, 2, 0, 131084, 2, 0, 196620, 2, 0, 262156, 2, 0, 327692, 2, 0, 393228, 2, 0, 458764, 2, 0, 524300, 2, 0, 262155, 2, 0, 589836, 2, 0, 589835, 2, 0, 589834, 2, 0, 589833, 2, 0, 589832, 2, 0, 589831, 2, 0, 589830, 2, 0, 589829, 2, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(50, 53)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_3ewon")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(400, 225)
+
+[node name="arrows" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(89, -68)
+sprite_frames = SubResource("SpriteFrames_8aksr")
+animation = &"arrows"
+autoplay = "arrows"
+
+[node name="brokentile" parent="." instance=ExtResource("9_kjqd7")]
+visible = false
+
+[node name="tile" parent="." instance=ExtResource("10_4342n")]
+visible = false
+
+[node name="beef" parent="." instance=ExtResource("7_pgkkk")]
+visible = false
+
+[node name="sniper" parent="." instance=ExtResource("8_xeu12")]
+visible = false
+
+[node name="bombardier" parent="." instance=ExtResource("9_7efd6")]
+visible = false
+
+[node name="turret" parent="." instance=ExtResource("10_04trn")]
+visible = false

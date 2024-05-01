@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4ik3hvdw8hub"]
+
+[ext_resource type="Texture2D" uid="uid://dvnxpxyu0klq2" path="res://assets/phase1sprites/beefsprite.png" id="1_f4wgt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ela73"]
+atlas = ExtResource("1_f4wgt")
+region = Rect2(0, 0, 24, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeavc"]
+atlas = ExtResource("1_f4wgt")
+region = Rect2(24, 0, 24, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jmamc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ela73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeavc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="beef" type="AnimatedSprite2D"]
+position = Vector2(159, 146)
+sprite_frames = SubResource("SpriteFrames_jmamc")
+autoplay = "default"
