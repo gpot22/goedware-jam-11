@@ -11,9 +11,13 @@ const DASH_VEL = 1200.0
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var collider = $CollisionShape2D
-@onready var run_smokes = [$smoke0, $smoke1]
+#@onready var run_smokes = [$smoke0, $smoke1]
+@onready var smoke_spawn = $SmokeSpawn
 @onready var tile_map = $"../TileMap"
 @onready var world_map = $"../World Map"
+
+var smoke_effect = preload('res://scene/vfx/smoke.tscn')
+var smokes
 
 # PLAYER-RELATED OBJECTS
 #var bulletScene = preload('res://scene/phase2/player/bullet.tscn')
@@ -171,10 +175,18 @@ func update_animations(input_axis):
 				ap.play("fall_idle")
 		else:
 			ap.play("run")
-			for s in run_smokes:
+			if smokes and (len(smokes.get_children()) != 0 or is_instance_valid(smokes.get_children())): return
+			smokes = smoke_effect.instantiate()
+			smoke_spawn.position.x = abs(smoke_spawn.position.x) * -direction
+			get_parent().add_child(smokes)
+			smokes.global_position = smoke_spawn.global_position 
+			for s in smokes.get_children():
 				s.flip_h = direction < 0
-				s.position.x = abs(s.position.x) * -direction
-				s.play()
+				
+			#for s in run_smokes:
+				#s.flip_h = direction < 0
+				#s.position.x = abs(s.position.x) * -direction
+				#s.play()
 	elif is_on_floor():
 		ap.play("idle")
 		

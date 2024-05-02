@@ -185,7 +185,7 @@ func tackle_player():
 	
 	var v = get_tackle_vi(global_position.x, global_position.y, player.global_position.x, player.global_position.y)
 	velocity = v
-	print(v)
+	#print(v)
 	return true
 	
 func jump_off_edge():

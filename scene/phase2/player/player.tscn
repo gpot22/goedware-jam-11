@@ -322,3 +322,6 @@ frame = 7
 position = Vector2(-48, -32)
 sprite_frames = SubResource("SpriteFrames_jewb6")
 frame = 7
+
+[node name="SmokeSpawn" type="Marker2D" parent="."]
+position = Vector2(-48, -32)
