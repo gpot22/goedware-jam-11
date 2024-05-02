@@ -1,15 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://wtywps23r4pk"]
+[gd_scene load_steps=14 format=3 uid="uid://wtywps23r4pk"]
 
 [ext_resource type="Texture2D" uid="uid://di6bu1jdu6ihs" path="res://assets/sprites/bombardier.png" id="1_3h142"]
 [ext_resource type="Script" path="res://scripts/enemy_bombardier.gd" id="1_ot3qs"]
-[ext_resource type="PackedScene" uid="uid://bed5g7cgxxc8m" path="res://scene/phase2/enemies/bombardier_gun.tscn" id="3_786ls"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wy40i"]
 radius = 14.0
-height = 50.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wkelr"]
-radius = 320.0
+height = 46.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2loa"]
 radius = 600.0
@@ -133,20 +129,13 @@ gradient = SubResource("Gradient_hfu2t")
 fill = 1
 fill_from = Vector2(0.509174, 0.513761)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rpaox"]
-radius = 120.0
-
 [node name="bombardier" type="CharacterBody2D"]
+position = Vector2(-10, -25)
 script = ExtResource("1_ot3qs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, -25)
+position = Vector2(10, 1)
 shape = SubResource("CapsuleShape2D_wy40i")
-
-[node name="TackleArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TackleArea"]
-shape = SubResource("CircleShape2D_wkelr")
 
 [node name="ShootingArea" type="Area2D" parent="."]
 
@@ -155,7 +144,6 @@ position = Vector2(11, 4)
 shape = SubResource("CircleShape2D_j2loa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -25)
 texture = ExtResource("1_3h142")
 hframes = 28
 
@@ -172,25 +160,9 @@ texture = SubResource("GradientTexture2D_p8rip")
 metadata/_edit_lock_ = true
 
 [node name="RayCastFloor" type="RayCast2D" parent="."]
-position = Vector2(10, -6)
-target_position = Vector2(0, 16)
+position = Vector2(10, 2)
+target_position = Vector2(0, 60)
 
 [node name="RayCastWall" type="RayCast2D" parent="."]
-position = Vector2(8, -17)
+position = Vector2(10, 0)
 target_position = Vector2(-22, 0)
-
-[node name="bombardier_gun" parent="." instance=ExtResource("3_786ls")]
-position = Vector2(-16, -8)
-
-[node name="CommitTackleArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CommitTackleArea"]
-position = Vector2(-1, -29)
-shape = SubResource("CircleShape2D_rpaox")
-
-[connection signal="body_entered" from="TackleArea" to="." method="_on_tackle_area_body_entered"]
-[connection signal="body_exited" from="TackleArea" to="." method="_on_tackle_area_body_exited"]
-[connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
-[connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]
-[connection signal="body_entered" from="CommitTackleArea" to="." method="_on_commit_tackle_area_body_entered"]
-[connection signal="body_exited" from="CommitTackleArea" to="." method="_on_commit_tackle_area_body_exited"]

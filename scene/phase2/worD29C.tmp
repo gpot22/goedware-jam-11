@@ -517,7 +517,7 @@ position_smoothing_enabled = true
 position = Vector2(264, 608)
 
 [node name="bombardier" parent="Enemies" groups=["Enemy"] instance=ExtResource("10_aiiji")]
-position = Vector2(1229, 1371)
+position = Vector2(1211, 1259)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = -1
@@ -546,9 +546,6 @@ position = Vector2(1729, 801)
 
 [node name="long_platform3" parent="World Map" instance=ExtResource("6_otomd")]
 position = Vector2(713, 668)
-
-[node name="long_platform6" parent="World Map" instance=ExtResource("6_otomd")]
-position = Vector2(863, 1262)
 
 [node name="long_platform4" parent="World Map" instance=ExtResource("6_otomd")]
 position = Vector2(1473, 671)

@@ -17,6 +17,7 @@ func _ready():
 	testland_polygon.polygon = testland_collider.polygon
 	# set player camera
 	player.camera = camera_2d
+	
 
 
 func _process(delta):

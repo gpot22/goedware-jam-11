@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwjkhg54nugkq"]
+[gd_scene load_steps=11 format=3 uid="uid://dwjkhg54nugkq"]
 
+[ext_resource type="Script" path="res://scripts/bob.gd" id="1_6gre0"]
 [ext_resource type="Texture2D" uid="uid://cuw1lcc2psans" path="res://assets/sprites/enemy1.png" id="1_h7lmb"]
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ulni5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ffjm"]
 size = Vector2(44.25, 85.5)
@@ -80,9 +80,18 @@ _data = {
 "walk": SubResource("Animation_cly4o")
 }
 
+[sub_resource type="Gradient" id="Gradient_pemij"]
+offsets = PackedFloat32Array(0, 0.746753)
+colors = PackedColorArray(0.759551, 0.86733, 0.966086, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_21ow4"]
+gradient = SubResource("Gradient_pemij")
+fill = 1
+fill_from = Vector2(0.509174, 0.513761)
+
 [node name="Bob" type="CharacterBody2D"]
 position = Vector2(0, -10)
-script = ExtResource("1_ulni5")
+script = ExtResource("1_6gre0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -33)
@@ -115,3 +124,10 @@ target_position = Vector2(-300, 0)
 position = Vector2(0, -32)
 exclude_parent = false
 target_position = Vector2(-108, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -30)
+scale = Vector2(2, 2)
+range_layer_min = -2
+texture = SubResource("GradientTexture2D_21ow4")
+metadata/_edit_lock_ = true

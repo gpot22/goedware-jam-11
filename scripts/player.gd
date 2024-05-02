@@ -1,14 +1,11 @@
-extends CharacterBody2D
+extends 'res://scripts/CharacterSuperclass.gd'
 
 # PLAYER MOVEMENT VARIABLES
 const VEL = 500.0
 const ACC = 2400.0
 const FRIC = 3000.0
 const JUMP_VEL = -900.0
-const DASH_VEL = 600.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+const DASH_VEL = 1200.0
 
 # PLAYER CHILD NODES
 @onready var ap = $AnimationPlayer
@@ -37,7 +34,7 @@ var pistol_ipos = null
 
 var grappling = false
 var grapple_to
-var grapple_speed = 500
+var grapple_speed = 900
 var grapple_vel = Vector2(0, 0)
 var grapple_direction
 
@@ -49,7 +46,7 @@ func _ready():
 # PLAYER LOOP
 func _physics_process(delta):
 	if !grappling:
-		apply_graivity(delta)
+		apply_gravity(delta)
 	
 	# update input_axis and direction
 	# - input axis: control player movement
@@ -59,7 +56,7 @@ func _physics_process(delta):
 	# handle player movement, mechnanics and states
 	handle_movement(delta, input_axis)
 	handle_jump()
-	handle_dash()
+	handle_dash(input_axis)
 	handle_grapple(delta)
 	update_animations(input_axis)
 	update_direction(input_axis)
@@ -80,12 +77,13 @@ func handle_input():
 	return input_axis
 
 # PLAYER GRAVITY
-func apply_graivity(delta):
+func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity*2 * delta
 
 # - - - - PLAYER MOVEMENT FUNCTIONS - - - - 
 func handle_movement(delta, input_axis):
+	if grappling:return
 	if input_axis:
 		velocity.x = move_toward(velocity.x, VEL*input_axis, ACC*delta)  # player acceleration
 	else:
@@ -101,14 +99,14 @@ func handle_jump():
 		if velocity.y > 0 and jumpUp:
 			jumpUp = false
 			animate_once('fall_start')
-		if Input.is_action_just_released("jump") and velocity.y < 0 and !grappling:
+		if Input.is_action_just_released("jump") and velocity.y < 0 and jumpUp and !grappling:
 			velocity.y = move_toward(velocity.y, 0, 2000)
 		#if Input.is_action_just_released("jump") and velocity.y < JUMP_VEL/3:
 			#velocity.y = JUMP_VEL / 3
 
-func handle_dash():
-	if !Input.is_action_just_pressed("dash"): return
-	velocity.x += DASH_VEL*direction
+func handle_dash(input_axis):
+	if !Input.is_action_just_pressed("dash") or states['dash']: return
+	velocity.x = DASH_VEL*direction if not input_axis else DASH_VEL*input_axis
 	ap.play('dash')
 	states['dash'] = true
 	await ap.animation_finished
@@ -139,7 +137,8 @@ func handle_grapple(delta):
 						grapple_direction = 'rightup'
 					elif grapple_to.x < global_position.x and grapple_to.y < global_position.y:
 						grapple_direction = 'leftup'
-		animate_once('grapple')
+					animate_once('grapple')
+					velocity = grapple_vel * grapple_speed
 	
 	if grappling:
 		if grapple_direction == 'rightup':
@@ -158,7 +157,6 @@ func handle_grapple(delta):
 			if global_position.x < grapple_to.x or global_position.y > grapple_to.y:
 				grappling = false
 				return
-		velocity = grapple_vel * grapple_speed
 		
 func update_animations(input_axis):
 	sprite.flip_h = direction < 0

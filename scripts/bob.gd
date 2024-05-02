@@ -1,14 +1,12 @@
-extends CharacterBody2D
+extends 'res://scripts/EnemySuperclass.gd'
+
 
 
 const VEL = 90.0
 const FRIC = 200.0
 const RECOIL = -180.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-# RNG
-var rng = RandomNumberGenerator.new()
+
 var time_count = 0 
 
 var idle_timer = 0
@@ -16,12 +14,8 @@ var idle_state = 0  # 0 = not moving, 1 = moving
 var hostile_timer = 0
 var attack_timer = 0
 var attack_charge_time = 60
-var state = 'idle'
-var player = null
 
-var health = 100
-
-@onready var animation_player = $AnimationPlayer
+@onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var ray_cast_floor = $RayCastFloor
 @onready var ray_cast_wall = $RayCastWall
@@ -29,11 +23,16 @@ var health = 100
 @onready var ray_cast_attack = $RayCastAttack
 
 var isAttacking = false
-var direction = -1
 var face_dir = -1
 
+func _ready():
+	health = 100
+	state = 'idle'
+	direction = -1
+	vel = 0
+
 func _physics_process(delta):
-	apply_graivity(delta)
+	apply_gravity(delta)
 	
 	#if Input.is_action_just_pressed("dash"):
 		#attack()
@@ -70,9 +69,6 @@ func display_attack_timer():
 		print(1)
 	if attack_timer == 1:
 		print(0)
-func apply_graivity(delta):
-	if not is_on_floor():
-		velocity.y += gravity * delta
 
 func idle_movement():
 	idle_timer -= 1
@@ -139,18 +135,18 @@ func attack():
 	if isAttacking: return
 	isAttacking = true
 	velocity.x = RECOIL*face_dir
-	animation_player.play("attack")
-	await animation_player.animation_finished
-	animation_player.stop()
+	ap.play("attack")
+	await ap.animation_finished
+	ap.stop()
 	isAttacking = false
 	
 func update_animations(direction):
 	if isAttacking: return
 	if direction == 0:
-		animation_player.play("idle")
+		ap.play("idle")
 	else:
 		sprite.flip_h = (direction > 0)
-		animation_player.play("walk")
+		ap.play("walk")
 		
 func take_damage():
 	print('ouch')

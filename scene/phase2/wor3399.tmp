@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3fbeq4r0lddw"]
+[gd_scene load_steps=19 format=3 uid="uid://b3fbeq4r0lddw"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_566ba"]
 [ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_gw8d1"]
 [ext_resource type="PackedScene" uid="uid://cwrkcklv0yvjo" path="res://scene/phase2/player/player.tscn" id="3_ke8sk"]
+[ext_resource type="Script" path="res://scripts/EnemySuperclass.gd" id="4_4hmrl"]
 [ext_resource type="PackedScene" uid="uid://dwjkhg54nugkq" path="res://scene/phase2/enemies/enemy_bob.tscn" id="4_vioxg"]
 [ext_resource type="Texture2D" uid="uid://diamcnywig4em" path="res://assets/background_tile.png" id="5_661uf"]
 [ext_resource type="Texture2D" uid="uid://d06mi83l5e71m" path="res://assets/background_tile2.png" id="6_kgx23"]
@@ -512,12 +513,13 @@ zoom = Vector2(0.7, 0.7)
 position_smoothing_enabled = true
 
 [node name="Enemies" type="Node" parent="."]
+script = ExtResource("4_4hmrl")
 
 [node name="Bob" parent="Enemies" groups=["Enemy"] instance=ExtResource("4_vioxg")]
 position = Vector2(264, 608)
 
 [node name="bombardier" parent="Enemies" groups=["Enemy"] instance=ExtResource("10_aiiji")]
-position = Vector2(1229, 1371)
+position = Vector2(1211, 1259)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = -1
@@ -546,9 +548,6 @@ position = Vector2(1729, 801)
 
 [node name="long_platform3" parent="World Map" instance=ExtResource("6_otomd")]
 position = Vector2(713, 668)
-
-[node name="long_platform6" parent="World Map" instance=ExtResource("6_otomd")]
-position = Vector2(863, 1262)
 
 [node name="long_platform4" parent="World Map" instance=ExtResource("6_otomd")]
 position = Vector2(1473, 671)
