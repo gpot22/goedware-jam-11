@@ -1,34 +1,87 @@
-[gd_scene load_steps=6 format=3 uid="uid://be4aqh46p2ude"]
+[gd_scene load_steps=13 format=3 uid="uid://be4aqh46p2ude"]
 
 [ext_resource type="Script" path="res://scripts/grenade.gd" id="1_4a3hj"]
-[ext_resource type="Texture2D" uid="uid://b2s5fvg5op12w" path="res://scene/phase2/enemies/grenade.png" id="1_p78yf"]
+[ext_resource type="Texture2D" uid="uid://b4ms3hbucur2k" path="res://assets/sprites/grenadebomb.png" id="2_ekfsv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_w4r1a"]
-radius = 73.0069
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8rwf"]
+atlas = ExtResource("2_ekfsv")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccaun"]
+atlas = ExtResource("2_ekfsv")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n667j"]
+atlas = ExtResource("2_ekfsv")
+region = Rect2(14, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4fqr"]
+atlas = ExtResource("2_ekfsv")
+region = Rect2(21, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veub2"]
+atlas = ExtResource("2_ekfsv")
+region = Rect2(28, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpv5f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8rwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccaun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n667j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4fqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veub2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_4he8a"]
-offsets = PackedFloat32Array(0, 0.746753)
-colors = PackedColorArray(0.759551, 0.86733, 0.966086, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.824675)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_t32ii"]
 gradient = SubResource("Gradient_4he8a")
 fill = 1
 fill_from = Vector2(0.509174, 0.513761)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w4r1a"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i2pd7"]
+radius = 100.0
+
 [node name="grenade" type="Area2D"]
 position = Vector2(0, -1)
 script = ExtResource("1_4a3hj")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vpv5f")
+frame_progress = 0.395702
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(0.5, 0.5)
+range_layer_min = -2
+texture = SubResource("GradientTexture2D_t32ii")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
 scale = Vector2(0.25, 0.25)
 shape = SubResource("CircleShape2D_w4r1a")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_p78yf")
+[node name="DamageArea" type="Area2D" parent="."]
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(1, 8)
-range_layer_min = -2
-texture = SubResource("GradientTexture2D_t32ii")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_i2pd7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

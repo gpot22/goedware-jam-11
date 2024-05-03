@@ -9,10 +9,10 @@ radius = 14.0
 height = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wkelr"]
-radius = 320.0
+radius = 237.008
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2loa"]
-radius = 600.0
+radius = 569.008
 
 [sub_resource type="Animation" id="Animation_5qucw"]
 length = 0.001
@@ -124,12 +124,12 @@ _data = {
 "walk": SubResource("Animation_gkoep")
 }
 
-[sub_resource type="Gradient" id="Gradient_hfu2t"]
+[sub_resource type="Gradient" id="Gradient_2h2nb"]
 offsets = PackedFloat32Array(0, 0.746753)
 colors = PackedColorArray(0.759551, 0.86733, 0.966086, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p8rip"]
-gradient = SubResource("Gradient_hfu2t")
+gradient = SubResource("Gradient_2h2nb")
 fill = 1
 fill_from = Vector2(0.509174, 0.513761)
 
@@ -146,6 +146,7 @@ shape = SubResource("CapsuleShape2D_wy40i")
 [node name="TackleArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TackleArea"]
+position = Vector2(2, -18)
 shape = SubResource("CircleShape2D_wkelr")
 
 [node name="ShootingArea" type="Area2D" parent="."]

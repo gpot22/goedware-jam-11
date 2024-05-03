@@ -4,68 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bu6xcpffpqjx1" path="res://assets/sprites/turretbase.png" id="2_ht5tx"]
 [ext_resource type="Texture2D" uid="uid://cg88cumaw8gm8" path="res://assets/sprites/turretfire.png" id="3_5x1rp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_srf6y"]
-atlas = ExtResource("1_nldml")
-region = Rect2(0, 0, 85, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bt0cq"]
-atlas = ExtResource("1_nldml")
-region = Rect2(85, 0, 85, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5wwuf"]
-atlas = ExtResource("1_nldml")
-region = Rect2(170, 0, 85, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sxbpg"]
-atlas = ExtResource("1_nldml")
-region = Rect2(255, 0, 85, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_reelb"]
-atlas = ExtResource("1_nldml")
-region = Rect2(340, 0, 85, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwhc6"]
-atlas = ExtResource("1_nldml")
-region = Rect2(425, 0, 85, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_13cax"]
-atlas = ExtResource("1_nldml")
-region = Rect2(510, 0, 85, 34)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vcctg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_srf6y")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bt0cq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5wwuf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sxbpg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_reelb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jwhc6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_13cax")
-}],
-"loop": true,
-"name": &"recoil",
-"speed": 20.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_yv6ll"]
 atlas = ExtResource("2_ht5tx")
 region = Rect2(85, 0, 85, 33)
@@ -267,6 +205,68 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srf6y"]
+atlas = ExtResource("1_nldml")
+region = Rect2(0, 0, 85, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt0cq"]
+atlas = ExtResource("1_nldml")
+region = Rect2(85, 0, 85, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wwuf"]
+atlas = ExtResource("1_nldml")
+region = Rect2(170, 0, 85, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxbpg"]
+atlas = ExtResource("1_nldml")
+region = Rect2(255, 0, 85, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reelb"]
+atlas = ExtResource("1_nldml")
+region = Rect2(340, 0, 85, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwhc6"]
+atlas = ExtResource("1_nldml")
+region = Rect2(425, 0, 85, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13cax"]
+atlas = ExtResource("1_nldml")
+region = Rect2(510, 0, 85, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vcctg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srf6y")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt0cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wwuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxbpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reelb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwhc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13cax")
+}],
+"loop": true,
+"name": &"recoil",
+"speed": 20.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w81no"]
@@ -500,21 +500,22 @@ animations = [{
 [node name="turret" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-14, -45, 12, -45, 12, -20, 24, -20, 24, 0, -27, 0, -27, -20, -14, -20, -14, -37, -69, -37, -69, -41, -14, -41)
 
 [node name="body" type="Node" parent="."]
-
-[node name="head" type="AnimatedSprite2D" parent="body"]
-position = Vector2(-29.5, -50)
-sprite_frames = SubResource("SpriteFrames_vcctg")
-animation = &"idle"
 
 [node name="base" type="AnimatedSprite2D" parent="body"]
 position = Vector2(15.5, -17)
 sprite_frames = SubResource("SpriteFrames_y5kqe")
 animation = &"idle"
 
+[node name="head" type="AnimatedSprite2D" parent="body"]
+position = Vector2(-30, -44)
+sprite_frames = SubResource("SpriteFrames_vcctg")
+animation = &"idle"
+
 [node name="spark" type="AnimatedSprite2D" parent="."]
-position = Vector2(-141, -45)
+position = Vector2(-141, -41)
 sprite_frames = SubResource("SpriteFrames_dbsb4")
-animation = &"flash1"
+animation = &"flash3"

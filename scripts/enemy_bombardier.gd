@@ -135,12 +135,12 @@ func avoid_edge():
 	if not ray_cast_floor.is_colliding() or ray_cast_wall.is_colliding():
 		flip_direction()
 # - - - - - STATE: HOSTILE - - - - - - 
-func grenade_shower(n=6):
+func grenade_shower(n=4):
 	var cooldown = 20
 	var x_offset
 	for i in range(n):
 		if state == 'suicidal': return
-		x_offset = int(rng.randf_range(-3, 3)*14)
+		x_offset = int(rng.randf_range(-4, 4)*15)
 		await get_tree().create_timer(0.2).timeout
 		shoot(x_offset)
 		

@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const BULLET = preload('res://scene/phase2/player/bullet.tscn')
+const BULLET = preload('res://scene/phase2/bullet.tscn')
 @onready var bullet_spawn = $WeaponPivot/PistolSprite/BulletSpawn
 @onready var player = get_parent()
 @onready var ap = $AnimationPlayer
@@ -32,7 +32,7 @@ func shoot():
 	var bullet = BULLET.instantiate()
 	bullet.global_position = bullet_spawn.global_position
 	bullet.global_rotation = bullet_spawn.global_rotation
-	bullet_spawn.add_child(bullet)
+	add_child(bullet)
 	
 	canShoot = false
 	ap.play('shoot')

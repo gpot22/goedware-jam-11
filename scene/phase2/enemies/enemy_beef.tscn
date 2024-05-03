@@ -80,16 +80,16 @@ _data = {
 "walk": SubResource("Animation_cly4o")
 }
 
-[sub_resource type="Gradient" id="Gradient_pemij"]
+[sub_resource type="Gradient" id="Gradient_tqgr2"]
 offsets = PackedFloat32Array(0, 0.746753)
 colors = PackedColorArray(0.759551, 0.86733, 0.966086, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_21ow4"]
-gradient = SubResource("Gradient_pemij")
+gradient = SubResource("Gradient_tqgr2")
 fill = 1
 fill_from = Vector2(0.509174, 0.513761)
 
-[node name="Bob" type="CharacterBody2D"]
+[node name="beef" type="CharacterBody2D"]
 position = Vector2(0, -10)
 script = ExtResource("1_6gre0")
 

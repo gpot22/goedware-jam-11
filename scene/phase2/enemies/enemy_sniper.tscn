@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5su8u53h77tj"]
+[gd_scene load_steps=17 format=3 uid="uid://c5su8u53h77tj"]
 
-[ext_resource type="Texture2D" uid="uid://dh0j8re4005ds" path="res://assets/sprites/sniper.png" id="1_3o46k"]
+[ext_resource type="Texture2D" uid="uid://5ot14u1t27ut" path="res://assets/sprites/sniper.png" id="1_3o46k"]
+[ext_resource type="Script" path="res://scripts/enemy_sniper.gd" id="1_wl76n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xikgq"]
 radius = 12.0
@@ -34,7 +35,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [19, 20]
+"values": [20, 21]
 }
 
 [sub_resource type="Animation" id="Animation_lel0i"]
@@ -66,7 +67,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [16]
+"values": [17]
 }
 
 [sub_resource type="Animation" id="Animation_801tg"]
@@ -88,6 +89,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_g6nmq"]
 resource_name = "slide_shoot"
+length = 0.4
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -96,10 +99,40 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [10, 11, 12, 13, 14, 15]
+"values": [10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_vlo55"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_6cf2q"]
+resource_name = "recoil"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [18, 19]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jd246"]
@@ -108,11 +141,29 @@ _data = {
 "hurt": SubResource("Animation_vecgj"),
 "idle": SubResource("Animation_lel0i"),
 "jump": SubResource("Animation_r82hq"),
+"recoil": SubResource("Animation_6cf2q"),
 "run": SubResource("Animation_801tg"),
+"shoot": SubResource("Animation_vlo55"),
 "slide_shoot": SubResource("Animation_g6nmq")
 }
 
-[node name="enemy_sniper" type="CharacterBody2D"]
+[sub_resource type="Gradient" id="Gradient_hfu2t"]
+offsets = PackedFloat32Array(0, 0.746753)
+colors = PackedColorArray(0.759551, 0.86733, 0.966086, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2yknn"]
+gradient = SubResource("Gradient_hfu2t")
+fill = 1
+fill_from = Vector2(0.509174, 0.513761)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bf6fh"]
+radius = 870.097
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wnunx"]
+radius = 205.444
+
+[node name="sniper" type="CharacterBody2D"]
+script = ExtResource("1_wl76n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-21, -29)
@@ -121,9 +172,30 @@ shape = SubResource("CapsuleShape2D_xikgq")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -30)
 texture = ExtResource("1_3o46k")
-hframes = 21
+hframes = 22
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jd246")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(2, -4)
+scale = Vector2(2, 2)
+range_layer_min = -2
+texture = SubResource("GradientTexture2D_2yknn")
+metadata/_edit_lock_ = true
+
+[node name="ShootingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea"]
+position = Vector2(-21, -28)
+shape = SubResource("CircleShape2D_bf6fh")
+
+[node name="EvasionArea" type="Area2D" parent="."]
+position = Vector2(2, -4)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EvasionArea"]
+position = Vector2(-11, -11.5)
+shape = SubResource("CircleShape2D_wnunx")
