@@ -67,7 +67,7 @@ script = ExtResource("1_4a3hj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpv5f")
-frame_progress = 0.395702
+frame_progress = 0.686582
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 position = Vector2(-1.90735e-06, -1.90735e-06)

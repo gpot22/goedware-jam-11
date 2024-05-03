@@ -119,7 +119,7 @@ func handle_mouse():
 	var tile_x = int((mouse_x - x_offset + (single_tile_size_x) / 2) / (single_tile_size_x + x_gap))
 	var tile_y = int((mouse_y - y_offset + (single_tile_size_y) / 2) / (single_tile_size_y + y_gap))
 	
-	if tile_x > total_x_tiles-1 or tile_y > total_y_tiles:
+	if tile_x > total_x_tiles-1 or tile_y > total_y_tiles-1:
 		return
 	
 	if Input.is_action_just_pressed('select'):
