@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfkaw4wnaflxf"]
+
+[ext_resource type="Script" path="res://scene/menus/title.gd" id="1_mqe5i"]
+[ext_resource type="Texture2D" uid="uid://js4pfaecxgq4" path="res://logo.png" id="2_syi6u"]
+
+[node name="title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mqe5i")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 450.0
+
+[node name="menu" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 25.0
+offset_right = 750.0
+offset_bottom = 425.0
+
+[node name="TextureRect" type="TextureRect" parent="menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_syi6u")
+
+[node name="centerrow" type="HBoxContainer" parent="menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu/centerrow"]
+layout_mode = 2
+alignment = 1
+
+[node name="playbutton" type="Button" parent="menu/centerrow/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play"
+
+[node name="settingsbutton" type="Button" parent="menu/centerrow/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Settings"
+
+[node name="creditsbutton" type="Button" parent="menu/centerrow/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Credits"

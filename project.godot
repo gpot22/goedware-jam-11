@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Goedware"
-run/main_scene="res://scene/phase2/world.tscn"
+run/main_scene="res://scene/phase_1_levelgenerator.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
