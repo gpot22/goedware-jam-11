@@ -9,14 +9,20 @@ var level_3_enemies = {'beef': [[2, 5]], 'bombardier': [], 'sniper': [[2, 4], [5
 var level_4_enemies = {'beef': [], 'bombardier': [[6, 4]], 'sniper': [[1, 4]], 'turret': [[2, 3], [5, 3]]}
 var level_5_enemies = {'beef': [[2, 5], [3, 5], [4, 5], [6, 3]], 'bombardier': [[1, 2], [2, 1]], 'sniper': [[6, 2]], 'turret': [[1, 1], [3, 6]]}
 
-var level_1
-var level_2
-var level_3
-var level_4
-var level_5
+var level_6_enemies = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
+var level_7_enemies = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
+var level_8_enemies = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
+var level_9_enemies = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
+var level_10_enemies = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
+var level_11_enemies = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
+var level_12_enemies = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
+var level_13_enemies = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
+var level_14_enemies = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
+var level_15_enemies = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
 
 var current_level = 0
-var level_enemies = [level_1_enemies, level_2_enemies, level_3_enemies, level_4_enemies, level_5_enemies]
+var level_enemies = [level_1_enemies, level_2_enemies, level_3_enemies, level_4_enemies, level_5_enemies, level_6_enemies, level_7_enemies, level_8_enemies, level_9_enemies, level_10_enemies, level_11_enemies, level_12_enemies, level_13_enemies, level_14_enemies, level_15_enemies]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#generate_premade_levels()
