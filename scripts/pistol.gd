@@ -1,24 +1,23 @@
-extends Node2D
-
-
-const BULLET = preload('res://scene/phase2/bullet.tscn')
-@onready var bullet_spawn = $WeaponPivot/PistolSprite/BulletSpawn
-@onready var player = get_parent()
-@onready var ap = $AnimationPlayer
+extends 'res://scripts/WeaponSuperclass.gd'
 
 var canShoot = true
-var active = true
+
+func _ready():
+	super._ready()
+	bullet = preload('res://scene/phase2/bullet.tscn')
+	parent = get_parent()
+	damage = 10
+	direction = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	point_to_cursor()
-	handle_shoot()
-	
+	if isPlayer():
+		point_to_cursor()
+		handle_shoot()
 	
 func point_to_cursor():
 	var mouse = get_global_mouse_position()
-	look_at(mouse)
-	bullet_spawn.look_at(mouse)
+	point_to_target(mouse)
 	if mouse.x < global_position.x:
 		scale.y = -1
 	else:
@@ -29,15 +28,15 @@ func handle_shoot():
 		shoot()
 		
 func shoot():
-	var bullet = BULLET.instantiate()
-	bullet.global_position = bullet_spawn.global_position
-	bullet.global_rotation = bullet_spawn.global_rotation
-	add_child(bullet)
+	var b = bullet.instantiate()
+	b.global_position = bullet_spawn.global_position
+	b.global_rotation = bullet_spawn.global_rotation
+	add_child(b)
 	
 	canShoot = false
-	ap.play('shoot')
-	await ap.animation_finished
-	ap.stop()
+	anim_sprite.play('shoot')
+	await anim_sprite.animation_finished
+	anim_sprite.stop()
 	canShoot = true
 	
 func toggle_active(a):

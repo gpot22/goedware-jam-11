@@ -11,7 +11,7 @@ var idle_timer = 0
 var hostile_timer = 0 
 var shoot_timer = 0
 
-
+var grenade = preload('res://scripts/grenade.gd')
 
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
@@ -135,6 +135,28 @@ func avoid_edge():
 	if not ray_cast_floor.is_colliding() or ray_cast_wall.is_colliding():
 		flip_direction()
 # - - - - - STATE: HOSTILE - - - - - - 
+
+func get_grenade_vi(xi, yi, xf, yf, g):
+	var dx = xf - xi
+	var dy = yf - yi
+	var viy = -800
+	var ay = g
+	var t =( -viy + sqrt(viy**2 -4*(ay/2)*(-dy)))/(ay)
+	var vix = dx/t
+	return Vector2(vix, viy)
+
+func shoot(x_offset=0):
+	ap.play("attack")
+	var xi = bombardier_gun.bullet_spawn.global_position.x
+	var yi = bombardier_gun.bullet_spawn.global_position.y
+	
+	var xf = player.global_position.x + x_offset
+	var yf = player.global_position.y
+	var vel = get_grenade_vi(xi, yi, xf, yf, grenade.new().GRAVITY)
+	bombardier_gun.shoot(vel, x_offset)
+	await ap.animation_finished
+	ap.stop()
+	
 func grenade_shower(n=4):
 	var cooldown = 20
 	var x_offset
@@ -143,12 +165,6 @@ func grenade_shower(n=4):
 		x_offset = int(rng.randf_range(-4, 4)*15)
 		await get_tree().create_timer(0.2).timeout
 		shoot(x_offset)
-		
-func shoot(x_offset=0):
-	ap.play("attack")
-	bombardier_gun.shoot(x_offset)
-	await ap.animation_finished
-	ap.stop()
 # - - - - - STATE: SUICIDAL - - - - - - 
 # suicidal, phase 1
 func run_towards_player():

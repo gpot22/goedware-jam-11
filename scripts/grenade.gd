@@ -1,7 +1,7 @@
 extends Area2D
 
 var vel
-var g
+var GRAVITY = 800
 var r_spd
 
 var explosion_effect = preload('res://scene/vfx/explosion.tscn')
@@ -17,7 +17,7 @@ func _ready():
 func _physics_process(delta):
 	if not vel: return
 	global_position += vel * delta
-	vel.y += g * delta
+	vel.y += GRAVITY * delta
 
 
 

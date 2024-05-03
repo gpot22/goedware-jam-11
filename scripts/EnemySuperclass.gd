@@ -15,3 +15,6 @@ var player = null
 func _ready():
 	pass # Replace with function body.
 	
+func take_damage():
+	pass
+	

@@ -1,64 +1,29 @@
-extends Node2D
+extends 'res://scripts/WeaponSuperclass.gd'
 
-const GRENADE = preload('res://scene/phase2/enemies/grenade.tscn')
-
-const GRENADE_GRAVITY = 800
-@onready var bullet_spawn = $AnimatedSprite2D/BulletSpawn
-@onready var ap = $AnimatedSprite2D
-
-var target
-var grenade_vel
-var direction = -1
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+	super._ready()
+	bullet = preload('res://scene/phase2/enemies/grenade.tscn')
+	direction = -1
+	
+func _physics_process(delta):
 	pass
-	#if direction == 1:
-		#
-	#else:
-		
 	
-func get_grenade_vi(xi, yi, xf, yf):
-	var dx = xf - xi
-	var dy = yf - yi
-
-	var viy = -800
-	var ay = GRENADE_GRAVITY
-	
-	
-	var t =( -viy + sqrt(viy**2 -4*(ay/2)*(-dy)))/(ay)
-	
-	var vix = dx/t
-	return Vector2(vix, viy)
-	
-func shoot(x_offset=0):
-	var grenade = GRENADE.instantiate()
+func shoot(vel=null, x_offset=0):
+	var grenade = bullet.instantiate()
 	get_parent().get_parent().add_child(grenade)
 	grenade.global_position = bullet_spawn.global_position
+
+	set_global_rotation(vel.angle())
+	if direction == -1:
+		scale.y = -1
+	else:
+		scale.y = 1
 	
-	var xi = grenade.global_position.x
-	var yi = grenade.global_position.y
+	grenade.vel = vel
 	
-	var xf = target.global_position.x + x_offset
-	var yf = target.global_position.y
-	
-	grenade_vel = get_grenade_vi(xi, yi, xf, yf)
-	scale.x = direction
-	var v = Vector2(grenade_vel.x*direction, grenade_vel.y)
-	#v.y*= direction
-	set_global_rotation(v.angle()*direction)
-	
-	grenade.vel = grenade_vel
-	grenade.g = GRENADE_GRAVITY
-	
-	ap.play('shoot')
-	await ap.animation_finished
-	ap.stop()
+	anim_sprite.play('shoot')
+	await anim_sprite.animation_finished
+	anim_sprite.stop()
 	
 	
 	
