@@ -57,7 +57,6 @@ func _physics_process(delta):
 		if shooting:
 			rifle.visible = true
 			shooting = false
-			print('shoot')
 			ap.play('recoil')
 			$Sprite2D.global_position.x
 			rifle.shoot()
@@ -117,11 +116,6 @@ func apply_gravity(delta):
 
 
 func update_animations():
-	#print('fs: ', first_shot)
-	#print('aim: ', aiming)
-	#print('shoot: ', shooting)
-	#print(hurting)
-	
 	if first_shot or aiming or shooting or hurting: return
 	if not is_on_floor():
 		ap.play('jump')
@@ -177,7 +171,6 @@ func get_nearest_platform():
 		if custom_is_smaller_vector(cur_v, min_v):  # if current smaller than last minimum, replace as new minimum
 			min_v = cur_v
 			closest = p
-	#print("closest: ", closest)
 	return closest
 	
 		#custom_larget_vector()
@@ -199,15 +192,12 @@ func run_from_player():
 		jumping = true
 		jump_buffer = 20
 		var p = get_nearest_platform()
-		#print('a: ', p)
 		if typeof(p) == 2 and p == -1:
-			print('yo')
-			print(-1)
+			## TODO
 			return
-		print(p)
 		var v = get_jump_vi(global_position.x, global_position.y, p.global_position.x, p.global_position.y)
 		if not v:
-			print(-1)
+			## TODO
 			return
 		velocity = v
 		
@@ -223,7 +213,6 @@ func get_jump_vi(xi, yi, xf, yf):
 	var t = dx/vix
 	var ay = GRAV
 	var viy = dy/t - 0.5*ay*t
-	print(dy)
 	if dy < -100:
 		viy *= 1.4
 		vix *= 0.4
@@ -274,7 +263,6 @@ func aim_at_player():
 	var line: Vector2 = rifle.line_of_sight.points[1]
 	line = (line / line.length()) * rifle.bullet_spawn.global_position.distance_to(player_center) * 1.1
 	rifle.line_of_sight.points[1] = line
-	#print(rifle.line_of_sight.points[1] = Vector2(300, 0))
 	
 func face_player():
 	if not player: return

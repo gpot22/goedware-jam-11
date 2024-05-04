@@ -80,7 +80,7 @@ func idle_movement():
 			set_direction(-1) if rng.randf() < 0.5 else set_direction(1)
 
 func detect_player():
-	if ray_cast_player_detect.is_colliding() and ray_cast_player_detect.get_collider().name == "Player" and state != "attack":
+	if ray_cast_player_detect.is_colliding() and ray_cast_player_detect.get_collider() != null and ray_cast_player_detect.get_collider().name == "Player" and state != "attack":
 		state = "hostile"
 		hostile_timer = 60 * 2
 		player = ray_cast_player_detect.get_collider()

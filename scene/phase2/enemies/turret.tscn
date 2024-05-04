@@ -1,5 +1,6 @@
-[gd_scene load_steps=69 format=3 uid="uid://by5ye50kwxyhd"]
+[gd_scene load_steps=73 format=3 uid="uid://by5ye50kwxyhd"]
 
+[ext_resource type="Script" path="res://scripts/turret.gd" id="1_46kql"]
 [ext_resource type="Texture2D" uid="uid://chqpb0h1qk1l3" path="res://assets/sprites/turret.png" id="1_nldml"]
 [ext_resource type="Texture2D" uid="uid://bu6xcpffpqjx1" path="res://assets/sprites/turretbase.png" id="2_ht5tx"]
 [ext_resource type="Texture2D" uid="uid://cg88cumaw8gm8" path="res://assets/sprites/turretfire.png" id="3_5x1rp"]
@@ -127,7 +128,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"charge1",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,7 +151,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"charge2",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -173,7 +174,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"charge3",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -196,13 +197,13 @@ animations = [{
 }],
 "loop": false,
 "name": &"charge4",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yfcli")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 1.0
 }]
@@ -241,9 +242,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_srf6y")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -264,8 +265,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_13cax")
 }],
-"loop": true,
-"name": &"recoil",
+"loop": false,
+"name": &"shoot",
 "speed": 20.0
 }]
 
@@ -308,6 +309,10 @@ region = Rect2(1640, 0, 205, 63)
 [sub_resource type="AtlasTexture" id="AtlasTexture_da0gv"]
 atlas = ExtResource("3_5x1rp")
 region = Rect2(1845, 0, 205, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvkbr"]
+atlas = ExtResource("3_5x1rp")
+region = Rect2(5945, 0, 205, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pafea"]
 atlas = ExtResource("3_5x1rp")
@@ -385,10 +390,6 @@ region = Rect2(5535, 0, 205, 63)
 atlas = ExtResource("3_5x1rp")
 region = Rect2(5740, 0, 205, 63)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qvkbr"]
-atlas = ExtResource("3_5x1rp")
-region = Rect2(5945, 0, 205, 63)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_dbsb4"]
 animations = [{
 "frames": [{
@@ -428,6 +429,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qvkbr")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pafea")
 }, {
 "duration": 1.0,
@@ -463,6 +467,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qvkbr")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2cdcl")
 }, {
 "duration": 1.0,
@@ -488,34 +495,62 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_re7yv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qvkbr")
 }],
 "loop": true,
 "name": &"flash3",
 "speed": 20.0
 }]
 
-[node name="turret" type="StaticBody2D"]
+[sub_resource type="Gradient" id="Gradient_gl57s"]
+offsets = PackedFloat32Array(0, 0.746753)
+colors = PackedColorArray(0.759551, 0.86733, 0.966086, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ljqwy"]
+gradient = SubResource("Gradient_gl57s")
+fill = 1
+fill_from = Vector2(0.509174, 0.513761)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qfbp3"]
+radius = 240.0
+
+[node name="turret" type="StaticBody2D" groups=["Enemy"]]
+script = ExtResource("1_46kql")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-visible = false
-polygon = PackedVector2Array(-14, -45, 12, -45, 12, -20, 24, -20, 24, 0, -27, 0, -27, -20, -14, -20, -14, -37, -69, -37, -69, -41, -14, -41)
+polygon = PackedVector2Array(-14, -42, 12, -42, 12, -20, 24, -20, 24, 0, -27, 0, -27, -20, -14, -20)
 
-[node name="body" type="Node" parent="."]
+[node name="body" type="Node2D" parent="."]
 
 [node name="base" type="AnimatedSprite2D" parent="body"]
-position = Vector2(15.5, -17)
+position = Vector2(16, -17)
 sprite_frames = SubResource("SpriteFrames_y5kqe")
-animation = &"idle"
+animation = &"charge2"
 
 [node name="head" type="AnimatedSprite2D" parent="body"]
 position = Vector2(-30, -44)
 sprite_frames = SubResource("SpriteFrames_vcctg")
-animation = &"idle"
+animation = &"shoot"
 
-[node name="spark" type="AnimatedSprite2D" parent="."]
-position = Vector2(-141, -41)
+[node name="spark" type="AnimatedSprite2D" parent="body/head"]
+position = Vector2(-111, 3)
 sprite_frames = SubResource("SpriteFrames_dbsb4")
 animation = &"flash3"
+
+[node name="BulletSpawn" type="Marker2D" parent="body/head"]
+position = Vector2(-40, 11)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -30)
+scale = Vector2(2, 2)
+range_layer_min = -2
+texture = SubResource("GradientTexture2D_ljqwy")
+metadata/_edit_lock_ = true
+
+[node name="ShootingArea" type="Area2D" parent="."]
+position = Vector2(0, -30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea"]
+shape = SubResource("CircleShape2D_qfbp3")
+
+[connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
+[connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]

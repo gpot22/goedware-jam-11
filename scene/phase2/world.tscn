@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b3fbeq4r0lddw"]
+[gd_scene load_steps=29 format=3 uid="uid://b3fbeq4r0lddw"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_566ba"]
 [ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_gw8d1"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bpv787v2neuxu" path="res://assets/generic_background_3.png" id="10_ot5r3"]
 [ext_resource type="Texture2D" uid="uid://bi0r6r1rbtknb" path="res://assets/background_tile3.png" id="11_vw58j"]
 [ext_resource type="PackedScene" uid="uid://c5su8u53h77tj" path="res://scene/phase2/enemies/enemy_sniper.tscn" id="12_ougkd"]
+[ext_resource type="PackedScene" uid="uid://by5ye50kwxyhd" path="res://scene/phase2/enemies/turret.tscn" id="13_8yxwf"]
 [ext_resource type="PackedScene" uid="uid://bb8v541vvfcrt" path="res://scene/phase2/platforms/bottom_floor.tscn" id="16_afjyv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y865c"]
@@ -559,13 +560,16 @@ position_smoothing_enabled = true
 [node name="Enemies" type="Node" parent="."]
 
 [node name="beef" parent="Enemies" groups=["Enemy"] instance=ExtResource("4_vioxg")]
-position = Vector2(1639, 1094)
+position = Vector2(369, 611)
 
 [node name="bombardier" parent="Enemies" groups=["Enemy"] instance=ExtResource("10_aiiji")]
 position = Vector2(210, 1305)
 
 [node name="sniper" parent="Enemies" instance=ExtResource("12_ougkd")]
-position = Vector2(1821, 631)
+position = Vector2(961, 155)
+
+[node name="turret" parent="Enemies" instance=ExtResource("13_8yxwf")]
+position = Vector2(2172, 587)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0609198, 0.290021, 0.463875, 1)

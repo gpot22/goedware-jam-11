@@ -241,5 +241,5 @@ func update_collider(input_axis):
 		collider.rotation_degrees = 0
 		
 func take_damage(dmg):
-	print('ow: ', dmg)
+	print('player damaged: ', dmg)
 	health -= dmg
