@@ -5,6 +5,10 @@ var GRAVITY = 800
 var r_spd
 
 var explosion_effect = preload('res://scene/vfx/explosion.tscn')
+
+
+@onready var explosion_radius = $ExplosionRadius
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var rng = RandomNumberGenerator.new()
@@ -19,11 +23,25 @@ func _physics_process(delta):
 	global_position += vel * delta
 	vel.y += GRAVITY * delta
 
-
+func explode_damage():
+	if !explosion_radius.has_overlapping_bodies(): return
+	for body in explosion_radius.get_overlapping_bodies():
+		if body.name == 'Player':
+			var v: Vector2 = body.global_position - explosion_radius.global_position
+			var mag = v.length()
+			var dmg
+			if mag < 70:
+				dmg = 80
+			elif mag < 110:
+				dmg = 40
+			else:
+				dmg = 20
+			body.take_damage(dmg)
 
 func _on_body_entered(body):
 	var explosion = explosion_effect.instantiate()
 	get_parent().get_parent().add_child(explosion)
 	explosion.global_position = global_position
+	explode_damage()
 	queue_free()
 	

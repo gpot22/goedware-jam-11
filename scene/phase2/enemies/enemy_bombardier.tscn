@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://wtywps23r4pk"]
+[gd_scene load_steps=18 format=3 uid="uid://wtywps23r4pk"]
 
 [ext_resource type="Texture2D" uid="uid://di6bu1jdu6ihs" path="res://assets/sprites/bombardier.png" id="1_3h142"]
 [ext_resource type="Script" path="res://scripts/enemy_bombardier.gd" id="1_ot3qs"]
@@ -136,6 +136,9 @@ fill_from = Vector2(0.509174, 0.513761)
 [sub_resource type="CircleShape2D" id="CircleShape2D_rpaox"]
 radius = 120.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3lri"]
+radius = 200.0
+
 [node name="bombardier" type="CharacterBody2D"]
 position = Vector2(0, -25)
 script = ExtResource("1_ot3qs")
@@ -187,6 +190,11 @@ position = Vector2(-14, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CommitTackleArea"]
 shape = SubResource("CircleShape2D_rpaox")
+
+[node name="ExplosionRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionRadius"]
+shape = SubResource("CircleShape2D_c3lri")
 
 [connection signal="body_entered" from="TackleArea" to="." method="_on_tackle_area_body_entered"]
 [connection signal="body_exited" from="TackleArea" to="." method="_on_tackle_area_body_exited"]

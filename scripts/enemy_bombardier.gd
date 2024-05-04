@@ -11,6 +11,7 @@ var hostile_timer = 0
 var shoot_timer = 0
 
 var grenade = preload('res://scripts/grenade.gd')
+var explosion_effect = preload('res://scene/vfx/explosion.tscn')
 
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
@@ -18,6 +19,8 @@ var grenade = preload('res://scripts/grenade.gd')
 @onready var ray_cast_floor = $CollisionShape2D/RayCastFloor
 @onready var ray_cast_wall = $RayCastWall
 @onready var bombardier_gun = $WeaponPoint/bombardier_gun
+@onready var explosion_radius = $ExplosionRadius
+
 
 var tackling = false
 var tackle_ready = false
@@ -63,6 +66,12 @@ func _physics_process(delta):
 			ap.play('tackle')
 			move_and_slide()
 			await get_tree().create_timer(0.8).timeout
+			var explosion = explosion_effect.instantiate()
+			get_parent().get_parent().add_child(explosion)
+			explosion.scale *= 1.2
+			explosion.global_position = global_position
+			explode_damage()
+			
 			queue_free()
 	handle_movement(delta)
 	update_animations()
@@ -212,6 +221,20 @@ func jump_off_edge():
 		await get_tree().create_timer(0.7).timeout
 		tackle_ready = true
 
+func explode_damage():
+	if !explosion_radius.has_overlapping_bodies(): return
+	for body in explosion_radius.get_overlapping_bodies():
+		if body.name == 'Player':
+			var v: Vector2 = body.global_position - explosion_radius.global_position
+			var mag = v.length()
+			var dmg
+			if mag < 80:
+				dmg = 80
+			elif mag < 120:
+				dmg = 50
+			else:
+				dmg = 30
+			body.take_damage(dmg)
 # - - - - - - SIGNALS AS STATE MANAGERS - - - - - -
 func _on_shooting_area_body_entered(body):
 	if body.name != 'Player': return

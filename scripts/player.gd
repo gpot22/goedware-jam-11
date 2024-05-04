@@ -42,11 +42,15 @@ var grapple_speed = 900
 var grapple_vel = Vector2(0, 0)
 var grapple_direction
 
+# PLAYER STATS
+var health
+
 func _ready():
 	if $WeaponPoint.get_child_count() != 0:
 		pistol = $WeaponPoint.get_child(0)
 		pistol_ipos = Vector2(abs(pistol.position.x), pistol.position.y)
-
+	
+	health = 500
 # PLAYER LOOP
 func _physics_process(delta):
 	if !grappling:
@@ -236,3 +240,6 @@ func update_collider(input_axis):
 		collider.position = Vector2(0, -28)
 		collider.rotation_degrees = 0
 		
+func take_damage(dmg):
+	print('ow: ', dmg)
+	health -= dmg

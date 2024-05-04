@@ -325,4 +325,5 @@ func _on_shooting_area_body_exited(body):
 	rifle.visible = false
 	first_shot = false
 	aiming = false
+	shooting = false
 	aim_timer = 0
