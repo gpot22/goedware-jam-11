@@ -14,7 +14,7 @@ const DASH_VEL = 1200.0
 #@onready var run_smokes = [$smoke0, $smoke1]
 @onready var smoke_spawn = $SmokeSpawn
 @onready var tile_map = $"../TileMap"
-@onready var world_map = $"../World Map"
+@onready var world_map = $"../WorldMap"
 
 var smoke_effect = preload('res://scene/vfx/smoke.tscn')
 var smokes
@@ -43,8 +43,8 @@ var grapple_vel = Vector2(0, 0)
 var grapple_direction
 
 func _ready():
-	if has_node('pistol'):
-		pistol = $pistol
+	if $WeaponPoint.get_child_count() != 0:
+		pistol = $WeaponPoint.get_child(0)
 		pistol_ipos = Vector2(abs(pistol.position.x), pistol.position.y)
 
 # PLAYER LOOP
@@ -193,9 +193,22 @@ func update_animations(input_axis):
 # PLAYER COLLIDER
 func update_direction(input_axis):
 	var mouse = get_global_mouse_position()
+	if input_axis and is_on_floor():
+		$WeaponPoint.position.y = -15
+	else:
+		$WeaponPoint.position.y = -25
 	if mouse.x < global_position.x:
 		direction = -1
+		
+		if input_axis == direction:
+			$WeaponPoint.position.x = -50
+		else:
+			$WeaponPoint.position.x = -20
 	else:
+		if input_axis == direction:
+			$WeaponPoint.position.x = 30
+		else:
+			$WeaponPoint.position.x = 20
 		direction = 1
 	if input_axis != 0 and is_on_floor():
 		direction = input_axis

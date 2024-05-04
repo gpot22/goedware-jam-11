@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b3fbeq4r0lddw"]
+[gd_scene load_steps=27 format=3 uid="uid://b3fbeq4r0lddw"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_566ba"]
 [ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_gw8d1"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://bpv787v2neuxu" path="res://assets/generic_background_3.png" id="10_ot5r3"]
 [ext_resource type="Texture2D" uid="uid://bi0r6r1rbtknb" path="res://assets/background_tile3.png" id="11_vw58j"]
 [ext_resource type="PackedScene" uid="uid://c5su8u53h77tj" path="res://scene/phase2/enemies/enemy_sniper.tscn" id="12_ougkd"]
-[ext_resource type="PackedScene" uid="uid://bb8v541vvfcrt" path="res://scene/phase2/platforms/bottom_floor.tscn" id="16_afjyv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y865c"]
 texture = ExtResource("2_gw8d1")
@@ -518,7 +517,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(10568, -2518)
+position = Vector2(4516, 1323)
 scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_iq3ji")
 format = 2
@@ -528,10 +527,10 @@ layer_0/tile_data = PackedInt32Array(393188, 524288, 0, 393189, 524288, 0, 39319
 layer = -1
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(2400, 1600)
+motion_mirroring = Vector2(1920, 1280)
 
 [node name="Background" type="TileMap" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(656, 553)
+position = Vector2(717, 589)
 tile_set = SubResource("TileSet_ydj40")
 format = 2
 layer_0/tile_data = PackedInt32Array(-262149, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 2, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 4, 0, -327674, 3, 0, -262150, 1, 0, -262151, 0, 0, -393210, 0, 0, -262138, 4, 0, -196602, 5, 0, -131066, 0, 0, -65530, 4, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262137, 2, 0, 196601, 0, 0, 131065, 0, 0, 65529, 4, 0, -7, 0, 0, -65543, 0, 0, -131079, 0, 0, -196615, 0, 0, -327687, 1, 0, 262138, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 3, 0, 262143, 0, 0, 196608, 5, 0, 196609, 0, 0, 196610, 1, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 131077, 0, 0, 131076, 0, 0, 131075, 0, 0, 131074, 0, 0, 131073, 1, 0, 131072, 0, 0, 196607, 3, 0, 196606, 0, 0, 196605, 4, 0, 196604, 0, 0, 196603, 0, 0, 196602, 2, 0, 131066, 0, 0, 131067, 2, 0, 131068, 5, 0, 131069, 0, 0, 131070, 4, 0, 131071, 0, 0, 65536, 3, 0, 65537, 0, 0, 65538, 5, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 5, 4, 0, 4, 0, 0, 3, 0, 0, 2, 0, 0, 1, 3, 0, 0, 0, 0, 65535, 1, 0, 65534, 0, 0, 65533, 4, 0, 65532, 2, 0, 65531, 4, 0, 65530, 0, 0, -6, 4, 0, -5, 0, 0, -4, 4, 0, -3, 2, 0, -2, 1, 0, -1, 0, 0, -65536, 4, 0, -65535, 0, 0, -65534, 4, 0, -65533, 0, 0, -65532, 5, 0, -65531, 0, 0, -131067, 0, 0, -131068, 0, 0, -131069, 4, 0, -131070, 0, 0, -131071, 0, 0, -131072, 0, 0, -65537, 0, 0, -65538, 2, 0, -65539, 1, 0, -65540, 0, 0, -65541, 0, 0, -65542, 0, 0, -131078, 0, 0, -131077, 0, 0, -131076, 1, 0, -131075, 0, 0, -131074, 0, 0, -131073, 2, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -196605, 0, 0, -196604, 3, 0, -196603, 0, 0, -262139, 3, 0, -262140, 0, 0, -262141, 0, 0, -262142, 0, 0, -262143, 0, 0, -262144, 2, 0, -196609, 0, 0, -196610, 0, 0, -196611, 0, 0, -196612, 0, 0, -196613, 1, 0, -196614, 0, 0, -327686, 0, 0, -327685, 0, 0, -327681, 0, 0, -393216, 0, 0, -393215, 0, 0, -393214, 2, 0, -393213, 0, 0, -393212, 4, 0, -393211, 0, 0, -327682, 0, 0, -327683, 0, 0, -327684, 0, 0, -393209, 3, 0, -327673, 0, 0, -262137, 5, 0, -196601, 4, 0, -131065, 0, 0, -65529, 0, 0, 7, 4, 0, 196615, 0, 0, 131079, 0, 0, 65543, 0, 0)
@@ -540,7 +539,7 @@ layer_0/tile_data = PackedInt32Array(-262149, 0, 0, -262148, 0, 0, -262147, 0, 0
 color = Color(0.701512, 0.757683, 0.816611, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_ke8sk")]
-position = Vector2(656, 553)
+position = Vector2(705, 606)
 floor_constant_speed = true
 floor_snap_length = 2.0
 
@@ -553,241 +552,45 @@ metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.75, 0.75)
-zoom = Vector2(0.4, 0.4)
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="beef" parent="Enemies" groups=["Enemy"] instance=ExtResource("4_vioxg")]
-position = Vector2(1639, 1094)
+position = Vector2(264, 608)
 
 [node name="bombardier" parent="Enemies" groups=["Enemy"] instance=ExtResource("10_aiiji")]
-position = Vector2(210, 1305)
+position = Vector2(950, 124)
 
 [node name="sniper" parent="Enemies" instance=ExtResource("12_ougkd")]
-position = Vector2(1821, 631)
+position = Vector2(1134, 567)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0609198, 0.290021, 0.463875, 1)
 
-[node name="WorldMap" type="Node2D" parent="."]
+[node name="World Map" type="Node" parent="."]
 
-[node name="long_platform7" parent="WorldMap" instance=ExtResource("6_otomd")]
-position = Vector2(404, 675)
+[node name="long_platform" parent="World Map" instance=ExtResource("6_otomd")]
+position = Vector2(335, 666)
 
-[node name="long_platform" parent="WorldMap" instance=ExtResource("6_otomd")]
-position = Vector2(730, 671)
+[node name="long_platform2" parent="World Map" instance=ExtResource("6_otomd")]
+position = Vector2(1693, 531)
 
-[node name="long_platform2" parent="WorldMap" instance=ExtResource("6_otomd")]
-position = Vector2(1154, 678)
+[node name="long_platform3" parent="World Map" instance=ExtResource("6_otomd")]
+position = Vector2(713, 668)
 
-[node name="long_platform4" parent="WorldMap" instance=ExtResource("6_otomd")]
-position = Vector2(1035, 1002)
+[node name="long_platform6" parent="World Map" instance=ExtResource("6_otomd")]
+position = Vector2(863, 1262)
 
-[node name="long_platform5" parent="WorldMap" instance=ExtResource("6_otomd")]
-position = Vector2(448, 1229)
+[node name="long_platform4" parent="World Map" instance=ExtResource("6_otomd")]
+position = Vector2(1448, 862)
 
-[node name="medium_platform" parent="WorldMap" instance=ExtResource("7_wds65")]
-position = Vector2(1359, 856)
+[node name="long_platform5" parent="World Map" instance=ExtResource("6_otomd")]
+position = Vector2(1101, 668)
 
-[node name="medium_platform2" parent="WorldMap" instance=ExtResource("7_wds65")]
-position = Vector2(1608, 773)
+[node name="medium_platform" parent="World Map" instance=ExtResource("7_wds65")]
+position = Vector2(949, 201)
 
-[node name="medium_platform3" parent="WorldMap" instance=ExtResource("7_wds65")]
-position = Vector2(1851, 691)
-
-[node name="medium_platform4" parent="WorldMap" instance=ExtResource("7_wds65")]
-position = Vector2(2126, 623)
-
-[node name="medium_platform5" parent="WorldMap" instance=ExtResource("7_wds65")]
-position = Vector2(2260, 624)
-
-[node name="medium_platform6" parent="WorldMap" instance=ExtResource("7_wds65")]
-position = Vector2(2394, 625)
-
-[node name="square_platform" parent="WorldMap" instance=ExtResource("8_b2y5j")]
-position = Vector2(1630, 1179)
-
-[node name="square_platform3" parent="WorldMap" instance=ExtResource("8_b2y5j")]
-position = Vector2(748, 1135)
-
-[node name="square_platform2" parent="WorldMap" instance=ExtResource("8_b2y5j")]
-position = Vector2(1832, 962)
-
-[node name="square_platform4" parent="WorldMap" instance=ExtResource("8_b2y5j")]
-position = Vector2(2621, 422)
-
-[node name="long_platform3" parent="WorldMap" instance=ExtResource("6_otomd")]
-position = Vector2(970, 231)
-
-[node name="WorldBorders" type="Node" parent="."]
-
-[node name="bottomfloor" type="Node2D" parent="WorldBorders"]
-
-[node name="bottom_floor" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(105, 2100)
-
-[node name="bottom_floor2" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(315, 2100)
-
-[node name="bottom_floor3" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(525, 2100)
-
-[node name="bottom_floor4" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(735, 2100)
-
-[node name="bottom_floor5" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(945, 2100)
-
-[node name="bottom_floor6" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(1155, 2100)
-
-[node name="bottom_floor7" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(1365, 2100)
-
-[node name="bottom_floor8" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(1575, 2100)
-
-[node name="bottom_floor9" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(1785, 2100)
-
-[node name="bottom_floor10" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(1995, 2100)
-
-[node name="bottom_floor11" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(2205, 2100)
-
-[node name="bottom_floor12" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(2415, 2100)
-
-[node name="bottom_floor13" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(2625, 2100)
-
-[node name="bottom_floor14" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(2835, 2100)
-
-[node name="bottom_floor15" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(3045, 2100)
-
-[node name="bottom_floor16" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(3255, 2100)
-
-[node name="bottom_floor17" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(3465, 2100)
-
-[node name="bottom_floor18" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(3675, 2100)
-
-[node name="bottom_floor19" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(3885, 2100)
-
-[node name="bottom_floor20" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(4095, 2100)
-
-[node name="bottom_floor21" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(4305, 2100)
-
-[node name="bottom_floor22" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(4515, 2100)
-
-[node name="bottom_floor23" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(4725, 2100)
-
-[node name="bottom_floor24" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(4935, 2100)
-
-[node name="bottom_floor25" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(5145, 2100)
-
-[node name="bottom_floor26" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(5355, 2100)
-
-[node name="bottom_floor27" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(5565, 2100)
-
-[node name="bottom_floor28" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
-position = Vector2(5775, 2100)
-
-[node name="leftwall" type="Node2D" parent="WorldBorders"]
-
-[node name="left_wall" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 105)
-rotation = 1.5708
-
-[node name="left_wall2" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 315)
-rotation = 1.5708
-
-[node name="left_wall3" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 525)
-rotation = 1.5708
-
-[node name="left_wall4" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 735)
-rotation = 1.5708
-
-[node name="left_wall5" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 945)
-rotation = 1.5708
-
-[node name="left_wall6" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 1155)
-rotation = 1.5708
-
-[node name="left_wall7" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 1365)
-rotation = 1.5708
-
-[node name="left_wall8" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 1575)
-rotation = 1.5708
-
-[node name="left_wall9" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 1785)
-rotation = 1.5708
-
-[node name="left_wall10" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(-2, 1995)
-rotation = 1.5708
-
-[node name="rightwall" type="Node2D" parent="WorldBorders"]
-
-[node name="right_wall" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 105)
-rotation = -1.5708
-
-[node name="right_wall2" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 315)
-rotation = -1.5708
-
-[node name="right_wall3" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 525)
-rotation = -1.5708
-
-[node name="right_wall4" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 735)
-rotation = -1.5708
-
-[node name="right_wall5" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 945)
-rotation = -1.5708
-
-[node name="right_wall6" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 1155)
-rotation = -1.5708
-
-[node name="right_wall7" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 1365)
-rotation = -1.5708
-
-[node name="right_wall8" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 1575)
-rotation = -1.5708
-
-[node name="right_wall9" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 1785)
-rotation = -1.5708
-
-[node name="right_wall10" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 1995)
-rotation = -1.5708
+[node name="square_platform" parent="World Map" instance=ExtResource("8_b2y5j")]
+position = Vector2(330, 624)

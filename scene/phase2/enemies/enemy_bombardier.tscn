@@ -137,26 +137,28 @@ fill_from = Vector2(0.509174, 0.513761)
 radius = 120.0
 
 [node name="bombardier" type="CharacterBody2D"]
+position = Vector2(0, -25)
 script = ExtResource("1_ot3qs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, -25)
+position = Vector2(10, 0)
 shape = SubResource("CapsuleShape2D_wy40i")
+
+[node name="RayCastFloor" type="RayCast2D" parent="CollisionShape2D"]
+position = Vector2(0, 18)
+target_position = Vector2(0, 95)
 
 [node name="TackleArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TackleArea"]
-position = Vector2(2, -18)
 shape = SubResource("CircleShape2D_wkelr")
 
 [node name="ShootingArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea"]
-position = Vector2(11, 4)
 shape = SubResource("CircleShape2D_j2loa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -25)
 texture = ExtResource("1_3h142")
 hframes = 28
 
@@ -172,21 +174,18 @@ range_layer_min = -2
 texture = SubResource("GradientTexture2D_p8rip")
 metadata/_edit_lock_ = true
 
-[node name="RayCastFloor" type="RayCast2D" parent="."]
-position = Vector2(10, -10)
-target_position = Vector2(0, 24)
-
 [node name="RayCastWall" type="RayCast2D" parent="."]
-position = Vector2(8, -17)
-target_position = Vector2(-22, 0)
+position = Vector2(3, 12)
+target_position = Vector2(-27, -1)
 
-[node name="bombardier_gun" parent="." instance=ExtResource("3_786ls")]
-position = Vector2(-16, -8)
+[node name="WeaponPoint" type="Marker2D" parent="."]
+position = Vector2(-14, 9)
+
+[node name="bombardier_gun" parent="WeaponPoint" instance=ExtResource("3_786ls")]
 
 [node name="CommitTackleArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CommitTackleArea"]
-position = Vector2(-1, -29)
 shape = SubResource("CircleShape2D_rpaox")
 
 [connection signal="body_entered" from="TackleArea" to="." method="_on_tackle_area_body_entered"]

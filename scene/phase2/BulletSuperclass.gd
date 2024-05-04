@@ -5,14 +5,13 @@ var range
 var travelled_distance = 0
 var direction
 var parent
-var max_w
-var max_h
+var max_w = 30
+var max_h = 5
 
 @onready var shape: Polygon2D = $Polygon2D
+@onready var light: PointLight2D = $PointLight2D
 
 func _ready():
-	max_w = 30
-	max_h = 5
 	set_shape(max_w, max_h)
 	
 
@@ -29,7 +28,7 @@ func _physics_process(delta):
 	#if int(travelled_distance) % int(range/5) == 0:
 		#print('hi')
 	var f = 1-travelled_distance/range
-	var w = max_w
+	var w = max_w * f
 	var h = max_h * f
 	set_shape(w, h)
 		

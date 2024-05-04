@@ -1,6 +1,5 @@
 extends 'res://scripts/EnemySuperclass.gd'
 
-
 const WALK_VEL = 200
 const RUN_VEL = 400
 const TACKLE_JUMP = -600
@@ -16,9 +15,9 @@ var grenade = preload('res://scripts/grenade.gd')
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var shooting_area = $ShootingArea
-@onready var ray_cast_floor = $RayCastFloor
+@onready var ray_cast_floor = $CollisionShape2D/RayCastFloor
 @onready var ray_cast_wall = $RayCastWall
-@onready var bombardier_gun = $bombardier_gun
+@onready var bombardier_gun = $WeaponPoint/bombardier_gun
 
 var tackling = false
 var tackle_ready = false
@@ -87,16 +86,19 @@ func face_player():
 	if not player: return
 	if player.global_position.x < global_position.x:
 		direction = -1
-		bombardier_gun.position = Vector2(16, -8)
+		$WeaponPoint.position = Vector2(16, -8)
 	else:
 		direction = 1
-		bombardier_gun.position = Vector2(-16, -8)
+		$WeaponPoint.position = Vector2(-16, -8)
+	ray_cast_floor.position.x = abs(ray_cast_floor.position.x) * -direction
 	bombardier_gun.direction = direction
 	
 func flip_direction():
 	direction *= -1
+	position.x + direction * 20
 	ray_cast_wall.scale.x *= -1
 	ray_cast_wall.position.x *= -1
+	ray_cast_floor.position.x *= -1
 	bombardier_gun.direction = direction
 
 # - - - - GENERAL ANIMATION STATE HANDLER - - - - -
@@ -242,8 +244,8 @@ func _on_tackle_area_body_entered(body):
 	
 func _on_tackle_area_body_exited(body):
 	if body.name != 'Player': return
-	if must_tackle: return
 	if tackling: return
+	if must_tackle: return
 	#if showering: return
 	state = 'hostile'
 	tackle_ready = false
@@ -265,3 +267,11 @@ func _on_commit_tackle_area_body_exited(body):
 	await get_tree().create_timer(0.2).timeout
 	vel = RUN_VEL
 	too_close = false
+
+func take_damage(dmg):
+	health -= dmg
+	$Sprite2D.self_modulate = Color('#aa0000')
+	await get_tree().create_timer(0.2).timeout
+	if health <= 0:
+		queue_free()
+	$Sprite2D.self_modulate = Color('#ffffff')

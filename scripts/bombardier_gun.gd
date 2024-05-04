@@ -4,13 +4,16 @@ func _ready():
 	super._ready()
 	bullet = preload('res://scene/phase2/enemies/grenade.tscn')
 	direction = -1
+	damage = 30
+	shot_time = 0.35
+	
 	
 func _physics_process(delta):
 	pass
 	
 func shoot(vel=null, x_offset=0):
 	var grenade = bullet.instantiate()
-	get_parent().get_parent().add_child(grenade)
+	get_parent().get_parent().get_parent().add_child(grenade)
 	grenade.global_position = bullet_spawn.global_position
 
 	set_global_rotation(vel.angle())

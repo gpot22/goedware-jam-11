@@ -30,7 +30,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_fllh6")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fllh6")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_g2opp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1f4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1f4v")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i1f4v")
@@ -39,14 +48,20 @@ animations = [{
 "texture": SubResource("AtlasTexture_jbcpy")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jbcpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh6ch")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_uh6ch")
 }],
 "loop": false,
 "name": &"shoot",
-"speed": 15.0
+"speed": 40.0
 }]
 
-[node name="pistol" type="Node2D"]
+[node name="pistol" type="Node2D" groups=["Weapon"]]
 script = ExtResource("2_uycve")
 
 [node name="WeaponPivot" type="Marker2D" parent="."]

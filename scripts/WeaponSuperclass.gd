@@ -12,6 +12,7 @@ var bullet
 
 # WEAPON STATS
 var damage
+var shot_time
 
 # Weapon States
 var active
@@ -34,7 +35,7 @@ func toggle_active(a):
 func shoot():
 	pass
 	
-func isPlayer():
+func is_player():
 	return parent.name == 'Player'
 	
 func set_direction(d):

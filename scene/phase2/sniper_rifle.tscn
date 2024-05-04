@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://marg7pw3aal"]
+[gd_scene load_steps=15 format=3 uid="uid://marg7pw3aal"]
 
 [ext_resource type="Script" path="res://scripts/sniper_rifle.gd" id="1_umubf"]
 [ext_resource type="Texture2D" uid="uid://x785ioxoa1h5" path="res://assets/sprites/sniper_rifle.png" id="2_1hgwk"]
@@ -80,13 +80,19 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iw77p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa6db")
 }],
 "loop": false,
 "name": &"shoot",
 "speed": 15.0
 }]
 
-[node name="SniperRifle" type="Node2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pw61u"]
+light_mode = 1
+
+[node name="SniperRifle" type="Node2D" groups=["Weapon"]]
 script = ExtResource("1_umubf")
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
@@ -99,7 +105,10 @@ animation = &"shoot"
 [node name="BulletSpawn" type="Marker2D" parent="WeaponPivot/AnimatedSprite2D"]
 position = Vector2(58, 6)
 
-[node name="Line2D" type="Line2D" parent="WeaponPivot/AnimatedSprite2D/BulletSpawn"]
+[node name="LineOfSight" type="Line2D" parent="WeaponPivot/AnimatedSprite2D/BulletSpawn"]
+light_mask = 4
+visibility_layer = 4
+material = SubResource("CanvasItemMaterial_pw61u")
 points = PackedVector2Array(0, 0, 150, 0)
 width = 2.0
-default_color = Color(1, 0.27451, 0.235294, 0.501961)
+default_color = Color(1, 0.27451, 0.235294, 0.470588)

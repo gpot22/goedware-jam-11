@@ -1,8 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://c5su8u53h77tj"]
+[gd_scene load_steps=18 format=3 uid="uid://c5su8u53h77tj"]
 
 [ext_resource type="Texture2D" uid="uid://5ot14u1t27ut" path="res://assets/sprites/sniper.png" id="1_3o46k"]
 [ext_resource type="Script" path="res://scripts/enemy_sniper.gd" id="1_wl76n"]
-[ext_resource type="PackedScene" uid="uid://marg7pw3aal" path="res://scene/phase2/sniper_rifle.tscn" id="3_pklmg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xikgq"]
 radius = 12.0
@@ -73,7 +72,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_6cf2q"]
 resource_name = "recoil"
-length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -121,7 +119,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_g6nmq"]
 resource_name = "slide_shoot"
-length = 0.35
+length = 0.4
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -163,10 +162,10 @@ fill_from = Vector2(0.509174, 0.513761)
 radius = 870.097
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wnunx"]
-radius = 180.0
+radius = 205.444
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrh27"]
-size = Vector2(605, 600)
+size = Vector2(1200, 600)
 
 [node name="sniper" type="CharacterBody2D"]
 script = ExtResource("1_wl76n")
@@ -182,7 +181,6 @@ target_position = Vector2(-30, 0)
 [node name="RayCastFloor" type="RayCast2D" parent="CollisionShape2D"]
 
 [node name="floor" type="RayCast2D" parent="CollisionShape2D/RayCastFloor"]
-position = Vector2(-15, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -30.5)
@@ -216,16 +214,9 @@ shape = SubResource("CircleShape2D_wnunx")
 [node name="ScanPlatformArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScanPlatformArea"]
-position = Vector2(-321.5, -30)
+position = Vector2(-21, -29)
 shape = SubResource("RectangleShape2D_xrh27")
 
-[node name="WeaponPoint" type="Marker2D" parent="."]
-position = Vector2(15, -20)
-
-[node name="SniperRifle" parent="WeaponPoint" instance=ExtResource("3_pklmg")]
-
-[connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
-[connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]
 [connection signal="body_entered" from="EvasionArea" to="." method="_on_evasion_area_body_entered"]
 [connection signal="body_exited" from="EvasionArea" to="." method="_on_evasion_area_body_exited"]
 [connection signal="body_entered" from="ScanPlatformArea" to="." method="_on_scan_platform_area_body_entered"]

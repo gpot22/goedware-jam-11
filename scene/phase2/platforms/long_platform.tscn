@@ -6,6 +6,7 @@
 size = Vector2(208.5, 36)
 
 [node name="long_platform" type="AnimatableBody2D"]
+position = Vector2(18, 45)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-18.25, -26)

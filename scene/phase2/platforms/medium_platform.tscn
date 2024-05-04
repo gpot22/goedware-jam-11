@@ -6,10 +6,13 @@
 size = Vector2(134.5, 30)
 
 [node name="medium_platform" type="AnimatableBody2D"]
+position = Vector2(1, 34)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.75, -20)
 shape = SubResource("RectangleShape2D_floea")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_28och")
+metadata/_edit_lock_ = true
