@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4ik3hvdw8hub"]
+[gd_scene load_steps=6 format=3 uid="uid://c4ik3hvdw8hub"]
 
 [ext_resource type="Texture2D" uid="uid://dvnxpxyu0klq2" path="res://assets/phase1sprites/beefsprite.png" id="1_f4wgt"]
+[ext_resource type="Script" path="res://scene/phase1/beef.gd" id="2_mmhca"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ela73"]
 atlas = ExtResource("1_f4wgt")
@@ -25,6 +26,17 @@ animations = [{
 }]
 
 [node name="beef" type="AnimatedSprite2D"]
-position = Vector2(159, 146)
 sprite_frames = SubResource("SpriteFrames_jmamc")
 autoplay = "default"
+script = ExtResource("2_mmhca")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = -19.0
+offset_right = 12.0
+offset_bottom = 19.0
+
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

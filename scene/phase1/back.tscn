@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bah0qlaj74dta"]
+
+[ext_resource type="Script" path="res://scene/phase1/back.gd" id="1_430y4"]
+[ext_resource type="Texture2D" uid="uid://sm0fdjn8jkon" path="res://button1.png" id="1_yw5xp"]
+[ext_resource type="FontFile" uid="uid://c0mc3uhedbvnm" path="res://ONESIZE_.TTF" id="3_s5mwv"]
+
+[node name="back" type="Sprite2D"]
+texture = ExtResource("1_yw5xp")
+script = ExtResource("1_430y4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = -83.0
+offset_top = -25.0
+offset_right = 83.0
+offset_bottom = 24.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_s5mwv")
+theme_override_font_sizes/font_size = 38
+text = "BACK
+
+"
+
+[connection signal="mouse_entered" from="HBoxContainer" to="." method="_on_h_box_container_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer" to="." method="_on_h_box_container_mouse_exited"]

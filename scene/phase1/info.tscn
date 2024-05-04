@@ -1,0 +1,151 @@
+[gd_scene load_steps=21 format=3 uid="uid://xanm1sdleeon"]
+
+[ext_resource type="Texture2D" uid="uid://bce2s3xg4w454" path="res://info.png" id="1_3tmb0"]
+[ext_resource type="Texture2D" uid="uid://cuw1lcc2psans" path="res://assets/sprites/enemy1.png" id="2_3o81u"]
+[ext_resource type="Texture2D" uid="uid://di6bu1jdu6ihs" path="res://assets/sprites/bombardier.png" id="3_ahhsh"]
+[ext_resource type="Texture2D" uid="uid://5ot14u1t27ut" path="res://assets/sprites/sniper.png" id="4_x8ibu"]
+[ext_resource type="Texture2D" uid="uid://cew8djrdts8v4" path="res://full_turret.png" id="5_lfe8a"]
+[ext_resource type="FontFile" uid="uid://c0mc3uhedbvnm" path="res://ONESIZE_.TTF" id="6_6ab7n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqe6o"]
+atlas = ExtResource("2_3o81u")
+region = Rect2(0, 0, 59, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2btex"]
+atlas = ExtResource("2_3o81u")
+region = Rect2(59, 0, 59, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyn8c"]
+atlas = ExtResource("3_ahhsh")
+region = Rect2(0, 0, 76, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqb3a"]
+atlas = ExtResource("3_ahhsh")
+region = Rect2(76, 0, 76, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sujk7"]
+atlas = ExtResource("3_ahhsh")
+region = Rect2(152, 0, 76, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwxkr"]
+atlas = ExtResource("3_ahhsh")
+region = Rect2(228, 0, 76, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml7rn"]
+atlas = ExtResource("3_ahhsh")
+region = Rect2(304, 0, 76, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr57x"]
+atlas = ExtResource("3_ahhsh")
+region = Rect2(380, 0, 76, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdpd8"]
+atlas = ExtResource("3_ahhsh")
+region = Rect2(456, 0, 76, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scgf4"]
+atlas = ExtResource("3_ahhsh")
+region = Rect2(532, 0, 76, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phxh0"]
+atlas = ExtResource("4_x8ibu")
+region = Rect2(0, 0, 205, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8yf6"]
+atlas = ExtResource("4_x8ibu")
+region = Rect2(205, 0, 205, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b6ko"]
+atlas = ExtResource("5_lfe8a")
+region = Rect2(0, 0, 96, 54)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k1xgd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqe6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2btex")
+}],
+"loop": true,
+"name": &"beef",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyn8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqb3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sujk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwxkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml7rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr57x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdpd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scgf4")
+}],
+"loop": true,
+"name": &"bombardier",
+"speed": 12.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phxh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8yf6")
+}],
+"loop": true,
+"name": &"sniper",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b6ko")
+}],
+"loop": true,
+"name": &"turret",
+"speed": 1.0
+}]
+
+[node name="info" type="Node2D"]
+z_index = 65
+position = Vector2(536, 226)
+scale = Vector2(1.8, 1.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(84.4444, 1.66666)
+scale = Vector2(1.02, 1.02)
+texture = ExtResource("1_3tmb0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(71, -32.2)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_k1xgd")
+animation = &"turret"
+autoplay = "beef"
+frame_progress = 0.938051
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 29.0
+offset_top = 4.55556
+offset_right = 140.0
+offset_bottom = 83.5556
+theme_override_fonts/normal_font = ExtResource("6_6ab7n")
+theme_override_font_sizes/normal_font_size = 6
+text = "Turrets are lethal machines that are designed to shut down any hostility in its proximity. After a brief charge up period, an endless hail of high calibre bullets is sure to neutralize whatever threat stands in its way. Clad in bulletproof material, the turret tanks a ridiculous amount of damage before it will expire."
+scroll_active = false

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd6khu68tqoqe"]
+[gd_scene load_steps=6 format=3 uid="uid://bd6khu68tqoqe"]
 
 [ext_resource type="Texture2D" uid="uid://ixeer5bkbuyu" path="res://assets/phase1sprites/snipersprite.png" id="1_w8cwh"]
+[ext_resource type="Script" path="res://scene/phase1/sniper.gd" id="2_cae1a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gyv5j"]
 atlas = ExtResource("1_w8cwh")
@@ -25,6 +26,17 @@ animations = [{
 }]
 
 [node name="sniper" type="AnimatedSprite2D"]
-position = Vector2(288, 150)
 sprite_frames = SubResource("SpriteFrames_edssa")
 autoplay = "default"
+script = ExtResource("2_cae1a")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -18.0
+offset_top = -16.0
+offset_right = 18.0
+offset_bottom = 16.0
+
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

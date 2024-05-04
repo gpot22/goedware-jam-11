@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://cwrkcklv0yvjo"]
+[gd_scene load_steps=34 format=3 uid="uid://cwrkcklv0yvjo"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6k5ke"]
 [ext_resource type="Texture2D" uid="uid://xti23onufikt" path="res://assets/sprites/player.png" id="1_n3cjb"]
 [ext_resource type="PackedScene" uid="uid://bc61jflp4x12c" path="res://scene/phase2/player/pistol.tscn" id="3_ii3tf"]
 [ext_resource type="Texture2D" uid="uid://bbqbgt22nelgj" path="res://assets/sprites/smoke0.png" id="4_mej1x"]
 [ext_resource type="Texture2D" uid="uid://b7gheskt8u87o" path="res://assets/sprites/smoke1.png" id="5_a2j0n"]
+[ext_resource type="PackedScene" uid="uid://xubsjppvny1d" path="res://scene/phase2/player/uzi.tscn" id="6_6eoyn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l74r8"]
 radius = 13.0
@@ -325,3 +326,5 @@ frame = 7
 
 [node name="SmokeSpawn" type="Marker2D" parent="."]
 position = Vector2(-48, -32)
+
+[node name="uzi" parent="." instance=ExtResource("6_6eoyn")]

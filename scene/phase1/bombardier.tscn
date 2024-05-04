@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbl5fvbals5i3"]
+[gd_scene load_steps=6 format=3 uid="uid://dbl5fvbals5i3"]
 
 [ext_resource type="Texture2D" uid="uid://87p46uio5htq" path="res://assets/phase1sprites/bombardiersprite.png" id="1_j6dva"]
+[ext_resource type="Script" path="res://scene/phase1/bombardier.gd" id="2_px4sc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0mxqd"]
 atlas = ExtResource("1_j6dva")
@@ -25,6 +26,17 @@ animations = [{
 }]
 
 [node name="bombardier" type="AnimatedSprite2D"]
-position = Vector2(383, 60)
 sprite_frames = SubResource("SpriteFrames_mw45q")
 autoplay = "default"
+script = ExtResource("2_px4sc")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = -14.0
+offset_right = 12.0
+offset_bottom = 14.0
+
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

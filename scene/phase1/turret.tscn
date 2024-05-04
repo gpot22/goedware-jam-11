@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlvmpoo884aph"]
+[gd_scene load_steps=6 format=3 uid="uid://dlvmpoo884aph"]
 
 [ext_resource type="Texture2D" uid="uid://cxc4mtvyid1cx" path="res://assets/phase1sprites/turretsprite.png" id="1_tfeqb"]
+[ext_resource type="Script" path="res://scene/phase1/turret.gd" id="2_wndkd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w2jg8"]
 atlas = ExtResource("1_tfeqb")
@@ -25,6 +26,17 @@ animations = [{
 }]
 
 [node name="turret" type="AnimatedSprite2D"]
-position = Vector2(240, 61)
 sprite_frames = SubResource("SpriteFrames_qq732")
 autoplay = "default"
+script = ExtResource("2_wndkd")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 23.0
+offset_bottom = 14.0
+
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

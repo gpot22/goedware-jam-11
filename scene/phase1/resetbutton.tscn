@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c78f2jsvgl5bv"]
+
+[ext_resource type="Texture2D" uid="uid://xtnds7c34usc" path="res://restartbutton1.png" id="1_4msot"]
+[ext_resource type="Script" path="res://scene/phase1/resetbutton.gd" id="2_wvgeu"]
+
+[node name="resetbutton" type="Sprite2D"]
+texture = ExtResource("1_4msot")
+script = ExtResource("2_wvgeu")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -16.0
+offset_top = -25.0
+offset_right = 16.0
+offset_bottom = 25.0
+
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

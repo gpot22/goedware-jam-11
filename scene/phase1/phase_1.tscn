@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvjok3ypqpmux"]
+[gd_scene load_steps=19 format=3 uid="uid://cvjok3ypqpmux"]
 
 [ext_resource type="Script" path="res://scripts/phase_1.gd" id="1_a3ra3"]
 [ext_resource type="Texture2D" uid="uid://qww1wv53hn4t" path="res://tiles.png" id="2_37bkd"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dfdphnpnpia54" path="res://scene/phase1/brokentile.tscn" id="9_kjqd7"]
 [ext_resource type="PackedScene" uid="uid://dlvmpoo884aph" path="res://scene/phase1/turret.tscn" id="10_04trn"]
 [ext_resource type="PackedScene" uid="uid://s2v2ywyiigsd" path="res://scene/phase1/tile.tscn" id="10_4342n"]
+[ext_resource type="PackedScene" uid="uid://bmawpddocsyak" path="res://scene/phase1/shopbutton.tscn" id="11_wip20"]
+[ext_resource type="PackedScene" uid="uid://c78f2jsvgl5bv" path="res://scene/phase1/resetbutton.tscn" id="12_n4qcd"]
+[ext_resource type="PackedScene" uid="uid://xanm1sdleeon" path="res://scene/phase1/info.tscn" id="13_thrue"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cfii7"]
 texture = ExtResource("2_37bkd")
@@ -87,3 +90,11 @@ visible = false
 
 [node name="turret" parent="." instance=ExtResource("10_04trn")]
 visible = false
+
+[node name="shopbutton" parent="." instance=ExtResource("11_wip20")]
+position = Vector2(99, 196)
+
+[node name="resetbutton" parent="." instance=ExtResource("12_n4qcd")]
+position = Vector2(99, 256)
+
+[node name="info" parent="." instance=ExtResource("13_thrue")]

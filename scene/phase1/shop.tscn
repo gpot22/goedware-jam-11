@@ -1,0 +1,212 @@
+[gd_scene load_steps=16 format=3 uid="uid://dh5i5u3odhkhr"]
+
+[ext_resource type="Script" path="res://scene/phase1/shop.gd" id="1_ekr5v"]
+[ext_resource type="Texture2D" uid="uid://rkjbkuu5lh6t" path="res://black.png" id="2_mrqyu"]
+[ext_resource type="Texture2D" uid="uid://ds6pgr3umdbq1" path="res://shop.png" id="3_po0yx"]
+[ext_resource type="FontFile" uid="uid://c0mc3uhedbvnm" path="res://ONESIZE_.TTF" id="4_vnmoj"]
+[ext_resource type="PackedScene" uid="uid://bah0qlaj74dta" path="res://scene/phase1/back.tscn" id="5_mbied"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3wau"]
+atlas = ExtResource("3_po0yx")
+region = Rect2(572, 0, 143, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnw6f"]
+atlas = ExtResource("3_po0yx")
+region = Rect2(0, 0, 143, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03q7b"]
+atlas = ExtResource("3_po0yx")
+region = Rect2(143, 0, 143, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7m7h"]
+atlas = ExtResource("3_po0yx")
+region = Rect2(286, 0, 143, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_474ai"]
+atlas = ExtResource("3_po0yx")
+region = Rect2(429, 0, 143, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc52g"]
+atlas = ExtResource("3_po0yx")
+region = Rect2(715, 0, 143, 143)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kpufj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3wau")
+}],
+"loop": true,
+"name": &"14",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnw6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03q7b")
+}],
+"loop": true,
+"name": &"1_4",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7m7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_474ai")
+}],
+"loop": true,
+"name": &"5_13",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc52g")
+}],
+"loop": true,
+"name": &"friend",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ggpwo"]
+resource_name = "new_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wgjo3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7n2oi"]
+_data = {
+"RESET": SubResource("Animation_wgjo3"),
+"new_animation": SubResource("Animation_ggpwo")
+}
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_ekr5v")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -22.0
+offset_top = -18.0
+offset_right = 1898.0
+offset_bottom = 1062.0
+texture = ExtResource("2_mrqyu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(400, 225)
+sprite_frames = SubResource("SpriteFrames_kpufj")
+animation = &"friend"
+frame_progress = 0.702461
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 332.0
+offset_top = 157.0
+offset_right = 470.0
+offset_bottom = 207.0
+theme_override_fonts/normal_font = ExtResource("4_vnmoj")
+theme_override_font_sizes/normal_font_size = 15
+text = "What are you looking for friend?"
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7n2oi")
+}
+
+[node name="newmessage" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="showmessage" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="uzi" type="RichTextLabel" parent="."]
+offset_left = 283.0
+offset_top = 286.0
+offset_right = 534.0
+offset_bottom = 308.0
+theme_override_fonts/normal_font = ExtResource("4_vnmoj")
+theme_override_font_sizes/normal_font_size = 19
+text = "UZI            ==========> 2"
+scroll_active = false
+
+[node name="shotgun" type="RichTextLabel" parent="."]
+offset_left = 283.0
+offset_top = 356.0
+offset_right = 533.0
+offset_bottom = 384.0
+theme_override_fonts/normal_font = ExtResource("4_vnmoj")
+theme_override_font_sizes/normal_font_size = 19
+text = "SHOTGUN   ==========> 2"
+scroll_active = false
+
+[node name="sniper" type="RichTextLabel" parent="."]
+offset_left = 283.0
+offset_top = 382.0
+offset_right = 566.0
+offset_bottom = 414.0
+theme_override_fonts/normal_font = ExtResource("4_vnmoj")
+theme_override_font_sizes/normal_font_size = 19
+text = "SNIPER      ==========> 2"
+scroll_active = false
+
+[node name="grenadelauncher" type="RichTextLabel" parent="."]
+offset_left = 283.0
+offset_top = 311.0
+offset_right = 536.0
+offset_bottom = 350.0
+theme_override_fonts/normal_font = ExtResource("4_vnmoj")
+theme_override_font_sizes/normal_font_size = 19
+text = "GRENADE   
+LAUNCHER  "
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 384.0
+offset_top = 319.0
+offset_right = 588.0
+offset_bottom = 359.0
+theme_override_fonts/normal_font = ExtResource("4_vnmoj")
+theme_override_font_sizes/normal_font_size = 19
+text = " ==========> 2"
+
+[node name="back" parent="." instance=ExtResource("5_mbied")]
+position = Vector2(401, 92)
+
+[connection signal="timeout" from="newmessage" to="." method="_on_newmessage_timeout"]
+[connection signal="timeout" from="showmessage" to="." method="_on_showmessage_timeout"]
+[connection signal="mouse_entered" from="uzi" to="." method="_on_uzi_mouse_entered"]
+[connection signal="mouse_exited" from="uzi" to="." method="_on_uzi_mouse_exited"]
+[connection signal="mouse_entered" from="shotgun" to="." method="_on_shotgun_mouse_entered"]
+[connection signal="mouse_exited" from="shotgun" to="." method="_on_shotgun_mouse_exited"]
+[connection signal="mouse_entered" from="sniper" to="." method="_on_sniper_mouse_entered"]
+[connection signal="mouse_exited" from="sniper" to="." method="_on_sniper_mouse_exited"]
+[connection signal="mouse_entered" from="grenadelauncher" to="." method="_on_grenadelauncher_mouse_entered"]
+[connection signal="mouse_exited" from="grenadelauncher" to="." method="_on_grenadelauncher_mouse_exited"]
