@@ -251,7 +251,7 @@ func take_damage(dmg):
 
 ## STATE: HOSTILE
 func aim_at_player():
-	#ap.play('slide_shoot')
+	if player == null: return
 	var player_center = Vector2(player.global_position.x, player.global_position.y - player.sprite.get_rect().size.y/2)
 	rifle.point_to_target(player_center)
 	#rifle.line_of_sight.points[1] = Vector2(300, 0)

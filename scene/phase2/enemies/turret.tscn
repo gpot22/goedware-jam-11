@@ -1,9 +1,13 @@
-[gd_scene load_steps=73 format=3 uid="uid://by5ye50kwxyhd"]
+[gd_scene load_steps=74 format=3 uid="uid://by5ye50kwxyhd"]
 
 [ext_resource type="Script" path="res://scripts/turret.gd" id="1_46kql"]
 [ext_resource type="Texture2D" uid="uid://chqpb0h1qk1l3" path="res://assets/sprites/turret.png" id="1_nldml"]
 [ext_resource type="Texture2D" uid="uid://bu6xcpffpqjx1" path="res://assets/sprites/turretbase.png" id="2_ht5tx"]
 [ext_resource type="Texture2D" uid="uid://cg88cumaw8gm8" path="res://assets/sprites/turretfire.png" id="3_5x1rp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgecp"]
+atlas = ExtResource("2_ht5tx")
+region = Rect2(510, 0, 85, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yv6ll"]
 atlas = ExtResource("2_ht5tx")
@@ -25,9 +29,9 @@ region = Rect2(340, 0, 85, 33)
 atlas = ExtResource("2_ht5tx")
 region = Rect2(425, 0, 85, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dgecp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq3xb"]
 atlas = ExtResource("2_ht5tx")
-region = Rect2(510, 0, 85, 33)
+region = Rect2(1020, 0, 85, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vq66b"]
 atlas = ExtResource("2_ht5tx")
@@ -49,9 +53,9 @@ region = Rect2(850, 0, 85, 33)
 atlas = ExtResource("2_ht5tx")
 region = Rect2(935, 0, 85, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cq3xb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpxbe"]
 atlas = ExtResource("2_ht5tx")
-region = Rect2(1020, 0, 85, 33)
+region = Rect2(1530, 0, 85, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5rxoc"]
 atlas = ExtResource("2_ht5tx")
@@ -73,9 +77,9 @@ region = Rect2(1360, 0, 85, 33)
 atlas = ExtResource("2_ht5tx")
 region = Rect2(1445, 0, 85, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lpxbe"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtivd"]
 atlas = ExtResource("2_ht5tx")
-region = Rect2(1530, 0, 85, 33)
+region = Rect2(2040, 0, 85, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7rmcf"]
 atlas = ExtResource("2_ht5tx")
@@ -97,10 +101,6 @@ region = Rect2(1870, 0, 85, 33)
 atlas = ExtResource("2_ht5tx")
 region = Rect2(1955, 0, 85, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vtivd"]
-atlas = ExtResource("2_ht5tx")
-region = Rect2(2040, 0, 85, 33)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfcli"]
 atlas = ExtResource("2_ht5tx")
 region = Rect2(0, 0, 85, 33)
@@ -108,6 +108,9 @@ region = Rect2(0, 0, 85, 33)
 [sub_resource type="SpriteFrames" id="SpriteFrames_y5kqe"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgecp")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yv6ll")
 }, {
@@ -132,6 +135,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_cq3xb")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vq66b")
 }, {
 "duration": 1.0,
@@ -155,6 +161,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_lpxbe")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5rxoc")
 }, {
 "duration": 1.0,
@@ -177,6 +186,9 @@ animations = [{
 "speed": 20.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtivd")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7rmcf")
 }, {
@@ -247,6 +259,9 @@ animations = [{
 "speed": 1.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srf6y")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bt0cq")
 }, {
@@ -501,19 +516,25 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0vstr"]
+light_mode = 1
+
 [sub_resource type="Gradient" id="Gradient_gl57s"]
 offsets = PackedFloat32Array(0, 0.746753)
 colors = PackedColorArray(0.759551, 0.86733, 0.966086, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ljqwy"]
 gradient = SubResource("Gradient_gl57s")
+width = 100
+height = 100
 fill = 1
 fill_from = Vector2(0.509174, 0.513761)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qfbp3"]
-radius = 240.0
+radius = 320.0
 
 [node name="turret" type="StaticBody2D" groups=["Enemy"]]
+scale = Vector2(2, 2)
 script = ExtResource("1_46kql")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
@@ -524,24 +545,35 @@ polygon = PackedVector2Array(-14, -42, 12, -42, 12, -20, 24, -20, 24, 0, -27, 0,
 [node name="base" type="AnimatedSprite2D" parent="body"]
 position = Vector2(16, -17)
 sprite_frames = SubResource("SpriteFrames_y5kqe")
-animation = &"charge2"
+animation = &"idle"
 
-[node name="head" type="AnimatedSprite2D" parent="body"]
-position = Vector2(-30, -44)
+[node name="HeadAnchor" type="Marker2D" parent="body"]
+position = Vector2(0, -30)
+
+[node name="head" type="AnimatedSprite2D" parent="body/HeadAnchor"]
+position = Vector2(30, -14)
 sprite_frames = SubResource("SpriteFrames_vcctg")
 animation = &"shoot"
+flip_h = true
 
-[node name="spark" type="AnimatedSprite2D" parent="body/head"]
+[node name="spark" type="AnimatedSprite2D" parent="body/HeadAnchor/head"]
 position = Vector2(-111, 3)
 sprite_frames = SubResource("SpriteFrames_dbsb4")
-animation = &"flash3"
+animation = &"flash1"
 
-[node name="BulletSpawn" type="Marker2D" parent="body/head"]
-position = Vector2(-40, 11)
+[node name="BulletSpawn" type="Marker2D" parent="body/HeadAnchor/head"]
+position = Vector2(41, 11)
+
+[node name="LineOfSight" type="Line2D" parent="body/HeadAnchor/head/BulletSpawn"]
+light_mask = 4
+visibility_layer = 4
+material = SubResource("CanvasItemMaterial_0vstr")
+points = PackedVector2Array(0, 0, 150, 0)
+width = 2.0
+default_color = Color(1, 0.27451, 0.235294, 0.470588)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -30)
-scale = Vector2(2, 2)
 range_layer_min = -2
 texture = SubResource("GradientTexture2D_ljqwy")
 metadata/_edit_lock_ = true
