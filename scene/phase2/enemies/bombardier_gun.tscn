@@ -3,39 +3,39 @@
 [ext_resource type="Texture2D" uid="uid://72uu1htyqk5u" path="res://assets/sprites/grenade1.png" id="1_l5r3i"]
 [ext_resource type="Script" path="res://scripts/bombardier_gun.gd" id="1_vassw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t652l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu0xg"]
 atlas = ExtResource("1_l5r3i")
 region = Rect2(0, 0, 122, 56)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jfrbr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwune"]
 atlas = ExtResource("1_l5r3i")
 region = Rect2(122, 0, 122, 56)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5p8fo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7x00"]
 atlas = ExtResource("1_l5r3i")
 region = Rect2(244, 0, 122, 56)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ajbqt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgum2"]
 atlas = ExtResource("1_l5r3i")
 region = Rect2(366, 0, 122, 56)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ppfti"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yokup"]
 atlas = ExtResource("1_l5r3i")
 region = Rect2(488, 0, 122, 56)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_txqvx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp3si"]
 atlas = ExtResource("1_l5r3i")
 region = Rect2(610, 0, 122, 56)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vqe4q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnwxd"]
 atlas = ExtResource("1_l5r3i")
 region = Rect2(732, 0, 122, 56)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jxl7w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6y4r"]
 atlas = ExtResource("1_l5r3i")
 region = Rect2(854, 0, 122, 56)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2p8xf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m0wi"]
 atlas = ExtResource("1_l5r3i")
 region = Rect2(976, 0, 122, 56)
 
@@ -43,38 +43,33 @@ region = Rect2(976, 0, 122, 56)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t652l")
+"texture": SubResource("AtlasTexture_qu0xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwune")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7x00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgum2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yokup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp3si")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnwxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6y4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m0wi")
 }],
-"loop": true,
-"name": &"idle",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jfrbr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5p8fo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ajbqt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ppfti")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_txqvx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vqe4q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxl7w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2p8xf")
-}],
-"loop": true,
+"loop": false,
 "name": &"shoot",
 "speed": 20.0
 }]
@@ -82,12 +77,12 @@ animations = [{
 [node name="bombardier_gun" type="Node2D"]
 script = ExtResource("1_vassw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="WeaponPivot" type="Marker2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WeaponPivot"]
 position = Vector2(37, -9)
 sprite_frames = SubResource("SpriteFrames_t68ib")
-animation = &"idle"
+animation = &"shoot"
 
-[node name="BulletSpawn" type="Marker2D" parent="AnimatedSprite2D"]
+[node name="BulletSpawn" type="Marker2D" parent="WeaponPivot/AnimatedSprite2D"]
 position = Vector2(21, -4)
-
-[node name="WeaponPivot" type="Marker2D" parent="."]
