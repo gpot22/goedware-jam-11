@@ -553,7 +553,6 @@ texture = SubResource("GradientTexture2D_hg3f6")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(0.75, 0.75)
 zoom = Vector2(0.45, 0.45)
 position_smoothing_enabled = true
 

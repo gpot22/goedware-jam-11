@@ -48,10 +48,6 @@ func update_animations():
 		line_of_sight.visible = false
 	else:
 		line_of_sight.visible = true
-		#if charge == 0:
-			#base.play('idle')
-		#else:
-			#base.play('charge' + str(charge))
 		
 func aim_at_player():
 	var player_center = Vector2(player.global_position.x, player.global_position.y - player.sprite.get_rect().size.y/2)

@@ -15,6 +15,9 @@ const DASH_VEL = 1200.0
 @onready var smoke_spawn = $SmokeSpawn
 @onready var tile_map = $"../TileMap"
 @onready var world_map = $"../WorldMap"
+@onready var coyote_timer = $CoyoteTimer
+@onready var jump_buffer_timer = $JumpBufferTimer
+
 
 var smoke_effect = preload('res://scene/vfx/smoke.tscn')
 var smokes
@@ -68,14 +71,20 @@ func _physics_process(delta):
 	handle_grapple(delta)
 	update_animations(input_axis)
 	update_direction(input_axis)
-	# apply velocity
-	move_and_slide()
 	
 	if pistol:
 		if states['dash']:
 			pistol.toggle_active(false)
 		else:
 			pistol.toggle_active(true)
+	
+	var was_on_floor = is_on_floor()
+	
+	# apply velocity
+	move_and_slide()
+	
+	if was_on_floor && !is_on_floor():
+		coyote_timer.start()
 
 # USER INPUT
 func handle_input():
@@ -98,8 +107,13 @@ func handle_movement(delta, input_axis):
 		velocity.x = move_toward(velocity.x, 0, FRIC*delta)  # player friction
 	
 func handle_jump():
-	if is_on_floor():
-		if Input.is_action_just_pressed("jump"):
+	#print(coyote_timer.is_stopped)
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer.start()
+	if Input.is_action_just_released("jump"):
+		$JumpReleaseBufferTimer.start()
+	if is_on_floor() or !coyote_timer.is_stopped() and not jumpUp:
+		if (Input.is_action_just_pressed("jump") or !jump_buffer_timer.is_stopped()):
 			jumpUp = true
 			velocity.y = JUMP_VEL
 			animate_once('jump_start')
@@ -107,10 +121,8 @@ func handle_jump():
 		if velocity.y > 0 and jumpUp:
 			jumpUp = false
 			animate_once('fall_start')
-		if Input.is_action_just_released("jump") and velocity.y < 0 and jumpUp and !grappling:
+		if (Input.is_action_just_released("jump") or !$JumpReleaseBufferTimer.is_stopped()) and velocity.y < 0 and jumpUp and !grappling:
 			velocity.y = move_toward(velocity.y, 0, 2000)
-		#if Input.is_action_just_released("jump") and velocity.y < JUMP_VEL/3:
-			#velocity.y = JUMP_VEL / 3
 
 func handle_dash(input_axis):
 	if !Input.is_action_just_pressed("dash") or states['dash']: return

@@ -327,3 +327,15 @@ position = Vector2(-48, -32)
 position = Vector2(20, -25)
 
 [node name="SniperRifle" parent="WeaponPoint" instance=ExtResource("5_giok7")]
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="JumpReleaseBufferTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true

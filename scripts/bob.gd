@@ -21,6 +21,7 @@ var attack_charge_time = 60
 @onready var ray_cast_wall = $RayCastWall
 @onready var ray_cast_player_detect = $RayCastPlayerDetect
 @onready var ray_cast_attack = $RayCastAttack
+@onready var weapon_point = $WeaponPoint
 
 var isAttacking = false
 var face_dir = -1
@@ -82,7 +83,7 @@ func idle_movement():
 func detect_player():
 	if ray_cast_player_detect.is_colliding() and ray_cast_player_detect.get_collider() != null and ray_cast_player_detect.get_collider().name == "Player" and state != "attack":
 		state = "hostile"
-		hostile_timer = 60 * 2
+		hostile_timer = 80
 		player = ray_cast_player_detect.get_collider()
 
 func attack_player():

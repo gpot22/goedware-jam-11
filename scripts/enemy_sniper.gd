@@ -105,12 +105,6 @@ func _physics_process(delta):
 		handle_movement(delta)
 		
 	var flag = false
-	#for body in shooting_area.get_overlapping_bodies():
-		#if body.name == 'Player':
-			#flag = true
-			#
-	#if not flag:
-		#state = 'idle'
 	update_animations()
 	move_and_slide()
 

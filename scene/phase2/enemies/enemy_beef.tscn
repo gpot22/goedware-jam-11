@@ -118,12 +118,12 @@ target_position = Vector2(-30, 0)
 [node name="RayCastPlayerDetect" type="RayCast2D" parent="."]
 position = Vector2(0, -32)
 exclude_parent = false
-target_position = Vector2(-300, 0)
+target_position = Vector2(-500, 0)
 
 [node name="RayCastAttack" type="RayCast2D" parent="."]
 position = Vector2(0, -32)
 exclude_parent = false
-target_position = Vector2(-108, 0)
+target_position = Vector2(-150, 0)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -30)
