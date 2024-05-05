@@ -4,7 +4,7 @@ var can_shoot = true
 
 func _ready():
 	super._ready()
-	bullet = preload('res://scene/phase2/bullet.tscn')
+	bullet = preload('res://scene/phase2/bullets/bullet.tscn')
 	parent = get_parent()
 	damage = 10
 	direction = 1
@@ -40,6 +40,10 @@ func shoot():
 	#anim_sprite.stop()
 	await get_tree().create_timer(shot_time).timeout
 	can_shoot = true
+
+func shoot_at(target):
+	bullet_spawn.look_at(target)
+	shoot()
 	
 func toggle_active(a):
 	set_visible(a)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwjkhg54nugkq"]
+[gd_scene load_steps=12 format=3 uid="uid://dwjkhg54nugkq"]
 
 [ext_resource type="Script" path="res://scripts/bob.gd" id="1_6gre0"]
 [ext_resource type="Texture2D" uid="uid://cuw1lcc2psans" path="res://assets/sprites/enemy1.png" id="1_h7lmb"]
+[ext_resource type="PackedScene" uid="uid://bc61jflp4x12c" path="res://scene/phase2/weapons/pistol.tscn" id="3_qe8tc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ffjm"]
 size = Vector2(44.25, 85.5)
@@ -134,3 +135,6 @@ metadata/_edit_lock_ = true
 
 [node name="WeaponPoint" type="Marker2D" parent="."]
 position = Vector2(-16, -32)
+
+[node name="pistol" parent="WeaponPoint" instance=ExtResource("3_qe8tc")]
+position = Vector2(-8, -1)

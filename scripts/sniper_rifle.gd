@@ -5,7 +5,7 @@ var can_shoot = true
 
 func _ready():
 	super._ready()
-	bullet = preload('res://scene/phase2/sniper_bullet.tscn')
+	bullet = preload('res://scene/phase2/bullets/sniper_bullet.tscn')
 	parent = get_parent().get_parent()
 	damage = 50
 	direction = 1
@@ -35,8 +35,6 @@ func shoot():
 	b.global_position = bullet_spawn.global_position
 	b.global_rotation = bullet_spawn.global_rotation
 	add_child(b)
-	b.light.scale.x *= 6
-	b.light.scale.y *= 0.5
 	
 	can_shoot = false
 	anim_sprite.play('shoot')

@@ -10,7 +10,7 @@ var idle_timer = 0
 var hostile_timer = 0 
 var shoot_timer = 0
 
-var grenade = preload('res://scripts/grenade.gd')
+var grenade = preload('res://scene/phase2/bullets/grenade.gd')
 var explosion_effect = preload('res://scene/vfx/explosion.tscn')
 
 @onready var ap = $AnimationPlayer
@@ -18,7 +18,7 @@ var explosion_effect = preload('res://scene/vfx/explosion.tscn')
 @onready var shooting_area = $ShootingArea
 @onready var ray_cast_floor = $CollisionShape2D/RayCastFloor
 @onready var ray_cast_wall = $RayCastWall
-@onready var bombardier_gun = $WeaponPoint/bombardier_gun
+@onready var grenade_launcher = $WeaponPoint/grenade_launcher
 @onready var explosion_radius = $ExplosionRadius
 
 
@@ -43,14 +43,14 @@ func _physics_process(delta):
 	if state == 'idle':
 		idle_movement()
 		avoid_edge()
-		bombardier_gun.visible = false
+		grenade_launcher.visible = false
 		
 	elif state == 'hostile':
-		bombardier_gun.visible = true
+		grenade_launcher.visible = true
 		face_player()
 		shoot_timer -= 1
 		if shoot_timer <= 0:
-			bombardier_gun.visible = true
+			grenade_launcher.visible = true
 			vel = 0
 			shoot_timer = 180
 			showering = true
@@ -58,7 +58,7 @@ func _physics_process(delta):
 			showering = false
 	
 	elif state == 'suicidal':
-		bombardier_gun.visible = false
+		grenade_launcher.visible = false
 		if !tackle_player():
 			run_towards_player()
 			jump_off_edge()
@@ -100,7 +100,7 @@ func face_player():
 		direction = 1
 		$WeaponPoint.position = Vector2(-16, -8)
 	ray_cast_floor.position.x = abs(ray_cast_floor.position.x) * -direction
-	bombardier_gun.direction = direction
+	grenade_launcher.direction = direction
 	
 func flip_direction():
 	direction *= -1
@@ -108,7 +108,7 @@ func flip_direction():
 	ray_cast_wall.scale.x *= -1
 	ray_cast_wall.position.x *= -1
 	ray_cast_floor.position.x *= -1
-	bombardier_gun.direction = direction
+	grenade_launcher.direction = direction
 
 # - - - - GENERAL ANIMATION STATE HANDLER - - - - -
 func update_animations():
@@ -158,13 +158,13 @@ func get_grenade_vi(xi, yi, xf, yf, g):
 
 func shoot(x_offset=0):
 	ap.play("attack")
-	var xi = bombardier_gun.bullet_spawn.global_position.x
-	var yi = bombardier_gun.bullet_spawn.global_position.y
+	var xi = grenade_launcher.bullet_spawn.global_position.x
+	var yi = grenade_launcher.bullet_spawn.global_position.y
 	
 	var xf = player.global_position.x + x_offset
 	var yf = player.global_position.y
 	var vel = get_grenade_vi(xi, yi, xf, yf, grenade.new().GRAVITY)
-	bombardier_gun.shoot(vel, x_offset)
+	grenade_launcher.shoot(vel, x_offset)
 	await ap.animation_finished
 	ap.stop()
 	
@@ -241,7 +241,7 @@ func _on_shooting_area_body_entered(body):
 	if tackling: return
 	#if showering: return
 	player = body
-	bombardier_gun.target = body
+	grenade_launcher.target = body
 	state = 'hostile'
 	vel = 0
 	shoot_timer = 0

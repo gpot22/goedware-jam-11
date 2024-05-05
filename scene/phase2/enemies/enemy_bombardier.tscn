@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://di6bu1jdu6ihs" path="res://assets/sprites/bombardier.png" id="1_3h142"]
 [ext_resource type="Script" path="res://scripts/enemy_bombardier.gd" id="1_ot3qs"]
-[ext_resource type="PackedScene" uid="uid://bed5g7cgxxc8m" path="res://scene/phase2/enemies/bombardier_gun.tscn" id="3_786ls"]
+[ext_resource type="PackedScene" uid="uid://bed5g7cgxxc8m" path="res://scene/phase2/weapons/grenade_launcher.tscn" id="3_kfer1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wy40i"]
 radius = 14.0
@@ -184,7 +184,7 @@ target_position = Vector2(-27, -1)
 [node name="WeaponPoint" type="Marker2D" parent="."]
 position = Vector2(-14, 9)
 
-[node name="bombardier_gun" parent="WeaponPoint" instance=ExtResource("3_786ls")]
+[node name="grenade_launcher" parent="WeaponPoint" instance=ExtResource("3_kfer1")]
 
 [node name="CommitTackleArea" type="Area2D" parent="."]
 

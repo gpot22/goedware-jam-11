@@ -1,46 +1,46 @@
 [gd_scene load_steps=15 format=3 uid="uid://marg7pw3aal"]
 
-[ext_resource type="Script" path="res://scripts/sniper_rifle.gd" id="1_umubf"]
-[ext_resource type="Texture2D" uid="uid://x785ioxoa1h5" path="res://assets/sprites/sniper_rifle.png" id="2_1hgwk"]
+[ext_resource type="Script" path="res://scripts/sniper_rifle.gd" id="1_k7uvu"]
+[ext_resource type="Texture2D" uid="uid://x785ioxoa1h5" path="res://assets/sprites/sniper_rifle.png" id="2_g8ece"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv6kh"]
-atlas = ExtResource("2_1hgwk")
+atlas = ExtResource("2_g8ece")
 region = Rect2(0, 0, 124, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sa6db"]
-atlas = ExtResource("2_1hgwk")
+atlas = ExtResource("2_g8ece")
 region = Rect2(0, 0, 124, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d6ad2"]
-atlas = ExtResource("2_1hgwk")
+atlas = ExtResource("2_g8ece")
 region = Rect2(124, 0, 124, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fovnr"]
-atlas = ExtResource("2_1hgwk")
+atlas = ExtResource("2_g8ece")
 region = Rect2(248, 0, 124, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhwol"]
-atlas = ExtResource("2_1hgwk")
+atlas = ExtResource("2_g8ece")
 region = Rect2(372, 0, 124, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ib5k2"]
-atlas = ExtResource("2_1hgwk")
+atlas = ExtResource("2_g8ece")
 region = Rect2(496, 0, 124, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mc7v6"]
-atlas = ExtResource("2_1hgwk")
+atlas = ExtResource("2_g8ece")
 region = Rect2(620, 0, 124, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r2yvu"]
-atlas = ExtResource("2_1hgwk")
+atlas = ExtResource("2_g8ece")
 region = Rect2(744, 0, 124, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ocy0w"]
-atlas = ExtResource("2_1hgwk")
+atlas = ExtResource("2_g8ece")
 region = Rect2(868, 0, 124, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iw77p"]
-atlas = ExtResource("2_1hgwk")
+atlas = ExtResource("2_g8ece")
 region = Rect2(992, 0, 124, 41)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d5qc0"]
@@ -93,7 +93,7 @@ animations = [{
 light_mode = 1
 
 [node name="SniperRifle" type="Node2D" groups=["Weapon"]]
-script = ExtResource("1_umubf")
+script = ExtResource("1_k7uvu")
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
 

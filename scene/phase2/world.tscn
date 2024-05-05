@@ -565,10 +565,10 @@ position = Vector2(369, 611)
 position = Vector2(210, 1305)
 
 [node name="sniper" parent="Enemies" instance=ExtResource("12_ougkd")]
-position = Vector2(426, 1149)
+position = Vector2(2635, 322)
 
 [node name="turret" parent="Enemies" instance=ExtResource("13_8yxwf")]
-position = Vector2(2137, 588)
+position = Vector2(468, 1187)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0609198, 0.290021, 0.463875, 1)
