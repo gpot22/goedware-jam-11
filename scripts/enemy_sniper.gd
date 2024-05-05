@@ -1,7 +1,7 @@
 extends 'res://scripts/EnemySuperclass.gd'
 
 
-const RUN_VEL = 800
+const RUN_VEL = 700
 const JUMP = -1100
 const GRAV = 3000
 
@@ -30,16 +30,16 @@ func _ready():
 	vel = 0
 	set_direction(-1)
 	position.x -= 40
-	state = 'idle'  ## idle, evade, hostile
+	state = 'hostile'  ## idle, evade, hostile
 	rifle.visible = false
+	
+	player = get_parent().get_parent().get_node('Player')
 	
 func _physics_process(delta):
 	apply_gravity(delta)
 	if $CollisionShape2D/RayCastFloor/floor.get_collider() != null and $CollisionShape2D/RayCastFloor/floor.get_collider().name.contains('platform'):
 		last_floor = $CollisionShape2D/RayCastFloor/floor.get_collider()
-	if state == 'idle':
-		pass
-	elif state == 'evade':
+	if state == 'evade':
 		rifle.visible = false
 		run_from_player()
 			#state = 'hostile'
@@ -71,6 +71,7 @@ func _physics_process(delta):
 				aiming = false
 				shooting = false
 				first_shot = false
+				run_from_player()
 			else:
 				aiming = true
 				aim_timer = aim_time_max
@@ -87,6 +88,7 @@ func _physics_process(delta):
 					aiming = false
 					shooting = false
 					first_shot = false
+					run_from_player()
 			
 			if state != 'evade':
 				if aim_timer <= 60 and aim_timer%5 == 0:
@@ -114,7 +116,7 @@ func apply_gravity(delta):
 
 
 func update_animations():
-	rifle.line_of_sight.visible = state == 'hostile' and rifle.visible
+	rifle.line_of_sight.visible = state == 'hostile' and rifle.visible and not rifle.hide_line
 	if first_shot or aiming or shooting or hurting: return
 	if not is_on_floor():
 		ap.play('jump')
@@ -200,6 +202,7 @@ func run_from_player():
 			return false
 		velocity = v
 	return true
+	
 func get_jump_vi(xi, yi, xf, yf):
 	var dx = xf - xi
 	var dy = yf - yi
@@ -253,14 +256,13 @@ func aim_at_player():
 	if player == null: return
 	var player_center = Vector2(player.global_position.x, player.global_position.y - player.sprite.get_rect().size.y/2)
 	rifle.point_to_target(player_center)
-	#rifle.line_of_sight.points[1] = Vector2(300, 0)
 	if player.global_position.x < rifle.global_position.x:
 		rifle.scale.y = -1
 	else:
 		rifle.scale.y = 1
 		
 	var line: Vector2 = rifle.line_of_sight.points[1]
-	line = (line / line.length()) * rifle.bullet_spawn.global_position.distance_to(player_center) * 1.1
+	line = (line / line.length()) * rifle.bullet_spawn.global_position.distance_to(player_center)
 	rifle.line_of_sight.points[1] = line
 	
 func face_player():
@@ -281,19 +283,35 @@ func _on_evasion_area_body_entered(body):
 	#state = 'evade'
 	#vel = RUN_VEL
 
-func _on_evasion_area_body_exited(body):
+func _on_leave_evasion_area_body_exited(body):
 	if body.name != 'Player': return
 	player = body
-	await get_tree().create_timer(0.5).timeout
-	var flag
-	for x in shooting_area.get_overlapping_bodies():
-		if x.name == 'Player':
-			flag = true
-			state = 'hostile'
-			
-	if not flag:
-		state = 'idle'
+	state = 'hostile'
+	#await get_tree().create_timer(0.5).timeout
+	#var flag
+	#for x in shooting_area.get_overlapping_bodies():
+		#if x.name == 'Player':
+			#flag = true
+			#state = 'hostile'
+			#
+	#if not flag:
+		#state = 'idle'
 	vel = 0
+	
+#func _on_evasion_area_body_exited(body):
+	#if body.name != 'Player': return
+	#player = body
+	#state = 'hostile'
+	##await get_tree().create_timer(0.5).timeout
+	##var flag
+	##for x in shooting_area.get_overlapping_bodies():
+		##if x.name == 'Player':
+			##flag = true
+			##state = 'hostile'
+			##
+	##if not flag:
+		##state = 'idle'
+	#vel = 0
 
 
 func _on_scan_platform_area_body_entered(body):
@@ -306,18 +324,30 @@ func _on_scan_platform_area_body_exited(body):
 	platforms.erase(body)
 
 
-func _on_shooting_area_body_entered(body):
-	if body.name != 'Player': return	
-	player = body
-	state = 'hostile'
+#func _on_shooting_area_body_entered(body):
+	#if body.name != 'Player': return	
+	#player = body
+	#state = 'hostile'
 
 
-func _on_shooting_area_body_exited(body):
-	if body.name != 'Player': return	
-	player = body
-	state = 'idle'
-	rifle.visible = false
-	first_shot = false
-	aiming = false
-	shooting = false
-	aim_timer = 0
+#func _on_shooting_area_body_exited(body):
+	#if body.name != 'Player': return	
+	#player = body
+	#state = 'idle'
+	#rifle.visible = false
+	#first_shot = false
+	#aiming = false
+	#shooting = false
+	#aim_timer = 0
+
+
+#func _on_leave_shooting_area_body_exited(body):
+	#if body.name != 'Player': return	
+	#player = body
+	#state = 'idle'
+	#rifle.visible = false
+	#first_shot = false
+	#aiming = false
+	#shooting = false
+	#aim_timer = 0
+

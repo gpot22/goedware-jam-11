@@ -1,15 +1,21 @@
 extends 'res://scripts/WeaponSuperclass.gd'
 
 var can_shoot = true
+var reloading = false
+var current_magazine
 
 func _ready():
 	super._ready()
 	bullet = preload('res://scene/phase2/bullets/bullet.tscn')
-	parent = get_parent()
-	damage = 10
+	parent = get_parent().get_parent()
 	direction = 1
-	shot_time = 0.5
+	
+	damage = 10
+	magazine = 12
+	current_magazine = magazine
+	shot_time = 0.4
 	bullet_spread = 0.05
+	reload_time = 0.8
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -27,7 +33,13 @@ func point_to_cursor():
 
 func handle_shoot():
 	if active and can_shoot and Input.is_action_just_pressed('shoot'):
-		shoot()
+		if current_magazine > 0 and can_shoot:
+			current_magazine -= 1
+			shoot()
+			parent.shoot_success()
+		elif current_magazine == 0 and not reloading:
+			can_shoot = false
+			reload()
 		
 func shoot():
 	var b = bullet.instantiate()
@@ -49,3 +61,10 @@ func shoot_at(target):
 func toggle_active(a):
 	set_visible(a)
 	active = a
+
+func reload():
+	reloading = true
+	await get_tree().create_timer(reload_time).timeout
+	current_magazine = magazine
+	can_shoot = true
+	reloading = false

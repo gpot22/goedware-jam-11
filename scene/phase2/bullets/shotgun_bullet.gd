@@ -1,4 +1,4 @@
-extends 'res://scene/phase2/bullets/bullet.gd'
+extends 'res://scene/phase2/bullets/BulletSuperclass.gd'
 
 func _ready():
 	max_l = 20

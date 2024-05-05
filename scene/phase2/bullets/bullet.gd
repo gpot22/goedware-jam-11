@@ -1,13 +1,15 @@
 extends 'res://scene/phase2/bullets/BulletSuperclass.gd'
 
 func _ready():
+	max_l = 1600
+	max_w = 2
 	super._ready()
-	vel = 2000
+	vel = 3000
 	range = 800
 	parent = get_parent().get_parent().get_parent().name  # parent = gun, gun's parent = weaponpoint, weaponpoint's parent = player or enemy
 
-func is_player():
-	return parent == "Player"
+#func is_player():
+	#return parent == "Player"
 	
 func _on_body_entered(body):
 	if is_player():

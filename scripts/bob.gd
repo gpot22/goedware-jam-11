@@ -9,6 +9,7 @@ const RECOIL = -600.0
 @onready var sprite = $Sprite2D
 @onready var ray_cast_floor = $RayCastFloor
 @onready var ray_cast_wall = $RayCastWall
+@onready var ray_cast_wall2 = $RayCastWall2
 @onready var player_detect_area = $PlayerDetectArea
 @onready var attack_area = $AttackArea
 @onready var weapon_point = $WeaponPoint
@@ -34,7 +35,6 @@ func _ready():
 	health = 100
 	state = 'idle'
 	set_direction(-1)
-	#direction == -1
 	vel = 0
 	# give gun
 	var rand_weapon = rng.randi_range(0, len(weapons)-1)
@@ -45,9 +45,7 @@ func _ready():
 	player = get_parent().get_parent().get_node('Player')
 	
 func _physics_process(delta):
-	#attack_area.get_overlapping_bodies()
 	apply_gravity(delta)
-	#print(state)
 	if state == 'idle':
 		idle_movement()
 		avoid_edge()
@@ -59,6 +57,11 @@ func _physics_process(delta):
 		if state != 'idle':
 			if not shooting:
 				follow_player()
+				for b in $AttackArea.get_overlapping_bodies():
+					if b.name == 'Player':
+						shoot_ready = true
+						break
+				#if $CollisionShape2D.co
 			if shoot_ready and not shooting and not attack_pending:
 				attack_pending = true
 				attack_timer = 40
@@ -70,8 +73,6 @@ func _physics_process(delta):
 					attack()
 					attack_pending = false
 					shooting = true
-				#await get_tree().create_timer(0.8).timeout
-				#attack()
 			elif not shooting:
 				vel = RUN_VEL
 	handle_movement(delta)
@@ -81,7 +82,7 @@ func _physics_process(delta):
 	
 ## STATE: IDLE
 func avoid_edge():
-	if not ray_cast_floor.is_colliding() or ray_cast_wall.is_colliding():
+	if not ray_cast_floor.is_colliding() or ray_cast_wall.is_colliding() or ray_cast_wall2.is_colliding():
 		flip_direction()
 		
 func idle_movement():
@@ -98,18 +99,15 @@ func idle_movement():
 		
 func flip_direction():
 	direction *= -1
-	#ray_cast_wall.position.x *= -1
-	#ray_cast_wall.scale.x *= -1
-	#ray_cast_floor.position.x *= -1
-	#
-	#weapon_point.position.x *= -1
 	set_direction(direction)
 	
 func set_direction(d):
 	direction = d
 	sprite.flip_h = (direction > 0)
 	ray_cast_wall.position.x = abs(ray_cast_wall.position.x)*d
-	ray_cast_wall.scale.x = abs(ray_cast_wall.scale.x)*d
+	ray_cast_wall.scale.x = abs(ray_cast_wall.scale.x)*-d
+	ray_cast_wall2.position.x = abs(ray_cast_wall2.position.x)*d
+	ray_cast_wall2.scale.x = abs(ray_cast_wall2.scale.x)*-d
 	ray_cast_floor.position.x = abs(ray_cast_floor.position.x)*d
 	
 	player_detect_area.position.x = abs(player_detect_area.position.x)*d
@@ -122,12 +120,6 @@ func set_direction(d):
 	else:
 		gun.point_to_target(global_position + Vector2.LEFT*30 + Vector2.UP*32)
 		gun.scale.y = -1
-	#gun.point_to_target(player.global_position.x, global_position.y)
-	#if player.global_position.x < gun.global_position.x:
-		#gun.scale.y = -1
-	#else:
-		#gun.scale.y = 1
-	#gun.anim)sprite
 
 ## STATE: HOSTILE
 func follow_player():

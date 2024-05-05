@@ -2,7 +2,7 @@ extends 'res://scripts/EnemySuperclass.gd'
 
 const WALK_VEL = 200
 const RUN_VEL = 400
-const TACKLE_JUMP = -600
+const TACKLE_JUMP = -650
 const TACKLE_GRAVITY = 2000
 
 var idle_state = 0
@@ -16,7 +16,7 @@ var explosion_effect = preload('res://scene/vfx/explosion.tscn')
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var shooting_area = $ShootingArea
-@onready var ray_cast_floor = $CollisionShape2D/RayCastFloor
+@onready var ray_cast_floor = $RayCastFloor
 @onready var ray_cast_wall = $RayCastWall
 @onready var grenade_launcher = $WeaponPoint/grenade_launcher
 @onready var explosion_radius = $ExplosionRadius
@@ -189,7 +189,7 @@ func run_towards_player():
 func get_tackle_vi(xi, yi, xf, yf):
 	var dx = xf - xi
 	var dy = yf - yi
-
+	#if dy < -30:  # jump up
 	var viy = TACKLE_JUMP
 	var ay = TACKLE_GRAVITY
 	
@@ -198,10 +198,36 @@ func get_tackle_vi(xi, yi, xf, yf):
 	
 	var vix = dx/t
 	if is_nan(vix):
+		viy *= 1.7
+		t =( -viy + sqrt(viy**2 -4*(ay/2)*(-dy)))/(ay)
+		vix = dx/t
+	
+	if is_nan(vix):
 		vix = 480 * dx/(abs(dx))
 	vix = max(min(700, vix), -700)
 	var v = Vector2(vix, viy)
 	return v
+	#else: # straight or down
+		#var vix
+		#if dx > 0:
+			#vix = 800
+		#else:
+			#vix = -800
+		#var t = dx/vix
+		#var ay = TACKLE_GRAVITY
+		#var viy = dy/t - 0.5*ay*t
+		##if dy < -100:
+			##viy *= 1.4
+			##vix *= 0.4
+		##elif dy < 0:
+			##viy *= 1.1
+			##vix *= 0.9
+			##
+		##else:
+		#viy = abs(viy)*-0.6
+		#vix *= 0.9
+		#var v = Vector2(vix, viy)
+		#return v
 	
 # suicidal, phase 2
 func tackle_player():
@@ -212,13 +238,12 @@ func tackle_player():
 	
 	var v = get_tackle_vi(global_position.x, global_position.y, player.global_position.x, player.global_position.y)
 	velocity = v
-	#print(v)
 	return true
 	
 func jump_off_edge():
-	if not ray_cast_floor.is_colliding():
+	if not is_on_floor():
 		vel = 0
-		await get_tree().create_timer(0.7).timeout
+		await get_tree().create_timer(0.1).timeout
 		tackle_ready = true
 
 func explode_damage():
@@ -226,15 +251,19 @@ func explode_damage():
 	for body in explosion_radius.get_overlapping_bodies():
 		if body.name == 'Player':
 			var v: Vector2 = body.global_position - explosion_radius.global_position
-			var mag = v.length()
-			var dmg
-			if mag < 80:
-				dmg = 80
-			elif mag < 120:
-				dmg = 50
-			else:
-				dmg = 30
+			var dmg = get_dmg(v.length())
 			body.take_damage(dmg)
+			
+func get_dmg(r):
+	var attrs = [
+		{'r': 80, 'dmg': 70},
+		{'r': 120, 'dmg': 40},
+		{'r': 160, 'dmg': 30}
+	]
+	for val in attrs:
+		if r < val["r"]:
+			return val["dmg"]
+	return attrs[-1]["dmg"]
 # - - - - - - SIGNALS AS STATE MANAGERS - - - - - -
 func _on_shooting_area_body_entered(body):
 	if body.name != 'Player': return
@@ -283,13 +312,13 @@ func _on_commit_tackle_area_body_entered(body):
 	must_tackle = true
 	vel = RUN_VEL*1.1
 
-func _on_commit_tackle_area_body_exited(body):
-	if body.name != 'Player': return
-	if tackling: return
-	#if showering: return
-	await get_tree().create_timer(0.2).timeout
-	vel = RUN_VEL
-	too_close = false
+#func _on_commit_tackle_area_body_exited(body):
+	#if body.name != 'Player': return
+	#if tackling: return
+	##if showering: return
+	##await get_tree().create_timer(0.2).timeout
+	#vel = RUN_VEL
+	#too_close = false
 
 func take_damage(dmg):
 	health -= dmg
@@ -298,3 +327,12 @@ func take_damage(dmg):
 	if health <= 0:
 		queue_free()
 	$Sprite2D.self_modulate = Color('#ffffff')
+
+
+func _on_leave_commit_tackle_body_exited(body):
+	if body.name != 'Player': return
+	if tackling: return
+	#if showering: return
+	#await get_tree().create_timer(0.2).timeout
+	vel = RUN_VEL
+	too_close = false

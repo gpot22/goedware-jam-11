@@ -16,7 +16,7 @@ func _ready():
 	current_magazine = magazine
 	bullet_spread = 0.6
 	shot_time = 0.4
-	reload_time = 2
+	reload_time = 1.6
 	
 	
 func _physics_process(delta):
@@ -37,6 +37,8 @@ func handle_shoot():
 		if current_magazine > 0 and can_shoot:
 			current_magazine -= 1
 			shoot()
+			parent.shoot_success()
+			parent.shotgun_recoil()
 		elif current_magazine == 0 and not reloading:
 			can_shoot = false
 			reload()

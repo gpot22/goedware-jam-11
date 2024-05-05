@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b3fbeq4r0lddw"]
+[gd_scene load_steps=38 format=3 uid="uid://b3fbeq4r0lddw"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_566ba"]
 [ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_gw8d1"]
@@ -15,9 +15,16 @@
 [ext_resource type="Texture2D" uid="uid://bpv787v2neuxu" path="res://assets/generic_background_3.png" id="10_ot5r3"]
 [ext_resource type="Texture2D" uid="uid://bi0r6r1rbtknb" path="res://assets/background_tile3.png" id="11_vw58j"]
 [ext_resource type="PackedScene" uid="uid://c5su8u53h77tj" path="res://scene/phase2/enemies/enemy_sniper.tscn" id="12_ougkd"]
-[ext_resource type="PackedScene" uid="uid://by5ye50kwxyhd" path="res://scene/phase2/enemies/turret.tscn" id="13_8yxwf"]
 [ext_resource type="PackedScene" uid="uid://bb8v541vvfcrt" path="res://scene/phase2/platforms/bottom_floor.tscn" id="16_afjyv"]
+[ext_resource type="Texture2D" uid="uid://duj2o6eatnbw" path="res://assets/xhair0.png" id="18_1uaqv"]
+[ext_resource type="PackedScene" uid="uid://b1bq8ntiser8p" path="res://scene/phase2/platforms/border.tscn" id="18_hemru"]
 [ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="18_jbbyu"]
+[ext_resource type="Texture2D" uid="uid://b2buiq1ffbthf" path="res://assets/xhair1.png" id="19_wdpka"]
+[ext_resource type="Texture2D" uid="uid://d1qtlst7payjf" path="res://assets/xhair2.png" id="20_l1ow1"]
+[ext_resource type="Texture2D" uid="uid://da2xrpao7pse7" path="res://assets/xhair3.png" id="21_jlwt4"]
+[ext_resource type="Texture2D" uid="uid://bmxcccvfqv5vu" path="res://assets/xhair4.png" id="22_gmdvy"]
+[ext_resource type="Texture2D" uid="uid://b2gs00j2coei5" path="res://assets/xhair5.png" id="23_w58y8"]
+[ext_resource type="Texture2D" uid="uid://d3mwf53hbsclj" path="res://assets/xhair6.png" id="24_53p43"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y865c"]
 texture = ExtResource("2_gw8d1")
@@ -494,6 +501,23 @@ gradient = SubResource("Gradient_y3gyx")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_4fg1e"]
+frames = 7
+frame_0/texture = ExtResource("18_1uaqv")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("19_wdpka")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("20_l1ow1")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("21_jlwt4")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("22_gmdvy")
+frame_4/duration = 0.1
+frame_5/texture = ExtResource("23_w58y8")
+frame_5/duration = 0.1
+frame_6/texture = ExtResource("24_53p43")
+frame_6/duration = 0.1
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_566ba")
 
@@ -542,7 +566,7 @@ layer_0/tile_data = PackedInt32Array(-262149, 0, 0, -262148, 0, 0, -262147, 0, 0
 color = Color(0.701512, 0.757683, 0.816611, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_ke8sk")]
-position = Vector2(2382, 2003)
+position = Vector2(1059, 596)
 floor_constant_speed = true
 floor_snap_length = 2.0
 
@@ -559,20 +583,20 @@ position_smoothing_enabled = true
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="beef" parent="Enemies" groups=["Enemy"] instance=ExtResource("4_vioxg")]
-position = Vector2(3709, 2029)
+[node name="beef" parent="Enemies" instance=ExtResource("4_vioxg")]
+position = Vector2(2321, 443)
 
-[node name="bombardier" parent="Enemies" groups=["Enemy"] instance=ExtResource("10_aiiji")]
-visible = false
-position = Vector2(210, 1305)
+[node name="beef2" parent="Enemies" instance=ExtResource("4_vioxg")]
+position = Vector2(1838, 1909)
+
+[node name="beef3" parent="Enemies" instance=ExtResource("4_vioxg")]
+position = Vector2(1245, 1998)
+
+[node name="bombardier" parent="Enemies" instance=ExtResource("10_aiiji")]
+position = Vector2(1370, 808)
 
 [node name="sniper" parent="Enemies" instance=ExtResource("12_ougkd")]
-visible = false
-position = Vector2(2635, 322)
-
-[node name="turret" parent="Enemies" instance=ExtResource("13_8yxwf")]
-visible = false
-position = Vector2(468, 1187)
+position = Vector2(3361, 2057)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0609198, 0.290021, 0.463875, 1)
@@ -627,7 +651,35 @@ position = Vector2(2621, 422)
 [node name="long_platform3" parent="WorldMap" instance=ExtResource("6_otomd")]
 position = Vector2(970, 231)
 
-[node name="WorldBorders" type="Node" parent="."]
+[node name="WorldBorders" type="Node2D" parent="."]
+
+[node name="leftwall" type="Node2D" parent="WorldBorders"]
+
+[node name="Border" parent="WorldBorders/leftwall" instance=ExtResource("18_hemru")]
+position = Vector2(-10, 1835)
+
+[node name="Border2" parent="WorldBorders/leftwall" instance=ExtResource("18_hemru")]
+position = Vector2(-10, 1235)
+
+[node name="Border3" parent="WorldBorders/leftwall" instance=ExtResource("18_hemru")]
+position = Vector2(-10, 635)
+
+[node name="Border4" parent="WorldBorders/leftwall" instance=ExtResource("18_hemru")]
+position = Vector2(-10, 35)
+
+[node name="rightwall" type="Node2D" parent="WorldBorders"]
+
+[node name="Border5" parent="WorldBorders/rightwall" instance=ExtResource("18_hemru")]
+position = Vector2(5870, 1835)
+
+[node name="Border6" parent="WorldBorders/rightwall" instance=ExtResource("18_hemru")]
+position = Vector2(5870, 1235)
+
+[node name="Border7" parent="WorldBorders/rightwall" instance=ExtResource("18_hemru")]
+position = Vector2(5870, 635)
+
+[node name="Border8" parent="WorldBorders/rightwall" instance=ExtResource("18_hemru")]
+position = Vector2(5870, 35)
 
 [node name="bottomfloor" type="Node2D" parent="WorldBorders"]
 
@@ -715,89 +767,10 @@ position = Vector2(5565, 2100)
 [node name="bottom_floor28" parent="WorldBorders/bottomfloor" instance=ExtResource("16_afjyv")]
 position = Vector2(5775, 2100)
 
-[node name="leftwall" type="Node2D" parent="WorldBorders"]
-
-[node name="left_wall" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 105)
-rotation = 1.5708
-
-[node name="left_wall2" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 315)
-rotation = 1.5708
-
-[node name="left_wall3" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 525)
-rotation = 1.5708
-
-[node name="left_wall4" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 735)
-rotation = 1.5708
-
-[node name="left_wall5" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 945)
-rotation = 1.5708
-
-[node name="left_wall6" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 1155)
-rotation = 1.5708
-
-[node name="left_wall7" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 1365)
-rotation = 1.5708
-
-[node name="left_wall8" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 1575)
-rotation = 1.5708
-
-[node name="left_wall9" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(0, 1785)
-rotation = 1.5708
-
-[node name="left_wall10" parent="WorldBorders/leftwall" instance=ExtResource("16_afjyv")]
-position = Vector2(-2, 1995)
-rotation = 1.5708
-
-[node name="rightwall" type="Node2D" parent="WorldBorders"]
-
-[node name="right_wall" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 105)
-rotation = -1.5708
-
-[node name="right_wall2" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 315)
-rotation = -1.5708
-
-[node name="right_wall3" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 525)
-rotation = -1.5708
-
-[node name="right_wall4" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 735)
-rotation = -1.5708
-
-[node name="right_wall5" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 945)
-rotation = -1.5708
-
-[node name="right_wall6" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 1155)
-rotation = -1.5708
-
-[node name="right_wall7" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 1365)
-rotation = -1.5708
-
-[node name="right_wall8" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 1575)
-rotation = -1.5708
-
-[node name="right_wall9" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 1785)
-rotation = -1.5708
-
-[node name="right_wall10" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
-position = Vector2(5880, 1995)
-rotation = -1.5708
+[node name="xhair" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AnimatedTexture_4fg1e")
 
 [node name="hook" type="Sprite2D" parent="."]
 texture = ExtResource("18_jbbyu")

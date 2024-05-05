@@ -6,6 +6,7 @@ const ACC = 2400.0
 const FRIC = 3000.0
 const JUMP_VEL = -900.0
 const DASH_VEL = 1200.0
+const SHOTTY_RECOIL = 800
 
 # PLAYER CHILD NODES
 @onready var ap = $AnimationPlayer
@@ -25,8 +26,7 @@ var smoke_effect = preload('res://scene/vfx/smoke.tscn')
 var smokes
 
 # PLAYER-RELATED OBJECTS
-#var bulletScene = preload('res://scene/phase2/player/bullet.tscn')
-var camera = null
+var camera: Camera2D
 
 # PLAYER STATE MANAGERS
 var direction = 1  # -1 = left, 1 = right
@@ -38,8 +38,13 @@ var states = {
 	"grapple": false
 }
 
-var pistol = null
-var pistol_ipos = null
+var gun = null
+var gun_ipos = null
+
+var shotgun = null
+var shotgun_ipos = null
+
+var shotgun_range = false
 
 var grappling = false
 var grapple_to
@@ -49,13 +54,43 @@ var grapple_direction
 
 # PLAYER STATS
 var health
+var items = []
+
+var animate_crosshair = false
+var xhair_frames = 0
+var xhair
 
 func _ready():
 	if $WeaponPoint.get_child_count() != 0:
-		pistol = $WeaponPoint.get_child(0)
-		pistol_ipos = Vector2(abs(pistol.position.x), pistol.position.y)
+		gun = $WeaponPoint.get_child(0)
+		gun_ipos = Vector2(abs(gun.position.x), gun.position.y)
+	if $ShotgunPoint.get_child_count() != 0:
+		shotgun = $ShotgunPoint.get_child(0)
+		shotgun_ipos = Vector2(abs(shotgun.position.x), shotgun.position.y)
+		shotgun.toggle_active(false)
 	
+	camera = get_parent().get_node('Camera2D')
+	if gun.name == 'SniperRifle':
+		camera.zoom = Vector2(0.4, 0.4)
+	else:
+		camera.zoom = Vector2(0.55, 0.55)
 	health = 500
+	items = []
+	
+	xhair = get_parent().get_node('xhair')
+	
+func shoot_success():
+	animate_crosshair = true
+	
+func _process(delta):
+	if animate_crosshair:
+		Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(xhair_frames))
+		xhair_frames += 1
+		if xhair_frames >= 7:
+			xhair_frames = 0
+			Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0))
+			animate_crosshair = false
+	
 # PLAYER LOOP
 func _physics_process(delta):
 	if !grappling:
@@ -74,11 +109,16 @@ func _physics_process(delta):
 	update_animations(input_axis)
 	update_direction(input_axis)
 	
-	if pistol:
+	if gun and not shotgun_range:
 		if states['dash']:
-			pistol.toggle_active(false)
+			gun.toggle_active(false)
 		else:
-			pistol.toggle_active(true)
+			gun.toggle_active(true)
+	if shotgun and shotgun_range:
+		if states['dash']:
+			shotgun.toggle_active(false)
+		else:
+			shotgun.toggle_active(true)
 	
 	var was_on_floor = is_on_floor()
 	
@@ -226,29 +266,35 @@ func update_direction(input_axis):
 	var mouse = get_global_mouse_position()
 	if input_axis and is_on_floor():
 		$WeaponPoint.position.y = -15
+		$ShotgunPoint.position.y = -15
 	else:
 		$WeaponPoint.position.y = -25
+		$ShotgunPoint.position.y = -25
 	if mouse.x < global_position.x:
 		direction = -1
 		
 		if input_axis == direction:
 			$WeaponPoint.position.x = -50
+			$ShotgunPoint.position.x = -50
 		else:
 			$WeaponPoint.position.x = -20
+			$ShotgunPoint.position.x = -20
 	else:
 		if input_axis == direction:
 			$WeaponPoint.position.x = 30
+			$ShotgunPoint.position.x = 30
 		else:
 			$WeaponPoint.position.x = 20
+			$ShotgunPoint.position.x = 20
 		direction = 1
 	if input_axis != 0 and is_on_floor():
 		direction = input_axis
 	update_collider(input_axis)
-	if pistol:
+	if gun:
 		var m = 1 if input_axis == 0 or not is_on_floor() else 4
 		var n = 1 if is_on_floor() else 1.8
-		pistol.position.x = pistol_ipos.x * m * direction
-		pistol.position.y = pistol_ipos.y * n
+		gun.position.x = gun_ipos.x * m * direction
+		gun.position.y = gun_ipos.y * n
 	
 	#if direction == 1:
 		#rope.global_position = 
@@ -273,3 +319,34 @@ func update_collider(input_axis):
 func take_damage(dmg):
 	#print('player damaged: ', dmg)
 	health -= dmg
+	#print('ow', dmg)
+	lose_level()
+	
+func lose_level():
+	pass
+	#print('ur shit')
+	
+
+func shotgun_recoil():
+	var mouse = get_global_mouse_position()
+	var x = 1 if mouse.x < global_position.x else -1
+	velocity.x = SHOTTY_RECOIL * x
+
+func _on_shotgun_area_body_entered(body):
+	if not body.is_in_group('Enemy'): return
+	if not shotgun: return
+	# HAS SHOTGUN
+	if not shotgun_range:
+		shotgun.current_magazine = shotgun.magazine
+	shotgun_range = true
+	gun.toggle_active(false)
+	shotgun.toggle_active(true)
+	
+func _on_shotgun_area_body_exited(body):
+	if not body.is_in_group('Enemy'): return
+	if not shotgun: return
+	# HAS SHOTGUN
+	shotgun_range = false
+	gun.toggle_active(true)
+	shotgun.toggle_active(false)
+	

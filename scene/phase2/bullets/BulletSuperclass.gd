@@ -9,10 +9,14 @@ var max_l = 30
 var max_w = 5
 
 @onready var shape: Line2D = $Line2D
+@onready var collider = $CollisionShape2D
 
 func _ready():
 	set_shape(max_l, max_w)
-	
+	collider.shape.size.x = max_l
+	collider.shape.size.y = max_w
+	collider.position.x = max_l/2
+	collider.position.y = max_w/2
 	
 
 func _physics_process(delta):
@@ -27,6 +31,8 @@ func _physics_process(delta):
 	var w = max_w * f
 	set_shape(l, w)
 		
+func is_player():
+	return parent == "Player"
 	
 func set_shape(length, width):
 	shape.width = width

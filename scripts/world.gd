@@ -11,6 +11,7 @@ extends Node2D
 
 @onready var world_map = $WorldMap
 @onready var world_borders = $WorldBorders
+@onready var xhair = $xhair
 
 
 var floor = preload('res://scene/phase2/platforms/bottom_floor.tscn')
@@ -21,9 +22,8 @@ func _ready():
 	# display testing platforms
 	flatland_polygon.polygon = flatland_collider.polygon
 	testland_polygon.polygon = testland_collider.polygon
-	# set player camera
-	player.camera = camera_2d
-	#generate_world_borders()
+	## set player camera
+	Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0))
 	
 
 func _process(delta):

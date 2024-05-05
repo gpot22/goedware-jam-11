@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://wtywps23r4pk"]
+[gd_scene load_steps=19 format=3 uid="uid://wtywps23r4pk"]
 
 [ext_resource type="Texture2D" uid="uid://di6bu1jdu6ihs" path="res://assets/sprites/bombardier.png" id="1_3h142"]
 [ext_resource type="Script" path="res://scripts/enemy_bombardier.gd" id="1_ot3qs"]
@@ -9,10 +9,10 @@ radius = 14.0
 height = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wkelr"]
-radius = 237.008
+radius = 280.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2loa"]
-radius = 569.008
+radius = 1000.0
 
 [sub_resource type="Animation" id="Animation_5qucw"]
 length = 0.001
@@ -134,22 +134,21 @@ fill = 1
 fill_from = Vector2(0.509174, 0.513761)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rpaox"]
-radius = 120.0
+radius = 160.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_scse4"]
+radius = 280.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3lri"]
 radius = 200.0
 
-[node name="bombardier" type="CharacterBody2D"]
+[node name="bombardier" type="CharacterBody2D" groups=["Enemy"]]
 position = Vector2(0, -25)
 script = ExtResource("1_ot3qs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(10, 0)
 shape = SubResource("CapsuleShape2D_wy40i")
-
-[node name="RayCastFloor" type="RayCast2D" parent="CollisionShape2D"]
-position = Vector2(0, 18)
-target_position = Vector2(0, 95)
 
 [node name="TackleArea" type="Area2D" parent="."]
 
@@ -191,10 +190,19 @@ position = Vector2(-14, 9)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CommitTackleArea"]
 shape = SubResource("CircleShape2D_rpaox")
 
+[node name="LeaveCommitTackle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeaveCommitTackle"]
+shape = SubResource("CircleShape2D_scse4")
+
 [node name="ExplosionRadius" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionRadius"]
 shape = SubResource("CircleShape2D_c3lri")
+
+[node name="RayCastFloor" type="RayCast2D" parent="."]
+position = Vector2(-3, 19)
+target_position = Vector2(0, 95)
 
 [connection signal="body_entered" from="TackleArea" to="." method="_on_tackle_area_body_entered"]
 [connection signal="body_exited" from="TackleArea" to="." method="_on_tackle_area_body_exited"]
@@ -202,3 +210,4 @@ shape = SubResource("CircleShape2D_c3lri")
 [connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]
 [connection signal="body_entered" from="CommitTackleArea" to="." method="_on_commit_tackle_area_body_entered"]
 [connection signal="body_exited" from="CommitTackleArea" to="." method="_on_commit_tackle_area_body_exited"]
+[connection signal="body_exited" from="LeaveCommitTackle" to="." method="_on_leave_commit_tackle_body_exited"]

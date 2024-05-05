@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://scripts/bob.gd" id="1_6gre0"]
 [ext_resource type="Texture2D" uid="uid://cuw1lcc2psans" path="res://assets/sprites/enemy1.png" id="1_h7lmb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ffjm"]
-size = Vector2(44.25, 85.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mkb30"]
+radius = 20.0
+height = 90.0
 
 [sub_resource type="Animation" id="Animation_74umc"]
 length = 0.001
@@ -95,13 +96,13 @@ gradient = SubResource("Gradient_jqm68")
 fill = 1
 fill_from = Vector2(0.509174, 0.513761)
 
-[node name="beef" type="CharacterBody2D"]
+[node name="beef" type="CharacterBody2D" groups=["Enemy"]]
 position = Vector2(0, -10)
 script = ExtResource("1_6gre0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -33)
-shape = SubResource("RectangleShape2D_8ffjm")
+position = Vector2(0, -35)
+shape = SubResource("CapsuleShape2D_mkb30")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -36)
@@ -114,16 +115,22 @@ libraries = {
 }
 
 [node name="RayCastFloor" type="RayCast2D" parent="."]
+visible = false
 position = Vector2(-22, 0)
 
 [node name="RayCastWall" type="RayCast2D" parent="."]
-position = Vector2(-20, -32)
-target_position = Vector2(-30, 0)
+position = Vector2(-20, -5)
+target_position = Vector2(-62, 0)
+
+[node name="RayCastWall2" type="RayCast2D" parent="."]
+position = Vector2(-20, -60)
+target_position = Vector2(-62, 0)
 
 [node name="PlayerDetectArea" type="Area2D" parent="."]
 position = Vector2(-200, -40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectArea"]
+visible = false
 position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_8a06i")
 
@@ -131,6 +138,7 @@ shape = SubResource("RectangleShape2D_8a06i")
 position = Vector2(-100, -40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+visible = false
 position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_2h78i")
 

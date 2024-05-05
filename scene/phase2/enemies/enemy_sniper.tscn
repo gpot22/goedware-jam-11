@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c5su8u53h77tj"]
+[gd_scene load_steps=20 format=3 uid="uid://c5su8u53h77tj"]
 
 [ext_resource type="Texture2D" uid="uid://5ot14u1t27ut" path="res://assets/sprites/sniper.png" id="1_3o46k"]
 [ext_resource type="Script" path="res://scripts/enemy_sniper.gd" id="1_wl76n"]
@@ -160,13 +160,16 @@ fill = 1
 fill_from = Vector2(0.509174, 0.513761)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bf6fh"]
-radius = 870.097
+radius = 1200.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7cg14"]
+radius = 600.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wnunx"]
-radius = 180.0
+radius = 360.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrh27"]
-size = Vector2(605, 600)
+size = Vector2(705, 600)
 
 [node name="sniper" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_wl76n")
@@ -206,9 +209,14 @@ position = Vector2(-21, -29)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea"]
 shape = SubResource("CircleShape2D_bf6fh")
 
+[node name="LeaveEvasionArea" type="Area2D" parent="."]
+position = Vector2(-21, -29)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeaveEvasionArea"]
+shape = SubResource("CircleShape2D_7cg14")
+
 [node name="EvasionArea" type="Area2D" parent="."]
 position = Vector2(-21, -29)
-scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EvasionArea"]
 shape = SubResource("CircleShape2D_wnunx")
@@ -216,7 +224,7 @@ shape = SubResource("CircleShape2D_wnunx")
 [node name="ScanPlatformArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScanPlatformArea"]
-position = Vector2(-321.5, -30)
+position = Vector2(-368.5, -30)
 shape = SubResource("RectangleShape2D_xrh27")
 
 [node name="WeaponPoint" type="Marker2D" parent="."]
@@ -226,6 +234,7 @@ position = Vector2(15, -20)
 
 [connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
 [connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]
+[connection signal="body_exited" from="LeaveEvasionArea" to="." method="_on_leave_evasion_area_body_exited"]
 [connection signal="body_entered" from="EvasionArea" to="." method="_on_evasion_area_body_entered"]
 [connection signal="body_exited" from="EvasionArea" to="." method="_on_evasion_area_body_exited"]
 [connection signal="body_entered" from="ScanPlatformArea" to="." method="_on_scan_platform_area_body_entered"]

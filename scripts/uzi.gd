@@ -30,6 +30,7 @@ func _physics_process(delta):
 				shoot_timer = 0
 				current_magazine -= 1
 				shoot()
+				parent.shoot_success()
 			shoot_timer += 1
 			if current_magazine == 0 and not reloading:
 				can_shoot = false
