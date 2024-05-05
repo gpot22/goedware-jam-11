@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnwghdv4cptmd"]
+[gd_scene load_steps=5 format=3 uid="uid://dnwghdv4cptmd"]
 
 [ext_resource type="Texture2D" uid="uid://sm0fdjn8jkon" path="res://button1.png" id="1_avjcd"]
+[ext_resource type="Script" path="res://scene/menus/playbutton.gd" id="2_wq12l"]
 [ext_resource type="FontFile" uid="uid://c8375osah74f7" path="res://superstar_memesbruh03.ttf" id="2_xvbtt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_exvvt"]
@@ -9,6 +10,7 @@ font_size = 32
 
 [node name="playbutton" type="Sprite2D"]
 texture = ExtResource("1_avjcd")
+script = ExtResource("2_wq12l")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_left = -83.0
@@ -27,3 +29,6 @@ layout_mode = 2
 layout_mode = 2
 text = "PLAY"
 label_settings = SubResource("LabelSettings_exvvt")
+
+[connection signal="mouse_entered" from="HBoxContainer" to="." method="_on_h_box_container_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer" to="." method="_on_h_box_container_mouse_exited"]

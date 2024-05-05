@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo8t2cm51o55c"]
+[gd_scene load_steps=5 format=3 uid="uid://bo8t2cm51o55c"]
 
 [ext_resource type="Texture2D" uid="uid://sm0fdjn8jkon" path="res://button1.png" id="1_mkk3n"]
+[ext_resource type="Script" path="res://scene/menus/creditsbutton.gd" id="2_42jcs"]
 [ext_resource type="FontFile" uid="uid://c8375osah74f7" path="res://superstar_memesbruh03.ttf" id="2_dh8bm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xbuy7"]
@@ -9,6 +10,7 @@ font_size = 32
 
 [node name="creditsbutton" type="Sprite2D"]
 texture = ExtResource("1_mkk3n")
+script = ExtResource("2_42jcs")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_left = -83.0
@@ -27,3 +29,6 @@ layout_mode = 2
 layout_mode = 2
 text = "CREDITS"
 label_settings = SubResource("LabelSettings_xbuy7")
+
+[connection signal="mouse_entered" from="HBoxContainer" to="." method="_on_h_box_container_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer" to="." method="_on_h_box_container_mouse_exited"]

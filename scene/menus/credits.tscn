@@ -1,4 +1,82 @@
-[gd_scene format=3 uid="uid://40sa6mg6hv7"]
+[gd_scene load_steps=17 format=3 uid="uid://40sa6mg6hv7"]
+
+[ext_resource type="Texture2D" uid="uid://rkjbkuu5lh6t" path="res://black.png" id="1_bhq3w"]
+[ext_resource type="Script" path="res://scene/menus/credits.gd" id="1_g70x2"]
+[ext_resource type="FontFile" uid="uid://c8375osah74f7" path="res://superstar_memesbruh03.ttf" id="2_43ojs"]
+[ext_resource type="PackedScene" uid="uid://c0obrr88a8mpc" path="res://scene/menus/backbutton.tscn" id="3_4em2r"]
+[ext_resource type="Texture2D" uid="uid://hgvtmeurijmc" path="res://transition.png" id="4_j7eov"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f4osr"]
+font = ExtResource("2_43ojs")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_onbvl"]
+font = ExtResource("2_43ojs")
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qup3k"]
+atlas = ExtResource("4_j7eov")
+region = Rect2(0, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dfpt"]
+atlas = ExtResource("4_j7eov")
+region = Rect2(800, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al1nb"]
+atlas = ExtResource("4_j7eov")
+region = Rect2(1600, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1te1q"]
+atlas = ExtResource("4_j7eov")
+region = Rect2(2400, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n822d"]
+atlas = ExtResource("4_j7eov")
+region = Rect2(3200, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipg6r"]
+atlas = ExtResource("4_j7eov")
+region = Rect2(4000, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpydw"]
+atlas = ExtResource("4_j7eov")
+region = Rect2(4800, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw07o"]
+atlas = ExtResource("4_j7eov")
+region = Rect2(5600, 0, 800, 450)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bdih5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qup3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dfpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_al1nb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1te1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n822d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipg6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpydw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw07o")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
 
 [node name="credits" type="Control"]
 layout_mode = 3
@@ -7,3 +85,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_g70x2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_bhq3w")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 34.0
+offset_right = 481.0
+offset_bottom = 82.0
+text = "Credits"
+label_settings = SubResource("LabelSettings_f4osr")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 123.0
+offset_right = 685.0
+offset_bottom = 295.0
+text = "greenpotato - Programming, Game Design
+
+JLen - Programming, Game Design
+
+Kevo - Art, Creative Lead, Game Design"
+label_settings = SubResource("LabelSettings_onbvl")
+
+[node name="backbutton" parent="." instance=ExtResource("3_4em2r")]
+position = Vector2(690, 398)
+
+[node name="transition" type="AnimatedSprite2D" parent="."]
+position = Vector2(400, 225)
+sprite_frames = SubResource("SpriteFrames_bdih5")
+frame = 7
+frame_progress = 1.0

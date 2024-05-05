@@ -1,0 +1,163 @@
+[gd_scene load_steps=15 format=3 uid="uid://ddmv8i6wdahkx"]
+
+[ext_resource type="Script" path="res://scene/menus/tutorial.gd" id="1_qrld7"]
+[ext_resource type="Texture2D" uid="uid://rkjbkuu5lh6t" path="res://black.png" id="2_8kgke"]
+[ext_resource type="FontFile" uid="uid://c8375osah74f7" path="res://superstar_memesbruh03.ttf" id="3_axnup"]
+[ext_resource type="Texture2D" uid="uid://hgvtmeurijmc" path="res://transition.png" id="4_evkiv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xletv"]
+font = ExtResource("3_axnup")
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xxyf"]
+atlas = ExtResource("4_evkiv")
+region = Rect2(0, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whi5v"]
+atlas = ExtResource("4_evkiv")
+region = Rect2(800, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2enl"]
+atlas = ExtResource("4_evkiv")
+region = Rect2(1600, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkni5"]
+atlas = ExtResource("4_evkiv")
+region = Rect2(2400, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3uei"]
+atlas = ExtResource("4_evkiv")
+region = Rect2(3200, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o16gd"]
+atlas = ExtResource("4_evkiv")
+region = Rect2(4000, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld83g"]
+atlas = ExtResource("4_evkiv")
+region = Rect2(4800, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buc8s"]
+atlas = ExtResource("4_evkiv")
+region = Rect2(5600, 0, 800, 450)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qfvwd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xxyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whi5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2enl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkni5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3uei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o16gd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld83g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buc8s")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_qrld7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_8kgke")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 162.0
+offset_right = 673.0
+offset_bottom = 210.0
+text = "Hold a tile and slide in the direction"
+label_settings = SubResource("LabelSettings_xletv")
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 218.0
+offset_right = 599.0
+offset_bottom = 266.0
+text = " you want to split up the map."
+label_settings = SubResource("LabelSettings_xletv")
+
+[node name="Control2" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control2"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 162.0
+offset_right = 713.0
+offset_bottom = 210.0
+text = "Enemies on different islands are isolated"
+label_settings = SubResource("LabelSettings_xletv")
+
+[node name="Label2" type="Label" parent="Control2"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 218.0
+offset_right = 629.0
+offset_bottom = 266.0
+text = "and cannot fight with each other"
+label_settings = SubResource("LabelSettings_xletv")
+
+[node name="Control3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control3"]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 163.0
+offset_right = 613.0
+offset_bottom = 211.0
+text = "Click on an island to fight all"
+label_settings = SubResource("LabelSettings_xletv")
+
+[node name="Label2" type="Label" parent="Control3"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 218.0
+offset_right = 555.0
+offset_bottom = 266.0
+text = "enemies on that island."
+label_settings = SubResource("LabelSettings_xletv")
+
+[node name="transition" type="AnimatedSprite2D" parent="."]
+position = Vector2(400, 225)
+sprite_frames = SubResource("SpriteFrames_qfvwd")
+
+[connection signal="mouse_entered" from="TextureRect" to="." method="_on_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect" to="." method="_on_texture_rect_mouse_exited"]

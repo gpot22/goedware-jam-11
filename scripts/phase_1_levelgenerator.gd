@@ -1,6 +1,7 @@
 extends Node2D
 
 var phase_1 = preload("res://scene/phase1/phase_1.tscn")
+@onready var transition = $transition
 
 #{'beef': [], 'bombardier': [], 'sniper': [], 'turret': [], 'slices': 0}
 var level_1_enemies = {'beef': [[2, 3], [5, 3]], 'bombardier': [], 'sniper': [], 'turret': [], 'slices': 1}
@@ -22,7 +23,7 @@ var level_enemies = [level_1_enemies, level_2_enemies, level_3_enemies, level_4_
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#generate_premade_levels()
+	transition.play("default")
 	var a = phase_1.instantiate()
 	a.tiles_with_enemies = level_enemies[current_level]
 	a.total_isolations = level_enemies[current_level]['slices']
@@ -35,7 +36,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("nextlevel"):
 		if current_level == level_enemies.size()-1:
 			return
-		get_child(0).queue_free()
+		get_child(1).queue_free()
 		var a = phase_1.instantiate()
 		current_level += 1
 		a.tiles_with_enemies = level_enemies[current_level]
@@ -46,7 +47,7 @@ func _process(delta):
 	elif Input.is_action_just_pressed("previouslevel"):
 		if current_level == 0:
 			return
-		get_child(0).queue_free()
+		get_child(1).queue_free()
 		var a = phase_1.instantiate()
 		current_level -= 1
 		a.tiles_with_enemies = level_enemies[current_level]

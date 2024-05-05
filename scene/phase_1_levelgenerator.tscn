@@ -1,6 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceaoit0kfr0d3"]
+[gd_scene load_steps=12 format=3 uid="uid://ceaoit0kfr0d3"]
 
 [ext_resource type="Script" path="res://scripts/phase_1_levelgenerator.gd" id="1_bkpri"]
+[ext_resource type="Texture2D" uid="uid://hgvtmeurijmc" path="res://transition.png" id="2_i0cex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naoav"]
+atlas = ExtResource("2_i0cex")
+region = Rect2(0, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpnqy"]
+atlas = ExtResource("2_i0cex")
+region = Rect2(800, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yygf6"]
+atlas = ExtResource("2_i0cex")
+region = Rect2(1600, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iseb"]
+atlas = ExtResource("2_i0cex")
+region = Rect2(2400, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qryiw"]
+atlas = ExtResource("2_i0cex")
+region = Rect2(3200, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8y42"]
+atlas = ExtResource("2_i0cex")
+region = Rect2(4000, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7r4v"]
+atlas = ExtResource("2_i0cex")
+region = Rect2(4800, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvgba"]
+atlas = ExtResource("2_i0cex")
+region = Rect2(5600, 0, 800, 450)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2bcyb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naoav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpnqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yygf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iseb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qryiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8y42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7r4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvgba")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
 
 [node name="phase1levelgenerator" type="Node2D"]
 script = ExtResource("1_bkpri")
+
+[node name="transition" type="AnimatedSprite2D" parent="."]
+z_index = 70
+position = Vector2(400, 225)
+sprite_frames = SubResource("SpriteFrames_2bcyb")

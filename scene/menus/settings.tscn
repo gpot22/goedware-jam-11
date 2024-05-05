@@ -1,4 +1,90 @@
-[gd_scene format=3 uid="uid://dwyh12e0p6p51"]
+[gd_scene load_steps=19 format=3 uid="uid://dwyh12e0p6p51"]
+
+[ext_resource type="Texture2D" uid="uid://rkjbkuu5lh6t" path="res://black.png" id="1_qtba1"]
+[ext_resource type="Script" path="res://scene/menus/settings.gd" id="1_vtfqg"]
+[ext_resource type="FontFile" uid="uid://c8375osah74f7" path="res://superstar_memesbruh03.ttf" id="2_8g4dd"]
+[ext_resource type="PackedScene" uid="uid://c7nygrkmbeg3l" path="res://scene/menus/backbuttonsettings.tscn" id="3_mxvh6"]
+[ext_resource type="Texture2D" uid="uid://hgvtmeurijmc" path="res://transition.png" id="5_vaq1d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r2f2n"]
+font = ExtResource("2_8g4dd")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ou6w"]
+font = ExtResource("2_8g4dd")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_tvnar"]
+font = ExtResource("2_8g4dd")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_86dfk"]
+font = ExtResource("2_8g4dd")
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf11y"]
+atlas = ExtResource("5_vaq1d")
+region = Rect2(0, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gva4j"]
+atlas = ExtResource("5_vaq1d")
+region = Rect2(800, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2nbt"]
+atlas = ExtResource("5_vaq1d")
+region = Rect2(1600, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cukxe"]
+atlas = ExtResource("5_vaq1d")
+region = Rect2(2400, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxer6"]
+atlas = ExtResource("5_vaq1d")
+region = Rect2(3200, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15l8o"]
+atlas = ExtResource("5_vaq1d")
+region = Rect2(4000, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py61w"]
+atlas = ExtResource("5_vaq1d")
+region = Rect2(4800, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy1nd"]
+atlas = ExtResource("5_vaq1d")
+region = Rect2(5600, 0, 800, 450)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7xhcb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf11y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gva4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2nbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cukxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxer6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15l8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py61w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy1nd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
 
 [node name="settings" type="Control"]
 layout_mode = 3
@@ -7,3 +93,88 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_vtfqg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_qtba1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 29.0
+offset_right = 498.0
+offset_bottom = 77.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_r2f2n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 117.0
+offset_right = 644.0
+offset_bottom = 361.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_4ou6w")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_tvnar")
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "SFX Volume"
+label_settings = SubResource("LabelSettings_86dfk")
+
+[node name="backbuttonsettings" parent="." instance=ExtResource("3_mxvh6")]
+position = Vector2(698, 401)
+
+[node name="masterslider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 98.0
+offset_right = 620.0
+offset_bottom = 166.0
+
+[node name="musicslider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 242.0
+offset_right = 620.0
+offset_bottom = 274.0
+
+[node name="sfxslider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 156.0
+offset_right = 620.0
+offset_bottom = 234.0
+
+[node name="transition" type="AnimatedSprite2D" parent="."]
+position = Vector2(400, 225)
+sprite_frames = SubResource("SpriteFrames_7xhcb")
+
+[connection signal="value_changed" from="masterslider" to="." method="_on_masterslider_value_changed"]
+[connection signal="value_changed" from="musicslider" to="." method="_on_musicslider_value_changed"]
+[connection signal="value_changed" from="sfxslider" to="." method="_on_sfxslider_value_changed"]

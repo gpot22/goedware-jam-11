@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwr3u7ot453f1"]
+[gd_scene load_steps=5 format=3 uid="uid://c0obrr88a8mpc"]
 
-[ext_resource type="Texture2D" uid="uid://sm0fdjn8jkon" path="res://button1.png" id="1_e3lr1"]
-[ext_resource type="FontFile" uid="uid://c8375osah74f7" path="res://superstar_memesbruh03.ttf" id="2_5bc21"]
-[ext_resource type="Script" path="res://scene/menus/settingsbutton.gd" id="2_7wcy4"]
+[ext_resource type="Texture2D" uid="uid://sm0fdjn8jkon" path="res://button1.png" id="1_agjj7"]
+[ext_resource type="FontFile" uid="uid://c8375osah74f7" path="res://superstar_memesbruh03.ttf" id="2_h6chv"]
+[ext_resource type="Script" path="res://scene/menus/backbutton.gd" id="2_o2rjr"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_tpbjj"]
-font = ExtResource("2_5bc21")
+[sub_resource type="LabelSettings" id="LabelSettings_u1wgi"]
+font = ExtResource("2_h6chv")
 font_size = 32
 
-[node name="settingsbutton" type="Sprite2D"]
-texture = ExtResource("1_e3lr1")
-script = ExtResource("2_7wcy4")
+[node name="backbutton" type="Sprite2D"]
+texture = ExtResource("1_agjj7")
+script = ExtResource("2_o2rjr")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_left = -83.0
@@ -27,8 +27,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "SETTINGS"
-label_settings = SubResource("LabelSettings_tpbjj")
+text = "BACK"
+label_settings = SubResource("LabelSettings_u1wgi")
 
 [connection signal="mouse_entered" from="HBoxContainer" to="." method="_on_h_box_container_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer" to="." method="_on_h_box_container_mouse_exited"]

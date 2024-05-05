@@ -11,7 +11,7 @@ extends Node2D
 @onready var tile_example = $tile
 @onready var shopbutton = $shopbutton
 @onready var info = $info
-@onready var tint = $tint
+#@onready var tint = $tint
 @onready var line = $Line2D
 @onready var slices = $slices
 @onready var level_indicator = $level_indicator
@@ -220,6 +220,7 @@ func handle_mouse():
 	if Input.is_action_just_released('select'):
 		if clicking and not dropping:
 			if selected_tiles[1].x != -1:
+				print('hi')
 				dropping = true
 				arrows_sprite.visible = false
 				if selected_tiles[0].x == selected_tiles[1].x: # extend along y
@@ -277,6 +278,7 @@ func reset_level():
 	brokentiles.clear()
 	
 	lock = false
+	print('reset')
 	remaining_isolations = total_isolations
 	slices.text = 'Isolations: ' + str(remaining_isolations)
 	generate_tiles()
