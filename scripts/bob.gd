@@ -86,7 +86,7 @@ func detect_player():
 		player = ray_cast_player_detect.get_collider()
 
 func attack_player():
-	if ray_cast_attack.is_colliding() and ray_cast_attack.get_collider().name == "Player":
+	if ray_cast_attack.is_colliding() and ray_cast_player_detect.get_collider() != null and ray_cast_attack.get_collider().name == "Player":
 		if state != 'attack':
 			attack_timer = attack_charge_time
 			direction = 0
