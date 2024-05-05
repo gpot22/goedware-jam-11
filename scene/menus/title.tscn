@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfkaw4wnaflxf"]
+[gd_scene load_steps=2 format=3 uid="uid://bfkaw4wnaflxf"]
 
 [ext_resource type="Script" path="res://scene/menus/title.gd" id="1_mqe5i"]
-[ext_resource type="Texture2D" uid="uid://js4pfaecxgq4" path="res://logo.png" id="2_syi6u"]
 
 [node name="title" type="Control"]
 layout_mode = 3
@@ -24,10 +23,8 @@ offset_top = 25.0
 offset_right = 750.0
 offset_bottom = 425.0
 
-[node name="TextureRect" type="TextureRect" parent="menu"]
+[node name="Label" type="Label" parent="menu"]
 layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("2_syi6u")
 
 [node name="centerrow" type="HBoxContainer" parent="menu"]
 layout_mode = 2
@@ -38,18 +35,3 @@ alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="menu/centerrow"]
 layout_mode = 2
 alignment = 1
-
-[node name="playbutton" type="Button" parent="menu/centerrow/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Play"
-
-[node name="settingsbutton" type="Button" parent="menu/centerrow/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Settings"
-
-[node name="creditsbutton" type="Button" parent="menu/centerrow/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Credits"

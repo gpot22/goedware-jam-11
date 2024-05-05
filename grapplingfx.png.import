@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://js4pfaecxgq4"
-path="res://.godot/imported/logo.png-cca8726399059c8d4f806e28e356b14d.ctex"
+uid="uid://stbapevuppfs"
+path="res://.godot/imported/grapplingfx.png-23a5e186a47cbe5c1d6e57a75f6e0eea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://logo.png"
-dest_files=["res://.godot/imported/logo.png-cca8726399059c8d4f806e28e356b14d.ctex"]
+source_file="res://grapplingfx.png"
+dest_files=["res://.godot/imported/grapplingfx.png-23a5e186a47cbe5c1d6e57a75f6e0eea.ctex"]
 
 [params]
 

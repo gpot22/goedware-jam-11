@@ -17,6 +17,8 @@ const DASH_VEL = 1200.0
 @onready var world_map = $"../WorldMap"
 @onready var coyote_timer = $CoyoteTimer
 @onready var jump_buffer_timer = $JumpBufferTimer
+@onready var hook = $"../hook"
+@onready var rope = $rope
 
 
 var smoke_effect = preload('res://scene/vfx/smoke.tscn')
@@ -149,6 +151,11 @@ func handle_grapple(delta):
 					grappling = true
 					grapple_to = mouse_pos
 					grapple_vel = Vector2(cos(get_angle_to(grapple_to)), sin(get_angle_to(grapple_to)))
+					hook.global_rotation = get_angle_to(grapple_to)
+					hook.visible = true
+					hook.global_position = grapple_to
+					rope.get_child(0).points = PackedVector2Array([Vector2(0,0), grapple_to - rope.global_position])
+					rope.visible = true
 					if grapple_to.x > global_position.x and grapple_to.y > global_position.y:
 						grapple_direction = 'rightdown'
 					elif grapple_to.x < global_position.x and grapple_to.y > global_position.y:
@@ -161,21 +168,30 @@ func handle_grapple(delta):
 					velocity = grapple_vel * grapple_speed
 	
 	if grappling:
+		rope.get_child(0).points = PackedVector2Array([Vector2(0,0), grapple_to - rope.global_position])
 		if grapple_direction == 'rightup':
 			if global_position.x > grapple_to.x or global_position.y < grapple_to.y:
+				hook.visible = false
+				rope.visible = false
 				grappling = false
 				return
 		elif grapple_direction == 'leftup':
 			if global_position.x < grapple_to.x or global_position.y < grapple_to.y:
 				grappling = false
+				hook.visible = false
+				rope.visible = false
 				return
 		elif grapple_direction == 'rightdown':
 			if global_position.x > grapple_to.x or global_position.y > grapple_to.y:
 				grappling = false
+				hook.visible = false
+				rope.visible = false
 				return
 		elif grapple_direction == 'leftdown':
 			if global_position.x < grapple_to.x or global_position.y > grapple_to.y:
 				grappling = false
+				hook.visible = false
+				rope.visible = false
 				return
 		
 func update_animations(input_axis):
@@ -234,7 +250,10 @@ func update_direction(input_axis):
 		var n = 1 if is_on_floor() else 1.8
 		pistol.position.x = pistol_ipos.x * m * direction
 		pistol.position.y = pistol_ipos.y * n
-		
+	
+	#if direction == 1:
+		#rope.global_position = 
+	rope.position.x = abs(rope.position.x) * direction
 
 func update_collider(input_axis):
 	if input_axis != 0 and is_on_floor():  # running

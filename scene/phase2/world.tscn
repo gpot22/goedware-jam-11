@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b3fbeq4r0lddw"]
+[gd_scene load_steps=30 format=3 uid="uid://b3fbeq4r0lddw"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_566ba"]
 [ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_gw8d1"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c5su8u53h77tj" path="res://scene/phase2/enemies/enemy_sniper.tscn" id="12_ougkd"]
 [ext_resource type="PackedScene" uid="uid://by5ye50kwxyhd" path="res://scene/phase2/enemies/turret.tscn" id="13_8yxwf"]
 [ext_resource type="PackedScene" uid="uid://bb8v541vvfcrt" path="res://scene/phase2/platforms/bottom_floor.tscn" id="16_afjyv"]
+[ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="18_jbbyu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y865c"]
 texture = ExtResource("2_gw8d1")
@@ -794,3 +795,8 @@ rotation = -1.5708
 [node name="right_wall10" parent="WorldBorders/rightwall" instance=ExtResource("16_afjyv")]
 position = Vector2(5880, 1995)
 rotation = -1.5708
+
+[node name="hook" type="Sprite2D" parent="."]
+texture = ExtResource("18_jbbyu")
+
+[node name="Node2D" type="Node2D" parent="."]

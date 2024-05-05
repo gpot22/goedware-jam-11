@@ -27,6 +27,7 @@ func _ready():
 	a.tiles_with_enemies = level_enemies[current_level]
 	a.total_isolations = level_enemies[current_level]['slices']
 	a.remaining_isolations = level_enemies[current_level]['slices']
+	a.level = current_level+1
 	add_child(a)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,6 +41,7 @@ func _process(delta):
 		a.tiles_with_enemies = level_enemies[current_level]
 		a.total_isolations = level_enemies[current_level]['slices']
 		a.remaining_isolations = level_enemies[current_level]['slices']
+		a.level = current_level+1
 		add_child(a)
 	elif Input.is_action_just_pressed("previouslevel"):
 		if current_level == 0:
@@ -50,4 +52,5 @@ func _process(delta):
 		a.tiles_with_enemies = level_enemies[current_level]
 		a.total_isolations = level_enemies[current_level]['slices']
 		a.remaining_isolations = level_enemies[current_level]['slices']
+		a.level = current_level+1
 		add_child(a)

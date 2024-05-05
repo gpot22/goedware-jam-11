@@ -26,7 +26,6 @@ func _ready():
 	#generate_world_borders()
 	
 
-
 func _process(delta):
 	# update 
 	camera_2d.set_position(Vector2(player.get_position().x, player.get_position().y-35))

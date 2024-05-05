@@ -14,6 +14,7 @@ extends Node2D
 @onready var tint = $tint
 @onready var line = $Line2D
 @onready var slices = $slices
+@onready var level_indicator = $level_indicator
 
 var single_tile_size_x
 var single_tile_size_y
@@ -37,6 +38,7 @@ var dropping = false
 var lock = false
 var total_isolations = 0
 var remaining_isolations = 0
+var level
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,6 +55,7 @@ func _ready():
 	generate_tiles()
 	generate_enemies()
 	slices.text = 'Isolations: ' + str(remaining_isolations)
+	level_indicator.text = 'Level: ' + str(level)
 	info.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
