@@ -104,19 +104,22 @@ label_settings = SubResource("LabelSettings_f4osr")
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 119.0
-offset_top = 123.0
-offset_right = 685.0
-offset_bottom = 295.0
+offset_left = 22.0
+offset_top = 90.0
+offset_right = 780.0
+offset_bottom = 367.0
 text = "greenpotato - Programming, Game Design
 
 JLen - Programming, Game Design
 
-Kevo - Art, Creative Lead, Game Design"
+Kevo - Art, Creative Lead, Game Design
+
+Music by: Mittsies
+https://www.youtube.com/watch?v=GXp05aBdeN4&t=781s"
 label_settings = SubResource("LabelSettings_onbvl")
 
 [node name="backbutton" parent="." instance=ExtResource("3_4em2r")]
-position = Vector2(690, 398)
+position = Vector2(690, 408)
 
 [node name="transition" type="AnimatedSprite2D" parent="."]
 position = Vector2(400, 225)

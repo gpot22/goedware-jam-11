@@ -8,7 +8,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animated_sprite_2d.play("default")
-	Audio.play_music('phase1')
+	Audio.play_music('title')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

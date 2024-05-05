@@ -73,6 +73,7 @@ offset_right = 445.0
 offset_bottom = 210.0
 
 [node name="label" type="Label" parent="start"]
+layout_mode = 0
 offset_right = 85.0
 offset_bottom = 26.0
 text = "START"

@@ -5,6 +5,7 @@ const phase1 = preload("res://assets/music/phase1.mp3")
 const phase2 = preload("res://assets/music/phase2.mp3")
 const shop1 = preload("res://assets/music/shop1.mp3")
 const shop2 = preload("res://assets/music/shop2.mp3")
+const settings = preload("res://assets/music/settings.mp3")
 
 const boughtgun = preload("res://assets/sfx/boughtgun.mp3")
 const breaktile = preload("res://assets/sfx/breaktile.mp3")
@@ -33,10 +34,16 @@ func play_sfx(sfx):
 	sfx_player.queue_free()
 
 func play_music(scene):
-	if scene == 'settings':
+	if scene == 'title':
 		if stream == title:
 			return
 		stream = title
+		volume_db = linear_to_db(GlobalVariables.music_volume * GlobalVariables.master_volume)
+		play()
+	elif scene == 'settings':
+		if stream == settings:
+			return
+		stream = settings
 		volume_db = linear_to_db(GlobalVariables.music_volume * GlobalVariables.master_volume)
 		play()
 	elif scene == 'phase1':

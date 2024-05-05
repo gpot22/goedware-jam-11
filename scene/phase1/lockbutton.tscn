@@ -12,16 +12,17 @@ script = ExtResource("2_hqlun")
 offset_left = -84.0
 offset_top = -25.0
 offset_right = 84.0
-offset_bottom = 25.0
+offset_bottom = 24.0
 alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_m6ysq")
 theme_override_font_sizes/font_size = 38
-text = "LOCK
-
-"
+text = "LOCK"
 
 [connection signal="mouse_entered" from="HBoxContainer" to="." method="_on_h_box_container_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer" to="." method="_on_h_box_container_mouse_exited"]
