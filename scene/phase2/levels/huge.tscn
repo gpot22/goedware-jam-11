@@ -566,7 +566,7 @@ layer_0/tile_data = PackedInt32Array(-262149, 0, 0, -262148, 0, 0, -262147, 0, 0
 color = Color(0.701512, 0.757683, 0.816611, 1)
 
 [node name="Player" parent="." instance=ExtResource("9_5m020")]
-position = Vector2(1059, 596)
+position = Vector2(406, 1973)
 floor_constant_speed = true
 floor_snap_length = 2.0
 
@@ -595,7 +595,7 @@ position = Vector2(1838, 1909)
 position = Vector2(1245, 1998)
 
 [node name="bombardier" parent="Enemies" instance=ExtResource("11_oe0wi")]
-position = Vector2(1370, 808)
+position = Vector2(2529, 736)
 
 [node name="sniper" parent="Enemies" instance=ExtResource("12_e70fl")]
 position = Vector2(3361, 2057)
@@ -605,53 +605,59 @@ color = Color(0.0609198, 0.290021, 0.463875, 1)
 
 [node name="WorldMap" type="Node2D" parent="."]
 
-[node name="long_platform7" parent="WorldMap" instance=ExtResource("13_ufppt")]
-position = Vector2(116, 741)
-
 [node name="long_platform" parent="WorldMap" instance=ExtResource("13_ufppt")]
-position = Vector2(730, 671)
+position = Vector2(1168, 894)
 
 [node name="long_platform2" parent="WorldMap" instance=ExtResource("13_ufppt")]
-position = Vector2(1154, 678)
-
-[node name="long_platform4" parent="WorldMap" instance=ExtResource("13_ufppt")]
-position = Vector2(1035, 1002)
-
-[node name="long_platform5" parent="WorldMap" instance=ExtResource("13_ufppt")]
-position = Vector2(448, 1229)
-
-[node name="medium_platform" parent="WorldMap" instance=ExtResource("14_e2ufd")]
-position = Vector2(1359, 856)
-
-[node name="medium_platform2" parent="WorldMap" instance=ExtResource("14_e2ufd")]
-position = Vector2(1608, 773)
-
-[node name="medium_platform3" parent="WorldMap" instance=ExtResource("14_e2ufd")]
-position = Vector2(1851, 691)
-
-[node name="medium_platform4" parent="WorldMap" instance=ExtResource("14_e2ufd")]
-position = Vector2(2126, 623)
-
-[node name="medium_platform5" parent="WorldMap" instance=ExtResource("14_e2ufd")]
-position = Vector2(2260, 624)
-
-[node name="medium_platform6" parent="WorldMap" instance=ExtResource("14_e2ufd")]
-position = Vector2(2394, 625)
-
-[node name="square_platform" parent="WorldMap" instance=ExtResource("15_svxdt")]
-position = Vector2(1630, 1179)
-
-[node name="square_platform3" parent="WorldMap" instance=ExtResource("15_svxdt")]
-position = Vector2(748, 1135)
-
-[node name="square_platform2" parent="WorldMap" instance=ExtResource("15_svxdt")]
-position = Vector2(1832, 962)
-
-[node name="square_platform4" parent="WorldMap" instance=ExtResource("15_svxdt")]
-position = Vector2(2621, 422)
+position = Vector2(1028, 697)
 
 [node name="long_platform3" parent="WorldMap" instance=ExtResource("13_ufppt")]
-position = Vector2(970, 231)
+position = Vector2(1042, 1081)
+
+[node name="long_platform4" parent="WorldMap" instance=ExtResource("13_ufppt")]
+position = Vector2(552, 699)
+
+[node name="long_platform5" parent="WorldMap" instance=ExtResource("13_ufppt")]
+position = Vector2(538, 1080)
+
+[node name="long_platform6" parent="WorldMap" instance=ExtResource("13_ufppt")]
+position = Vector2(383, 885)
+
+[node name="long_platform7" parent="WorldMap" instance=ExtResource("13_ufppt")]
+position = Vector2(886, 325)
+
+[node name="long_platform8" parent="WorldMap" instance=ExtResource("13_ufppt")]
+position = Vector2(682, 324)
+
+[node name="long_platform9" parent="WorldMap" instance=ExtResource("13_ufppt")]
+position = Vector2(1637, 328)
+
+[node name="long_platform10" parent="WorldMap" instance=ExtResource("13_ufppt")]
+position = Vector2(1433, 327)
+
+[node name="long_platform11" parent="WorldMap" instance=ExtResource("13_ufppt")]
+position = Vector2(1754, 691)
+
+[node name="long_platform12" parent="WorldMap" instance=ExtResource("13_ufppt")]
+position = Vector2(1550, 690)
+
+[node name="medium_platform" parent="WorldMap" instance=ExtResource("14_e2ufd")]
+position = Vector2(762, 1310)
+
+[node name="medium_platform2" parent="WorldMap" instance=ExtResource("14_e2ufd")]
+position = Vector2(1209, 1872)
+
+[node name="medium_platform3" parent="WorldMap" instance=ExtResource("14_e2ufd")]
+position = Vector2(1661, 2031)
+
+[node name="medium_platform4" parent="WorldMap" instance=ExtResource("14_e2ufd")]
+position = Vector2(724, 1709)
+
+[node name="medium_platform5" parent="WorldMap" instance=ExtResource("14_e2ufd")]
+position = Vector2(366, 1587)
+
+[node name="square_platform" parent="WorldMap" instance=ExtResource("15_svxdt")]
+position = Vector2(238, 1799)
 
 [node name="WorldBorders" type="Node2D" parent="."]
 
@@ -671,6 +677,7 @@ position = Vector2(-10, 635)
 position = Vector2(-10, 35)
 
 [node name="rightwall" type="Node2D" parent="WorldBorders"]
+position = Vector2(-3750, 24)
 
 [node name="Border5" parent="WorldBorders/rightwall" instance=ExtResource("16_05kh4")]
 position = Vector2(5870, 1835)
@@ -685,7 +692,7 @@ position = Vector2(5870, 635)
 position = Vector2(5870, 35)
 
 [node name="bottomfloor" type="Node2D" parent="WorldBorders"]
-position = Vector2(0, 45)
+position = Vector2(-42, 29)
 
 [node name="bottom_floor" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
 position = Vector2(105, 2100)
