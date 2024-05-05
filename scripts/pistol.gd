@@ -9,6 +9,7 @@ func _ready():
 	damage = 10
 	direction = 1
 	shot_time = 0.5
+	bullet_spread = 0.05
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -31,7 +32,7 @@ func handle_shoot():
 func shoot():
 	var b = bullet.instantiate()
 	b.global_position = bullet_spawn.global_position
-	b.global_rotation = bullet_spawn.global_rotation
+	b.global_rotation = bullet_spawn.global_rotation + rng.randf_range(-bullet_spread, bullet_spread)
 	add_child(b)
 	
 	can_shoot = false

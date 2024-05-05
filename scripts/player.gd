@@ -107,7 +107,6 @@ func handle_movement(delta, input_axis):
 		velocity.x = move_toward(velocity.x, 0, FRIC*delta)  # player friction
 	
 func handle_jump():
-	#print(coyote_timer.is_stopped)
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer.start()
 	if Input.is_action_just_released("jump"):
@@ -253,5 +252,5 @@ func update_collider(input_axis):
 		collider.rotation_degrees = 0
 		
 func take_damage(dmg):
-	print('player damaged: ', dmg)
+	#print('player damaged: ', dmg)
 	health -= dmg

@@ -13,9 +13,15 @@ var bullet
 # WEAPON STATS
 var damage
 var shot_time
+var bullet_spread
+var magazine
+var reload_time
+
 
 # Weapon States
 var active
+
+var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

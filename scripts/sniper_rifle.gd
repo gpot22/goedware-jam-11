@@ -7,9 +7,10 @@ func _ready():
 	super._ready()
 	bullet = preload('res://scene/phase2/bullets/sniper_bullet.tscn')
 	parent = get_parent().get_parent()
-	damage = 50
+	damage = 49
 	direction = 1
 	shot_time = 1.2
+	bullet_spread = 0
 	line_of_sight.visible = not is_player()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbvuwbu7desq7"]
 
-[ext_resource type="Script" path="res://scene/phase2/bullets/turret_bullet.gd" id="1_r82gq"]
+[ext_resource type="Script" path="res://scene/phase2/bullets/shotgun_bullet.gd" id="1_qqe7w"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qs4xn"]
 light_mode = 1
@@ -8,9 +8,9 @@ light_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jiw06"]
 size = Vector2(30, 5)
 
-[node name="turret_bullet" type="Area2D"]
+[node name="shotgun_bullet" type="Area2D"]
 top_level = true
-script = ExtResource("1_r82gq")
+script = ExtResource("1_qqe7w")
 
 [node name="Line2D" type="Line2D" parent="."]
 material = SubResource("CanvasItemMaterial_qs4xn")
