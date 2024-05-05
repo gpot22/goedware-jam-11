@@ -867,6 +867,7 @@ position = Vector2(5565, 2100)
 position = Vector2(5775, 2100)
 
 [node name="xhair" type="TextureRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("AnimatedTexture_4fg1e")
