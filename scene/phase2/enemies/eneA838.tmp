@@ -81,10 +81,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8a06i"]
-size = Vector2(430, 210)
+size = Vector2(420, 210)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2h78i"]
-size = Vector2(220, 200)
+size = Vector2(200, 200)
 
 [sub_resource type="Gradient" id="Gradient_jqm68"]
 offsets = PackedFloat32Array(0, 0.746753)
@@ -124,14 +124,12 @@ target_position = Vector2(-30, 0)
 position = Vector2(-200, -40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectArea"]
-position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_8a06i")
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(-100, -40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_2h78i")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

@@ -1,168 +1,190 @@
 extends 'res://scripts/EnemySuperclass.gd'
 
-
-
-const VEL = 140.0
-const FRIC = 200.0
-const RECOIL = -180.0
-
-
-var time_count = 0 
-
-var idle_timer = 0
-var idle_state = 0  # 0 = not moving, 1 = moving
-var hostile_timer = 0
-var attack_timer = 0
-var attack_charge_time = 60
+const WALK_VEL = 140.0
+const RUN_VEL = 220.0
+const FRIC = 1200.0
+const RECOIL = -600.0
 
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var ray_cast_floor = $RayCastFloor
 @onready var ray_cast_wall = $RayCastWall
-@onready var ray_cast_player_detect = $RayCastPlayerDetect
-@onready var ray_cast_attack = $RayCastAttack
+@onready var player_detect_area = $PlayerDetectArea
+@onready var attack_area = $AttackArea
 @onready var weapon_point = $WeaponPoint
 
-var isAttacking = false
-var face_dir = -1
+var shotgun = preload('res://scene/phase2/weapons/shotgun.tscn')
+var uzi = preload('res://scene/phase2/weapons/uzi.tscn')
+#var pistol = preload('res://scene/phase2/weapons/pistol.tscn')
+var weapons = [shotgun, uzi]
+var gun
+
+var idle_state = 0
+var idle_timer = 0
+var hostile_timer = 0
+var attack_timer = 0
+var attack_pending = false
+var shoot_ready = false
+var shooting = false
+var attack_recoil = false
+var to_idle = false
+var recoil_v
 
 func _ready():
 	health = 100
 	state = 'idle'
-	direction = -1
+	set_direction(-1)
+	#direction == -1
 	vel = 0
-
-func _physics_process(delta):
-	apply_gravity(delta)
+	# give gun
+	var rand_weapon = rng.randi_range(0, len(weapons)-1)
+	var gun_obj = weapons[rand_weapon]
+	gun = gun_obj.instantiate()
+	weapon_point.add_child(gun)
 	
-	#if Input.is_action_just_pressed("dash"):
-		#attack()
-	detect_player()
-	attack_player()
+	player = get_parent().get_parent().get_node('Player')
+	
+func _physics_process(delta):
+	#attack_area.get_overlapping_bodies()
+	apply_gravity(delta)
+	#print(state)
 	if state == 'idle':
 		idle_movement()
 		avoid_edge()
 	elif state == 'hostile':
-		hostile_timer -= 1
-		if hostile_timer == 0:
-			state = 'idle'
-		if not is_on_edge():
-			if player.position.x < position.x:
-				set_direction(-1)
-			else:
-				set_direction(1)
-		else:
-			set_direction(0)
-			if player.position.x < position.x:
-				face_dir = -1
-			else:
-				face_dir = 1
-		
-	elif state == 'attack':
-		display_attack_timer()
-		attack_timer -= 1
-		if attack_timer == 0:
-			attack()
-			state = 'hostile'
-	handle_movement(delta, direction)
-	update_animations(direction)
-	move_and_slide()  # ** automatically applies "delta"
-
-
-func display_attack_timer():
-	if attack_timer == attack_charge_time:
-		print(2)
-	if attack_timer == attack_charge_time/2:
-		print(1)
-	if attack_timer == 1:
-		print(0)
-
-func idle_movement():
-	idle_timer -= 1
-	if idle_timer <= 0:
-		idle_state = (idle_state+1)%2
-		idle_timer = int(60 * rng.randf_range(3, 7)) if idle_state == 1 else int(60*rng.randf_range(1, 3))
-		if idle_state == 0:
-			direction = 0
-		else:
-			set_direction(-1) if rng.randf() < 0.5 else set_direction(1)
-
-func detect_player():
-	if ray_cast_player_detect.is_colliding() and ray_cast_player_detect.get_collider() != null and ray_cast_player_detect.get_collider().name == "Player" and state != "attack":
-		state = "hostile"
-		hostile_timer = 80
-		player = ray_cast_player_detect.get_collider()
-
-func attack_player():
-	if ray_cast_attack.is_colliding() and ray_cast_player_detect.get_collider() != null and ray_cast_attack.get_collider().name == "Player":
-		if state != 'attack':
-			attack_timer = attack_charge_time
-			direction = 0
-		state = "attack"
-		player = ray_cast_player_detect.get_collider()
-	elif state == "attack" and attack_timer >= attack_charge_time/2:
-		state = 'hostile'
-		
-		
+		if to_idle:
+			hostile_timer -= 1
+			if hostile_timer == 0:
+				state= 'idle'
+		if state != 'idle':
+			if not shooting:
+				follow_player()
+			if shoot_ready and not shooting and not attack_pending:
+				attack_pending = true
+				attack_timer = 40
+				vel = 0
+			if attack_pending and not shooting:
+				vel = 0
+				attack_timer -= 1
+				if attack_timer == 0:
+					attack()
+					attack_pending = false
+					shooting = true
+				#await get_tree().create_timer(0.8).timeout
+				#attack()
+			elif not shooting:
+				vel = RUN_VEL
+	handle_movement(delta)
+	update_animations()
+	if not attack_recoil:
+		move_and_slide()
+	
+## STATE: IDLE
 func avoid_edge():
 	if not ray_cast_floor.is_colliding() or ray_cast_wall.is_colliding():
 		flip_direction()
 		
-func is_on_edge():
-	return not ray_cast_floor.is_colliding()
+func idle_movement():
+	idle_timer -= 1
+	if idle_timer <= 0:
+		idle_state = (idle_state+1)%2  # 0 = stay still, 1 = wandering
+		idle_timer = int(50 * rng.randf_range(4, 8)) if idle_state == 1 else int(50*rng.randf_range(1, 3))
+		
+		if idle_state == 0:
+			vel = 0
+		else:
+			set_direction(-1) if rng.randf() < 0.5 else set_direction(1)
+			vel = WALK_VEL
+		
 func flip_direction():
 	direction *= -1
-	face_dir *= -1
-	ray_cast_wall.position.x *= -1
-	ray_cast_wall.scale.x *= -1
-	ray_cast_floor.position.x *= -1
-	ray_cast_player_detect.scale.x *= -1
-	ray_cast_attack.scale.x *= -1
+	#ray_cast_wall.position.x *= -1
+	#ray_cast_wall.scale.x *= -1
+	#ray_cast_floor.position.x *= -1
+	#
+	#weapon_point.position.x *= -1
+	set_direction(direction)
 	
 func set_direction(d):
-	if d == direction: return
 	direction = d
-	face_dir = d
-	if ray_cast_wall.position.x < 0 and direction > 0 or ray_cast_wall.position.x > 0 and direction < 0:
-		ray_cast_wall.position.x *= -1
-		ray_cast_wall.scale.x *= -1
-		ray_cast_floor.position.x *= -1
-		ray_cast_player_detect.scale.x *= -1
-		ray_cast_attack.scale.x *= -1
-
-func handle_movement(delta, direction):
-	if isAttacking:
-		velocity.x = move_toward(velocity.x, 0, FRIC*delta)
-	else:
-		if direction:
-			var m = 2 if state == 'hostile' else 1
-			velocity.x = VEL*direction * m
-		else:
-			velocity.x = move_toward(velocity.x, 0, VEL)
+	sprite.flip_h = (direction > 0)
+	ray_cast_wall.position.x = abs(ray_cast_wall.position.x)*d
+	ray_cast_wall.scale.x = abs(ray_cast_wall.scale.x)*d
+	ray_cast_floor.position.x = abs(ray_cast_floor.position.x)*d
 	
+	player_detect_area.position.x = abs(player_detect_area.position.x)*d
+	attack_area.position.x = abs(attack_area.position.x)*d
+	weapon_point.position.x = abs(weapon_point.position.x)*d
+	if gun == null: return
+	if direction == 1:
+		gun.point_to_target(global_position + Vector2.RIGHT*30 + Vector2.UP*32)
+		gun.scale.y = 1
+	else:
+		gun.point_to_target(global_position + Vector2.LEFT*30 + Vector2.UP*32)
+		gun.scale.y = -1
+	#gun.point_to_target(player.global_position.x, global_position.y)
+	#if player.global_position.x < gun.global_position.x:
+		#gun.scale.y = -1
+	#else:
+		#gun.scale.y = 1
+	#gun.anim)sprite
+
+## STATE: HOSTILE
+func follow_player():
+	vel = RUN_VEL
+	if player.global_position.x < global_position.x:
+		set_direction(-1)
+	else:
+		set_direction(1)
+
 func attack():
-	if isAttacking: return
-	isAttacking = true
-	velocity.x = RECOIL*face_dir
-	ap.play("attack")
+	shoot_ready = false
+	shooting = true
 	shoot()
-	await ap.animation_finished
-	ap.stop()
-	isAttacking = false
+	attack_recoil = true
+	recoil_v = RECOIL*direction
+	ap.play('attack')
 	
 func shoot():
-	if player == null: return
-	var weapon = weapon_point.get_child(0)
-	weapon.shoot_at(Vector2(player.global_position.x, player.global_position.y - 40))
-	
-func update_animations(direction):
-	if isAttacking: return
-	if direction == 0:
-		ap.play("idle")
+	var player_center = Vector2(player.global_position.x, player.global_position.y - player.sprite.get_rect().size.y/2)
+	gun.point_to_target(player_center)
+	if player.global_position.x < gun.global_position.x:
+		gun.scale.y = -1
 	else:
-		sprite.flip_h = (direction > 0)
-		ap.play("walk")
-		
+		gun.scale.y = 1
+	if gun.name == 'Uzi':
+		for i in range(8):
+			gun.shoot()
+			gun.anim_sprite.play('stop_shoot')
+			await get_tree().create_timer(0.05).timeout
+	elif gun.name == 'Shotgun':
+		for i in range(2):
+			gun.shoot()
+			await get_tree().create_timer(0.2).timeout
+
+
+## GENERAL STUFF
+func handle_movement(delta):
+	if attack_recoil:
+		vel = 0
+		position.x += recoil_v*delta
+		recoil_v += FRIC*direction*delta
+		if direction == -1 and recoil_v <= 0.0 or direction == 1 and recoil_v >= 0.0:
+			attack_recoil = false
+			shooting = false
+	else:
+		if vel:
+			velocity.x = vel*direction
+		else:
+			velocity.x = move_toward(velocity.x, 0, RUN_VEL)
+
+func update_animations():
+	if attack_recoil: return
+	if vel != 0:
+		ap.play('walk')
+	else:
+		ap.play("idle")
+
 func take_damage(dmg):
 	$Sprite2D.self_modulate = Color('#aa0000')
 	await get_tree().create_timer(0.2).timeout
@@ -170,4 +192,53 @@ func take_damage(dmg):
 	if health <= 0:
 		queue_free()
 	$Sprite2D.self_modulate = Color('#ffffff')
+
+#func handle_player_detection():
+	#if player_in_detect_area():
+		#state = 'hostile'
+	#else:
+		#state = 'idle'
 		
+#func handle_attack_detection():
+	#if player_in_attack_area():
+		#shoot_ready = true
+	#else:
+		#shoot_ready = false
+#
+#func player_in_detect_area():
+	#var bodies = player_detect_area.get_overlapping_bodies()
+	#for b in bodies:
+		#if b.name == "Player":
+			#return true
+	#return false
+	#
+#func player_in_attack_area():
+	#var bodies = attack_area.get_overlapping_bodies()
+	#for b in bodies:
+		#if b.name == "Player":
+			#return true
+	#return false
+	
+func _on_player_detect_area_body_entered(body):
+	if body.name != 'Player': return
+	state = 'hostile'
+	to_idle = false
+
+
+func _on_player_detect_area_body_exited(body):
+	if body.name != 'Player': return
+	#await get_tree().create_timer(3.0).timeout
+	hostile_timer = 80
+	to_idle = true
+	#state = 'idle'
+
+
+func _on_attack_area_body_entered(body):
+	if body.name != 'Player': return
+	#await get_tree().create_timer(1.0).timeout	
+	shoot_ready = true
+
+func _on_attack_area_body_exited(body):
+	if body.name != 'Player': return
+	#await get_tree().create_timer(1.0).timeout
+	shoot_ready = false
