@@ -542,7 +542,7 @@ layer_0/tile_data = PackedInt32Array(-262149, 0, 0, -262148, 0, 0, -262147, 0, 0
 color = Color(0.701512, 0.757683, 0.816611, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_ke8sk")]
-position = Vector2(656, 553)
+position = Vector2(2382, 2003)
 floor_constant_speed = true
 floor_snap_length = 2.0
 
@@ -560,15 +560,18 @@ position_smoothing_enabled = true
 [node name="Enemies" type="Node" parent="."]
 
 [node name="beef" parent="Enemies" groups=["Enemy"] instance=ExtResource("4_vioxg")]
-position = Vector2(369, 611)
+position = Vector2(3709, 2029)
 
 [node name="bombardier" parent="Enemies" groups=["Enemy"] instance=ExtResource("10_aiiji")]
+visible = false
 position = Vector2(210, 1305)
 
 [node name="sniper" parent="Enemies" instance=ExtResource("12_ougkd")]
+visible = false
 position = Vector2(2635, 322)
 
 [node name="turret" parent="Enemies" instance=ExtResource("13_8yxwf")]
+visible = false
 position = Vector2(468, 1187)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]

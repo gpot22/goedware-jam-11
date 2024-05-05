@@ -611,6 +611,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gq1cb")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"flash3",

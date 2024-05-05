@@ -327,7 +327,6 @@ frame = 7
 position = Vector2(-48, -32)
 
 [node name="WeaponPoint" type="Marker2D" parent="."]
-visible = false
 position = Vector2(20, -25)
 
 [node name="Uzi" parent="WeaponPoint" instance=ExtResource("6_pps3h")]

@@ -12,9 +12,6 @@ var max_w = 5
 
 func _ready():
 	set_shape(max_l, max_w)
-	#light.position.x = max_l/2
-	#light.position.y = max_w/2
-	##light.texture.
 	
 	
 
@@ -24,12 +21,7 @@ func _physics_process(delta):
 	
 	travelled_distance += vel * delta
 	if travelled_distance > range:
-		#print('hi')
 		queue_free()
-	#print(travelled_distance)
-	#print(range/5)
-	#if int(travelled_distance) % int(range/5) == 0:
-		#print('hi')
 	var f = 1-travelled_distance/range
 	var l = max_l
 	var w = max_w * f

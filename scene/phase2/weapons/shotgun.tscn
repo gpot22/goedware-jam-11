@@ -1,9 +1,74 @@
-[gd_scene format=3 uid="uid://c48bodylqx00v"]
+[gd_scene load_steps=11 format=3 uid="uid://c48bodylqx00v"]
 
-[node name="Shotgun" type="Node2D"]
+[ext_resource type="Script" path="res://scripts/shotgun.gd" id="1_ontpf"]
+[ext_resource type="Texture2D" uid="uid://ca4x4ni8qc0oi" path="res://assets/sprites/shotgun.png" id="2_xfw5v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1y5n"]
+atlas = ExtResource("2_xfw5v")
+region = Rect2(0, 0, 63, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1psm"]
+atlas = ExtResource("2_xfw5v")
+region = Rect2(63, 0, 63, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrvcw"]
+atlas = ExtResource("2_xfw5v")
+region = Rect2(126, 0, 63, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ec6x"]
+atlas = ExtResource("2_xfw5v")
+region = Rect2(189, 0, 63, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qe2b8"]
+atlas = ExtResource("2_xfw5v")
+region = Rect2(252, 0, 63, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1aiqn"]
+atlas = ExtResource("2_xfw5v")
+region = Rect2(315, 0, 63, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_402nu"]
+atlas = ExtResource("2_xfw5v")
+region = Rect2(378, 0, 63, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51v7r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1y5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1psm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrvcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ec6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qe2b8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1aiqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_402nu")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 20.0
+}]
+
+[node name="Shotgun" type="Node2D" groups=["Weapon"]]
+script = ExtResource("1_ontpf")
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WeaponPivot"]
+position = Vector2(1, -14)
+sprite_frames = SubResource("SpriteFrames_51v7r")
+animation = &"shoot"
 
 [node name="BulletSpawn" type="Marker2D" parent="WeaponPivot/AnimatedSprite2D"]
+position = Vector2(28, 9)
