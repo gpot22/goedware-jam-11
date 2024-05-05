@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxs5n3x3njv8t"]
+
+[ext_resource type="Texture2D" uid="uid://ch1luwga3l5ub" path="res://assets/weapons/weaponuparrow.png" id="1_2hhds"]
+
+[node name="uparrow1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -46.0
+offset_top = 1.0
+offset_right = -38.0
+offset_bottom = 7.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 3)
+texture = ExtResource("1_2hhds")

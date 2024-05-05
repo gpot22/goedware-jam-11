@@ -219,3 +219,5 @@ text = "Wallet: $5"
 [connection signal="mouse_exited" from="sniper" to="." method="_on_sniper_mouse_exited"]
 [connection signal="mouse_entered" from="grenadelauncher" to="." method="_on_grenadelauncher_mouse_entered"]
 [connection signal="mouse_exited" from="grenadelauncher" to="." method="_on_grenadelauncher_mouse_exited"]
+[connection signal="mouse_entered" from="RichTextLabel2" to="." method="_on_rich_text_label_2_mouse_entered"]
+[connection signal="mouse_exited" from="RichTextLabel2" to="." method="_on_rich_text_label_2_mouse_exited"]

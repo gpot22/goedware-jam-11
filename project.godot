@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Goedware"
-run/main_scene="res://scene/phase_1_levelgenerator.tscn"
+run/main_scene="res://scene/phase1/weaponselect.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GlobalVariables="*res://GLOBAL_VARIABLES.gd"
+Audio="*res://scene/audio/audio.tscn"
 
 [display]
 

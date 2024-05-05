@@ -13,6 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hovering and Input.is_action_just_released("select"):
+		Audio.play_sfx('button')
 		texture = BUTTON_1
 		get_parent().reset_level()
 	

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bmawpddocsyak" path="res://scene/phase1/shopbutton.tscn" id="11_wip20"]
 [ext_resource type="PackedScene" uid="uid://c78f2jsvgl5bv" path="res://scene/phase1/resetbutton.tscn" id="12_n4qcd"]
 [ext_resource type="PackedScene" uid="uid://xanm1sdleeon" path="res://scene/phase1/info.tscn" id="13_thrue"]
-[ext_resource type="PackedScene" uid="uid://be1werb2rjsb0" path="res://lockbutton.tscn" id="14_16dep"]
+[ext_resource type="PackedScene" uid="uid://be1werb2rjsb0" path="res://scene/phase1/lockbutton.tscn" id="15_uxcf6"]
 [ext_resource type="FontFile" uid="uid://c0mc3uhedbvnm" path="res://ONESIZE_.TTF" id="16_m3oyh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cfii7"]
@@ -107,7 +107,7 @@ position = Vector2(97, 312)
 
 [node name="info" parent="." instance=ExtResource("13_thrue")]
 
-[node name="lockbutton" parent="." instance=ExtResource("14_16dep")]
+[node name="lockbutton" parent="." instance=ExtResource("15_uxcf6")]
 position = Vector2(99, 254)
 
 [node name="Line2D" type="Line2D" parent="."]

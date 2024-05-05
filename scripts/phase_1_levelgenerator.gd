@@ -18,17 +18,19 @@ var level_11_enemies = {'beef': [[0,0],[1,1],[6,6],[7,7]], 'bombardier': [[7,4],
 var level_12_enemies = {'beef': [[0,3],[0,4],[1,4],[3,6],[4,6],[3,7],[4,7],[6,4],[7,4],[7,3]], 'bombardier': [[0,2],[1,3],[0,5]], 'sniper': [[6,3],[7,2],[7,5]], 'turret': [[0,0],[1,0],[6,0],[7,0]], 'slices': 2}
 var level_13_enemies = {'beef': [[0,0],[1,0],[2,0],[5,0],[6,0],[7,0],[0,7],[1,7],[2,7],[5,7],[6,7],[7,7]], 'bombardier': [[7,1],[2,3],[0,6],[5,4]], 'sniper': [[0,1],[7,6]], 'turret': [[1,1],[1,2],[6,1],[6,2],[1,5],[1,6],[6,5],[6,6]], 'slices': 2}
 
-var current_level = 0
+var current_level = GlobalVariables.level - 1
 var level_enemies = [level_1_enemies, level_2_enemies, level_3_enemies, level_4_enemies, level_5_enemies, level_6_enemies, level_7_enemies, level_8_enemies, level_9_enemies, level_10_enemies, level_11_enemies, level_12_enemies, level_13_enemies]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	transition.play("default")
+	Audio.play_music('phase1')
 	var a = phase_1.instantiate()
 	a.tiles_with_enemies = level_enemies[current_level]
 	a.total_isolations = level_enemies[current_level]['slices']
 	a.remaining_isolations = level_enemies[current_level]['slices']
 	a.level = current_level+1
+	GlobalVariables.level = current_level+1
 	add_child(a)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,6 +45,7 @@ func _process(delta):
 		a.total_isolations = level_enemies[current_level]['slices']
 		a.remaining_isolations = level_enemies[current_level]['slices']
 		a.level = current_level+1
+		GlobalVariables.level = current_level+1
 		add_child(a)
 	elif Input.is_action_just_pressed("previouslevel"):
 		if current_level == 0:
@@ -54,4 +57,5 @@ func _process(delta):
 		a.total_isolations = level_enemies[current_level]['slices']
 		a.remaining_isolations = level_enemies[current_level]['slices']
 		a.level = current_level+1
+		GlobalVariables.level = current_level+1
 		add_child(a)

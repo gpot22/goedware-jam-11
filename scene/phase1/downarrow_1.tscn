@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1u1wuryc8y4j"]
+
+[ext_resource type="Texture2D" uid="uid://c6ur6enr5lxof" path="res://assets/weapons/weapondownarrow.png" id="1_ubt3i"]
+
+[node name="downarrow1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 45.0
+offset_top = -10.0
+offset_right = 53.0
+offset_bottom = -4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 3)
+texture = ExtResource("1_ubt3i")

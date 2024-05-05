@@ -232,6 +232,7 @@ func handle_mouse():
 								tiles[i][selected_tiles[0].x].visible = false
 								brokentiles[i][selected_tiles[0].x].visible = true
 								brokentiles[i][selected_tiles[0].x].drop()
+								Audio.play_sfx('breaktile')
 								await get_tree().create_timer(0.2).timeout
 					else:
 						for j in range(3):
@@ -250,6 +251,7 @@ func handle_mouse():
 								tiles[selected_tiles[0].y][i].visible = false
 								brokentiles[selected_tiles[0].y][i].visible = true
 								brokentiles[selected_tiles[0].y][i].drop()
+								Audio.play_sfx('breaktile')
 								await get_tree().create_timer(0.2).timeout
 					else:
 						for j in range(3):
