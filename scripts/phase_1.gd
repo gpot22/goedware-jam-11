@@ -11,6 +11,9 @@ extends Node2D
 @onready var tile_example = $tile
 @onready var shopbutton = $shopbutton
 @onready var info = $info
+@onready var tint = $tint
+@onready var line = $Line2D
+@onready var slices = $slices
 
 var single_tile_size_x
 var single_tile_size_y
@@ -31,6 +34,9 @@ var y_gap = -8
 var x_offset = 225
 var y_offset = 100
 var dropping = false
+var lock = false
+var total_isolations = 0
+var remaining_isolations = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,11 +52,65 @@ func _ready():
 	
 	generate_tiles()
 	generate_enemies()
+	slices.text = 'Isolations: ' + str(remaining_isolations)
 	info.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	handle_mouse()
+	if lock:
+		handle_tint()
+	else:
+		line.visible = false
+		
+func get_islands():
+	var separated_corners = []
+	var x = [-1]
+	var y = [-1]
+	for i in range(total_x_tiles):
+		if tiles[0][i].visible == false:
+			x.append(i)
+	for i in range(total_y_tiles):
+		if tiles[i][0].visible == false:
+			y.append(i)
+	
+	x.append(total_x_tiles)
+	y.append(total_y_tiles)
+	
+	for i in range(1, x.size()):
+		for j in range(1, y.size()):
+			separated_corners.append([[x[i-1]+1, y[j-1]+1], [x[i]-1, y[j]-1]])
+	
+	return separated_corners
+		
+func handle_tint():
+	var mouse = get_global_mouse_position()
+	var mouse_x = mouse.x
+	var mouse_y = mouse.y
+	var tile_x = (mouse_x - x_offset + (single_tile_size_x) / 2) / (single_tile_size_x + x_gap)
+	var tile_y = (mouse_y - y_offset + (single_tile_size_y) / 2) / (single_tile_size_y + y_gap)
+	
+	if tile_x > total_x_tiles or tile_y > total_y_tiles:
+		line.visible = false
+		return
+	if tile_x < 0 or tile_y < 0:
+		line.visible = false
+		return
+	
+	tile_x = int(tile_x)
+	tile_y = int(tile_y)
+	
+	var separated_corners = get_islands()
+	for j in separated_corners:
+		if tile_x >= j[0][0] and tile_x <= j[1][0] and tile_y >= j[0][1] and tile_y <= j[1][1]:
+			line.width = ((j[1][1]+1.2) * single_tile_size_y + (j[1][1]+1.2) * y_gap) - ((j[0][1]) * single_tile_size_y + (j[0][1]) * y_gap)
+			line.points = PackedVector2Array([Vector2(x_offset + (single_tile_size_x + x_gap) * j[0][0] - single_tile_size_x / 2, y_offset + (single_tile_size_y + y_gap) * j[0][1] + line.width / 2 - single_tile_size_y / 2), Vector2(x_offset + (single_tile_size_x + x_gap) * j[1][0] + single_tile_size_x / 2, y_offset + (single_tile_size_y + y_gap) * j[0][1] + line.width / 2  - single_tile_size_y / 2)])
+			line.visible = true
+			line.z_index = 66
+			line.modulate = Color(1, 1, 1, 0.5)
+			return
+	
+	line.visible = false
 
 func generate_enemies():
 	for i in tiles_with_enemies['beef']:
@@ -117,6 +177,9 @@ func generate_tiles():
 			count += 1
 
 func handle_mouse():
+	if lock:
+		return
+	
 	var mouse = get_global_mouse_position()
 	var mouse_x = mouse.x
 	var mouse_y = mouse.y
@@ -132,6 +195,15 @@ func handle_mouse():
 	tile_y = int(tile_y)
 	
 	if Input.is_action_just_pressed('select'):
+		if remaining_isolations == 0:
+			for j in range(3):
+				for i in range(total_y_tiles-1, -1, -1):
+					slices.modulate = Color('#ff5640')
+				await get_tree().create_timer(0.1).timeout
+				for i in range(total_y_tiles-1, -1, -1):
+					slices.modulate = Color('#ffffff')
+				await get_tree().create_timer(0.1).timeout
+			return
 		if tiles[tile_y][tile_x].visible == false or dropping:
 			return
 		arrows_sprite.set_position(Vector2(x_offset + tile_x * (single_tile_size_x + x_gap), y_offset + tile_y * (single_tile_size_y + y_gap) - 7))
@@ -149,6 +221,8 @@ func handle_mouse():
 				arrows_sprite.visible = false
 				if selected_tiles[0].x == selected_tiles[1].x: # extend along y
 					if int(selected_tiles[0].x) not in x_tiles_with_enemies:
+						remaining_isolations -= 1
+						slices.text = 'Isolations: ' + str(remaining_isolations)
 						for i in range(total_y_tiles-1, -1, -1):
 							if tiles[i][selected_tiles[0].x].visible != false:
 								tiles[i][selected_tiles[0].x].visible = false
@@ -156,7 +230,7 @@ func handle_mouse():
 								brokentiles[i][selected_tiles[0].x].drop()
 								await get_tree().create_timer(0.2).timeout
 					else:
-						for j in range(4):
+						for j in range(3):
 							for i in range(total_y_tiles-1, -1, -1):
 								tiles[i][selected_tiles[0].x].modulate = Color('#ff5640')
 							await get_tree().create_timer(0.1).timeout
@@ -165,6 +239,8 @@ func handle_mouse():
 							await get_tree().create_timer(0.1).timeout
 				elif selected_tiles[0].y == selected_tiles[1].y: # extend along x
 					if int(selected_tiles[0].y) not in y_tiles_with_enemies:
+						remaining_isolations -= 1
+						slices.text = 'Isolations: ' + str(remaining_isolations)
 						for i in range(total_x_tiles):
 							if tiles[selected_tiles[0].y][i].visible != false:
 								tiles[selected_tiles[0].y][i].visible = false
@@ -172,7 +248,7 @@ func handle_mouse():
 								brokentiles[selected_tiles[0].y][i].drop()
 								await get_tree().create_timer(0.2).timeout
 					else:
-						for j in range(4):
+						for j in range(3):
 							for i in range(total_x_tiles):
 								tiles[selected_tiles[0].y][i].modulate = Color('#ff5640')
 							await get_tree().create_timer(0.1).timeout
@@ -197,6 +273,9 @@ func reset_level():
 			j.queue_free()
 	brokentiles.clear()
 	
+	lock = false
+	remaining_isolations = total_isolations
+	slices.text = 'Isolations: ' + str(remaining_isolations)
 	generate_tiles()
 
 func handle_info(enemy, visible):
@@ -224,3 +303,6 @@ func handle_info(enemy, visible):
 		info.visible = true
 	else:
 		info.visible = false
+
+func toggle_lock():
+	lock = !lock

@@ -9,6 +9,7 @@ extends Node2D
 @onready var shotgun = $shotgun
 @onready var sniper = $sniper
 @onready var grenadelauncher = $grenadelauncher
+@onready var money = $money
 
 var dialog = ['Cheap and affordable!', 'Quality products!', 'Ammunition included!', 'Give me money!', 'What are you looking for?', 'Come again friend!', 'Take a look friend!', 'What are you looking for, friend?']
 var random = RandomNumberGenerator.new()
@@ -26,7 +27,7 @@ func _ready():
 		
 	rich_text_label.text = dialog[random.randi_range(0, dialog.size()-1)]
 	show_message_timer.start()
-	get_tree()
+	money.text = 'Wallet: ' + str(GlobalVariables.wallet)
 
 func _process(delta):
 	if item_hovering['uzi']:

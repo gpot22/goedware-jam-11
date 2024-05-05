@@ -2,6 +2,7 @@ extends Node
 
 var level = 1
 var discovered_enemies = ['beef', 'bombardier', 'sniper', 'turret']
+var wallet = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
