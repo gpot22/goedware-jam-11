@@ -9,7 +9,6 @@ var max_l = 30
 var max_w = 5
 
 @onready var shape: Line2D = $Line2D
-@onready var light: PointLight2D = $PointLight2D
 
 func _ready():
 	set_shape(max_l, max_w)

@@ -5,7 +5,7 @@ func _ready():
 	vel = 2000
 	range = 800
 	parent = get_parent().get_parent().get_parent().name  # parent = gun, gun's parent = weaponpoint, weaponpoint's parent = player or enemy
-# color: ffff5a
+
 func is_player():
 	return parent == "Player"
 	

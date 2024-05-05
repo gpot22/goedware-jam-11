@@ -492,7 +492,7 @@ colors = PackedColorArray(0.759551, 0.86733, 0.966086, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hg3f6"]
 gradient = SubResource("Gradient_y3gyx")
 fill = 1
-fill_from = Vector2(0.509174, 0.513761)
+fill_from = Vector2(0.5, 0.5)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_566ba")

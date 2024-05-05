@@ -1,11 +1,10 @@
-[gd_scene load_steps=44 format=3 uid="uid://cwrkcklv0yvjo"]
+[gd_scene load_steps=34 format=3 uid="uid://cwrkcklv0yvjo"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6k5ke"]
 [ext_resource type="Texture2D" uid="uid://xti23onufikt" path="res://assets/sprites/player.png" id="1_n3cjb"]
 [ext_resource type="Texture2D" uid="uid://bbqbgt22nelgj" path="res://assets/sprites/smoke0.png" id="4_mej1x"]
 [ext_resource type="Texture2D" uid="uid://b7gheskt8u87o" path="res://assets/sprites/smoke1.png" id="5_a2j0n"]
-[ext_resource type="PackedScene" uid="uid://marg7pw3aal" path="res://scene/phase2/weapons/sniper_rifle.tscn" id="5_p10cv"]
-[ext_resource type="Texture2D" uid="uid://stbapevuppfs" path="res://grapplingfx.png" id="6_4wnay"]
+[ext_resource type="PackedScene" uid="uid://b2ysoqrtw6fbc" path="res://scene/phase2/weapons/uzi.tscn" id="6_pps3h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l74r8"]
 radius = 13.0
@@ -294,76 +293,8 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cn4ra"]
-atlas = ExtResource("6_4wnay")
-region = Rect2(0, 0, 52, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tng7y"]
-atlas = ExtResource("6_4wnay")
-region = Rect2(52, 0, 52, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xseqw"]
-atlas = ExtResource("6_4wnay")
-region = Rect2(104, 0, 52, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sj856"]
-atlas = ExtResource("6_4wnay")
-region = Rect2(156, 0, 52, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_asx0d"]
-atlas = ExtResource("6_4wnay")
-region = Rect2(208, 0, 52, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3l1m8"]
-atlas = ExtResource("6_4wnay")
-region = Rect2(260, 0, 52, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1x4gl"]
-atlas = ExtResource("6_4wnay")
-region = Rect2(312, 0, 52, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_olvh4"]
-atlas = ExtResource("6_4wnay")
-region = Rect2(364, 0, 52, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0sdql"]
-atlas = ExtResource("6_4wnay")
-region = Rect2(416, 0, 52, 45)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_af6w2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cn4ra")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tng7y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xseqw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sj856")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_asx0d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3l1m8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1x4gl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_olvh4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0sdql")
-}],
-"loop": true,
-"name": &"default",
-"speed": 20.0
-}]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ad0ad"]
+radius = 120.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6k5ke")
@@ -399,7 +330,7 @@ position = Vector2(-48, -32)
 visible = false
 position = Vector2(20, -25)
 
-[node name="SniperRifle" parent="WeaponPoint" instance=ExtResource("5_p10cv")]
+[node name="Uzi" parent="WeaponPoint" instance=ExtResource("6_pps3h")]
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.15
@@ -413,15 +344,8 @@ one_shot = true
 wait_time = 0.15
 one_shot = true
 
-[node name="rope" type="Marker2D" parent="."]
-position = Vector2(25, -37)
+[node name="ShotgunArea" type="Area2D" parent="."]
 
-[node name="rope" type="Line2D" parent="rope"]
-points = PackedVector2Array(0, 0)
-width = 3.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="grapplefx" type="AnimatedSprite2D" parent="."]
-position = Vector2(88, -23)
-sprite_frames = SubResource("SpriteFrames_af6w2")
-frame_progress = 0.942627
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShotgunArea"]
+position = Vector2(0, -28)
+shape = SubResource("CircleShape2D_ad0ad")
