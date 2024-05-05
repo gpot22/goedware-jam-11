@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Goedware"
-run/main_scene="res://scene/phase2/levels/huge.tscn"
+run/main_scene="res://scene/menus/title.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 

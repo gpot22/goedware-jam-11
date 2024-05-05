@@ -40,6 +40,8 @@ var total_isolations = 0
 var remaining_isolations = 0
 var level
 
+var island_sizes = {'narrow': [1, 9], 'medium': [10, 16], 'large': [17, 32], 'huge': [33, 64]}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	single_tile_size_x = tile_example.get_child(0).texture.get_size().x
@@ -65,6 +67,9 @@ func _process(delta):
 		handle_tint()
 	else:
 		line.visible = false
+		
+func get_island_size(arr):
+	return (arr[1][0] - arr[0][0] + 1) * (arr[1][1] - arr[0][1] + 1) 
 		
 func get_islands():
 	var separated_corners = []
@@ -111,6 +116,18 @@ func handle_tint():
 			line.visible = true
 			line.z_index = 66
 			line.modulate = Color(1, 1, 1, 0.5)
+			
+			if Input.is_action_just_released('select'):
+				var rng = RandomNumberGenerator.new()
+				var island_size = get_island_size(j)
+				if island_size <= 9:
+					get_tree().change_scene_to_file('res://scene/phase2/levels/narrow' + str(rng.randi_range(1,3)) + '.tscn')
+				elif island_size <= 16:
+					get_tree().change_scene_to_file('res://scene/phase2/levels/medium' + str(rng.randi_range(1,3)) + '.tscn')
+				elif island_size <= 32:
+					get_tree().change_scene_to_file('res://scene/phase2/levels/large' + str(rng.randi_range(1,2)) + '.tscn')
+				else:
+					get_tree().change_scene_to_file('res://scene/phase2/levels/huge.tscn')
 			return
 	
 	line.visible = false
@@ -220,7 +237,6 @@ func handle_mouse():
 	if Input.is_action_just_released('select'):
 		if clicking and not dropping:
 			if selected_tiles[1].x != -1:
-				print('hi')
 				dropping = true
 				arrows_sprite.visible = false
 				if selected_tiles[0].x == selected_tiles[1].x: # extend along y
@@ -280,7 +296,6 @@ func reset_level():
 	brokentiles.clear()
 	
 	lock = false
-	print('reset')
 	remaining_isolations = total_isolations
 	slices.text = 'Isolations: ' + str(remaining_isolations)
 	generate_tiles()
