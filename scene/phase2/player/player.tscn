@@ -349,3 +349,10 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShotgunArea"]
 position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_ad0ad")
+
+[node name="rope" type="Marker2D" parent="."]
+position = Vector2(25, -37)
+
+[node name="Line2D" type="Line2D" parent="rope"]
+width = 3.0
+default_color = Color(0, 0, 0, 1)

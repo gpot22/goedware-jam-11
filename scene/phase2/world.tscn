@@ -798,5 +798,3 @@ rotation = -1.5708
 
 [node name="hook" type="Sprite2D" parent="."]
 texture = ExtResource("18_jbbyu")
-
-[node name="Node2D" type="Node2D" parent="."]
