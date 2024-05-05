@@ -5,14 +5,18 @@ var range
 var travelled_distance = 0
 var direction
 var parent
-var max_w = 30
-var max_h = 5
+var max_l = 30
+var max_w = 5
 
-@onready var shape: Polygon2D = $Polygon2D
+@onready var shape: Line2D = $Line2D
 @onready var light: PointLight2D = $PointLight2D
 
 func _ready():
-	set_shape(max_w, max_h)
+	set_shape(max_l, max_w)
+	#light.position.x = max_l/2
+	#light.position.y = max_w/2
+	##light.texture.
+	
 	
 
 func _physics_process(delta):
@@ -28,20 +32,25 @@ func _physics_process(delta):
 	#if int(travelled_distance) % int(range/5) == 0:
 		#print('hi')
 	var f = 1-travelled_distance/range
+	var l = max_l
 	var w = max_w * f
-	var h = max_h * f
-	set_shape(w, h)
+	set_shape(l, w)
 		
 	
-func set_shape(width, height):
-	var x = width/2
-	var y = height/2
-	var arr = PackedVector2Array([
-		Vector2(-x, -y),
-		Vector2(x, -y),
-		Vector2(x, y),
-		Vector2(-x, y)
+func set_shape(length, width):
+	shape.width = width
+	shape.points = PackedVector2Array([
+		Vector2(0, 0),
+		Vector2(length, 0)
 	])
-	shape.polygon = arr
+	#var x = width/2
+	#var y = height/2
+	#var arr = PackedVector2Array([
+		#Vector2(-x, -y),
+		#Vector2(x, -y),
+		#Vector2(x, y),
+		#Vector2(-x, y)
+	#])
+	#shape.polygon = arr
 	
 	

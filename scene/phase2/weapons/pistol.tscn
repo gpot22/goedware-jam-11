@@ -1,26 +1,26 @@
 [gd_scene load_steps=9 format=3 uid="uid://bc61jflp4x12c"]
 
-[ext_resource type="Texture2D" uid="uid://c60c3xuidy2j6" path="res://assets/sprites/pistol.png" id="1_28bjv"]
-[ext_resource type="Script" path="res://scripts/pistol.gd" id="2_uycve"]
+[ext_resource type="Script" path="res://scripts/pistol.gd" id="1_5ybdk"]
+[ext_resource type="Texture2D" uid="uid://c60c3xuidy2j6" path="res://assets/sprites/pistol.png" id="2_r618m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fllh6"]
-atlas = ExtResource("1_28bjv")
+atlas = ExtResource("2_r618m")
 region = Rect2(0, 0, 40, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2opp"]
-atlas = ExtResource("1_28bjv")
+atlas = ExtResource("2_r618m")
 region = Rect2(40, 0, 40, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1f4v"]
-atlas = ExtResource("1_28bjv")
+atlas = ExtResource("2_r618m")
 region = Rect2(80, 0, 40, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jbcpy"]
-atlas = ExtResource("1_28bjv")
+atlas = ExtResource("2_r618m")
 region = Rect2(120, 0, 40, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uh6ch"]
-atlas = ExtResource("1_28bjv")
+atlas = ExtResource("2_r618m")
 region = Rect2(160, 0, 40, 29)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2o0dw"]
@@ -62,7 +62,7 @@ animations = [{
 }]
 
 [node name="pistol" type="Node2D" groups=["Weapon"]]
-script = ExtResource("2_uycve")
+script = ExtResource("1_5ybdk")
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
 

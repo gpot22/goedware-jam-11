@@ -2,7 +2,7 @@ extends 'res://scripts/EnemySuperclass.gd'
 
 
 
-const VEL = 90.0
+const VEL = 140.0
 const FRIC = 200.0
 const RECOIL = -180.0
 
@@ -46,10 +46,17 @@ func _physics_process(delta):
 		hostile_timer -= 1
 		if hostile_timer == 0:
 			state = 'idle'
-		if player.position.x < position.x:
-			set_direction(-1)
+		if not is_on_edge():
+			if player.position.x < position.x:
+				set_direction(-1)
+			else:
+				set_direction(1)
 		else:
-			set_direction(1)
+			set_direction(0)
+			if player.position.x < position.x:
+				face_dir = -1
+			else:
+				face_dir = 1
 		
 	elif state == 'attack':
 		display_attack_timer()
@@ -101,6 +108,8 @@ func avoid_edge():
 	if not ray_cast_floor.is_colliding() or ray_cast_wall.is_colliding():
 		flip_direction()
 		
+func is_on_edge():
+	return not ray_cast_floor.is_colliding()
 func flip_direction():
 	direction *= -1
 	face_dir *= -1
@@ -136,9 +145,15 @@ func attack():
 	isAttacking = true
 	velocity.x = RECOIL*face_dir
 	ap.play("attack")
+	shoot()
 	await ap.animation_finished
 	ap.stop()
 	isAttacking = false
+	
+func shoot():
+	if player == null: return
+	var weapon = weapon_point.get_child(0)
+	weapon.shoot_at(Vector2(player.global_position.x, player.global_position.y - 40))
 	
 func update_animations(direction):
 	if isAttacking: return

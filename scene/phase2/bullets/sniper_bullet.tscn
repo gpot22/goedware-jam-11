@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3ku05csss0iw"]
+
+[ext_resource type="Script" path="res://scene/phase2/bullets/sniper_bullet.gd" id="1_vye6k"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_el8cb"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4qibj"]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jiw06"]
+size = Vector2(30, 5)
+
+[node name="SniperBullet" type="Area2D"]
+top_level = true
+script = ExtResource("1_vye6k")
+
+[node name="Line2D" type="Line2D" parent="."]
+material = SubResource("CanvasItemMaterial_el8cb")
+points = PackedVector2Array(0, 0, 30, 0)
+width = 5.0
+default_color = Color(1, 1, 0.352941, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+material = SubResource("CanvasItemMaterial_4qibj")
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_jiw06")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

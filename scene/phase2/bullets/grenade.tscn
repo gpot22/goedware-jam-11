@@ -1,26 +1,26 @@
 [gd_scene load_steps=13 format=3 uid="uid://be4aqh46p2ude"]
 
-[ext_resource type="Script" path="res://scripts/grenade.gd" id="1_4a3hj"]
-[ext_resource type="Texture2D" uid="uid://b4ms3hbucur2k" path="res://assets/sprites/grenadebomb.png" id="2_ekfsv"]
+[ext_resource type="Script" path="res://scene/phase2/bullets/grenade.gd" id="1_xn367"]
+[ext_resource type="Texture2D" uid="uid://b4ms3hbucur2k" path="res://assets/sprites/grenadebomb.png" id="2_veolv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8rwf"]
-atlas = ExtResource("2_ekfsv")
+atlas = ExtResource("2_veolv")
 region = Rect2(0, 0, 7, 7)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ccaun"]
-atlas = ExtResource("2_ekfsv")
+atlas = ExtResource("2_veolv")
 region = Rect2(7, 0, 7, 7)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n667j"]
-atlas = ExtResource("2_ekfsv")
+atlas = ExtResource("2_veolv")
 region = Rect2(14, 0, 7, 7)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u4fqr"]
-atlas = ExtResource("2_ekfsv")
+atlas = ExtResource("2_veolv")
 region = Rect2(21, 0, 7, 7)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_veub2"]
-atlas = ExtResource("2_ekfsv")
+atlas = ExtResource("2_veolv")
 region = Rect2(28, 0, 7, 7)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vpv5f"]
@@ -63,7 +63,7 @@ radius = 150.0
 
 [node name="grenade" type="Area2D"]
 position = Vector2(0, -1)
-script = ExtResource("1_4a3hj")
+script = ExtResource("1_xn367")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpv5f")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://5ot14u1t27ut" path="res://assets/sprites/sniper.png" id="1_3o46k"]
 [ext_resource type="Script" path="res://scripts/enemy_sniper.gd" id="1_wl76n"]
-[ext_resource type="PackedScene" uid="uid://marg7pw3aal" path="res://scene/phase2/weapons/sniper_rifle.tscn" id="3_shw0e"]
+[ext_resource type="PackedScene" uid="uid://marg7pw3aal" path="res://scene/phase2/sniper_rifle.tscn" id="3_pklmg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xikgq"]
 radius = 12.0
@@ -222,7 +222,7 @@ shape = SubResource("RectangleShape2D_xrh27")
 [node name="WeaponPoint" type="Marker2D" parent="."]
 position = Vector2(15, -20)
 
-[node name="SniperRifle" parent="WeaponPoint" instance=ExtResource("3_shw0e")]
+[node name="SniperRifle" parent="WeaponPoint" instance=ExtResource("3_pklmg")]
 
 [connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
 [connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]

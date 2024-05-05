@@ -1,42 +1,42 @@
 [gd_scene load_steps=13 format=3 uid="uid://bed5g7cgxxc8m"]
 
-[ext_resource type="Texture2D" uid="uid://72uu1htyqk5u" path="res://assets/sprites/grenade1.png" id="1_l5r3i"]
-[ext_resource type="Script" path="res://scripts/bombardier_gun.gd" id="1_vassw"]
+[ext_resource type="Script" path="res://scripts/grenade_launcher.gd" id="1_arsuc"]
+[ext_resource type="Texture2D" uid="uid://72uu1htyqk5u" path="res://assets/sprites/grenade1.png" id="2_fdsjt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qu0xg"]
-atlas = ExtResource("1_l5r3i")
+atlas = ExtResource("2_fdsjt")
 region = Rect2(0, 0, 122, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwune"]
-atlas = ExtResource("1_l5r3i")
+atlas = ExtResource("2_fdsjt")
 region = Rect2(122, 0, 122, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7x00"]
-atlas = ExtResource("1_l5r3i")
+atlas = ExtResource("2_fdsjt")
 region = Rect2(244, 0, 122, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cgum2"]
-atlas = ExtResource("1_l5r3i")
+atlas = ExtResource("2_fdsjt")
 region = Rect2(366, 0, 122, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yokup"]
-atlas = ExtResource("1_l5r3i")
+atlas = ExtResource("2_fdsjt")
 region = Rect2(488, 0, 122, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pp3si"]
-atlas = ExtResource("1_l5r3i")
+atlas = ExtResource("2_fdsjt")
 region = Rect2(610, 0, 122, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnwxd"]
-atlas = ExtResource("1_l5r3i")
+atlas = ExtResource("2_fdsjt")
 region = Rect2(732, 0, 122, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6y4r"]
-atlas = ExtResource("1_l5r3i")
+atlas = ExtResource("2_fdsjt")
 region = Rect2(854, 0, 122, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6m0wi"]
-atlas = ExtResource("1_l5r3i")
+atlas = ExtResource("2_fdsjt")
 region = Rect2(976, 0, 122, 56)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t68ib"]
@@ -74,8 +74,8 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="bombardier_gun" type="Node2D" groups=["Weapon"]]
-script = ExtResource("1_vassw")
+[node name="grenade_launcher" type="Node2D" groups=["Weapon"]]
+script = ExtResource("1_arsuc")
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
 

@@ -41,9 +41,9 @@ func _physics_process(delta):
 		pass
 	elif state == 'evade':
 		rifle.visible = false
-		if not run_from_player():
-			state = 'hostile'
-	
+		run_from_player()
+			#state = 'hostile'
+	#
 	elif state == 'hostile':
 		face_player()
 		if not first_shot and not aiming and not shooting and not hurting:  # start aiming
