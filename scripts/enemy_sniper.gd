@@ -41,7 +41,8 @@ func _physics_process(delta):
 		pass
 	elif state == 'evade':
 		rifle.visible = false
-		run_from_player()
+		if not run_from_player():
+			state = 'hostile'
 	
 	elif state == 'hostile':
 		face_player()
@@ -78,11 +79,6 @@ func _physics_process(delta):
 			aim_timer -= 1
 			if aim_timer > 30:
 				aim_at_player()
-				#if hurting:
-					#rifle.visible = false
-					#aim_timer = 60
-				#else:
-					#rifle.visible = true
 				if start_evade:
 					start_evade = false
 					state = 'evade'
@@ -107,6 +103,14 @@ func _physics_process(delta):
 			
 	if not jumping:
 		handle_movement(delta)
+		
+	var flag = false
+	#for body in shooting_area.get_overlapping_bodies():
+		#if body.name == 'Player':
+			#flag = true
+			#
+	#if not flag:
+		#state = 'idle'
 	update_animations()
 	move_and_slide()
 
@@ -116,6 +120,7 @@ func apply_gravity(delta):
 
 
 func update_animations():
+	rifle.line_of_sight.visible = state == 'hostile' and rifle.visible
 	if first_shot or aiming or shooting or hurting: return
 	if not is_on_floor():
 		ap.play('jump')
@@ -194,13 +199,13 @@ func run_from_player():
 		var p = get_nearest_platform()
 		if typeof(p) == 2 and p == -1:
 			## TODO
-			return
+			return false
 		var v = get_jump_vi(global_position.x, global_position.y, p.global_position.x, p.global_position.y)
 		if not v:
 			## TODO
-			return
+			return false
 		velocity = v
-		
+	return true
 func get_jump_vi(xi, yi, xf, yf):
 	var dx = xf - xi
 	var dy = yf - yi
@@ -285,8 +290,15 @@ func _on_evasion_area_body_entered(body):
 func _on_evasion_area_body_exited(body):
 	if body.name != 'Player': return
 	player = body
-	await get_tree().create_timer(1).timeout
-	state = 'hostile'
+	await get_tree().create_timer(0.5).timeout
+	var flag
+	for x in shooting_area.get_overlapping_bodies():
+		if x.name == 'Player':
+			flag = true
+			state = 'hostile'
+			
+	if not flag:
+		state = 'idle'
 	vel = 0
 
 

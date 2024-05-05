@@ -20,28 +20,34 @@ var charge = 0
 var MAX_CHARGE = 4
 var charge_ready = true
 var aim_timer = 0
-var aim_time_max = 60
+var aim_time_max = 40
+var aim_ready = true
 
 func _physics_process(delta):
 	if not charging and not shoot_ready and charge_ready:
 		charge_up()
 	if state == 'hostile':
-		aim_at_player()
+		if (not shoot_ready or aim_timer > 30) and aim_ready:
+			aim_at_player()
 		if shoot_ready:
-			#print('yeet')
-			aim_timer = aim_time_max
-			charge = 0
-			base.play('idle')
-			shoot_ready = false
-			charge_ready = false
-			await burst_shoot()
-			charge_ready = true
-		#elif not charging:
-			#charge_up()
+			aim_timer -= 1
+			if aim_timer <= 40 and aim_timer % 5 == 0:
+				toggle_line_color()
+			if aim_timer == 0:
+				charge = 0
+				base.play('idle')
+				shoot_ready = false
+				charge_ready = false
+				await burst_shoot()
+				charge_ready = true
 	update_animations()
+	
 func update_animations():
 	if state == 'idle':
 		head.play('idle')
+		line_of_sight.visible = false
+	else:
+		line_of_sight.visible = true
 		#if charge == 0:
 			#base.play('idle')
 		#else:
@@ -56,20 +62,31 @@ func aim_at_player():
 	else:
 		head.scale.y = 1
 		head.position.y = -14
+	# update line of sight
+	var line: Vector2 = line_of_sight.points[1]
+	line = (line / line.length()) * bullet_spawn.global_position.distance_to(player_center)*0.6
+	line_of_sight.points[1] = line
 		
 func burst_shoot(n=3):
 	if line_of_sight.visible:
 		line_of_sight.width = 4
 		line_of_sight.default_color = Color('#ff463cc8')
-	
+	aim_ready = false
 	for i in range(n):
 		shoot()
 		await get_tree().create_timer(0.1).timeout
+	aim_ready = true
 	if line_of_sight.visible:
 		line_of_sight.width = 2
 		line_of_sight.default_color = Color('#ff463c78')
 	#await get_tree().create_timer(1.2-0.4).timeout
-	
+
+func toggle_line_color():
+	if line_of_sight.default_color == Color('#ff463c78'):
+		line_of_sight.default_color = Color('#ff463c40')
+	else:
+		line_of_sight.default_color = Color('#ff463c78')
+		
 func shoot():
 	var b = bullet.instantiate()
 	b.global_position = bullet_spawn.global_position
@@ -79,8 +96,6 @@ func shoot():
 	await head.animation_finished
 	head.stop()
 	#anim_sprite.play('shoot')
-	
-	
 	
 func charge_up():
 	var t = 0.6
@@ -95,6 +110,7 @@ func charge_up():
 			base.stop()
 	#if idle_interrupt: return
 	charging = false
+	aim_timer = aim_time_max
 	shoot_ready = true
 	
 
