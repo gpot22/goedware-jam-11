@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://xti23onufikt" path="res://assets/sprites/player.png" id="1_n3cjb"]
 [ext_resource type="Texture2D" uid="uid://bbqbgt22nelgj" path="res://assets/sprites/smoke0.png" id="4_mej1x"]
 [ext_resource type="Texture2D" uid="uid://b7gheskt8u87o" path="res://assets/sprites/smoke1.png" id="5_a2j0n"]
+[ext_resource type="PackedScene" uid="uid://bc61jflp4x12c" path="res://scene/phase2/weapons/pistol.tscn" id="5_wuh0j"]
 [ext_resource type="PackedScene" uid="uid://c48bodylqx00v" path="res://scene/phase2/weapons/shotgun.tscn" id="6_81cva"]
-[ext_resource type="PackedScene" uid="uid://b2ysoqrtw6fbc" path="res://scene/phase2/weapons/uzi.tscn" id="6_pps3h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l74r8"]
 radius = 13.0
@@ -330,7 +330,7 @@ position = Vector2(-48, -32)
 [node name="WeaponPoint" type="Marker2D" parent="."]
 position = Vector2(20, -25)
 
-[node name="Uzi" parent="WeaponPoint" instance=ExtResource("6_pps3h")]
+[node name="pistol" parent="WeaponPoint" instance=ExtResource("5_wuh0j")]
 
 [node name="ShotgunPoint" type="Marker2D" parent="."]
 position = Vector2(20, -25)

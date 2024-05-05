@@ -19,7 +19,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if is_player():
+	if is_player() and active:
 		point_to_cursor()
 		handle_shoot()
 	

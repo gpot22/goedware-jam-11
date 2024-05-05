@@ -20,7 +20,7 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	if is_player():
+	if is_player() and active:
 		point_to_cursor()
 		handle_shoot()
 

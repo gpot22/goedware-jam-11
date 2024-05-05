@@ -84,11 +84,11 @@ func shoot_success():
 	
 func _process(delta):
 	if animate_crosshair:
-		Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(xhair_frames))
+		Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(xhair_frames), 0, Vector2(22, 22))
 		xhair_frames += 1
 		if xhair_frames >= 7:
 			xhair_frames = 0
-			Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0))
+			Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0), 0, Vector2(22, 22))
 			animate_crosshair = false
 	
 # PLAYER LOOP

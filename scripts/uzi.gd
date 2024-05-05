@@ -21,7 +21,7 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	if is_player():
+	if is_player() and active:
 		point_to_cursor()
 		handle_shoot()
 		if shoot_held:
@@ -51,7 +51,8 @@ func handle_shoot():
 		
 	if active and Input.is_action_just_released('shoot'):
 		shoot_held = false
-		anim_sprite.play('stop_shoot')
+		if not reloading:
+			anim_sprite.play('stop_shoot')
 		
 func shoot():
 	var b = bullet.instantiate()

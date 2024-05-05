@@ -23,7 +23,7 @@ func _ready():
 	flatland_polygon.polygon = flatland_collider.polygon
 	testland_polygon.polygon = testland_collider.polygon
 	## set player camera
-	Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0))
+	Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0), 0, Vector2(22, 22))
 	
 
 func _process(delta):

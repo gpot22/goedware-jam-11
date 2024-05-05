@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cxctkgvmdw1ch" path="res://scene/phase2/platforms/long_platform.tscn" id="13_ufppt"]
 [ext_resource type="PackedScene" uid="uid://nbrersifbnc3" path="res://scene/phase2/platforms/medium_platform.tscn" id="14_e2ufd"]
 [ext_resource type="PackedScene" uid="uid://cogndpnpo7xfl" path="res://scene/phase2/platforms/square_platform.tscn" id="15_svxdt"]
-[ext_resource type="PackedScene" path="res://scene/phase2/platforms/border.tscn" id="16_05kh4"]
+[ext_resource type="PackedScene" uid="uid://b1bq8ntiser8p" path="res://scene/phase2/platforms/border.tscn" id="16_05kh4"]
 [ext_resource type="PackedScene" uid="uid://bb8v541vvfcrt" path="res://scene/phase2/platforms/bottom_floor.tscn" id="17_2204c"]
 [ext_resource type="Texture2D" uid="uid://duj2o6eatnbw" path="res://assets/xhair0.png" id="18_8fj2y"]
 [ext_resource type="Texture2D" uid="uid://b2buiq1ffbthf" path="res://assets/xhair1.png" id="19_x8ksv"]
@@ -579,6 +579,8 @@ metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.45, 0.45)
+limit_left = -40
+limit_bottom = 5100
 position_smoothing_enabled = true
 
 [node name="Enemies" type="Node" parent="."]
@@ -604,7 +606,7 @@ color = Color(0.0609198, 0.290021, 0.463875, 1)
 [node name="WorldMap" type="Node2D" parent="."]
 
 [node name="long_platform7" parent="WorldMap" instance=ExtResource("13_ufppt")]
-position = Vector2(404, 675)
+position = Vector2(116, 741)
 
 [node name="long_platform" parent="WorldMap" instance=ExtResource("13_ufppt")]
 position = Vector2(730, 671)
@@ -654,6 +656,7 @@ position = Vector2(970, 231)
 [node name="WorldBorders" type="Node2D" parent="."]
 
 [node name="leftwall" type="Node2D" parent="WorldBorders"]
+position = Vector2(-3, 35)
 
 [node name="Border" parent="WorldBorders/leftwall" instance=ExtResource("16_05kh4")]
 position = Vector2(-10, 1835)
@@ -682,6 +685,7 @@ position = Vector2(5870, 635)
 position = Vector2(5870, 35)
 
 [node name="bottomfloor" type="Node2D" parent="WorldBorders"]
+position = Vector2(0, 45)
 
 [node name="bottom_floor" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
 position = Vector2(105, 2100)
@@ -765,6 +769,94 @@ position = Vector2(5355, 2100)
 position = Vector2(5565, 2100)
 
 [node name="bottom_floor28" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
+position = Vector2(5775, 2100)
+
+[node name="ceiling" type="Node2D" parent="WorldBorders"]
+position = Vector2(5833, 2096)
+rotation = 3.14159
+
+[node name="bottom_floor" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(105, 2100)
+
+[node name="bottom_floor2" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(315, 2100)
+
+[node name="bottom_floor3" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(525, 2100)
+
+[node name="bottom_floor4" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(735, 2100)
+
+[node name="bottom_floor5" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(945, 2100)
+
+[node name="bottom_floor6" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(1155, 2100)
+
+[node name="bottom_floor7" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(1365, 2100)
+
+[node name="bottom_floor8" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(1575, 2100)
+
+[node name="bottom_floor9" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(1785, 2100)
+
+[node name="bottom_floor10" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(1995, 2100)
+
+[node name="bottom_floor11" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(2205, 2100)
+
+[node name="bottom_floor12" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(2415, 2100)
+
+[node name="bottom_floor13" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(2625, 2100)
+
+[node name="bottom_floor14" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(2835, 2100)
+
+[node name="bottom_floor15" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(3045, 2100)
+
+[node name="bottom_floor16" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(3255, 2100)
+
+[node name="bottom_floor17" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(3465, 2100)
+
+[node name="bottom_floor18" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(3675, 2100)
+
+[node name="bottom_floor19" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(3885, 2100)
+
+[node name="bottom_floor20" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(4095, 2100)
+
+[node name="bottom_floor21" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(4305, 2100)
+
+[node name="bottom_floor22" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(4515, 2100)
+
+[node name="bottom_floor23" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(4725, 2100)
+
+[node name="bottom_floor24" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(4935, 2100)
+
+[node name="bottom_floor25" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(5145, 2100)
+
+[node name="bottom_floor26" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(5355, 2100)
+
+[node name="bottom_floor27" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
+position = Vector2(5565, 2100)
+
+[node name="bottom_floor28" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
 position = Vector2(5775, 2100)
 
 [node name="xhair" type="TextureRect" parent="."]

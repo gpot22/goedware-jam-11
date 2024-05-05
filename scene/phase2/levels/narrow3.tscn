@@ -1,33 +1,30 @@
-[gd_scene load_steps=38 format=3 uid="uid://chb280dapo2om"]
+[gd_scene load_steps=35 format=3 uid="uid://bavmfwbwwkje6"]
 
-[ext_resource type="Script" path="res://scripts/world.gd" id="1_0a7t2"]
-[ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_c1c1t"]
-[ext_resource type="Texture2D" uid="uid://diamcnywig4em" path="res://assets/background_tile.png" id="3_plo62"]
-[ext_resource type="Texture2D" uid="uid://d06mi83l5e71m" path="res://assets/background_tile2.png" id="4_unl1s"]
-[ext_resource type="Texture2D" uid="uid://bhd2by8hxom3m" path="res://assets/generic_background_1.png" id="5_20k24"]
-[ext_resource type="Texture2D" uid="uid://cm2wu4j774y6i" path="res://assets/generic_background_2.png" id="6_m358t"]
-[ext_resource type="Texture2D" uid="uid://bpv787v2neuxu" path="res://assets/generic_background_3.png" id="7_3wsyh"]
-[ext_resource type="Texture2D" uid="uid://bi0r6r1rbtknb" path="res://assets/background_tile3.png" id="8_qpl1d"]
-[ext_resource type="PackedScene" uid="uid://cwrkcklv0yvjo" path="res://scene/phase2/player/player.tscn" id="9_4ibtc"]
-[ext_resource type="PackedScene" uid="uid://dwjkhg54nugkq" path="res://scene/phase2/enemies/enemy_beef.tscn" id="10_8gis7"]
-[ext_resource type="PackedScene" uid="uid://wtywps23r4pk" path="res://scene/phase2/enemies/enemy_bombardier.tscn" id="11_umjol"]
-[ext_resource type="PackedScene" uid="uid://c5su8u53h77tj" path="res://scene/phase2/enemies/enemy_sniper.tscn" id="12_g02c6"]
-[ext_resource type="PackedScene" uid="uid://cxctkgvmdw1ch" path="res://scene/phase2/platforms/long_platform.tscn" id="13_7xtv5"]
-[ext_resource type="PackedScene" uid="uid://nbrersifbnc3" path="res://scene/phase2/platforms/medium_platform.tscn" id="14_vsyue"]
-[ext_resource type="PackedScene" uid="uid://cogndpnpo7xfl" path="res://scene/phase2/platforms/square_platform.tscn" id="15_dpwxy"]
-[ext_resource type="PackedScene" uid="uid://b1bq8ntiser8p" path="res://scene/phase2/platforms/border.tscn" id="16_288c5"]
-[ext_resource type="PackedScene" uid="uid://bb8v541vvfcrt" path="res://scene/phase2/platforms/bottom_floor.tscn" id="17_slojm"]
-[ext_resource type="Texture2D" uid="uid://duj2o6eatnbw" path="res://assets/xhair0.png" id="18_s6yh0"]
-[ext_resource type="Texture2D" uid="uid://b2buiq1ffbthf" path="res://assets/xhair1.png" id="19_s2udk"]
-[ext_resource type="Texture2D" uid="uid://d1qtlst7payjf" path="res://assets/xhair2.png" id="20_sju4v"]
-[ext_resource type="Texture2D" uid="uid://da2xrpao7pse7" path="res://assets/xhair3.png" id="21_ctbqj"]
-[ext_resource type="Texture2D" uid="uid://bmxcccvfqv5vu" path="res://assets/xhair4.png" id="22_sdv4y"]
-[ext_resource type="Texture2D" uid="uid://b2gs00j2coei5" path="res://assets/xhair5.png" id="23_vh4ni"]
-[ext_resource type="Texture2D" uid="uid://d3mwf53hbsclj" path="res://assets/xhair6.png" id="24_3ndqe"]
-[ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="25_48fhu"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_l81e7"]
+[ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_e1v04"]
+[ext_resource type="Texture2D" uid="uid://diamcnywig4em" path="res://assets/background_tile.png" id="3_g0k7e"]
+[ext_resource type="Texture2D" uid="uid://d06mi83l5e71m" path="res://assets/background_tile2.png" id="4_hdfic"]
+[ext_resource type="Texture2D" uid="uid://bhd2by8hxom3m" path="res://assets/generic_background_1.png" id="5_bs5bt"]
+[ext_resource type="Texture2D" uid="uid://cm2wu4j774y6i" path="res://assets/generic_background_2.png" id="6_xjlql"]
+[ext_resource type="Texture2D" uid="uid://bpv787v2neuxu" path="res://assets/generic_background_3.png" id="7_n6ows"]
+[ext_resource type="Texture2D" uid="uid://bi0r6r1rbtknb" path="res://assets/background_tile3.png" id="8_7i8y0"]
+[ext_resource type="PackedScene" uid="uid://cwrkcklv0yvjo" path="res://scene/phase2/player/player.tscn" id="9_30ya2"]
+[ext_resource type="PackedScene" uid="uid://cxctkgvmdw1ch" path="res://scene/phase2/platforms/long_platform.tscn" id="10_stdej"]
+[ext_resource type="PackedScene" uid="uid://nbrersifbnc3" path="res://scene/phase2/platforms/medium_platform.tscn" id="11_2opst"]
+[ext_resource type="PackedScene" uid="uid://cogndpnpo7xfl" path="res://scene/phase2/platforms/square_platform.tscn" id="12_817ft"]
+[ext_resource type="PackedScene" uid="uid://b1bq8ntiser8p" path="res://scene/phase2/platforms/border.tscn" id="13_bfkcj"]
+[ext_resource type="PackedScene" uid="uid://bb8v541vvfcrt" path="res://scene/phase2/platforms/bottom_floor.tscn" id="14_cy5ic"]
+[ext_resource type="Texture2D" uid="uid://duj2o6eatnbw" path="res://assets/xhair0.png" id="15_i3kke"]
+[ext_resource type="Texture2D" uid="uid://b2buiq1ffbthf" path="res://assets/xhair1.png" id="16_psp3y"]
+[ext_resource type="Texture2D" uid="uid://d1qtlst7payjf" path="res://assets/xhair2.png" id="17_csinw"]
+[ext_resource type="Texture2D" uid="uid://da2xrpao7pse7" path="res://assets/xhair3.png" id="18_xjq61"]
+[ext_resource type="Texture2D" uid="uid://bmxcccvfqv5vu" path="res://assets/xhair4.png" id="19_5ax6f"]
+[ext_resource type="Texture2D" uid="uid://b2gs00j2coei5" path="res://assets/xhair5.png" id="20_hwn5m"]
+[ext_resource type="Texture2D" uid="uid://d3mwf53hbsclj" path="res://assets/xhair6.png" id="21_xff2r"]
+[ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="22_fnfin"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y865c"]
-texture = ExtResource("2_c1c1t")
+texture = ExtResource("2_e1v04")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -454,32 +451,32 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_y865c")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gd3a6"]
-texture = ExtResource("3_plo62")
+texture = ExtResource("3_g0k7e")
 texture_region_size = Vector2i(160, 160)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ocvjk"]
-texture = ExtResource("4_unl1s")
+texture = ExtResource("4_hdfic")
 texture_region_size = Vector2i(160, 160)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8l87s"]
-texture = ExtResource("5_20k24")
+texture = ExtResource("5_bs5bt")
 texture_region_size = Vector2i(160, 160)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p7jw0"]
-texture = ExtResource("6_m358t")
+texture = ExtResource("6_xjlql")
 texture_region_size = Vector2i(160, 160)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlj13"]
-texture = ExtResource("7_3wsyh")
+texture = ExtResource("7_n6ows")
 texture_region_size = Vector2i(160, 160)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6vc7n"]
-texture = ExtResource("8_qpl1d")
+texture = ExtResource("8_7i8y0")
 texture_region_size = Vector2i(160, 160)
 0:0/0 = 0
 
@@ -503,23 +500,23 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_4fg1e"]
 frames = 7
-frame_0/texture = ExtResource("18_s6yh0")
+frame_0/texture = ExtResource("15_i3kke")
 frame_0/duration = 0.1
-frame_1/texture = ExtResource("19_s2udk")
+frame_1/texture = ExtResource("16_psp3y")
 frame_1/duration = 0.1
-frame_2/texture = ExtResource("20_sju4v")
+frame_2/texture = ExtResource("17_csinw")
 frame_2/duration = 0.1
-frame_3/texture = ExtResource("21_ctbqj")
+frame_3/texture = ExtResource("18_xjq61")
 frame_3/duration = 0.1
-frame_4/texture = ExtResource("22_sdv4y")
+frame_4/texture = ExtResource("19_5ax6f")
 frame_4/duration = 0.1
-frame_5/texture = ExtResource("23_vh4ni")
+frame_5/texture = ExtResource("20_hwn5m")
 frame_5/duration = 0.1
-frame_6/texture = ExtResource("24_3ndqe")
+frame_6/texture = ExtResource("21_xff2r")
 frame_6/duration = 0.1
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_0a7t2")
+script = ExtResource("1_l81e7")
 
 [node name="Flatland" type="StaticBody2D" parent="."]
 position = Vector2(4463, -1832)
@@ -565,8 +562,8 @@ layer_0/tile_data = PackedInt32Array(-262149, 0, 0, -262148, 0, 0, -262147, 0, 0
 [node name="CanvasModulate" type="CanvasModulate" parent="ParallaxBackground/ParallaxLayer"]
 color = Color(0.701512, 0.757683, 0.816611, 1)
 
-[node name="Player" parent="." instance=ExtResource("9_4ibtc")]
-position = Vector2(1059, 596)
+[node name="Player" parent="." instance=ExtResource("9_30ya2")]
+position = Vector2(450, 1507)
 floor_constant_speed = true
 floor_snap_length = 2.0
 
@@ -583,189 +580,257 @@ position_smoothing_enabled = true
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="beef" parent="Enemies" instance=ExtResource("10_8gis7")]
-position = Vector2(2321, 443)
-
-[node name="beef2" parent="Enemies" instance=ExtResource("10_8gis7")]
-position = Vector2(1838, 1909)
-
-[node name="beef3" parent="Enemies" instance=ExtResource("10_8gis7")]
-position = Vector2(1245, 1998)
-
-[node name="bombardier" parent="Enemies" instance=ExtResource("11_umjol")]
-position = Vector2(1370, 808)
-
-[node name="sniper" parent="Enemies" instance=ExtResource("12_g02c6")]
-position = Vector2(3361, 2057)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0609198, 0.290021, 0.463875, 1)
 
 [node name="WorldMap" type="Node2D" parent="."]
 
-[node name="long_platform7" parent="WorldMap" instance=ExtResource("13_7xtv5")]
-position = Vector2(404, 675)
+[node name="long_platform2" parent="WorldMap" instance=ExtResource("10_stdej")]
+position = Vector2(769, 1587)
 
-[node name="long_platform" parent="WorldMap" instance=ExtResource("13_7xtv5")]
-position = Vector2(730, 671)
+[node name="long_platform3" parent="WorldMap" instance=ExtResource("10_stdej")]
+position = Vector2(547, 861)
 
-[node name="long_platform2" parent="WorldMap" instance=ExtResource("13_7xtv5")]
-position = Vector2(1154, 678)
+[node name="long_platform5" parent="WorldMap" instance=ExtResource("10_stdej")]
+position = Vector2(374, 449)
 
-[node name="long_platform4" parent="WorldMap" instance=ExtResource("13_7xtv5")]
-position = Vector2(1035, 1002)
+[node name="medium_platform" parent="WorldMap" instance=ExtResource("11_2opst")]
+position = Vector2(411, 1369)
 
-[node name="long_platform5" parent="WorldMap" instance=ExtResource("13_7xtv5")]
-position = Vector2(448, 1229)
+[node name="medium_platform2" parent="WorldMap" instance=ExtResource("11_2opst")]
+position = Vector2(742, 1442)
 
-[node name="medium_platform" parent="WorldMap" instance=ExtResource("14_vsyue")]
-position = Vector2(1359, 856)
+[node name="medium_platform8" parent="WorldMap" instance=ExtResource("11_2opst")]
+position = Vector2(663, 1175)
 
-[node name="medium_platform2" parent="WorldMap" instance=ExtResource("14_vsyue")]
-position = Vector2(1608, 773)
+[node name="medium_platform10" parent="WorldMap" instance=ExtResource("11_2opst")]
+position = Vector2(199, 217)
 
-[node name="medium_platform3" parent="WorldMap" instance=ExtResource("14_vsyue")]
-position = Vector2(1851, 691)
+[node name="medium_platform11" parent="WorldMap" instance=ExtResource("11_2opst")]
+position = Vector2(343, 1062)
 
-[node name="medium_platform4" parent="WorldMap" instance=ExtResource("14_vsyue")]
-position = Vector2(2126, 623)
+[node name="square_platform3" parent="WorldMap" instance=ExtResource("12_817ft")]
+position = Vector2(135, 1021)
 
-[node name="medium_platform5" parent="WorldMap" instance=ExtResource("14_vsyue")]
-position = Vector2(2260, 624)
+[node name="square_platform4" parent="WorldMap" instance=ExtResource("12_817ft")]
+position = Vector2(135, 1335)
 
-[node name="medium_platform6" parent="WorldMap" instance=ExtResource("14_vsyue")]
-position = Vector2(2394, 625)
+[node name="square_platform6" parent="WorldMap" instance=ExtResource("12_817ft")]
+position = Vector2(585, 260)
 
-[node name="square_platform" parent="WorldMap" instance=ExtResource("15_dpwxy")]
-position = Vector2(1630, 1179)
+[node name="square_platform8" parent="WorldMap" instance=ExtResource("12_817ft")]
+position = Vector2(855, 528)
 
-[node name="square_platform3" parent="WorldMap" instance=ExtResource("15_dpwxy")]
-position = Vector2(748, 1135)
+[node name="square_platform9" parent="WorldMap" instance=ExtResource("12_817ft")]
+position = Vector2(875, 850)
 
-[node name="square_platform2" parent="WorldMap" instance=ExtResource("15_dpwxy")]
-position = Vector2(1832, 962)
-
-[node name="square_platform4" parent="WorldMap" instance=ExtResource("15_dpwxy")]
-position = Vector2(2621, 422)
-
-[node name="long_platform3" parent="WorldMap" instance=ExtResource("13_7xtv5")]
-position = Vector2(970, 231)
+[node name="square_platform7" parent="WorldMap" instance=ExtResource("12_817ft")]
+position = Vector2(135, 680)
 
 [node name="WorldBorders" type="Node2D" parent="."]
 
 [node name="leftwall" type="Node2D" parent="WorldBorders"]
 
-[node name="Border" parent="WorldBorders/leftwall" instance=ExtResource("16_288c5")]
+[node name="Border" parent="WorldBorders/leftwall" instance=ExtResource("13_bfkcj")]
 position = Vector2(-10, 1835)
 
-[node name="Border2" parent="WorldBorders/leftwall" instance=ExtResource("16_288c5")]
+[node name="Border2" parent="WorldBorders/leftwall" instance=ExtResource("13_bfkcj")]
 position = Vector2(-10, 1235)
 
-[node name="Border3" parent="WorldBorders/leftwall" instance=ExtResource("16_288c5")]
+[node name="Border3" parent="WorldBorders/leftwall" instance=ExtResource("13_bfkcj")]
 position = Vector2(-10, 635)
 
-[node name="Border4" parent="WorldBorders/leftwall" instance=ExtResource("16_288c5")]
+[node name="Border4" parent="WorldBorders/leftwall" instance=ExtResource("13_bfkcj")]
 position = Vector2(-10, 35)
 
 [node name="rightwall" type="Node2D" parent="WorldBorders"]
-position = Vector2(-2000, 0)
+position = Vector2(-4874, 4)
 
-[node name="Border5" parent="WorldBorders/rightwall" instance=ExtResource("16_288c5")]
+[node name="Border5" parent="WorldBorders/rightwall" instance=ExtResource("13_bfkcj")]
 position = Vector2(5870, 1835)
 
-[node name="Border6" parent="WorldBorders/rightwall" instance=ExtResource("16_288c5")]
+[node name="Border6" parent="WorldBorders/rightwall" instance=ExtResource("13_bfkcj")]
 position = Vector2(5870, 1235)
 
-[node name="Border7" parent="WorldBorders/rightwall" instance=ExtResource("16_288c5")]
+[node name="Border7" parent="WorldBorders/rightwall" instance=ExtResource("13_bfkcj")]
 position = Vector2(5870, 635)
 
-[node name="Border8" parent="WorldBorders/rightwall" instance=ExtResource("16_288c5")]
+[node name="Border8" parent="WorldBorders/rightwall" instance=ExtResource("13_bfkcj")]
 position = Vector2(5870, 35)
 
 [node name="bottomfloor" type="Node2D" parent="WorldBorders"]
+position = Vector2(-19, -570)
 
-[node name="bottom_floor" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(105, 2100)
 
-[node name="bottom_floor2" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor2" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(315, 2100)
 
-[node name="bottom_floor3" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor3" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(525, 2100)
 
-[node name="bottom_floor4" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor4" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(735, 2100)
 
-[node name="bottom_floor5" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor5" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(945, 2100)
 
-[node name="bottom_floor6" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor6" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(1155, 2100)
 
-[node name="bottom_floor7" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor7" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(1365, 2100)
 
-[node name="bottom_floor8" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor8" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(1575, 2100)
 
-[node name="bottom_floor9" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor9" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(1785, 2100)
 
-[node name="bottom_floor10" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor10" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(1995, 2100)
 
-[node name="bottom_floor11" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor11" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(2205, 2100)
 
-[node name="bottom_floor12" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor12" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(2415, 2100)
 
-[node name="bottom_floor13" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor13" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(2625, 2100)
 
-[node name="bottom_floor14" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor14" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(2835, 2100)
 
-[node name="bottom_floor15" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor15" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(3045, 2100)
 
-[node name="bottom_floor16" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor16" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(3255, 2100)
 
-[node name="bottom_floor17" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor17" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(3465, 2100)
 
-[node name="bottom_floor18" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor18" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(3675, 2100)
 
-[node name="bottom_floor19" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor19" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(3885, 2100)
 
-[node name="bottom_floor20" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor20" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(4095, 2100)
 
-[node name="bottom_floor21" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor21" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(4305, 2100)
 
-[node name="bottom_floor22" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor22" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(4515, 2100)
 
-[node name="bottom_floor23" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor23" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(4725, 2100)
 
-[node name="bottom_floor24" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor24" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(4935, 2100)
 
-[node name="bottom_floor25" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor25" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(5145, 2100)
 
-[node name="bottom_floor26" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor26" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(5355, 2100)
 
-[node name="bottom_floor27" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor27" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
 position = Vector2(5565, 2100)
 
-[node name="bottom_floor28" parent="WorldBorders/bottomfloor" instance=ExtResource("17_slojm")]
+[node name="bottom_floor28" parent="WorldBorders/bottomfloor" instance=ExtResource("14_cy5ic")]
+position = Vector2(5775, 2100)
+
+[node name="ceiling" type="Node2D" parent="WorldBorders"]
+position = Vector2(5847, 2134)
+rotation = 3.14159
+
+[node name="bottom_floor" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(105, 2100)
+
+[node name="bottom_floor2" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(315, 2100)
+
+[node name="bottom_floor3" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(525, 2100)
+
+[node name="bottom_floor4" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(735, 2100)
+
+[node name="bottom_floor5" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(945, 2100)
+
+[node name="bottom_floor6" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(1155, 2100)
+
+[node name="bottom_floor7" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(1365, 2100)
+
+[node name="bottom_floor8" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(1575, 2100)
+
+[node name="bottom_floor9" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(1785, 2100)
+
+[node name="bottom_floor10" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(1995, 2100)
+
+[node name="bottom_floor11" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(2205, 2100)
+
+[node name="bottom_floor12" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(2415, 2100)
+
+[node name="bottom_floor13" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(2625, 2100)
+
+[node name="bottom_floor14" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(2835, 2100)
+
+[node name="bottom_floor15" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(3045, 2100)
+
+[node name="bottom_floor16" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(3255, 2100)
+
+[node name="bottom_floor17" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(3465, 2100)
+
+[node name="bottom_floor18" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(3675, 2100)
+
+[node name="bottom_floor19" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(3885, 2100)
+
+[node name="bottom_floor20" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(4095, 2100)
+
+[node name="bottom_floor21" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(4305, 2100)
+
+[node name="bottom_floor22" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(4515, 2100)
+
+[node name="bottom_floor23" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(4725, 2100)
+
+[node name="bottom_floor24" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(4935, 2100)
+
+[node name="bottom_floor25" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(5145, 2100)
+
+[node name="bottom_floor26" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(5355, 2100)
+
+[node name="bottom_floor27" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
+position = Vector2(5565, 2100)
+
+[node name="bottom_floor28" parent="WorldBorders/ceiling" instance=ExtResource("14_cy5ic")]
 position = Vector2(5775, 2100)
 
 [node name="xhair" type="TextureRect" parent="."]
@@ -774,4 +839,7 @@ offset_bottom = 40.0
 texture = SubResource("AnimatedTexture_4fg1e")
 
 [node name="hook" type="Sprite2D" parent="."]
-texture = ExtResource("25_48fhu")
+texture = ExtResource("22_fnfin")
+
+[node name="square_platform3" parent="." instance=ExtResource("12_817ft")]
+position = Vector2(861, 1178)
