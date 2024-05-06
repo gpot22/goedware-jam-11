@@ -37,7 +37,6 @@ func _ready():
 
 func stop_evade():
 	for b in wall_collision.get_overlapping_bodies():
-		print(b)
 		if b.name != 'Player' and b != self:
 			return true
 	return false
