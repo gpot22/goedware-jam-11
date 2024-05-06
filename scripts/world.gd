@@ -7,6 +7,7 @@ extends Node2D
 @onready var world_borders = $WorldBorders
 @onready var xhair = $xhair
 @onready var spawn_points = $SpawnPoints
+@onready var health_bar: Sprite2D = $CanvasLayer/HealthBar/bar
 
 var rng = RandomNumberGenerator.new()
 var floor = preload('res://scene/phase2/platforms/bottom_floor.tscn')
@@ -19,7 +20,7 @@ var ENEMIES = {
 }
 var used_points = []
 
-var zoom_increment = 0.8
+var zoom_increment = 0.4
 var zoom_death_target = 2.0
 var zoom_current
 var zoom_next
@@ -64,6 +65,7 @@ func player_death_phase(delta):
 		zoom_current = lerp(zoom_current, zoom_current + zoom_increment, zoom_increment*delta)
 		camera_2d.set_zoom(Vector2(zoom_current, zoom_current))
 		await get_tree().create_timer(0.01).timeout
+	await player.ap.animation_finished
 	death_phase_finished = true
 
 func _process(delta):
@@ -75,10 +77,28 @@ func _process(delta):
 		get_parent().win()
 		get_parent().go_to_phase_1(false)
 		
-	#if player_dead():
-	if Input.is_action_just_pressed('test'):
+	if player_dead():
 		await player_death_phase(delta)
-		if death_phase_finished:
+		if death_phase_finished:  ### END PHASE 2 HERE
 			print('shit on')
 			pass
+	update_health_bar()
+	
+func update_health_bar():
+	var x
+	var y = 0
+	var w = 160
+	var h = 11
+	var offset_x
+	
+	var health_percent = player.health / player.max_health
+	var pixels = max(int(w * health_percent), 0)
+	x = pixels - w
+	offset_x = pixels - w
+	health_bar.region_rect = Rect2(x, y, w, h)
+	health_bar.offset = Vector2(offset_x, 0)
+	
+	
+	
+	
 
