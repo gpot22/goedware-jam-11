@@ -34,7 +34,8 @@ func _ready():
 		var points = get_spawn_points(enemy_name)
 		points.shuffle()
 		for i in range(test_level[enemy_name]):
-			if len(points)
+			if len(points) == 0:
+				break
 			var idx = rng.randi_range(0, len(points)-1)
 			print(points[idx])
 			points[idx].add_child(ENEMIES[enemy_name].instantiate())
