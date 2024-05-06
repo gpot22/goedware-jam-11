@@ -80,12 +80,13 @@ func _process(delta):
 	# update 
 	camera_2d.set_position(Vector2(player.get_position().x, player.get_position().y-35))
 	if not enemies_alive():
+		var parent = get_parent()
 		await player_celebrate_phase(delta)
 		if celebrate_phase_finished:
 			GlobalVariables.wallet += 1
 			GlobalVariables.level += 1
-			get_parent().win()
-			get_parent().go_to_phase_1(false)
+			parent.win()
+			parent.go_to_phase_1(false)
 		
 	update_health_bar()	
 	if player_dead():
