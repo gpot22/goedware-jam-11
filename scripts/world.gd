@@ -22,7 +22,7 @@ var ENEMIES = {
 }
 var used_points = []
 
-var zoom_increment = 0.4
+var zoom_increment = 1.3
 var zoom_death_target = 2.0
 var zoom_current
 var zoom_next
@@ -77,7 +77,7 @@ func player_celebrate_phase(delta):
 		zoom_current = lerp(zoom_current, zoom_current + zoom_increment, zoom_increment*delta)
 		camera_2d.set_zoom(Vector2(zoom_current, zoom_current))
 		await get_tree().create_timer(0.01).timeout
-	await player.ap.animation_finished
+	#await player.ap.animation_finished
 	for i in range(3):
 		await player.celebrate_idle()
 		await player.ap.animation_finished
@@ -119,6 +119,8 @@ func update_health_bar():
 	health_bar.offset = Vector2(offset_x, 0)
 	
 func update_bullets():
+	if player.gun == null:
+		return
 	bullet_label.text = str(player.gun.current_magazine) + '/' + str(player.gun.magazine)
 	
 	

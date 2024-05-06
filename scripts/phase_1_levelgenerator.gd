@@ -45,9 +45,10 @@ var weapon_selection_instance
 var phase_2_instance
 
 var playing_phase_2_music = false
-var first_level = 0
+var first_level = 12
 
 var rng
+@onready var end = $"."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -115,6 +116,8 @@ func go_to_phase_1(from_shop):
 					Audio.play_sfx('breaktile')
 					await get_tree().create_timer(0.2).timeout
 			remove_child(get_child(1))
+			if current_level == 12:
+				get_tree().change_scene_to_file("res://scene/end.tscn")
 			current_level += 1
 			phase_1_instance = phase_1.instantiate()
 			phase_1_instance.song = 'phase1_' + str(rng.randi_range(1,2))
