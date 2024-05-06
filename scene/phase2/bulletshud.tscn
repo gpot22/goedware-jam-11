@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmdndqk6mdwpj"]
+
+[ext_resource type="FontFile" uid="uid://c0mc3uhedbvnm" path="res://ONESIZE_.TTF" id="1_xg4rf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8dodw"]
+font = ExtResource("1_xg4rf")
+
+[node name="Bulletshud" type="Node2D"]
+position = Vector2(-22, -7)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "10/20"
+label_settings = SubResource("LabelSettings_8dodw")
