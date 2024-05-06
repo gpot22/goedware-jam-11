@@ -74,7 +74,7 @@ var celebrating = false
 
 func _ready():
 	rng = RandomNumberGenerator.new()
-	
+	print(GlobalVariables.equipped_weapons)
 	if 'sniper' in GlobalVariables.equipped_weapons:
 		sniper = SNIPER_RIFLE.instantiate()
 	if 'pistol' in GlobalVariables.equipped_weapons:
