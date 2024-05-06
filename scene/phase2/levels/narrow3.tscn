@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bavmfwbwwkje6"]
+[gd_scene load_steps=38 format=3 uid="uid://bavmfwbwwkje6"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_l81e7"]
 [ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_e1v04"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://d3mwf53hbsclj" path="res://assets/xhair6.png" id="21_xff2r"]
 [ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="22_fnfin"]
 [ext_resource type="PackedScene" uid="uid://dxgw6wox0bygs" path="res://scene/phase2/levels/EnemySpawn/EnemySpawnPoint.tscn" id="23_76dun"]
+[ext_resource type="Texture2D" uid="uid://docgo87di4b82" path="res://assets/sprites/hpbox.png" id="24_cepgq"]
+[ext_resource type="Texture2D" uid="uid://73cm115w1p8x" path="res://assets/sprites/hp.png" id="25_iucok"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y865c"]
 texture = ExtResource("2_e1v04")
@@ -804,3 +806,19 @@ position = Vector2(413, 380)
 
 [node name="turret" parent="SpawnPoints" instance=ExtResource("23_76dun")]
 position = Vector2(195, 177)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="HealthBar" type="Node2D" parent="CanvasLayer"]
+position = Vector2(710, 432)
+
+[node name="box" type="Sprite2D" parent="CanvasLayer/HealthBar"]
+texture = ExtResource("24_cepgq")
+
+[node name="bar" type="Sprite2D" parent="CanvasLayer/HealthBar"]
+texture = ExtResource("25_iucok")
+region_enabled = true
+region_rect = Rect2(0, 0, 160, 11)
+
+[node name="Bullets" type="Node2D" parent="CanvasLayer"]

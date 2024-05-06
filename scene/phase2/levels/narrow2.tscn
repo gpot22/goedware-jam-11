@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ccucig5t8j61y"]
+[gd_scene load_steps=35 format=3 uid="uid://ccucig5t8j61y"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_f0gox"]
 [ext_resource type="Texture2D" uid="uid://diamcnywig4em" path="res://assets/background_tile.png" id="3_y7f87"]
@@ -19,8 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://da2xrpao7pse7" path="res://assets/xhair3.png" id="21_wpnk3"]
 [ext_resource type="Texture2D" uid="uid://bmxcccvfqv5vu" path="res://assets/xhair4.png" id="22_0ykim"]
 [ext_resource type="PackedScene" uid="uid://dxgw6wox0bygs" path="res://scene/phase2/levels/EnemySpawn/EnemySpawnPoint.tscn" id="23_8o8r0"]
+[ext_resource type="Texture2D" uid="uid://docgo87di4b82" path="res://assets/sprites/hpbox.png" id="23_ak4l2"]
 [ext_resource type="Texture2D" uid="uid://b2gs00j2coei5" path="res://assets/xhair5.png" id="23_tisk0"]
 [ext_resource type="Texture2D" uid="uid://d3mwf53hbsclj" path="res://assets/xhair6.png" id="24_eqnb0"]
+[ext_resource type="Texture2D" uid="uid://73cm115w1p8x" path="res://assets/sprites/hp.png" id="24_y5w82"]
 [ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="25_rjacl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gd3a6"]
@@ -313,3 +315,19 @@ position = Vector2(441, 1652)
 
 [node name="beef7" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
 position = Vector2(616, 1657)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="HealthBar" type="Node2D" parent="CanvasLayer"]
+position = Vector2(710, 432)
+
+[node name="box" type="Sprite2D" parent="CanvasLayer/HealthBar"]
+texture = ExtResource("23_ak4l2")
+
+[node name="bar" type="Sprite2D" parent="CanvasLayer/HealthBar"]
+texture = ExtResource("24_y5w82")
+region_enabled = true
+region_rect = Rect2(0, 0, 160, 11)
+
+[node name="Bullets" type="Node2D" parent="CanvasLayer"]
