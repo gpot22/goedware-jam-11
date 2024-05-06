@@ -364,9 +364,7 @@ func update_collider(input_axis):
 		collider.rotation_degrees = 0
 		
 func take_damage(dmg):
-	#print('player damaged: ', dmg)
 	health -= dmg
-	#print('ow', dmg)
 	$Sprite2D.self_modulate = Color('#aa0000')
 	await get_tree().create_timer(0.2).timeout
 	$Sprite2D.self_modulate = Color('#ffffff')

@@ -42,7 +42,6 @@ func _ready():
 			if len(points) == 0:
 				break
 			var idx = rng.randi_range(0, len(points)-1)
-			print(points[idx])
 			points[idx].add_child(ENEMIES[enemy_name].instantiate())
 			used_points.append(points[idx])
 			points.pop_at(idx)
