@@ -25,6 +25,7 @@ var zoom_death_target = 2.0
 var zoom_current
 var zoom_next
 var death_phase_finished = false
+var celebrate_phase_finished = false
 
 func _ready():
 	# set bg color
@@ -66,21 +67,33 @@ func player_death_phase(delta):
 	await player.ap.animation_finished
 	death_phase_finished = true
 
+func player_celebrate_phase(delta):
+	player.celebrate()
+	while zoom_current < zoom_death_target:
+		zoom_current = lerp(zoom_current, zoom_current + zoom_increment, zoom_increment*delta)
+		camera_2d.set_zoom(Vector2(zoom_current, zoom_current))
+		await get_tree().create_timer(0.01).timeout
+	await player.ap.animation_finished
+	celebrate_phase_finished = true
+
 func _process(delta):
 	# update 
 	camera_2d.set_position(Vector2(player.get_position().x, player.get_position().y-35))
 	if not enemies_alive():
-		GlobalVariables.wallet += 1
-		GlobalVariables.level += 1
-		get_parent().win()
-		get_parent().go_to_phase_1(false)
-
+		await player_celebrate_phase(delta)
+		if celebrate_phase_finished:
+			GlobalVariables.wallet += 1
+			GlobalVariables.level += 1
+			get_parent().win()
+			get_parent().go_to_phase_1(false)
+		
+	update_health_bar()	
 	if player_dead():
 		var parent = get_parent()
 		await player_death_phase(delta)
 		if death_phase_finished:  ### END PHASE 2 HERE
 			parent.lost()
-	update_health_bar()
+	
 	
 func update_health_bar():
 	var x
@@ -88,7 +101,6 @@ func update_health_bar():
 	var w = 160
 	var h = 11
 	var offset_x
-	
 	var health_percent = player.health / player.max_health
 	var pixels = max(int(w * health_percent), 0)
 	x = pixels - w

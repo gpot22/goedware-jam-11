@@ -364,6 +364,9 @@ func take_damage(dmg):
 	#print('player damaged: ', dmg)
 	health -= dmg
 	#print('ow', dmg)
+	$Sprite2D.self_modulate = Color('#aa0000')
+	await get_tree().create_timer(0.2).timeout
+	$Sprite2D.self_modulate = Color('#ffffff')
 	Audio.play_sfx('hit' + str(rng.randi_range(1,3)))
 	
 
@@ -380,6 +383,13 @@ func die():
 	$WeaponPoint.visible = false
 	$ShotgunPoint.visible = false
 	ap.play('death')
+
+func celebrate():
+	$celebratesprites.visible = true
+	sprite.visible = false
+	$WeaponPoint.visible = false
+	$ShotgunPoint.visible = false
+	ap.play('celebrate')
 
 func _on_shotgun_area_body_entered(body):
 	if not body.is_in_group('Enemy'): return

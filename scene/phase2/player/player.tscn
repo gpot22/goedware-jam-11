@@ -1,8 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://cwrkcklv0yvjo"]
+[gd_scene load_steps=36 format=3 uid="uid://cwrkcklv0yvjo"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6k5ke"]
 [ext_resource type="Texture2D" uid="uid://xti23onufikt" path="res://assets/sprites/player.png" id="1_n3cjb"]
 [ext_resource type="Texture2D" uid="uid://bbqbgt22nelgj" path="res://assets/sprites/smoke0.png" id="4_mej1x"]
+[ext_resource type="PackedScene" uid="uid://bc61jflp4x12c" path="res://scene/phase2/weapons/pistol.tscn" id="5_47fk2"]
 [ext_resource type="Texture2D" uid="uid://b7gheskt8u87o" path="res://assets/sprites/smoke1.png" id="5_a2j0n"]
 [ext_resource type="Texture2D" uid="uid://dfgrnkrsvh44q" path="res://assets/sprites/ded.png" id="7_dpipx"]
 
@@ -359,6 +360,8 @@ position = Vector2(-48, -32)
 [node name="WeaponPoint" type="Marker2D" parent="."]
 position = Vector2(20, -25)
 
+[node name="pistol" parent="WeaponPoint" instance=ExtResource("5_47fk2")]
+
 [node name="ShotgunPoint" type="Marker2D" parent="."]
 position = Vector2(20, -25)
 
@@ -385,6 +388,10 @@ visible = false
 position = Vector2(0, -32)
 texture = ExtResource("7_dpipx")
 hframes = 34
+
+[node name="celebratesprites" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -32)
 
 [node name="rope" type="Marker2D" parent="."]
 position = Vector2(25, -37)
