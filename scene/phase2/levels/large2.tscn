@@ -110,7 +110,7 @@ layer_0/tile_data = PackedInt32Array(-262149, 0, 0, -262148, 0, 0, -262147, 0, 0
 color = Color(0.701512, 0.757683, 0.816611, 1)
 
 [node name="Player" parent="." instance=ExtResource("9_pg0j2")]
-position = Vector2(559, 1089)
+position = Vector2(574, 387)
 floor_constant_speed = true
 floor_snap_length = 2.0
 
@@ -335,8 +335,8 @@ position = Vector2(624, 208)
 [node name="sniperbombardier" parent="SpawnPoints" instance=ExtResource("23_x0d4n")]
 position = Vector2(417, 206)
 
-[node name="sniperbombardierturret9" parent="SpawnPoints" instance=ExtResource("23_x0d4n")]
-position = Vector2(583, 1062)
+[node name="sniperbombardier15" parent="SpawnPoints" instance=ExtResource("23_x0d4n")]
+position = Vector2(579, 1092)
 
 [node name="beef" parent="SpawnPoints" instance=ExtResource("23_x0d4n")]
 position = Vector2(185, 1266)
