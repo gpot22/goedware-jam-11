@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://bcwvvl4uilc63"]
+[gd_scene load_steps=2 format=3 uid="uid://bcwvvl4uilc63"]
+
+[ext_resource type="Texture2D" uid="uid://s1nug0xnaymj" path="res://yayay.png" id="1_5mkfd"]
 
 [node name="End" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("1_5mkfd")
