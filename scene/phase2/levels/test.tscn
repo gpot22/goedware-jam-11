@@ -524,4 +524,4 @@ position = Vector2(1447, 272)
 [node name="test1" type="Node2D" parent="test"]
 
 [node name="bombardier" parent="test/test1" instance=ExtResource("23_hkl20")]
-position = Vector2(1686, 1973)
+position = Vector2(1202, 1794)
