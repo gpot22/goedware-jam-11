@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d32lbl6jlu1wl"]
+[gd_scene load_steps=34 format=3 uid="uid://d32lbl6jlu1wl"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_dg852"]
 [ext_resource type="Texture2D" uid="uid://diamcnywig4em" path="res://assets/background_tile.png" id="2_ty0vc"]
@@ -23,7 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="21_fvjcr"]
 [ext_resource type="PackedScene" uid="uid://dxgw6wox0bygs" path="res://scene/phase2/levels/EnemySpawn/EnemySpawnPoint.tscn" id="22_lb3ix"]
 [ext_resource type="PackedScene" uid="uid://wtywps23r4pk" path="res://scene/phase2/enemies/enemy_bombardier.tscn" id="23_hkl20"]
-[ext_resource type="PackedScene" uid="uid://dwjkhg54nugkq" path="res://scene/phase2/enemies/enemy_beef.tscn" id="23_vq71q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gd3a6"]
 texture = ExtResource("2_ty0vc")
@@ -524,8 +523,5 @@ position = Vector2(1447, 272)
 
 [node name="test1" type="Node2D" parent="test"]
 
-[node name="beef" parent="test/test1" instance=ExtResource("23_vq71q")]
-position = Vector2(956, 2016)
-
 [node name="bombardier" parent="test/test1" instance=ExtResource("23_hkl20")]
-position = Vector2(1320, 2001)
+position = Vector2(1205, 1786)

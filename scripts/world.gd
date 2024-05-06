@@ -18,11 +18,16 @@ var ENEMIES = {
 	'turret': preload(ENEMY_DIR + '/turret.tscn')
 }
 var used_points = []
-# Called when the node enters the scene tree for the first time.
+
+var zoom_increment = 0.8
+var zoom_death_target = 2.0
+var zoom_current
+var zoom_next
+var death_phase_finished = false
+
 func _ready():
 	# set bg color
 	RenderingServer.set_default_clear_color(Color.BLACK)
-	## set player camera
 	Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0), 0, Vector2(22, 22))
 	var test_level = GlobalVariables.phase_2_enemy_count
 	for enemy_name in test_level.keys():
@@ -34,7 +39,7 @@ func _ready():
 			points[idx].add_child(ENEMIES[enemy_name].instantiate())
 			used_points.append(points[idx])
 			points.pop_at(idx)
-		
+	zoom_current = camera_2d.zoom.x
 func get_spawn_points(enemy):
 	var points = []
 	for p in spawn_points.get_children():
@@ -47,19 +52,29 @@ func player_dead():
 	return player.health <= 0
 
 func enemies_alive():
-	for p in used_points:
-		if p.get_child_count() != 0: return true
-	return false
+	return len(get_tree().get_nodes_in_group("Enemy")) != 0
 		
-	
+func player_death_phase(delta):
+	var safety = 0
+	player.die()
+	while zoom_current < zoom_death_target:
+		safety += 1
+		zoom_current = lerp(zoom_current, zoom_current + zoom_increment, zoom_increment*delta)
+		camera_2d.set_zoom(Vector2(zoom_current, zoom_current))
+		await get_tree().create_timer(0.01).timeout
+	death_phase_finished = true
+
 func _process(delta):
 	# update 
 	camera_2d.set_position(Vector2(player.get_position().x, player.get_position().y-35))
 	if not enemies_alive():
 		GlobalVariables.wallet += 1
 		GlobalVariables.level += 1
-		get_parent().win()
-		get_parent().go_to_phase_1(false)
-		#get_tree().change_scene_to_file('res://scene/phase_1_level_generator.tscn')
 		
+	#if player_dead():
+	if Input.is_action_just_pressed('test'):
+		await player_death_phase(delta)
+		if death_phase_finished:
+			print('shit on')
+			pass
 

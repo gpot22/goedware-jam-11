@@ -20,13 +20,15 @@ var explosion_effect = preload('res://scene/vfx/explosion.tscn')
 @onready var ray_cast_wall = $RayCastWall
 @onready var grenade_launcher = $WeaponPoint/grenade_launcher
 @onready var explosion_radius = $ExplosionRadius
+@onready var too_close = $TooClose
+@onready var explode_timer = $ExplodeTimer
 
 
 var tackling = false
 var tackle_ready = false
 var must_tackle = false
-var too_close = false
-var tackle_timer = 0
+var tackle_timer = 150
+var ready_to_explode = false
 
 var showering = false
 
@@ -37,10 +39,9 @@ func _ready():
 	direction = -1
 	player = get_parent().get_parent().get_parent().get_node('Player')
 
+var tackled = false
 func _physics_process(delta):
 	apply_gravity(delta)
-	
-	
 	if state == 'idle':
 		idle_movement()
 		avoid_edge()
@@ -48,6 +49,7 @@ func _physics_process(delta):
 		
 	elif state == 'hostile':
 		grenade_launcher.visible = true
+		vel = 0
 		face_player()
 		shoot_timer -= 1
 		if shoot_timer <= 0:
@@ -60,20 +62,39 @@ func _physics_process(delta):
 	
 	elif state == 'suicidal':
 		grenade_launcher.visible = false
-		if !tackle_player():
-			run_towards_player()
+		if !tackle_player():  # not tackling yet
+			if not is_too_close():
+				vel = RUN_VEL
+				run_towards_player()
+			else:
+				vel = 0
+			if not tackle_ready:
+				explode_timer.start()
+				tackle_ready = true
 			jump_off_edge()
 		else:
+			tackled = true
 			ap.play('tackle')
 			move_and_slide()
-			await get_tree().create_timer(0.8).timeout
-			var explosion = explosion_effect.instantiate()
-			get_parent().get_parent().add_child(explosion)
-			explosion.scale *= 1.2
-			explosion.global_position = global_position
-			explode_damage()
-			
-			queue_free()
+			#ready_to_explode = true
+			#explode_timer.start()
+			#var explosion = explosion_effect.instantiate()
+			#get_parent().get_parent().add_child(explosion)
+			#explosion.scale *= 1.2
+			#explosion.global_position = global_position
+			#explode_damage()
+			#print('fuck you!')
+			#queue_free()
+	
+	if tackled:
+		await get_tree().create_timer(0.8).timeout
+		var explosion = explosion_effect.instantiate()
+		get_parent().get_parent().add_child(explosion)
+		explosion.scale *= 1.2
+		explosion.global_position = global_position
+		explode_damage()
+		print('fuck you!')
+		queue_free()
 	handle_movement(delta)
 	update_animations()
 	move_and_slide()
@@ -111,6 +132,12 @@ func flip_direction():
 	ray_cast_floor.position.x *= -1
 	grenade_launcher.direction = direction
 
+func is_too_close():
+	for b in too_close.get_overlapping_bodies():
+		if b.name == 'Player':
+			return true
+			
+	return false
 # - - - - GENERAL ANIMATION STATE HANDLER - - - - -
 func update_animations():
 	if tackling: return
@@ -181,11 +208,7 @@ func grenade_shower(n=4):
 # suicidal, phase 1
 func run_towards_player():
 	direction = -1 if player.global_position.x < global_position.x else 1
-	if too_close:
-		direction *= -1
-	tackle_timer -= 1
-	if not tackle_timer:
-		tackle_ready = true
+	
 	
 func get_tackle_vi(xi, yi, xf, yf):
 	var dx = xf - xi
@@ -208,43 +231,28 @@ func get_tackle_vi(xi, yi, xf, yf):
 	vix = max(min(700, vix), -700)
 	var v = Vector2(vix, viy)
 	return v
-	#else: # straight or down
-		#var vix
-		#if dx > 0:
-			#vix = 800
-		#else:
-			#vix = -800
-		#var t = dx/vix
-		#var ay = TACKLE_GRAVITY
-		#var viy = dy/t - 0.5*ay*t
-		##if dy < -100:
-			##viy *= 1.4
-			##vix *= 0.4
-		##elif dy < 0:
-			##viy *= 1.1
-			##vix *= 0.9
-			##
-		##else:
-		#viy = abs(viy)*-0.6
-		#vix *= 0.9
-		#var v = Vector2(vix, viy)
-		#return v
 	
 # suicidal, phase 2
 func tackle_player():
-	if !tackle_ready: return false
+	#if !tackle_ready: return false
 	if tackling: return true
 	
-	tackling = true
-	
-	var v = get_tackle_vi(global_position.x, global_position.y, player.global_position.x, player.global_position.y)
-	velocity = v
-	return true
-	
+	if tackle_ready and explode_timer.is_stopped():
+		tackling = true
+		var v = get_tackle_vi(global_position.x, global_position.y, player.global_position.x, player.global_position.y)
+		velocity = v
+		return true
+	return false
+
+var on_edge = false
 func jump_off_edge():
-	if not is_on_floor():
+	if not is_on_floor() or on_edge:
+		if not on_edge:
+			position.x += 5*-direction
+			on_edge = true
 		vel = 0
-		await get_tree().create_timer(0.1).timeout
+		#explode_timer.start()
+		#ready_to_expode = true
 		tackle_ready = true
 
 func explode_damage():
@@ -269,7 +277,6 @@ func get_dmg(r):
 func _on_shooting_area_body_entered(body):
 	if body.name != 'Player': return
 	if tackling: return
-	#if showering: return
 	player = body
 	grenade_launcher.target = body
 	state = 'hostile'
@@ -280,7 +287,7 @@ func _on_shooting_area_body_exited(body):
 	if body.name != 'Player': return
 	if must_tackle: return	
 	if tackling: return
-	#if showering: return
+	if tackled:return
 	state = 'idle'
 	
 func _on_tackle_area_body_entered(body):
@@ -292,34 +299,27 @@ func _on_tackle_area_body_entered(body):
 	tackle_ready = false
 	state = 'suicidal'
 	vel = RUN_VEL
-	tackle_timer = 50
+	tackle_timer = 150
 	
 	
 func _on_tackle_area_body_exited(body):
 	if body.name != 'Player': return
-	if tackling: return
-	if must_tackle: return
+	if tackled:return
+	#if tackling: return
 	#if showering: return
 	state = 'hostile'
 	tackle_ready = false
+	explode_timer.stop()
+	ready_to_explode = false
 	vel = 0
-	tackle_timer = 50
+	tackle_timer = 150
 	
 func _on_commit_tackle_area_body_entered(body):
 	if body.name != 'Player': return
 	if tackling: return
 	#if showering: return
-	too_close = true
-	must_tackle = true
+	#must_tackle = true
 	vel = RUN_VEL*1.1
-
-#func _on_commit_tackle_area_body_exited(body):
-	#if body.name != 'Player': return
-	#if tackling: return
-	##if showering: return
-	##await get_tree().create_timer(0.2).timeout
-	#vel = RUN_VEL
-	#too_close = false
 
 func take_damage(dmg):
 	health -= dmg
@@ -336,4 +336,3 @@ func _on_leave_commit_tackle_body_exited(body):
 	#if showering: return
 	#await get_tree().create_timer(0.2).timeout
 	vel = RUN_VEL
-	too_close = false
