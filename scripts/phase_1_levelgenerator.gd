@@ -43,10 +43,15 @@ var shop_instance
 var weapon_selection_instance
 var phase_2_instance
 
+var playing_phase_2_music = false
 var first_level = 0
+
+var rng
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rng = RandomNumberGenerator.new()
+	
 	larges = [large1, large2]
 	mediums = [medium1, medium2, medium3]
 	narrows = [narrow1, narrow2, narrow3]
@@ -56,8 +61,10 @@ func _ready():
 	
 	Input.set_custom_mouse_cursor(null)
 	transition.play("default")
-	Audio.play_music('phase1')
 	phase_1_instance = phase_1.instantiate()
+	phase_1_instance.song = 'phase1_' + str(rng.randi_range(1,2))
+	Audio.play_music(phase_1_instance.song)
+	playing_phase_2_music = false
 	phase_1_instance.tiles_with_enemies = level_enemies[first_level]
 	phase_1_instance.total_isolations = level_enemies[first_level]['slices']
 	phase_1_instance.remaining_isolations = level_enemies[first_level]['slices']
@@ -85,7 +92,7 @@ func go_to_phase_1(from_shop):
 	phase_1_instance.get_node('lockbutton').texture = BUTTON_1
 	phase_1_instance.lock = false
 	if from_shop:
-		Audio.play_music('phase1')
+		Audio.play_music(phase_1_instance.song)
 		add_child(phase_1_instance)
 	else:
 		if completed_level():
@@ -102,6 +109,9 @@ func go_to_phase_1(from_shop):
 			remove_child(get_child(1))
 			current_level += 1
 			phase_1_instance = phase_1.instantiate()
+			phase_1_instance.song = 'phase1_' + str(rng.randi_range(1,2))
+			Audio.play_music(phase_1_instance.song)
+			playing_phase_2_music = false
 			phase_1_instance.tiles_with_enemies = level_enemies[current_level]
 			phase_1_instance.total_isolations = level_enemies[current_level]['slices']
 			phase_1_instance.remaining_isolations = level_enemies[current_level]['slices']
@@ -129,7 +139,6 @@ func go_to_shop():
 	add_child(shop.instantiate())
 
 func go_to_phase_2():
-	var rng = RandomNumberGenerator.new()
 	remove_child(get_child(1))
 	if GlobalVariables.stage_size <= 9:
 		phase_2_instance = narrows[rng.randi_range(0,2)].instantiate()
@@ -139,7 +148,9 @@ func go_to_phase_2():
 		phase_2_instance = larges[rng.randi_range(0,1)].instantiate()
 	else:
 		phase_2_instance = huge.instantiate()
-		
+	if not playing_phase_2_music:
+		Audio.play_music('phase2_' + str(rng.randi_range(1,3)))
+		playing_phase_2_music = true
 	add_child(phase_2_instance)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

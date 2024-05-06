@@ -8,6 +8,8 @@ extends Node2D
 @onready var turret = preload("res://scene/phase1/turret.tscn")
 @onready var brokentile = preload("res://scene/phase1/brokentile.tscn")
 @onready var tile = preload("res://scene/phase1/tile.tscn")
+@onready var lockbg = preload("res://phase1lockbg.png")
+@onready var regularbg = preload("res://phase1_bg.png")
 @onready var tile_example = $tile
 @onready var shopbutton = $shopbutton
 @onready var info = $info
@@ -15,6 +17,7 @@ extends Node2D
 @onready var line = $Line2D
 @onready var slices = $slices
 @onready var level_indicator = $level_indicator
+@onready var bg = $bg
 
 var single_tile_size_x
 var single_tile_size_y
@@ -40,6 +43,7 @@ var lock = false
 var total_isolations = 0
 var remaining_isolations = 0
 var level
+var song
 
 var island_sizes = {'narrow': [1, 9], 'medium': [10, 16], 'large': [17, 32], 'huge': [33, 64]}
 
@@ -66,8 +70,10 @@ func _process(delta):
 	handle_mouse()
 	if lock:
 		handle_tint()
+		bg.texture = lockbg
 	else:
 		line.visible = false
+		bg.texture = regularbg
 		
 func get_enemies_on_island(arr):
 	var enemy_count = {'beef': 0, 'bombardier': 0, 'sniper': 0, 'turret': 0}
@@ -83,20 +89,11 @@ func get_enemies_on_island(arr):
 
 func get_island_size(arr):
 	return (arr[1][0] - arr[0][0] + 1) * (arr[1][1] - arr[0][1] + 1) 
-		
-func check_all_false(arr):
-	pass	
 	
 func get_islands():
 	var separated_corners = []
 	var x = [-1]
 	var y = [-1]
-	#for i in range(total_x_tiles):
-		#if tiles[0][i].visible == false:
-			#x.append(i)
-	#for i in range(total_y_tiles):
-		#if tiles[i][0].visible == false:
-			#y.append(i)
 	
 	var toggle
 	for i in range(total_x_tiles):
@@ -116,8 +113,6 @@ func get_islands():
 	
 	x.append(total_x_tiles)
 	y.append(total_y_tiles)
-	print(x)
-	print(y)
 	for i in range(1, x.size()):
 		for j in range(1, y.size()):
 			separated_corners.append([[x[i-1]+1, y[j-1]+1], [x[i]-1, y[j]-1]])
@@ -142,7 +137,6 @@ func handle_tint():
 	tile_y = int(tile_y)
 	
 	var separated_corners = get_islands()
-	print(separated_corners)
 	for j in separated_corners:
 		if tile_x >= j[0][0] and tile_x <= j[1][0] and tile_y >= j[0][1] and tile_y <= j[1][1]:
 			line.width = ((j[1][1]+1.2) * single_tile_size_y + (j[1][1]+1.2) * y_gap) - ((j[0][1]) * single_tile_size_y + (j[0][1]) * y_gap)
@@ -157,6 +151,14 @@ func handle_tint():
 				var result = get_enemies_on_island(j)
 				GlobalVariables.phase_2_enemy_count = result[0]
 				GlobalVariables.phase_2_enemy_locations = result[1]
+				if result[0]['beef'] > 0 and 'beef' not in GlobalVariables.discovered_enemies:
+					GlobalVariables.discovered_enemies.append('beef')
+				if result[0]['bombardier'] > 0 and 'bombardier' not in GlobalVariables.discovered_enemies:
+					GlobalVariables.discovered_enemies.append('bombardier')
+				if result[0]['sniper'] > 0 and 'sniper' not in GlobalVariables.discovered_enemies:
+					GlobalVariables.discovered_enemies.append('sniper')
+				if result[0]['turret'] > 0 and 'turret' not in GlobalVariables.discovered_enemies:
+					GlobalVariables.discovered_enemies.append('turret')
 				get_parent().go_to_weapon_select()
 				#get_tree().change_scene_to_file('res://scene/phase1/weaponselect.tscn')
 			return
@@ -349,19 +351,39 @@ func handle_info(enemy, visible):
 		if enemy == 'beef':
 			info.get_child(1).animation = 'beef'
 			info.get_child(1).position = Vector2(84, -43.5)
-			info.get_child(2).text = 'Beef are common soldiers that succeed through sheer force. Their resilience lets them soak up incoming damage that allows their fellow comrades to unleash powerful attacks.'
+			if 'beef' in GlobalVariables.discovered_enemies:
+				info.get_child(1).modulate = Color(1, 1, 1, 1)
+				info.get_child(2).text = 'Beef are common soldiers that succeed through sheer force. Their resilience lets them soak up incoming damage that allows their fellow comrades to unleash powerful attacks.'
+			else:
+				info.get_child(1).modulate = Color(0, 0, 0, 1)
+				info.get_child(2).text = '???'
 		elif enemy == 'bombardier':
 			info.get_child(1).animation = 'bombardier'
 			info.get_child(1).position = Vector2(82, -31.2)
-			info.get_child(2).text = 'Bombardiers are dangerous rogues that shower the area with explosive ordinance. Their grenade launcher spews several explosives that create hazardous areas wherever you might be. Due to their curious nature, they will eventually want to take “a closer look”.'
+			if 'bombardier' in GlobalVariables.discovered_enemies:
+				info.get_child(1).modulate = Color(1, 1, 1, 1)
+				info.get_child(2).text = 'Bombardiers are dangerous rogues that shower the area with explosive ordinance. Their grenade launcher spews several explosives that create hazardous areas wherever you might be. Due to their curious nature, they will eventually want to take “a closer look”.'
+			else:
+				info.get_child(1).modulate = Color(0, 0, 0, 1)
+				info.get_child(2).text = '???'
 		elif enemy == 'sniper':
 			info.get_child(1).animation = 'sniper'
 			info.get_child(1).position = Vector2(98, -34.4)
-			info.get_child(2).text = 'Snipers are efficient shooters that will attack you from across any distance. Despite carrying heavy equipment, Snipers are excellent at moving through their environment, firing devastating shots with surgical precision.'
+			if 'sniper' in GlobalVariables.discovered_enemies:
+				info.get_child(1).modulate = Color(1, 1, 1, 1)
+				info.get_child(2).text = 'Snipers are efficient shooters that will attack you from across any distance. Despite carrying heavy equipment, Snipers are excellent at moving through their environment, firing devastating shots with surgical precision.'
+			else:
+				info.get_child(1).modulate = Color(0, 0, 0, 1)
+				info.get_child(2).text = '???'
 		elif enemy == 'turret':
 			info.get_child(1).animation = 'turret'
 			info.get_child(1).position = Vector2(71, -32.2)
-			info.get_child(2).text = 'Turrets are lethal machines that are designed to shut down any hostility in its proximity. After a brief charge up period, an endless hail of high calibre bullets is sure to neutralize whatever threat stands in its way. Clad in bulletproof material, the turret tanks a ridiculous amount of damage before it will expire.'
+			if 'turret' in GlobalVariables.discovered_enemies:
+				info.get_child(1).modulate = Color(1, 1, 1, 1)
+				info.get_child(2).text = 'Turrets are lethal machines that are designed to shut down any hostility in its proximity. After a brief charge up period, an endless hail of high calibre bullets is sure to neutralize whatever threat stands in its way. Clad in bulletproof material, the turret tanks a ridiculous amount of damage before it will expire.'
+			else:
+				info.get_child(1).modulate = Color(0, 0, 0, 1)
+				info.get_child(2).text = '???'
 		info.visible = true
 	else:
 		info.visible = false

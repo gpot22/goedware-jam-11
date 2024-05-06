@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cxctkgvmdw1ch" path="res://scene/phase2/platforms/long_platform.tscn" id="13_l54xp"]
 [ext_resource type="PackedScene" uid="uid://nbrersifbnc3" path="res://scene/phase2/platforms/medium_platform.tscn" id="14_o51lk"]
 [ext_resource type="PackedScene" uid="uid://cogndpnpo7xfl" path="res://scene/phase2/platforms/square_platform.tscn" id="15_h6m56"]
-[ext_resource type="PackedScene" uid="uid://b1bq8ntiser8p" path="res://scene/phase2/platforms/border.tscn" id="16_c8wli"]
+[ext_resource type="PackedScene" path="res://scene/phase2/platforms/border.tscn" id="16_c8wli"]
 [ext_resource type="PackedScene" uid="uid://bb8v541vvfcrt" path="res://scene/phase2/platforms/bottom_floor.tscn" id="17_1v152"]
 [ext_resource type="Texture2D" uid="uid://duj2o6eatnbw" path="res://assets/xhair0.png" id="18_onyiq"]
 [ext_resource type="Texture2D" uid="uid://b2buiq1ffbthf" path="res://assets/xhair1.png" id="19_pc8rp"]
@@ -153,7 +153,7 @@ position = Vector2(691, 574)
 position = Vector2(487, 573)
 
 [node name="medium_platform" parent="WorldMap" instance=ExtResource("14_o51lk")]
-position = Vector2(575, 1450)
+position = Vector2(578, 1434)
 
 [node name="square_platform" parent="WorldMap" instance=ExtResource("15_h6m56")]
 visible = false

@@ -1,8 +1,15 @@
 extends AudioStreamPlayer
 
 const title = preload("res://assets/music/title.mp3")
-const phase1 = preload("res://assets/music/phase1.mp3")
-const phase2 = preload("res://assets/music/phase2.mp3")
+const phase1_1 = preload("res://assets/music/phase1_1.mp3")
+const phase1_2 = preload("res://assets/music/phase1_2.mp3")
+var phase1_music = []
+
+const phase2_1 = preload("res://assets/music/phase2_1.mp3")
+const phase2_2 = preload("res://assets/music/phase2_2.mp3")
+const phase2_3 = preload("res://assets/music/phase2_3.mp3")
+var phase2_music = []
+
 const shop1 = preload("res://assets/music/shop1.mp3")
 const shop2 = preload("res://assets/music/shop2.mp3")
 const settings = preload("res://assets/music/settings.mp3")
@@ -13,6 +20,11 @@ const notenoughmoney = preload("res://assets/sfx/notenoughmoney.wav")
 const button = preload("res://assets/sfx/button.mp3")
 
 var sfx_vol = GlobalVariables.sfx_volume
+var rng = RandomNumberGenerator.new()
+
+func _ready():
+	phase1_music = [phase1_1, phase1_2]
+	phase2_music = [phase2_1, phase2_2, phase2_3]
 
 func play_sfx(sfx):
 	var sfx_player = AudioStreamPlayer.new()
@@ -46,16 +58,34 @@ func play_music(scene):
 		stream = settings
 		volume_db = linear_to_db(GlobalVariables.music_volume * GlobalVariables.master_volume)
 		play()
-	elif scene == 'phase1':
-		if stream == phase1:
+	elif scene == 'phase1_1':
+		if stream == phase1_1:
 			return
-		stream = phase1
+		stream = phase1_1
 		volume_db = linear_to_db(GlobalVariables.music_volume * GlobalVariables.master_volume)
 		play()
-	elif scene == 'phase2':
-		if stream == phase2:
+	elif scene == 'phase1_2':
+		if stream == phase1_2:
 			return
-		stream = phase2
+		stream = phase1_2
+		volume_db = linear_to_db(GlobalVariables.music_volume * GlobalVariables.master_volume)
+		play()
+	elif scene == 'phase2_1':
+		if stream == phase2_1:
+			return
+		stream = phase2_1
+		volume_db = linear_to_db(GlobalVariables.music_volume * GlobalVariables.master_volume)
+		play()
+	elif scene == 'phase2_2':
+		if stream == phase2_2:
+			return
+		stream = phase2_2
+		volume_db = linear_to_db(GlobalVariables.music_volume * GlobalVariables.master_volume)
+		play()
+	elif scene == 'phase2_3':
+		if stream == phase2_3:
+			return
+		stream = phase2_3
 		volume_db = linear_to_db(GlobalVariables.music_volume * GlobalVariables.master_volume)
 		play()
 	elif scene == 'shop1':

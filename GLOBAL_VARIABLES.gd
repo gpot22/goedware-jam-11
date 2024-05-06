@@ -1,8 +1,8 @@
 extends Node
 
 var level = 1
-var discovered_enemies = ['beef', 'bombardier', 'sniper', 'turret']
-var wallet = 4
+var discovered_enemies = []
+var wallet = 0
 var master_volume = 0.5
 var music_volume = 0.5
 var sfx_volume = 0.5
