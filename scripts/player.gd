@@ -18,6 +18,7 @@ const SHOTTY_RECOIL = 800
 @onready var jump_buffer_timer = $JumpBufferTimer
 @onready var hook = $"../hook"
 @onready var rope = $rope
+@onready var reload_label = $ReloadLabel
 
 const GRENADE_LAUNCHER = preload("res://scene/phase2/weapons/grenade_launcher.tscn")
 const PISTOL = preload("res://scene/phase2/weapons/pistol.tscn")

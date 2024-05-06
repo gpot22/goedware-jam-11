@@ -9,6 +9,8 @@ extends Node2D
 @onready var spawn_points = $SpawnPoints
 @onready var health_bar: Sprite2D = $CanvasLayer/HealthBar/bar
 
+var bullet_label: Label
+
 var rng = RandomNumberGenerator.new()
 var floor = preload('res://scene/phase2/platforms/bottom_floor.tscn')
 const ENEMY_DIR = 'res://scene/phase2/enemies'
@@ -28,6 +30,7 @@ var death_phase_finished = false
 var celebrate_phase_finished = false
 
 func _ready():
+	bullet_label = $CanvasLayer/Bulletshud/Label
 	# set bg color
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0), 0, Vector2(22, 22))
@@ -87,14 +90,14 @@ func _process(delta):
 			GlobalVariables.level += 1
 			parent.win()
 			parent.go_to_phase_1(false)
-		
-	update_health_bar()	
+	
+	update_bullets()
+	update_health_bar()
 	if player_dead():
 		var parent = get_parent()
 		await player_death_phase(delta)
 		if death_phase_finished:  ### END PHASE 2 HERE
 			parent.lost()
-	
 	
 func update_health_bar():
 	var x
@@ -109,7 +112,8 @@ func update_health_bar():
 	health_bar.region_rect = Rect2(x, y, w, h)
 	health_bar.offset = Vector2(offset_x, 0)
 	
-	
+func update_bullets():
+	bullet_label.text = str(player.gun.current_magazine) + '/' + str(player.gun.magazine)
 	
 	
 

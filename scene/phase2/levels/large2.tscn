@@ -467,4 +467,4 @@ region_enabled = true
 region_rect = Rect2(0, 0, 160, 11)
 
 [node name="Bulletshud" parent="CanvasLayer" instance=ExtResource("25_b3kh2")]
-position = Vector2(630, 412)
+position = Vector2(631, 416)

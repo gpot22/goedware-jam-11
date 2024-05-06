@@ -20,6 +20,7 @@ func _ready():
 	current_magazine = magazine
 	direction = 1
 	shot_time = 1.2
+	reload_time = 1.4
 	bullet_spread = 0
 	line_of_sight.visible = not is_player()
 	first_shot = is_player()
@@ -44,7 +45,7 @@ func handle_shoot():
 			current_magazine -= 1
 			shoot()
 			parent.shoot_success()
-		elif current_magazine == 0 and not reloading:
+		if current_magazine == 0 and not reloading:
 			can_shoot = false
 			reload()
 		
@@ -92,13 +93,16 @@ func update_line_of_sight(target):
 	)
 
 func reload():
+	if is_player(): parent.reload_label.visible = true
 	reloading = true
 	if get_tree() == null:
 		can_shoot = true
 		reloading = false
 		current_magazine = magazine
+		if is_player(): parent.reload_label.visible = false
 		return
 	await get_tree().create_timer(reload_time).timeout
 	current_magazine = magazine
 	can_shoot = true
 	reloading = false
+	if is_player(): parent.reload_label.visible = false

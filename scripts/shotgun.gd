@@ -39,7 +39,7 @@ func handle_shoot():
 			shoot()
 			parent.shoot_success()
 			parent.shotgun_recoil()
-		elif current_magazine == 0 and not reloading:
+		if current_magazine == 0 and not reloading:
 			can_shoot = false
 			reload()
 		

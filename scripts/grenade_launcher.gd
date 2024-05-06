@@ -42,7 +42,7 @@ func handle_shoot():
 			var v = dir * grenade_spd(d.length())
 			shoot(v)
 			parent.shoot_success()
-		elif current_magazine == 0 and not reloading:
+		if current_magazine == 0 and not reloading:
 			can_shoot = false
 			reload()
 
@@ -80,14 +80,17 @@ func shoot(vel=null, x_offset=0):
 	anim_sprite.stop()
 	
 func reload():
+	if is_player(): parent.reload_label.visible = true
 	reloading = true
 	if get_tree() == null:
 		current_magazine = magazine
 		can_shoot = true
 		reloading = false
+		if is_player(): parent.reload_label.visible = false
 		return
 	await get_tree().create_timer(reload_time).timeout
 	current_magazine = magazine
 	can_shoot = true
 	reloading = false
+	if is_player(): parent.reload_label.visible = false
 	

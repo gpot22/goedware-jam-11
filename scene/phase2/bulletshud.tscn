@@ -1,15 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmdndqk6mdwpj"]
+[gd_scene load_steps=4 format=3 uid="uid://bmdndqk6mdwpj"]
 
 [ext_resource type="FontFile" uid="uid://c0mc3uhedbvnm" path="res://ONESIZE_.TTF" id="1_xg4rf"]
+[ext_resource type="Texture2D" uid="uid://odecst8cbwjy" path="res://assets/sprites/ammo.png" id="2_kwdcx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8dodw"]
 font = ExtResource("1_xg4rf")
+font_size = 12
 
 [node name="Bulletshud" type="Node2D"]
-position = Vector2(-22, -7)
 
 [node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "10/20"
+offset_left = 12.0
+offset_top = -1.0
+offset_right = 52.0
+offset_bottom = 11.0
 label_settings = SubResource("LabelSettings_8dodw")
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.5, 4.5)
+texture = ExtResource("2_kwdcx")
