@@ -148,6 +148,9 @@ func attack():
 	if not recoil_hit_wall():
 		attack_recoil = true
 	else:
+		if get_tree() == null:
+			shooting = false
+			return
 		await get_tree().create_timer(0.6).timeout
 		shooting = false
 	recoil_v = RECOIL*direction
@@ -164,10 +167,14 @@ func shoot():
 		for i in range(8):
 			gun.shoot()
 			gun.anim_sprite.play('stop_shoot')
+			if get_tree() == null:
+				return
 			await get_tree().create_timer(0.05).timeout
 	elif gun.name == 'Shotgun':
 		for i in range(2):
 			gun.shoot()
+			if get_tree() == null:
+				return
 			await get_tree().create_timer(0.2).timeout
 
 
@@ -196,6 +203,8 @@ func update_animations():
 
 func take_damage(dmg):
 	$Sprite2D.self_modulate = Color('#aa0000')
+	if get_tree() == null:
+		return
 	await get_tree().create_timer(0.2).timeout
 	health -= dmg
 	if health <= 0:

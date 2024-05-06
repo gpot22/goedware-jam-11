@@ -274,6 +274,8 @@ func take_damage(dmg):
 		ap.stop()
 	else:
 		$Sprite2D.self_modulate = Color('#aa0000')
+		if get_tree() == null:
+			return
 		await get_tree().create_timer(0.2).timeout
 		$Sprite2D.self_modulate = Color('#ffffff')
 		

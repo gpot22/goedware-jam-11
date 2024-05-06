@@ -75,6 +75,8 @@ func aim_at_player():
 	
 func aim_at_player_staggered():
 	var player_center = Vector2(player.global_position.x, player.global_position.y - player.sprite.get_rect().size.y/2)
+	if get_tree() == null:
+		return
 	await get_tree().create_timer(0.3).timeout
 	$body/HeadAnchor.look_at(player_center)
 	if player.global_position.x < global_position.x:
@@ -93,6 +95,8 @@ func burst_shoot(n=30):
 	aim_ready = false
 	for i in range(n):
 		shoot()
+		if get_tree() == null:
+			return
 		await get_tree().create_timer(0.04).timeout
 	aim_ready = true
 	line_of_sight.visible = true
@@ -119,12 +123,16 @@ func shoot():
 func charge_up():
 	var t = 0.6
 	charging = true
+	if get_tree() == null:
+		return
 	await get_tree().create_timer(0.8).timeout
 	#var idle_interrupt = false
 	if charge < 4:
 		for i in range(charge+1, MAX_CHARGE+1):
 			charge += 1
 			base.play('charge' + str(i))
+			if get_tree() == null:
+				return
 			await get_tree().create_timer(t).timeout
 			base.stop()
 	#if idle_interrupt: return
@@ -135,6 +143,8 @@ func charge_up():
 func take_damage(dmg):
 	head.self_modulate = Color('#aa0000')
 	base.self_modulate = Color('#aa0000')
+	if get_tree() == null:
+		return
 	await get_tree().create_timer(0.2).timeout
 	health -= dmg
 	if health <= 0:

@@ -87,6 +87,13 @@ func completed_level():
 		return true
 	return false
 
+func lost():
+	remove_child(get_child(1))
+	Input.set_custom_mouse_cursor(null)
+	phase_1_instance.get_node('lockbutton').texture = BUTTON_1
+	phase_1_instance.lock = false
+	add_child(phase_1_instance)
+
 func go_to_phase_1(from_shop):
 	remove_child(get_child(1))
 	Input.set_custom_mouse_cursor(null)
@@ -130,7 +137,7 @@ func go_to_phase_1(from_shop):
 					phase_1_instance.brokentiles[j][i].drop()
 					Audio.play_sfx('breaktile')
 					await get_tree().create_timer(0.2).timeout
-	
+
 func go_to_weapon_select():
 	remove_child(get_child(1))
 	add_child(weapon_selection.instantiate())

@@ -58,10 +58,8 @@ func enemies_alive():
 	return len(get_tree().get_nodes_in_group("Enemy")) != 0
 		
 func player_death_phase(delta):
-	var safety = 0
 	player.die()
 	while zoom_current < zoom_death_target:
-		safety += 1
 		zoom_current = lerp(zoom_current, zoom_current + zoom_increment, zoom_increment*delta)
 		camera_2d.set_zoom(Vector2(zoom_current, zoom_current))
 		await get_tree().create_timer(0.01).timeout
@@ -76,12 +74,12 @@ func _process(delta):
 		GlobalVariables.level += 1
 		get_parent().win()
 		get_parent().go_to_phase_1(false)
-		
+
 	if player_dead():
+		var parent = get_parent()
 		await player_death_phase(delta)
 		if death_phase_finished:  ### END PHASE 2 HERE
-			print('shit on')
-			pass
+			parent.lost()
 	update_health_bar()
 	
 func update_health_bar():

@@ -87,13 +87,14 @@ func _physics_process(delta):
 			#queue_free()
 	
 	if tackled:
+		if get_tree() == null:
+			return
 		await get_tree().create_timer(0.8).timeout
 		var explosion = explosion_effect.instantiate()
 		get_parent().get_parent().add_child(explosion)
 		explosion.scale *= 1.2
 		explosion.global_position = global_position
 		explode_damage()
-		print('fuck you!')
 		queue_free()
 	handle_movement(delta)
 	update_animations()
@@ -202,6 +203,8 @@ func grenade_shower(n=4):
 	for i in range(n):
 		if state == 'suicidal': return
 		x_offset = int(rng.randf_range(-4, 4)*15)
+		if get_tree() == null:
+			return
 		await get_tree().create_timer(0.2).timeout
 		shoot(x_offset)
 # - - - - - STATE: SUICIDAL - - - - - - 
@@ -324,6 +327,8 @@ func _on_commit_tackle_area_body_entered(body):
 func take_damage(dmg):
 	health -= dmg
 	$Sprite2D.self_modulate = Color('#aa0000')
+	if get_tree() == null:
+		return
 	await get_tree().create_timer(0.2).timeout
 	if health <= 0:
 		queue_free()
