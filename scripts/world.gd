@@ -48,6 +48,9 @@ func get_spawn_points(enemy):
 		points.append(p)
 	return points
 
+func player_dead():
+	return player.health <= 0
+
 func enemies_alive():
 	for p in used_points:
 		if p.get_child_count() != 0: return false
