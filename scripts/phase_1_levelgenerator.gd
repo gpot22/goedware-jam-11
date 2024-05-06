@@ -45,7 +45,7 @@ var weapon_selection_instance
 var phase_2_instance
 
 var playing_phase_2_music = false
-var first_level = 12
+var first_level = 0
 
 var rng
 @onready var end = $"."
