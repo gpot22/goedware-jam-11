@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ccucig5t8j61y"]
+[gd_scene load_steps=36 format=3 uid="uid://ccucig5t8j61y"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_f0gox"]
 [ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_vaiwc"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://d1qtlst7payjf" path="res://assets/xhair2.png" id="20_71uqx"]
 [ext_resource type="Texture2D" uid="uid://da2xrpao7pse7" path="res://assets/xhair3.png" id="21_wpnk3"]
 [ext_resource type="Texture2D" uid="uid://bmxcccvfqv5vu" path="res://assets/xhair4.png" id="22_0ykim"]
+[ext_resource type="PackedScene" uid="uid://dxgw6wox0bygs" path="res://scene/phase2/levels/EnemySpawn/EnemySpawnPoint.tscn" id="23_8o8r0"]
 [ext_resource type="Texture2D" uid="uid://b2gs00j2coei5" path="res://assets/xhair5.png" id="23_tisk0"]
 [ext_resource type="Texture2D" uid="uid://d3mwf53hbsclj" path="res://assets/xhair6.png" id="24_eqnb0"]
 [ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="25_rjacl"]
@@ -738,3 +739,54 @@ texture = SubResource("AnimatedTexture_4fg1e")
 texture = ExtResource("25_rjacl")
 
 [node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="sniperbombardierturret" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(104, 213)
+
+[node name="sniperbombardierturret2" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(557, 201)
+
+[node name="sniperbombardierturret3" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(563, 432)
+
+[node name="sniperbombardierturret4" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(109, 444)
+
+[node name="sniperbombardierturret5" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(351, 777)
+
+[node name="sniperbombardier2" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(545, 1279)
+
+[node name="sniperbombardier3" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(390, 1641)
+
+[node name="sniperbombardier4" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(134, 1646)
+
+[node name="sniperbombardier5" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(541, 1651)
+
+[node name="sniperbombardier" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(134, 1288)
+
+[node name="beef" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(139, 1490)
+
+[node name="beef2" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(534, 1493)
+
+[node name="beef3" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(51, 1638)
+
+[node name="beef4" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(228, 1641)
+
+[node name="beef5" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(297, 1641)
+
+[node name="beef6" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(439, 1638)
+
+[node name="beef7" parent="SpawnPoints" instance=ExtResource("23_8o8r0")]
+position = Vector2(611, 1636)

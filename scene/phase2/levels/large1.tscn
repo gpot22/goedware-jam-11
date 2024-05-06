@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://chb280dapo2om"]
+[gd_scene load_steps=36 format=3 uid="uid://chb280dapo2om"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_0a7t2"]
 [ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_c1c1t"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://d1qtlst7payjf" path="res://assets/xhair2.png" id="20_sju4v"]
 [ext_resource type="Texture2D" uid="uid://da2xrpao7pse7" path="res://assets/xhair3.png" id="21_ctbqj"]
 [ext_resource type="Texture2D" uid="uid://bmxcccvfqv5vu" path="res://assets/xhair4.png" id="22_sdv4y"]
+[ext_resource type="PackedScene" uid="uid://dxgw6wox0bygs" path="res://scene/phase2/levels/EnemySpawn/EnemySpawnPoint.tscn" id="23_ica25"]
 [ext_resource type="Texture2D" uid="uid://b2gs00j2coei5" path="res://assets/xhair5.png" id="23_vh4ni"]
 [ext_resource type="Texture2D" uid="uid://d3mwf53hbsclj" path="res://assets/xhair6.png" id="24_3ndqe"]
 [ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="25_48fhu"]
@@ -742,3 +743,72 @@ texture = SubResource("AnimatedTexture_4fg1e")
 texture = ExtResource("25_48fhu")
 
 [node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="beefsniperbombardierturret" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(425, 896)
+
+[node name="sniperbombardierturret2" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(286, 720)
+
+[node name="sniperbombardierturret3" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(116, 1304)
+
+[node name="sniperbombardierturret4" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(1345, 488)
+
+[node name="sniperbombardierturret5" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(507, 530)
+
+[node name="sniperbombardierturret6" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(1209, 489)
+
+[node name="sniperbombardierturret7" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(1495, 488)
+
+[node name="sniperbombardierturret8" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(1365, 822)
+
+[node name="sniperbombardierturret9" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(1194, 998)
+
+[node name="beefsniperbombardierturret10" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(819, 1074)
+
+[node name="sniperbombardierturret11" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(1490, 1320)
+
+[node name="beef" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(1330, 1325)
+
+[node name="beef2" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(1137, 1317)
+
+[node name="beef3" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(942, 1305)
+
+[node name="beef4" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(736, 1313)
+
+[node name="beef5" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(511, 1305)
+
+[node name="beef6" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(343, 1301)
+
+[node name="beef7" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(216, 1301)
+
+[node name="beef9" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(623, 1305)
+
+[node name="beef10" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(1045, 1280)
+
+[node name="beef11" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(997, 659)
+
+[node name="beef12" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(655, 654)
+
+[node name="beef8" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(436, 1297)
