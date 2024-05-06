@@ -60,7 +60,8 @@ func player_dead():
 
 func enemies_alive():
 	return len(get_tree().get_nodes_in_group("Enemy")) != 0
-		
+	
+var start_phase = false
 func player_death_phase(delta):
 	player.die()
 	while zoom_current < zoom_death_target:
@@ -77,13 +78,18 @@ func player_celebrate_phase(delta):
 		camera_2d.set_zoom(Vector2(zoom_current, zoom_current))
 		await get_tree().create_timer(0.01).timeout
 	await player.ap.animation_finished
+	player.ap.stop()
+	for i in range(6):
+		await player.celebrate_idle()
+		await player.ap.animation_finished
 	celebrate_phase_finished = true
 
 func _process(delta):
 	# update 
 	camera_2d.set_position(Vector2(player.get_position().x, player.get_position().y-35))
-	if not enemies_alive():
+	if not enemies_alive() and not start_phase:
 		var parent = get_parent()
+		start_phase = true
 		await player_celebrate_phase(delta)
 		if celebrate_phase_finished:
 			GlobalVariables.wallet += 1
@@ -93,12 +99,13 @@ func _process(delta):
 	
 	update_bullets()
 	update_health_bar()
-	if player_dead():
+	if player_dead() and not start_phase:
 		var parent = get_parent()
+		start_phase = true
 		await player_death_phase(delta)
 		if death_phase_finished:  ### END PHASE 2 HERE
 			parent.lost()
-	
+			
 func update_health_bar():
 	var x
 	var y = 0

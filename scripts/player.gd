@@ -70,6 +70,8 @@ var xhair
 
 var rng
 
+var celebrating = false
+
 func _ready():
 	rng = RandomNumberGenerator.new()
 	
@@ -116,7 +118,7 @@ func _process(delta):
 	
 # PLAYER LOOP
 func _physics_process(delta):
-	if health <= 0:
+	if health <= 0 or celebrating:
 		return
 	if !grappling:
 		apply_gravity(delta)
@@ -386,12 +388,24 @@ func die():
 	ap.play('death')
 
 func celebrate():
+	if get_tree() != null:
+		await get_tree().create_timer(0.6).timeout
+	celebrating = true
 	$celebratesprites.visible = true
 	sprite.visible = false
 	$WeaponPoint.visible = false
 	$ShotgunPoint.visible = false
 	ap.play('celebrate')
 
+func celebrate_idle():
+	ap.stop()
+	celebrating = true
+	$celebratesprites.visible = false
+	$celebratesprites2.visible = true
+	sprite.visible = false
+	$WeaponPoint.visible = false
+	$ShotgunPoint.visible = false
+	ap.play('celebrate_idle')
 func _on_shotgun_area_body_entered(body):
 	if not body.is_in_group('Enemy'): return
 	if not shotgun: return

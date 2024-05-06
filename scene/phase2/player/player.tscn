@@ -1,11 +1,13 @@
-[gd_scene load_steps=38 format=3 uid="uid://cwrkcklv0yvjo"]
+[gd_scene load_steps=42 format=3 uid="uid://cwrkcklv0yvjo"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6k5ke"]
 [ext_resource type="Texture2D" uid="uid://xti23onufikt" path="res://assets/sprites/player.png" id="1_n3cjb"]
 [ext_resource type="Texture2D" uid="uid://bbqbgt22nelgj" path="res://assets/sprites/smoke0.png" id="4_mej1x"]
 [ext_resource type="Texture2D" uid="uid://b7gheskt8u87o" path="res://assets/sprites/smoke1.png" id="5_a2j0n"]
+[ext_resource type="Texture2D" uid="uid://bwr6foywulquk" path="res://assets/sprites/stage_clear_initial.png" id="6_7tw8y"]
 [ext_resource type="FontFile" uid="uid://c0mc3uhedbvnm" path="res://ONESIZE_.TTF" id="7_3i76o"]
 [ext_resource type="Texture2D" uid="uid://dfgrnkrsvh44q" path="res://assets/sprites/ded.png" id="7_dpipx"]
+[ext_resource type="Texture2D" uid="uid://dkhyeyrmceu8h" path="res://assets/sprites/stage_clear_idle.png" id="8_qhw25"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l74r8"]
 radius = 13.0
@@ -32,6 +34,30 @@ tracks/1/path = NodePath("deathsprites:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("celebratesprites:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("celebratesprites2:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -190,9 +216,45 @@ tracks/0/keys = {
 "values": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 }
 
+[sub_resource type="Animation" id="Animation_gdj0t"]
+resource_name = "celebrate"
+length = 1.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("celebratesprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_pcmqo"]
+resource_name = "celebrate_idle"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("celebratesprites2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bv3cx"]
 _data = {
 "RESET": SubResource("Animation_8yvx8"),
+"celebrate": SubResource("Animation_gdj0t"),
+"celebrate_idle": SubResource("Animation_pcmqo"),
 "dash": SubResource("Animation_ny27i"),
 "death": SubResource("Animation_5x23u"),
 "fall_idle": SubResource("Animation_xfl31"),
@@ -396,7 +458,15 @@ hframes = 34
 
 [node name="celebratesprites" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -32)
+position = Vector2(6, -36)
+texture = ExtResource("6_7tw8y")
+hframes = 22
+
+[node name="celebratesprites2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(6, -36)
+texture = ExtResource("8_qhw25")
+hframes = 7
 
 [node name="rope" type="Marker2D" parent="."]
 position = Vector2(25, -37)
