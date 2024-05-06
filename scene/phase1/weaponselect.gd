@@ -44,7 +44,15 @@ func _process(delta):
 	if starthovering:
 		if Input.is_action_just_released('select'):
 			Audio.play_sfx('button')
-			get_tree()
+			var rng = RandomNumberGenerator.new()
+			if GlobalVariables.stage_size <= 9:
+				get_tree().change_scene_to_file('res://scene/phase2/levels/narrow' + str(rng.randi_range(1,3)) + '.tscn')
+			elif GlobalVariables.stage_size <= 16:
+				get_tree().change_scene_to_file('res://scene/phase2/levels/medium' + str(rng.randi_range(1,3)) + '.tscn')
+			elif GlobalVariables.stage_size <= 32:
+				get_tree().change_scene_to_file('res://scene/phase2/levels/large' + str(rng.randi_range(1,2)) + '.tscn')
+			else:
+				get_tree().change_scene_to_file('res://scene/phase2/levels/huge.tscn')
 	
 	if uphovering:
 		if Input.is_action_just_released('select'):
@@ -79,7 +87,6 @@ func _process(delta):
 					cycle_list[i].visible = true
 				else:
 					cycle_list[i].visible = false
-
 
 
 func _on_uparrow_1_mouse_entered():

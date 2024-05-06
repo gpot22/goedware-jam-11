@@ -128,17 +128,9 @@ func handle_tint():
 			line.modulate = Color(1, 1, 1, 0.5)
 			
 			if Input.is_action_just_released('select'):
-				var rng = RandomNumberGenerator.new()
-				var island_size = get_island_size(j)
+				GlobalVariables.stage_size = get_island_size(j)
 				GlobalVariables.phase_2_enemies = get_enemies_on_island(j)
-				if island_size <= 9:
-					get_tree().change_scene_to_file('res://scene/phase2/levels/narrow' + str(rng.randi_range(1,3)) + '.tscn')
-				elif island_size <= 16:
-					get_tree().change_scene_to_file('res://scene/phase2/levels/medium' + str(rng.randi_range(1,3)) + '.tscn')
-				elif island_size <= 32:
-					get_tree().change_scene_to_file('res://scene/phase2/levels/large' + str(rng.randi_range(1,2)) + '.tscn')
-				else:
-					get_tree().change_scene_to_file('res://scene/phase2/levels/huge.tscn')
+				get_tree().change_scene_to_file('res://scene/phase1/weaponselect.tscn')
 			return
 	
 	line.visible = false

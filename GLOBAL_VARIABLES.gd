@@ -8,6 +8,7 @@ var music_volume = 0.5
 var sfx_volume = 0.5
 var unlocked_weapons = ['pistol']
 var phase_2_enemies = {'beef': 0, 'bombardier': 0, 'sniper': 0, 'turret': 0}
+var stage_size = ''
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
