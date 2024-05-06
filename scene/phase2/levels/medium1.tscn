@@ -599,6 +599,12 @@ position = Vector2(560, 713)
 [node name="square_platform2" parent="WorldMap" instance=ExtResource("15_6ehfx")]
 position = Vector2(345, 542)
 
+[node name="square_platform3" parent="WorldMap" instance=ExtResource("15_6ehfx")]
+position = Vector2(1193, 416)
+
+[node name="square_platform4" parent="WorldMap" instance=ExtResource("15_6ehfx")]
+position = Vector2(1094, 665)
+
 [node name="WorldBorders" type="Node2D" parent="."]
 
 [node name="leftwall" type="Node2D" parent="WorldBorders"]
@@ -717,6 +723,94 @@ position = Vector2(5565, 2100)
 [node name="bottom_floor28" parent="WorldBorders/bottomfloor" instance=ExtResource("17_3lopb")]
 position = Vector2(5775, 2100)
 
+[node name="ceiling" type="Node2D" parent="WorldBorders"]
+position = Vector2(5833, 2096)
+rotation = 3.14159
+
+[node name="bottom_floor" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(105, 2100)
+
+[node name="bottom_floor2" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(315, 2100)
+
+[node name="bottom_floor3" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(525, 2100)
+
+[node name="bottom_floor4" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(735, 2100)
+
+[node name="bottom_floor5" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(945, 2100)
+
+[node name="bottom_floor6" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(1155, 2100)
+
+[node name="bottom_floor7" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(1365, 2100)
+
+[node name="bottom_floor8" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(1575, 2100)
+
+[node name="bottom_floor9" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(1785, 2100)
+
+[node name="bottom_floor10" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(1995, 2100)
+
+[node name="bottom_floor11" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(2205, 2100)
+
+[node name="bottom_floor12" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(2415, 2100)
+
+[node name="bottom_floor13" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(2625, 2100)
+
+[node name="bottom_floor14" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(2835, 2100)
+
+[node name="bottom_floor15" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(3045, 2100)
+
+[node name="bottom_floor16" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(3255, 2100)
+
+[node name="bottom_floor17" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(3465, 2100)
+
+[node name="bottom_floor18" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(3675, 2100)
+
+[node name="bottom_floor19" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(3885, 2100)
+
+[node name="bottom_floor20" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(4095, 2100)
+
+[node name="bottom_floor21" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(4305, 2100)
+
+[node name="bottom_floor22" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(4515, 2100)
+
+[node name="bottom_floor23" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(4725, 2100)
+
+[node name="bottom_floor24" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(4935, 2100)
+
+[node name="bottom_floor25" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(5145, 2100)
+
+[node name="bottom_floor26" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(5355, 2100)
+
+[node name="bottom_floor27" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(5565, 2100)
+
+[node name="bottom_floor28" parent="WorldBorders/ceiling" instance=ExtResource("17_3lopb")]
+position = Vector2(5775, 2100)
+
 [node name="xhair" type="TextureRect" parent="."]
 visible = false
 offset_right = 40.0
@@ -729,52 +823,70 @@ texture = ExtResource("25_dv1j3")
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="sniperbombardierturret" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(350, 447)
+position = Vector2(345, 474)
+
+[node name="turret4" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(1194, 353)
+
+[node name="sniper" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(1098, 586)
+
+[node name="sniperbombardier5" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(558, 642)
 
 [node name="sniperbombardierturret2" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(558, 613)
+position = Vector2(848, 673)
 
-[node name="sniperbombardierturret3" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(814, 651)
+[node name="sniperbombardier3" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(543, 327)
 
-[node name="sniperbombardierturret4" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(565, 307)
+[node name="sniperbombardier4" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(586, 325)
 
-[node name="sniperbombardierturret5" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(819, 155)
+[node name="beef10" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(782, 178)
 
-[node name="sniperbombardierturret6" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(919, 160)
+[node name="sniperbombardier" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(851, 178)
 
-[node name="sniperbombardierturret7" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(1190, 823)
+[node name="sniperbombardier2" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(829, 179)
 
-[node name="beef9" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(699, 822)
+[node name="turret" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(931, 184)
 
-[node name="sniperbombardierturret9" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(1017, 823)
+[node name="turret2" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(1221, 872)
+
+[node name="sniperbombardier8" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(826, 866)
+
+[node name="sniperbombardier6" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(1108, 869)
 
 [node name="beef" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(919, 824)
+position = Vector2(981, 870)
 
-[node name="beef2" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(818, 824)
+[node name="sniperbombardier7" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(903, 867)
 
 [node name="beef6" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(596, 821)
+position = Vector2(604, 867)
+
+[node name="turret3" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
+position = Vector2(728, 868)
 
 [node name="beef7" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(873, 647)
+position = Vector2(1058, 866)
 
 [node name="beef8" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(626, 304)
+position = Vector2(643, 328)
 
 [node name="beef3" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(498, 825)
+position = Vector2(457, 862)
 
 [node name="beef4" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(1099, 826)
+position = Vector2(1134, 866)
 
 [node name="beef5" parent="SpawnPoints" instance=ExtResource("23_bjf6x")]
-position = Vector2(391, 822)
+position = Vector2(382, 864)

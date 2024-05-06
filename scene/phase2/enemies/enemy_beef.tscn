@@ -115,7 +115,6 @@ libraries = {
 }
 
 [node name="RayCastFloor" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(-22, 0)
 
 [node name="RayCastWall" type="RayCast2D" parent="."]
@@ -125,6 +124,14 @@ target_position = Vector2(-62, 0)
 [node name="RayCastWall2" type="RayCast2D" parent="."]
 position = Vector2(-20, -60)
 target_position = Vector2(-62, 0)
+
+[node name="NoRecoil" type="RayCast2D" parent="."]
+position = Vector2(20, -60)
+target_position = Vector2(20, 0)
+
+[node name="NoRecoil2" type="RayCast2D" parent="."]
+position = Vector2(20, -5)
+target_position = Vector2(20, 0)
 
 [node name="PlayerDetectArea" type="Area2D" parent="."]
 position = Vector2(-200, -40)

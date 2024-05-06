@@ -831,11 +831,11 @@ texture = ExtResource("25_l8cek")
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
-[node name="sniperbombardierturret" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(501, 626)
+[node name="sniperbombardier5" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(497, 665)
 
-[node name="sniperbombardierturret2" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(268, 500)
+[node name="bombardier" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(268, 527)
 
 [node name="sniperbombardierturret3" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
 position = Vector2(181, 380)
@@ -844,43 +844,73 @@ position = Vector2(181, 380)
 position = Vector2(817, 490)
 
 [node name="turret" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(694, 1069)
+position = Vector2(733, 1075)
+
+[node name="sniperbombardier6" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(631, 1073)
 
 [node name="sniperbombardier" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(223, 1061)
+position = Vector2(266, 1075)
 
 [node name="sniperbombardier2" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(855, 1270)
+position = Vector2(801, 1278)
+
+[node name="turret4" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(881, 1281)
 
 [node name="sniperbombardier3" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(579, 1286)
+position = Vector2(577, 1306)
 
 [node name="sniperbombardier4" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(379, 1288)
+position = Vector2(373, 1305)
+
+[node name="sniperbombardier8" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(310, 1507)
+
+[node name="sniperbombardier9" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(264, 1507)
 
 [node name="turret2" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(103, 1493)
+position = Vector2(63, 1526)
 
 [node name="beef" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(226, 1498)
+position = Vector2(200, 1508)
 
 [node name="beef2" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(353, 1494)
-
-[node name="beef3" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(471, 1492)
-
-[node name="beef4" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(603, 1494)
-
-[node name="beef5" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(705, 1496)
+position = Vector2(533, 1509)
 
 [node name="beef6" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(798, 1494)
+position = Vector2(494, 1507)
 
 [node name="beef7" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(894, 1499)
+position = Vector2(449, 1505)
 
 [node name="beef8" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
-position = Vector2(330, 1057)
+position = Vector2(408, 1510)
+
+[node name="beef9" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(363, 1506)
+
+[node name="beef3" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(578, 1506)
+
+[node name="beef4" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(619, 1502)
+
+[node name="beef5" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(704, 1498)
+
+[node name="sniper" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(921, 1507)
+
+[node name="turret3" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(816, 1525)
+
+[node name="beefsniper" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(330, 1074)
+
+[node name="beefsniper2" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(179, 1074)
+
+[node name="sniperbombardier7" parent="SpawnPoints" instance=ExtResource("23_edj6c")]
+position = Vector2(223, 1074)

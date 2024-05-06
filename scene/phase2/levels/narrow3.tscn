@@ -849,10 +849,10 @@ position = Vector2(861, 1178)
 [node name="sniperbombardier2" parent="SpawnPoints" instance=ExtResource("23_76dun")]
 position = Vector2(310, 377)
 
-[node name="sniperbombardier3" parent="SpawnPoints" instance=ExtResource("23_76dun")]
-position = Vector2(132, 588)
+[node name="sniper2" parent="SpawnPoints" instance=ExtResource("23_76dun")]
+position = Vector2(134, 600)
 
-[node name="sniperbombardier6" parent="SpawnPoints" instance=ExtResource("23_76dun")]
+[node name="sniper" parent="SpawnPoints" instance=ExtResource("23_76dun")]
 position = Vector2(874, 766)
 
 [node name="sniperbombardier7" parent="SpawnPoints" instance=ExtResource("23_76dun")]
@@ -910,10 +910,10 @@ position = Vector2(91, 1520)
 position = Vector2(857, 452)
 
 [node name="sniperbombardier5" parent="SpawnPoints" instance=ExtResource("23_76dun")]
-position = Vector2(585, 175)
+position = Vector2(589, 168)
 
 [node name="sniperbombardier" parent="SpawnPoints" instance=ExtResource("23_76dun")]
 position = Vector2(413, 380)
 
 [node name="turret" parent="SpawnPoints" instance=ExtResource("23_76dun")]
-position = Vector2(199, 176)
+position = Vector2(195, 177)

@@ -13,6 +13,10 @@ const RECOIL = -600.0
 @onready var player_detect_area = $PlayerDetectArea
 @onready var attack_area = $AttackArea
 @onready var weapon_point = $WeaponPoint
+@onready var no_recoil = $NoRecoil
+@onready var no_recoil_2 = $NoRecoil2
+
+
 
 var shotgun = preload('res://scene/phase2/weapons/shotgun.tscn')
 var uzi = preload('res://scene/phase2/weapons/uzi.tscn')
@@ -41,7 +45,6 @@ func _ready():
 	var gun_obj = weapons[rand_weapon]
 	gun = gun_obj.instantiate()
 	weapon_point.add_child(gun)
-	
 	player = get_parent().get_parent().get_parent().get_node('Player')
 	
 func _physics_process(delta):
@@ -108,6 +111,12 @@ func set_direction(d):
 	ray_cast_wall.scale.x = abs(ray_cast_wall.scale.x)*-d
 	ray_cast_wall2.position.x = abs(ray_cast_wall2.position.x)*d
 	ray_cast_wall2.scale.x = abs(ray_cast_wall2.scale.x)*-d
+	
+	no_recoil.position.x = abs(no_recoil.scale.x)*d
+	no_recoil.scale.x = abs(no_recoil.scale.x)*d
+	no_recoil_2.position.x = abs(no_recoil_2.scale.x)*d
+	no_recoil_2.scale.x = abs(no_recoil_2.scale.x)*d
+	
 	ray_cast_floor.position.x = abs(ray_cast_floor.position.x)*d
 	
 	player_detect_area.position.x = abs(player_detect_area.position.x)*d
@@ -122,6 +131,10 @@ func set_direction(d):
 		gun.scale.y = -1
 
 ## STATE: HOSTILE
+
+func recoil_hit_wall():
+	return no_recoil.is_colliding() or no_recoil_2.is_colliding()
+	
 func follow_player():
 	vel = RUN_VEL
 	if player.global_position.x < global_position.x:
@@ -133,7 +146,8 @@ func attack():
 	shoot_ready = false
 	shooting = true
 	shoot()
-	attack_recoil = true
+	if not recoil_hit_wall():
+		attack_recoil = true
 	recoil_v = RECOIL*direction
 	ap.play('attack')
 	
@@ -161,7 +175,8 @@ func handle_movement(delta):
 		vel = 0
 		position.x += recoil_v*delta
 		recoil_v += FRIC*direction*delta
-		if direction == -1 and recoil_v <= 0.0 or direction == 1 and recoil_v >= 0.0:
+		if recoil_hit_wall() or (direction == -1 and recoil_v <= 0.0 or direction == 1 and recoil_v >= 0.0):
+			recoil_v = 0
 			attack_recoil = false
 			shooting = false
 	else:

@@ -1,11 +1,5 @@
 extends Node2D
 
-@onready var flatland_collider = $Flatland/FlatlandCollider
-@onready var flatland_polygon = $Flatland/FlatlandCollider/FlatlandPolygon
-
-@onready var testland_collider = $Testland/TestlandCollider
-@onready var testland_polygon = $Testland/TestlandCollider/TestlandPolygon
-
 @onready var camera_2d = $Camera2D
 @onready var player = $Player
 
@@ -36,6 +30,7 @@ func _ready():
 		points.shuffle()
 		for i in range(test_level[enemy_name]):
 			var idx = rng.randi_range(0, len(points)-1-i)
+			print(points[idx])
 			points[idx].add_child(ENEMIES[enemy_name].instantiate())
 			used_points.append(points[idx])
 			points.pop_at(idx)

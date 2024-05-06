@@ -13,9 +13,9 @@ func _ready():
 	direction = 1
 	
 	damage = 3
-	magazine = 20
+	magazine = 15
 	current_magazine = magazine
-	bullet_spread = 0.4
+	bullet_spread = 0.25
 	shot_time = 0
 	reload_time = 2
 	

@@ -745,16 +745,16 @@ texture = ExtResource("25_48fhu")
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="beefsniperbombardierturret" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(418, 930)
+position = Vector2(420, 933)
 
 [node name="sniperbombardierturret2" parent="SpawnPoints" instance=ExtResource("23_ica25")]
 position = Vector2(288, 742)
 
 [node name="sniperbombardierturret3" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(85, 1339)
+position = Vector2(67, 1356)
 
 [node name="sniperbombardier5" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(173, 1338)
+position = Vector2(170, 1346)
 
 [node name="sniperbombardier" parent="SpawnPoints" instance=ExtResource("23_ica25")]
 position = Vector2(1350, 502)
@@ -763,28 +763,28 @@ position = Vector2(1350, 502)
 position = Vector2(507, 549)
 
 [node name="sniperbombardierturret6" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(1203, 505)
+position = Vector2(1202, 512)
 
 [node name="turret" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(1504, 502)
+position = Vector2(1501, 510)
 
 [node name="sniperbombardier3" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(1366, 844)
+position = Vector2(1363, 849)
 
 [node name="sniperbombardier2" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(1193, 1007)
+position = Vector2(1195, 1020)
 
 [node name="sniperbombardier4" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(618, 1345)
+position = Vector2(618, 1351)
 
 [node name="beefsniperbombardierturret10" parent="SpawnPoints" instance=ExtResource("23_ica25")]
 position = Vector2(820, 1093)
 
 [node name="turret2" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(1539, 1321)
+position = Vector2(1544, 1357)
 
 [node name="turret3" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(1121, 1330)
+position = Vector2(1122, 1359)
 
 [node name="beef" parent="SpawnPoints" instance=ExtResource("23_ica25")]
 position = Vector2(1391, 1329)
@@ -792,14 +792,14 @@ position = Vector2(1391, 1329)
 [node name="beef2" parent="SpawnPoints" instance=ExtResource("23_ica25")]
 position = Vector2(1240, 1330)
 
-[node name="beef3" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(1009, 1335)
+[node name="sniperbombardier7" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(1010, 1348)
 
 [node name="beef4" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(902, 1331)
+position = Vector2(911, 1346)
 
 [node name="beef5" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(514, 1339)
+position = Vector2(515, 1346)
 
 [node name="beef6" parent="SpawnPoints" instance=ExtResource("23_ica25")]
 position = Vector2(319, 1346)
@@ -807,13 +807,13 @@ position = Vector2(319, 1346)
 [node name="beef7" parent="SpawnPoints" instance=ExtResource("23_ica25")]
 position = Vector2(244, 1350)
 
-[node name="beef9" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(794, 1330)
+[node name="sniperbombardierturret" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+position = Vector2(794, 1355)
 
-[node name="beef11" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+[node name="sniperbombardier6" parent="SpawnPoints" instance=ExtResource("23_ica25")]
 position = Vector2(994, 706)
 
-[node name="beef12" parent="SpawnPoints" instance=ExtResource("23_ica25")]
+[node name="beefsniperbombardier" parent="SpawnPoints" instance=ExtResource("23_ica25")]
 position = Vector2(660, 698)
 
 [node name="beef13" parent="SpawnPoints" instance=ExtResource("23_ica25")]
@@ -823,4 +823,4 @@ position = Vector2(722, 699)
 position = Vector2(933, 700)
 
 [node name="beef8" parent="SpawnPoints" instance=ExtResource("23_ica25")]
-position = Vector2(412, 1343)
+position = Vector2(412, 1349)
