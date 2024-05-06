@@ -55,6 +55,10 @@ func shoot():
 			b.global_rotation = bullet_spawn.global_rotation + rng.randf_range(0, bullet_spread)
 		add_child(b)
 	anim_sprite.play('shoot')
+	if get_tree() == null:
+		if current_magazine != 0:
+			can_shoot = true
+		return
 	await get_tree().create_timer(shot_time).timeout
 	if current_magazine != 0:
 		can_shoot = true
@@ -62,6 +66,11 @@ func shoot():
 
 func reload():
 	reloading = true
+	if get_tree() == null:
+		current_magazine = magazine
+		can_shoot = true
+		reloading = false
+		return
 	await get_tree().create_timer(reload_time).timeout
 	current_magazine = magazine
 	can_shoot = true

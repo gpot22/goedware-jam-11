@@ -60,10 +60,19 @@ func shoot():
 	anim_sprite.play('shoot')
 	hide_line = line_of_sight.visible
 	line_of_sight.visible = false
+	if get_tree() == null:
+		can_shoot = true
+		if hide_line:
+			line_of_sight.visible = true
+			hide_line = false
+		return
 	await get_tree().create_timer(0.4).timeout
 	if hide_line:
 		line_of_sight.visible = true
 		hide_line = false
+	if get_tree() == null:
+		can_shoot = true
+		return
 	await get_tree().create_timer(shot_time-0.4).timeout
 	can_shoot = true
 
@@ -82,6 +91,11 @@ func update_line_of_sight(target):
 
 func reload():
 	reloading = true
+	if get_tree() == null:
+		can_shoot = true
+		reloading = false
+		current_magazine = magazine
+		return
 	await get_tree().create_timer(reload_time).timeout
 	current_magazine = magazine
 	can_shoot = true

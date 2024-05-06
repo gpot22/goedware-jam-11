@@ -19,6 +19,29 @@ const breaktile = preload("res://assets/sfx/breaktile.mp3")
 const notenoughmoney = preload("res://assets/sfx/notenoughmoney.wav")
 const button = preload("res://assets/sfx/button.mp3")
 
+const dash = preload("res://assets/sfx/dash.mp3")
+const footsteps = preload("res://assets/sfx/footsteps.mp3")
+const grenadelauncher1 = preload("res://assets/sfx/grenadelauncher1.mp3")
+const grenadelauncher2 = preload("res://assets/sfx/grenadelauncher2.mp3")
+const grenadelauncher3 = preload("res://assets/sfx/grenadelauncher3.mp3")
+const hit1 = preload("res://assets/sfx/hit1.mp3")
+const hit2 = preload("res://assets/sfx/hit2.mp3")
+const hit3 = preload("res://assets/sfx/hit3.mp3")
+const jump = preload("res://assets/sfx/jump.mp3")
+const explosion1 = preload("res://assets/sfx/explosion1.mp3")
+const pistol_equip = preload("res://assets/sfx/pistol_equip.mp3")
+const pistol1 = preload("res://assets/sfx/pistol1.mp3")
+const pistol2 = preload("res://assets/sfx/pistol2.mp3")
+const pistol3 = preload("res://assets/sfx/pistol3.mp3")
+const sniper_plus = preload("res://assets/sfx/sniper_plus.mp3")
+const sniper_enemy = preload("res://assets/sfx/sniper_enemy.mp3")
+const sniper_player = preload("res://assets/sfx/sniper_player.mp3")
+const sniper_equip = preload("res://assets/sfx/sniper_equip.mp3")
+const uzi_equip = preload("res://assets/sfx/uzi_equip.mp3")
+const uzi1 = preload("res://assets/sfx/uzi1.mp3")
+const uzi2 = preload("res://assets/sfx/uzi2.mp3")
+const uzi3 = preload("res://assets/sfx/uzi3.mp3")
+
 var sfx_vol = GlobalVariables.sfx_volume
 var rng = RandomNumberGenerator.new()
 
@@ -38,6 +61,51 @@ func play_sfx(sfx):
 		sfx_player.stream = notenoughmoney
 	elif sfx == 'button':
 		sfx_player.stream = button
+	elif sfx == 'dash':
+		sfx_player.stream = dash
+	elif sfx == 'footsteps':
+		sfx_player.stream = footsteps
+	elif sfx == 'grenadelauncher1':
+		sfx_player.stream = grenadelauncher1
+	elif sfx == 'grenadelauncher2':
+		sfx_player.stream = grenadelauncher2
+	elif sfx == 'grenadelauncher3':
+		sfx_player.stream = grenadelauncher3
+	elif sfx == 'hit1':
+		sfx_player.stream = hit1
+	elif sfx == 'hit2':
+		sfx_player.stream = hit2
+	elif sfx == 'hit3':
+		sfx_player.stream = hit3
+	elif sfx == 'jump':
+		sfx_player.stream = jump
+	elif sfx == 'explosion1':
+		sfx_player.stream = explosion1
+	elif sfx == 'pistol_equip':
+		sfx_player.stream = pistol_equip
+	elif sfx == 'pistol1':
+		sfx_player.stream = pistol1
+	elif sfx == 'pistol2':
+		sfx_player.stream = pistol2
+	elif sfx == 'pistol3':
+		sfx_player.stream = pistol3
+	elif sfx == 'sniper_plus':
+		sfx_player.stream = sniper_plus
+	elif sfx == 'sniper_enemy':
+		sfx_player.stream = sniper_enemy
+	elif sfx == 'sniper_player':
+		sfx_player.stream = sniper_player
+	elif sfx == 'sniper_equip':
+		sfx_player.stream = sniper_equip
+	elif sfx == 'uzi_equip':
+		sfx_player.stream = uzi_equip
+	elif sfx == 'uzi1':
+		sfx_player.stream = uzi1
+	elif sfx == 'uzi2':
+		sfx_player.stream = uzi2
+	elif sfx == 'uzi3':
+		sfx_player.stream = uzi3
+	
 
 	add_child(sfx_player)
 	sfx_player.play()

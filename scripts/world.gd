@@ -72,6 +72,8 @@ func _process(delta):
 	if not enemies_alive():
 		GlobalVariables.wallet += 1
 		GlobalVariables.level += 1
+		get_parent().win()
+		get_parent().go_to_phase_1(false)
 		
 	#if player_dead():
 	if Input.is_action_just_pressed('test'):

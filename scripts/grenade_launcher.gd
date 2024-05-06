@@ -80,6 +80,11 @@ func shoot(vel=null, x_offset=0):
 	
 func reload():
 	reloading = true
+	if get_tree() == null:
+		current_magazine = magazine
+		can_shoot = true
+		reloading = false
+		return
 	await get_tree().create_timer(reload_time).timeout
 	current_magazine = magazine
 	can_shoot = true

@@ -43,6 +43,13 @@ func _ready():
 func _process(delta):
 	if starthovering:
 		if Input.is_action_just_released('select'):
+			if cycle_weapon_list[cycle_index] not in GlobalVariables.unlocked_weapons:
+				return
+			if 'shotgun' in GlobalVariables.unlocked_weapons:
+				GlobalVariables.equipped_weapons.append('shotgun')
+			if 'sniper' in GlobalVariables.unlocked_weapons:
+				GlobalVariables.equipped_weapons.append('sniper')
+			GlobalVariables.equipped_weapons.append(cycle_weapon_list[cycle_index])
 			Audio.play_sfx('button')
 			get_parent().go_to_phase_2()
 	

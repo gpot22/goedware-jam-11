@@ -19,6 +19,15 @@ const SHOTTY_RECOIL = 800
 @onready var hook = $"../hook"
 @onready var rope = $rope
 
+const GRENADE_LAUNCHER = preload("res://scene/phase2/weapons/grenade_launcher.tscn")
+const PISTOL = preload("res://scene/phase2/weapons/pistol.tscn")
+const SHOTGUN = preload("res://scene/phase2/weapons/shotgun.tscn")
+const SNIPER_RIFLE = preload("res://scene/phase2/weapons/sniper_rifle.tscn")
+const UZI = preload("res://scene/phase2/weapons/uzi.tscn")
+
+var sniper
+var primary_weapon
+
 var smoke_effect = preload('res://scene/vfx/smoke.tscn')
 var smokes
 
@@ -59,6 +68,16 @@ var xhair_frames = 0
 var xhair
 
 func _ready():
+	if 'sniper' in GlobalVariables.equipped_weapons:
+		sniper = SNIPER_RIFLE.instantiate()
+	if 'pistol' in GlobalVariables.equipped_weapons:
+		primary_weapon = PISTOL.instantiate()
+	elif 'uzi' in GlobalVariables.equipped_weapons:
+		primary_weapon = UZI.instantiate()
+	elif 'grenadelauncher' in GlobalVariables.equipped_weapons:
+		primary_weapon = GRENADE_LAUNCHER.instantiate()
+	get_node('WeaponPoint').add_child(primary_weapon)
+	
 	if $WeaponPoint.get_child_count() != 0:
 		gun = $WeaponPoint.get_child(0)
 		gun_ipos = Vector2(abs(gun.position.x), gun.position.y)
@@ -109,6 +128,7 @@ func _physics_process(delta):
 	handle_grapple(delta)
 	update_animations(input_axis)
 	update_direction(input_axis)
+	handle_primary_weapon_swap()
 	
 	if gun and not shotgun_range:
 		if states['dash']:
@@ -129,6 +149,17 @@ func _physics_process(delta):
 	if was_on_floor && !is_on_floor():
 		coyote_timer.start()
 
+func handle_primary_weapon_swap():
+	if 'sniper' not in GlobalVariables.equipped_weapons:
+		return
+	if Input.is_action_just_pressed('swapprimary'):
+		if get_node('WeaponPoint').get_child(0) == primary_weapon:
+			get_node('WeaponPoint').remove_child(primary_weapon)
+			get_node('WeaponPoint').add_child(sniper)
+		else:
+			get_node('WeaponPoint').remove_child(sniper)
+			get_node('WeaponPoint').add_child(primary_weapon)
+
 # USER INPUT
 func handle_input():
 	var input_axis = Input.get_axis("left", "right")
@@ -146,9 +177,10 @@ func handle_movement(delta, input_axis):
 	if grappling:return
 	if input_axis:
 		velocity.x = move_toward(velocity.x, VEL*input_axis, ACC*delta)  # player acceleration
+		#Audio.play_sfx('footsteps')
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRIC*delta)  # player friction
-	
+
 func handle_jump():
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer.start()
@@ -159,6 +191,7 @@ func handle_jump():
 			jumpUp = true
 			velocity.y = JUMP_VEL
 			animate_once('jump_start')
+			Audio.play_sfx('jump')
 	else:
 		if velocity.y > 0 and jumpUp:
 			jumpUp = false
@@ -170,6 +203,7 @@ func handle_dash(input_axis):
 	if !Input.is_action_just_pressed("dash") or states['dash']: return
 	velocity.x = DASH_VEL*direction if not input_axis else DASH_VEL*input_axis
 	ap.play('dash')
+	Audio.play_sfx('dash')
 	states['dash'] = true
 	await ap.animation_finished
 	states['dash'] = false

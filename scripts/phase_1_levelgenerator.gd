@@ -13,8 +13,9 @@ var narrow1 = preload("res://scene/phase2/levels/narrow1.tscn")
 var narrow2 = preload("res://scene/phase2/levels/narrow2.tscn")
 var narrow3 = preload("res://scene/phase2/levels/narrow3.tscn")
 
-const BUTTON_1 = preload('res://button1.png')
+const SHOTGUN = preload("res://scene/phase2/weapons/shotgun.tscn")
 
+const BUTTON_1 = preload('res://button1.png')
 var larges
 var mediums
 var narrows
@@ -148,6 +149,10 @@ func go_to_phase_2():
 		phase_2_instance = larges[rng.randi_range(0,1)].instantiate()
 	else:
 		phase_2_instance = huge.instantiate()
+	
+	if 'shotgun' in GlobalVariables.equipped_weapons:
+		phase_2_instance.get_node('Player').get_node('ShotgunPoint').add_child(SHOTGUN.instantiate())
+	
 	if not playing_phase_2_music:
 		Audio.play_music('phase2_' + str(rng.randi_range(1,3)))
 		playing_phase_2_music = true

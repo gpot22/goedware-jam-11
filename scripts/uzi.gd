@@ -65,6 +65,11 @@ func shoot():
 func reload():
 	reloading = true
 	anim_sprite.play('idle')
+	if get_tree() == null:
+		can_shoot = true
+		reloading = false
+		current_magazine = magazine
+		return
 	await get_tree().create_timer(reload_time).timeout
 	current_magazine = magazine
 	can_shoot = true

@@ -51,6 +51,9 @@ func shoot():
 	anim_sprite.play('shoot')
 	#await anim_sprite.animation_finished
 	#anim_sprite.stop()
+	if get_tree() == null:
+		can_shoot = true
+		return
 	await get_tree().create_timer(shot_time).timeout
 	can_shoot = true
 
@@ -64,6 +67,11 @@ func toggle_active(a):
 
 func reload():
 	reloading = true
+	if get_tree() == null:
+		current_magazine = magazine
+		can_shoot = true
+		reloading = false
+		return
 	await get_tree().create_timer(reload_time).timeout
 	current_magazine = magazine
 	can_shoot = true
