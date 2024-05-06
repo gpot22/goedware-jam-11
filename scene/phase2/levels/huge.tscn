@@ -120,10 +120,11 @@ metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.45, 0.45)
-limit_left = -400
-limit_top = -400
-limit_right = 2500
-limit_bottom = 2500
+limit_left = -300
+limit_top = -300
+limit_right = 2400
+limit_bottom = 2400
+limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
