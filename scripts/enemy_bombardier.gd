@@ -202,7 +202,7 @@ func grenade_shower(n=4):
 	var cooldown = 20
 	var x_offset
 	for i in range(n):
-		if state == 'suicidal': return
+		#if state == 'suicidal': return
 		x_offset = int(rng.randf_range(-4, 4)*15)
 		if get_tree() == null:
 			return
