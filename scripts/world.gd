@@ -30,9 +30,7 @@ func _ready():
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	## set player camera
 	Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0), 0, Vector2(22, 22))
-	var test_level = {
-		'beef': 3, 'bombardier': 2, 'sniper': 2, 'turret': 1
-	}
+	var test_level = GlobalVariables.phase_2_enemies
 	for enemy_name in test_level.keys():
 		var points = get_spawn_points(enemy_name)
 		points.shuffle()
