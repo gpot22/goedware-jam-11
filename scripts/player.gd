@@ -19,7 +19,6 @@ const SHOTTY_RECOIL = 800
 @onready var hook = $"../hook"
 @onready var rope = $rope
 
-
 var smoke_effect = preload('res://scene/vfx/smoke.tscn')
 var smokes
 
@@ -52,6 +51,7 @@ var grapple_direction
 
 # PLAYER STATS
 var health
+var max_health = 500
 var items = []
 
 var animate_crosshair = false
@@ -72,7 +72,7 @@ func _ready():
 		camera.zoom = Vector2(0.4, 0.4)
 	else:
 		camera.zoom = Vector2(0.55, 0.55)
-	health = 500
+	health = max_health
 	items = []
 	
 	xhair = get_parent().get_node('xhair')
@@ -88,6 +88,7 @@ func _process(delta):
 			xhair_frames = 0
 			Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0), 0, Vector2(22, 22))
 			animate_crosshair = false
+	
 	
 # PLAYER LOOP
 func _physics_process(delta):
