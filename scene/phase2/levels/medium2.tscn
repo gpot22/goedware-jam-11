@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b3fbeq4r0lddw"]
+[gd_scene load_steps=36 format=3 uid="uid://b3fbeq4r0lddw"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_kkp2c"]
 [ext_resource type="Texture2D" uid="uid://diamcnywig4em" path="res://assets/background_tile.png" id="3_iitbg"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dxgw6wox0bygs" path="res://scene/phase2/levels/EnemySpawn/EnemySpawnPoint.tscn" id="23_p3dg8"]
 [ext_resource type="Texture2D" uid="uid://d3mwf53hbsclj" path="res://assets/xhair6.png" id="24_db2r2"]
 [ext_resource type="Texture2D" uid="uid://73cm115w1p8x" path="res://assets/sprites/hp.png" id="24_vlmqb"]
+[ext_resource type="PackedScene" uid="uid://bmdndqk6mdwpj" path="res://scene/phase2/bulletshud.tscn" id="25_6jkle"]
 [ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="25_u04gp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gd3a6"]
@@ -374,4 +375,5 @@ texture = ExtResource("24_vlmqb")
 region_enabled = true
 region_rect = Rect2(0, 0, 160, 11)
 
-[node name="Bullets" type="Node2D" parent="CanvasLayer"]
+[node name="Bulletshud" parent="CanvasLayer" instance=ExtResource("25_6jkle")]
+position = Vector2(631, 416)

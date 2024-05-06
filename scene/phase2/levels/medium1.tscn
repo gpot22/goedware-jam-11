@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dyc8bgbn6h2g3"]
+[gd_scene load_steps=36 format=3 uid="uid://dyc8bgbn6h2g3"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_w5rnu"]
 [ext_resource type="Texture2D" uid="uid://diamcnywig4em" path="res://assets/background_tile.png" id="3_av68b"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://73cm115w1p8x" path="res://assets/sprites/hp.png" id="24_460s0"]
 [ext_resource type="Texture2D" uid="uid://d3mwf53hbsclj" path="res://assets/xhair6.png" id="24_msinh"]
 [ext_resource type="Texture2D" uid="uid://d2cbiu52nw6t5" path="res://grapplinghook.png" id="25_dv1j3"]
+[ext_resource type="PackedScene" uid="uid://bmdndqk6mdwpj" path="res://scene/phase2/bulletshud.tscn" id="25_uos2v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gd3a6"]
 texture = ExtResource("3_av68b")
@@ -349,4 +350,5 @@ texture = ExtResource("24_460s0")
 region_enabled = true
 region_rect = Rect2(0, 0, 160, 11)
 
-[node name="Bullets" type="Node2D" parent="CanvasLayer"]
+[node name="Bulletshud" parent="CanvasLayer" instance=ExtResource("25_uos2v")]
+position = Vector2(631, 416)

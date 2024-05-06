@@ -78,8 +78,7 @@ func player_celebrate_phase(delta):
 		camera_2d.set_zoom(Vector2(zoom_current, zoom_current))
 		await get_tree().create_timer(0.01).timeout
 	await player.ap.animation_finished
-	player.ap.stop()
-	for i in range(6):
+	for i in range(3):
 		await player.celebrate_idle()
 		await player.ap.animation_finished
 	celebrate_phase_finished = true

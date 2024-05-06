@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bavmfwbwwkje6"]
+[gd_scene load_steps=39 format=3 uid="uid://bavmfwbwwkje6"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_l81e7"]
 [ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_e1v04"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://dxgw6wox0bygs" path="res://scene/phase2/levels/EnemySpawn/EnemySpawnPoint.tscn" id="23_76dun"]
 [ext_resource type="Texture2D" uid="uid://docgo87di4b82" path="res://assets/sprites/hpbox.png" id="24_cepgq"]
 [ext_resource type="Texture2D" uid="uid://73cm115w1p8x" path="res://assets/sprites/hp.png" id="25_iucok"]
+[ext_resource type="PackedScene" uid="uid://bmdndqk6mdwpj" path="res://scene/phase2/bulletshud.tscn" id="26_8nf1p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y865c"]
 texture = ExtResource("2_e1v04")
@@ -821,4 +822,5 @@ texture = ExtResource("25_iucok")
 region_enabled = true
 region_rect = Rect2(0, 0, 160, 11)
 
-[node name="Bullets" type="Node2D" parent="CanvasLayer"]
+[node name="Bulletshud" parent="CanvasLayer" instance=ExtResource("26_8nf1p")]
+position = Vector2(631, 416)
