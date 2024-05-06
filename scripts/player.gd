@@ -67,7 +67,11 @@ var animate_crosshair = false
 var xhair_frames = 0
 var xhair
 
+var rng
+
 func _ready():
+	rng = RandomNumberGenerator.new()
+	
 	if 'sniper' in GlobalVariables.equipped_weapons:
 		sniper = SNIPER_RIFLE.instantiate()
 	if 'pistol' in GlobalVariables.equipped_weapons:
@@ -156,9 +160,14 @@ func handle_primary_weapon_swap():
 		if get_node('WeaponPoint').get_child(0) == primary_weapon:
 			get_node('WeaponPoint').remove_child(primary_weapon)
 			get_node('WeaponPoint').add_child(sniper)
+			Audio.play_sfx('sniper_equip')
 		else:
 			get_node('WeaponPoint').remove_child(sniper)
 			get_node('WeaponPoint').add_child(primary_weapon)
+			if 'pistol' in GlobalVariables.equipped_weapons:
+				Audio.play_sfx('pistol_equip')
+			elif 'uzi' in GlobalVariables.equipped_weapons:
+				Audio.play_sfx('uzi_equip')
 
 # USER INPUT
 func handle_input():
@@ -355,11 +364,7 @@ func take_damage(dmg):
 	#print('player damaged: ', dmg)
 	health -= dmg
 	#print('ow', dmg)
-	lose_level()
-	
-func lose_level():
-	pass
-	#print('ur shit')
+	Audio.play_sfx('hit' + str(rng.randi_range(1,3)))
 	
 
 func shotgun_recoil():

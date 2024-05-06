@@ -74,6 +74,7 @@ func shoot(vel=null, x_offset=0):
 	
 	grenade.vel = vel
 	
+	Audio.play_sfx('grenadelauncher' + str(rng.randi_range(1,3)))
 	anim_sprite.play('shoot')
 	await anim_sprite.animation_finished
 	anim_sprite.stop()

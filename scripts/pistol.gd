@@ -3,6 +3,7 @@ extends 'res://scripts/WeaponSuperclass.gd'
 var can_shoot = true
 var reloading = false
 var current_magazine
+var rnd = RandomNumberGenerator.new()
 
 func _ready():
 	super._ready()
@@ -45,6 +46,7 @@ func shoot():
 	var b = bullet.instantiate()
 	b.global_position = bullet_spawn.global_position
 	b.global_rotation = bullet_spawn.global_rotation + rng.randf_range(-bullet_spread, bullet_spread)
+	Audio.play_sfx('pistol' + str(rnd.randi_range(1,3)))
 	add_child(b)
 	
 	can_shoot = false

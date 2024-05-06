@@ -41,8 +41,9 @@ const uzi_equip = preload("res://assets/sfx/uzi_equip.mp3")
 const uzi1 = preload("res://assets/sfx/uzi1.mp3")
 const uzi2 = preload("res://assets/sfx/uzi2.mp3")
 const uzi3 = preload("res://assets/sfx/uzi3.mp3")
+const shotgun = preload("res://assets/sfx/shotgun.mp3")
 
-var sfx_vol = GlobalVariables.sfx_volume
+var sfx_vol = linear_to_db(GlobalVariables.sfx_volume)
 var rng = RandomNumberGenerator.new()
 
 func _ready():
@@ -51,7 +52,7 @@ func _ready():
 
 func play_sfx(sfx):
 	var sfx_player = AudioStreamPlayer.new()
-	sfx_player.volume_db = sfx_vol
+	sfx_player.volume_db = sfx_vol * 3
 	sfx_player.name = 'sfx_player'
 	if sfx == 'boughtgun':
 		sfx_player.stream = boughtgun
@@ -105,6 +106,8 @@ func play_sfx(sfx):
 		sfx_player.stream = uzi2
 	elif sfx == 'uzi3':
 		sfx_player.stream = uzi3
+	elif sfx == 'shotgun':
+		sfx_player.stream = shotgun
 	
 
 	add_child(sfx_player)

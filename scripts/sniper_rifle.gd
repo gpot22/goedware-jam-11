@@ -53,7 +53,9 @@ func shoot():
 	b.global_position = bullet_spawn.global_position
 	b.global_rotation = bullet_spawn.global_rotation
 	add_child(b)
+	Audio.play_sfx('sniper_player')
 	if first_shot:
+		Audio.play_sfx('sniper_plus')
 		first_shot = false
 		b.first_shot = true
 	can_shoot = false

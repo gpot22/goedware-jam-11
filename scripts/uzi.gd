@@ -59,6 +59,7 @@ func shoot():
 	b.global_position = bullet_spawn.global_position
 	b.global_rotation = bullet_spawn.global_rotation + rng.randf_range(-bullet_spread, bullet_spread)
 	add_child(b)
+	Audio.play_sfx('uzi'+str(rng.randi_range(1,3)))
 	anim_sprite.play('shoot')
 	
 

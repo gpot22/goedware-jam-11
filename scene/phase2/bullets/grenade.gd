@@ -56,5 +56,6 @@ func _on_body_entered(body):
 	get_parent().get_parent().add_child(explosion)
 	explosion.global_position = global_position
 	explode_damage()
+	Audio.play_sfx('explosion1')
 	queue_free()
 	

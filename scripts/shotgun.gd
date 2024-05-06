@@ -54,6 +54,7 @@ func shoot():
 		else:
 			b.global_rotation = bullet_spawn.global_rotation + rng.randf_range(0, bullet_spread)
 		add_child(b)
+	Audio.play_sfx('shotgun')
 	anim_sprite.play('shoot')
 	if get_tree() == null:
 		if current_magazine != 0:
