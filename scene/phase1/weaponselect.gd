@@ -12,7 +12,7 @@ var uphovering = false
 var downhovering = false
 var starthovering = false
 
-var cycle_weapon_list = ['pistol', 'sniper', 'grenadelauncher']
+var cycle_weapon_list = ['pistol', 'uzi', 'grenadelauncher']
 var cycle_list
 var cycle_index = 0
 
@@ -44,15 +44,7 @@ func _process(delta):
 	if starthovering:
 		if Input.is_action_just_released('select'):
 			Audio.play_sfx('button')
-			var rng = RandomNumberGenerator.new()
-			if GlobalVariables.stage_size <= 9:
-				get_tree().change_scene_to_file('res://scene/phase2/levels/narrow' + str(rng.randi_range(1,3)) + '.tscn')
-			elif GlobalVariables.stage_size <= 16:
-				get_tree().change_scene_to_file('res://scene/phase2/levels/medium' + str(rng.randi_range(1,3)) + '.tscn')
-			elif GlobalVariables.stage_size <= 32:
-				get_tree().change_scene_to_file('res://scene/phase2/levels/large' + str(rng.randi_range(1,2)) + '.tscn')
-			else:
-				get_tree().change_scene_to_file('res://scene/phase2/levels/huge.tscn')
+			get_parent().go_to_phase_2()
 	
 	if uphovering:
 		if Input.is_action_just_released('select'):
@@ -78,7 +70,7 @@ func _process(delta):
 				cycle_index = 2
 			else:
 				cycle_index -= 1
-			if cycle_list[cycle_index] not in GlobalVariables.unlocked_weapons:
+			if cycle_weapon_list[cycle_index] not in GlobalVariables.unlocked_weapons:
 				cycle_list[cycle_index].modulate = Color(0, 0, 0, 1)
 			else:
 				cycle_list[cycle_index].modulate = Color(1, 1, 1, 1)

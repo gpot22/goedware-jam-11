@@ -39,32 +39,44 @@ func _process(delta):
 	if item_hovering['uzi']:
 		if Input.is_action_just_released('select'):
 			if GlobalVariables.wallet >= prices['uzi']:
+				if 'uzi' in GlobalVariables.unlocked_weapons:
+					return
 				GlobalVariables.wallet -= prices['uzi']
 				money.text = 'Wallet: ' + str(GlobalVariables.wallet)
+				GlobalVariables.unlocked_weapons.append('uzi')
 				Audio.play_sfx('boughtgun')
 			else:
 				Audio.play_sfx('notenoughmoney')
 	elif item_hovering['shotgun']:
 		if Input.is_action_just_released('select'):
 			if GlobalVariables.wallet >= prices['shotgun']:
+				if 'shotgun' in GlobalVariables.unlocked_weapons:
+					return
 				GlobalVariables.wallet -= prices['shotgun']
 				money.text = 'Wallet: ' + str(GlobalVariables.wallet)
+				GlobalVariables.unlocked_weapons.append('shotgun')
 				Audio.play_sfx('boughtgun')
 			else:
 				Audio.play_sfx('notenoughmoney')
 	elif item_hovering['sniper']:
 		if Input.is_action_just_released('select'):
 			if GlobalVariables.wallet >= prices['sniper']:
+				if 'sniper' in GlobalVariables.unlocked_weapons:
+					return
 				GlobalVariables.wallet -= prices['sniper']
 				money.text = 'Wallet: ' + str(GlobalVariables.wallet)
+				GlobalVariables.unlocked_weapons.append('sniper')
 				Audio.play_sfx('boughtgun')
 			else:
 				Audio.play_sfx('notenoughmoney')
 	elif item_hovering['grenadelauncher']:
 		if Input.is_action_just_released('select'):
 			if GlobalVariables.wallet >= prices['grenadelauncher']:
+				if 'grenadelauncher' in GlobalVariables.unlocked_weapons:
+					return
 				GlobalVariables.wallet -= prices['grenadelauncher']
 				money.text = 'Wallet: ' + str(GlobalVariables.wallet)
+				GlobalVariables.unlocked_weapons.append('grenadelauncher')
 				Audio.play_sfx('boughtgun')
 			else:
 				Audio.play_sfx('notenoughmoney')

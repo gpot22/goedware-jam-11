@@ -24,7 +24,7 @@ func _ready():
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	## set player camera
 	Input.set_custom_mouse_cursor(xhair.texture.get_frame_texture(0), 0, Vector2(22, 22))
-	var test_level = GlobalVariables.phase_2_enemies
+	var test_level = GlobalVariables.phase_2_enemy_count
 	for enemy_name in test_level.keys():
 		var points = get_spawn_points(enemy_name)
 		points.shuffle()
@@ -48,14 +48,18 @@ func player_dead():
 
 func enemies_alive():
 	for p in used_points:
-		if p.get_child_count() != 0: return false
-	return true
+		if p.get_child_count() != 0: return true
+	return false
 		
 	
 func _process(delta):
 	# update 
 	camera_2d.set_position(Vector2(player.get_position().x, player.get_position().y-35))
 	if not enemies_alive():
-		pass  ## JAYLEN START HERE WOOO
+		GlobalVariables.wallet += 1
+		GlobalVariables.level += 1
+		get_parent().win()
+		get_parent().go_to_phase_1(false)
+		#get_tree().change_scene_to_file('res://scene/phase_1_level_generator.tscn')
 		
 

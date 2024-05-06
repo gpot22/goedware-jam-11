@@ -9,15 +9,15 @@ func _ready():
 	pass
 
 func drop():
-	for j in range(4):
-		global_position = Vector2(global_position.x - 1, global_position.y)
-		await get_tree().create_timer(0.01).timeout
-		global_position = Vector2(global_position.x + 1, global_position.y)
-		await get_tree().create_timer(0.01).timeout
-		global_position = Vector2(global_position.x + 1, global_position.y)
-		await get_tree().create_timer(0.01).timeout
-		global_position = Vector2(global_position.x - 1, global_position.y)
-		await get_tree().create_timer(0.01).timeout
+	#for j in range(4):
+		#global_position = Vector2(global_position.x - 1, global_position.y)
+		#await get_tree().create_timer(0.01).timeout
+		#global_position = Vector2(global_position.x + 1, global_position.y)
+		#await get_tree().create_timer(0.01).timeout
+		#global_position = Vector2(global_position.x + 1, global_position.y)
+		#await get_tree().create_timer(0.01).timeout
+		#global_position = Vector2(global_position.x - 1, global_position.y)
+		#await get_tree().create_timer(0.01).timeout
 	begin_gravity = true
 
 func _physics_process(delta):

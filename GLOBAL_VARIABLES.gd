@@ -2,12 +2,14 @@ extends Node
 
 var level = 1
 var discovered_enemies = ['beef', 'bombardier', 'sniper', 'turret']
-var wallet = 10
+var wallet = 4
 var master_volume = 0.5
 var music_volume = 0.5
 var sfx_volume = 0.5
 var unlocked_weapons = ['pistol']
-var phase_2_enemies = {'beef': 0, 'bombardier': 0, 'sniper': 0, 'turret': 0}
+var phase_2_enemy_count = {'beef': 0, 'bombardier': 0, 'sniper': 0, 'turret': 0}
+var phase_2_enemy_locations = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
+var phase_2_corners = []
 var stage_size = ''
 # Called when the node enters the scene tree for the first time.
 func _ready():

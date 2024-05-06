@@ -13,7 +13,8 @@ func _ready():
 func _process(delta):
 	if hovering and Input.is_action_just_released("select"):
 		Audio.play_sfx('button')
-		get_tree().change_scene_to_file("res://scene/phase_1_levelgenerator.tscn")
+		get_parent().get_parent().go_to_phase_1(true)
+		#get_tree().change_scene_to_file("res://scene/phase_1_levelgenerator.tscn")
 	
 	if hovering and Input.is_action_just_pressed('select'):
 		clicking = true

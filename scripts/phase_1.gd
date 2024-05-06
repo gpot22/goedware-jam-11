@@ -28,6 +28,7 @@ var x_tiles_with_enemies = []
 var y_tiles_with_enemies = []
 var brokentiles = []
 var tiles = []
+var enemies = []
 var total_x_tiles = 8
 var total_y_tiles = 8
 var x_gap = 2
@@ -70,37 +71,59 @@ func _process(delta):
 		
 func get_enemies_on_island(arr):
 	var enemy_count = {'beef': 0, 'bombardier': 0, 'sniper': 0, 'turret': 0}
+	var enemies_on_island = {'beef': [], 'bombardier': [], 'sniper': [], 'turret': []}
 	for i in range(arr[0][0], arr[1][0]+1):
 		for j in range(arr[0][1], arr[1][1]+1):
 			for k in enemy_types:
 				for l in tiles_with_enemies[k]:
 					if [i, j] == l:
 						enemy_count[k] += 1
-	return enemy_count
+						enemies_on_island[k].append([i,j])
+	return [enemy_count, enemies_on_island]
 
 func get_island_size(arr):
 	return (arr[1][0] - arr[0][0] + 1) * (arr[1][1] - arr[0][1] + 1) 
 		
+func check_all_false(arr):
+	pass	
+	
 func get_islands():
 	var separated_corners = []
 	var x = [-1]
 	var y = [-1]
+	#for i in range(total_x_tiles):
+		#if tiles[0][i].visible == false:
+			#x.append(i)
+	#for i in range(total_y_tiles):
+		#if tiles[i][0].visible == false:
+			#y.append(i)
+	
+	var toggle
 	for i in range(total_x_tiles):
-		if tiles[0][i].visible == false:
+		toggle = true
+		for j in range(total_y_tiles):
+			if tiles[j][i].visible != false:
+				toggle = false
+		if toggle:
 			x.append(i)
 	for i in range(total_y_tiles):
-		if tiles[i][0].visible == false:
+		toggle = true
+		for j in range(total_y_tiles):
+			if tiles[i][j].visible != false:
+				toggle = false
+		if toggle:
 			y.append(i)
 	
 	x.append(total_x_tiles)
 	y.append(total_y_tiles)
-	
+	print(x)
+	print(y)
 	for i in range(1, x.size()):
 		for j in range(1, y.size()):
 			separated_corners.append([[x[i-1]+1, y[j-1]+1], [x[i]-1, y[j]-1]])
 	
 	return separated_corners
-		
+
 func handle_tint():
 	var mouse = get_global_mouse_position()
 	var mouse_x = mouse.x
@@ -119,6 +142,7 @@ func handle_tint():
 	tile_y = int(tile_y)
 	
 	var separated_corners = get_islands()
+	print(separated_corners)
 	for j in separated_corners:
 		if tile_x >= j[0][0] and tile_x <= j[1][0] and tile_y >= j[0][1] and tile_y <= j[1][1]:
 			line.width = ((j[1][1]+1.2) * single_tile_size_y + (j[1][1]+1.2) * y_gap) - ((j[0][1]) * single_tile_size_y + (j[0][1]) * y_gap)
@@ -126,11 +150,15 @@ func handle_tint():
 			line.visible = true
 			line.z_index = 66
 			line.modulate = Color(1, 1, 1, 0.5)
+			GlobalVariables.phase_2_corners = j
 			
 			if Input.is_action_just_released('select'):
 				GlobalVariables.stage_size = get_island_size(j)
-				GlobalVariables.phase_2_enemies = get_enemies_on_island(j)
-				get_tree().change_scene_to_file('res://scene/phase1/weaponselect.tscn')
+				var result = get_enemies_on_island(j)
+				GlobalVariables.phase_2_enemy_count = result[0]
+				GlobalVariables.phase_2_enemy_locations = result[1]
+				get_parent().go_to_weapon_select()
+				#get_tree().change_scene_to_file('res://scene/phase1/weaponselect.tscn')
 			return
 	
 	line.visible = false
@@ -141,24 +169,28 @@ func generate_enemies():
 		a.set_position(Vector2(x_offset + i[0] * (single_tile_size_x + x_gap), y_offset + i[1] * (single_tile_size_y + y_gap) - 21))
 		a.visible = true
 		a.z_index = total_x_tiles * total_y_tiles
+		enemies.append(a)
 		add_child(a)
 	for i in tiles_with_enemies['bombardier']:
 		var a = bombardier.instantiate()
 		a.set_position(Vector2(x_offset + i[0] * (single_tile_size_x + x_gap) + 1, y_offset + i[1] * (single_tile_size_y + y_gap) - 16))
 		a.visible = true
 		a.z_index = total_x_tiles * total_y_tiles
+		enemies.append(a)
 		add_child(a)
 	for i in tiles_with_enemies['sniper']:
 		var a = sniper.instantiate()
 		a.set_position(Vector2(x_offset + i[0] * (single_tile_size_x + x_gap) - 4, y_offset + i[1] * (single_tile_size_y + y_gap) - 18))
 		a.visible = true
 		a.z_index = total_x_tiles * total_y_tiles
+		enemies.append(a)
 		add_child(a)
 	for i in tiles_with_enemies['turret']:
 		var a = turret.instantiate()
 		a.set_position(Vector2(x_offset + i[0] * (single_tile_size_x + x_gap) - 11, y_offset + i[1] * (single_tile_size_y + y_gap) - 15))
 		a.visible = true
 		a.z_index = total_x_tiles * total_y_tiles
+		enemies.append(a)
 		add_child(a)
 
 func generate_tiles():
@@ -286,6 +318,11 @@ func handle_mouse():
 	
 	previous_tile_x = tile_x
 	previous_tile_y = tile_y
+
+func delete_enemies():
+	for i in enemies:
+		i.queue_free()
+	enemies.clear()
 
 func reset_level():
 	for i in tiles.size():
