@@ -52,9 +52,7 @@ func player_dead():
 	return player.health <= 0
 
 func enemies_alive():
-	for p in used_points:
-		if p.get_child_count() != 0: return true
-	return false
+	return len(get_tree().get_nodes_in_group("Enemy")) != 0
 		
 func player_death_phase(delta):
 	var safety = 0
@@ -73,8 +71,10 @@ func _process(delta):
 		GlobalVariables.wallet += 1
 		GlobalVariables.level += 1
 		
-	if player_dead():
-		player_death_phase(delta)
+	#if player_dead():
+	if Input.is_action_just_pressed('test'):
+		await player_death_phase(delta)
 		if death_phase_finished:
+			print('shit on')
 			pass
 

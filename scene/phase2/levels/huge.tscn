@@ -120,8 +120,10 @@ metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.45, 0.45)
-limit_left = -40
-limit_bottom = 5100
+limit_left = -400
+limit_top = -400
+limit_right = 2500
+limit_bottom = 2500
 position_smoothing_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -185,38 +187,13 @@ position = Vector2(238, 1799)
 
 [node name="WorldBorders" type="Node2D" parent="."]
 
-[node name="leftwall" type="Node2D" parent="WorldBorders"]
-position = Vector2(-3, 35)
-
-[node name="Border" parent="WorldBorders/leftwall" instance=ExtResource("16_05kh4")]
-position = Vector2(-10, 1835)
-
-[node name="Border2" parent="WorldBorders/leftwall" instance=ExtResource("16_05kh4")]
-position = Vector2(-10, 1235)
-
-[node name="Border3" parent="WorldBorders/leftwall" instance=ExtResource("16_05kh4")]
-position = Vector2(-10, 635)
-
-[node name="Border4" parent="WorldBorders/leftwall" instance=ExtResource("16_05kh4")]
-position = Vector2(-10, 35)
-
-[node name="rightwall" type="Node2D" parent="WorldBorders"]
-position = Vector2(-3750, 24)
-
-[node name="Border5" parent="WorldBorders/rightwall" instance=ExtResource("16_05kh4")]
-position = Vector2(5870, 1835)
-
-[node name="Border6" parent="WorldBorders/rightwall" instance=ExtResource("16_05kh4")]
-position = Vector2(5870, 1235)
-
-[node name="Border7" parent="WorldBorders/rightwall" instance=ExtResource("16_05kh4")]
-position = Vector2(5870, 635)
-
-[node name="Border8" parent="WorldBorders/rightwall" instance=ExtResource("16_05kh4")]
-position = Vector2(5870, 35)
-
 [node name="bottomfloor" type="Node2D" parent="WorldBorders"]
 position = Vector2(-42, 29)
+
+[node name="Border12" parent="WorldBorders/bottomfloor" instance=ExtResource("16_05kh4")]
+position = Vector2(1128, 2733)
+rotation = 1.5708
+scale = Vector2(30, 10)
 
 [node name="bottom_floor" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
 position = Vector2(105, 2100)
@@ -251,111 +228,14 @@ position = Vector2(1995, 2100)
 [node name="bottom_floor11" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
 position = Vector2(2205, 2100)
 
-[node name="bottom_floor12" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(2415, 2100)
-
-[node name="bottom_floor13" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(2625, 2100)
-
-[node name="bottom_floor14" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(2835, 2100)
-
-[node name="bottom_floor15" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(3045, 2100)
-
-[node name="bottom_floor16" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(3255, 2100)
-
-[node name="bottom_floor17" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(3465, 2100)
-
-[node name="bottom_floor18" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(3675, 2100)
-
-[node name="bottom_floor19" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(3885, 2100)
-
-[node name="bottom_floor20" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(4095, 2100)
-
-[node name="bottom_floor21" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(4305, 2100)
-
-[node name="bottom_floor22" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(4515, 2100)
-
-[node name="bottom_floor23" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(4725, 2100)
-
-[node name="bottom_floor24" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(4935, 2100)
-
-[node name="bottom_floor25" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(5145, 2100)
-
-[node name="bottom_floor26" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(5355, 2100)
-
-[node name="bottom_floor27" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(5565, 2100)
-
-[node name="bottom_floor28" parent="WorldBorders/bottomfloor" instance=ExtResource("17_2204c")]
-position = Vector2(5775, 2100)
-
 [node name="ceiling" type="Node2D" parent="WorldBorders"]
 position = Vector2(5833, 2096)
 rotation = 3.14159
 
-[node name="bottom_floor" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(105, 2100)
-
-[node name="bottom_floor2" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(315, 2100)
-
-[node name="bottom_floor3" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(525, 2100)
-
-[node name="bottom_floor4" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(735, 2100)
-
-[node name="bottom_floor5" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(945, 2100)
-
-[node name="bottom_floor6" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(1155, 2100)
-
-[node name="bottom_floor7" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(1365, 2100)
-
-[node name="bottom_floor8" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(1575, 2100)
-
-[node name="bottom_floor9" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(1785, 2100)
-
-[node name="bottom_floor10" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(1995, 2100)
-
-[node name="bottom_floor11" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(2205, 2100)
-
-[node name="bottom_floor12" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(2415, 2100)
-
-[node name="bottom_floor13" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(2625, 2100)
-
-[node name="bottom_floor14" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(2835, 2100)
-
-[node name="bottom_floor15" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(3045, 2100)
-
-[node name="bottom_floor16" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(3255, 2100)
-
-[node name="bottom_floor17" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
-position = Vector2(3465, 2100)
+[node name="Border11" parent="WorldBorders/ceiling" instance=ExtResource("16_05kh4")]
+position = Vector2(4782.99, 2734.01)
+rotation = -1.57079
+scale = Vector2(30, 10)
 
 [node name="bottom_floor18" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
 position = Vector2(3675, 2100)
@@ -389,6 +269,46 @@ position = Vector2(5565, 2100)
 
 [node name="bottom_floor28" parent="WorldBorders/ceiling" instance=ExtResource("17_2204c")]
 position = Vector2(5775, 2100)
+
+[node name="leftwall" type="Node2D" parent="WorldBorders"]
+position = Vector2(-3, 35)
+
+[node name="Border" parent="WorldBorders/leftwall" instance=ExtResource("16_05kh4")]
+position = Vector2(-10, 1835)
+scale = Vector2(1, 1.3)
+
+[node name="Border2" parent="WorldBorders/leftwall" instance=ExtResource("16_05kh4")]
+position = Vector2(-10, 1235)
+
+[node name="Border3" parent="WorldBorders/leftwall" instance=ExtResource("16_05kh4")]
+position = Vector2(-10, 635)
+
+[node name="Border4" parent="WorldBorders/leftwall" instance=ExtResource("16_05kh4")]
+position = Vector2(-10, 35)
+
+[node name="rightwall" type="Node2D" parent="WorldBorders"]
+position = Vector2(-3750, 24)
+
+[node name="Border5" parent="WorldBorders/rightwall" instance=ExtResource("16_05kh4")]
+position = Vector2(5870, 1835)
+scale = Vector2(1, 1.3)
+
+[node name="Border6" parent="WorldBorders/rightwall" instance=ExtResource("16_05kh4")]
+position = Vector2(5870, 1235)
+
+[node name="Border7" parent="WorldBorders/rightwall" instance=ExtResource("16_05kh4")]
+position = Vector2(5870, 635)
+
+[node name="Border8" parent="WorldBorders/rightwall" instance=ExtResource("16_05kh4")]
+position = Vector2(5870, 35)
+
+[node name="Border10" parent="WorldBorders" instance=ExtResource("16_05kh4")]
+position = Vector2(-632, 935)
+scale = Vector2(30, 4.4)
+
+[node name="Border9" parent="WorldBorders" instance=ExtResource("16_05kh4")]
+position = Vector2(2738, 936)
+scale = Vector2(30, 4.4)
 
 [node name="xhair" type="TextureRect" parent="."]
 visible = false
