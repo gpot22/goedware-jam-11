@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://wtywps23r4pk"]
+[gd_scene load_steps=20 format=3 uid="uid://wtywps23r4pk"]
 
 [ext_resource type="Texture2D" uid="uid://di6bu1jdu6ihs" path="res://assets/sprites/bombardier.png" id="1_3h142"]
 [ext_resource type="Script" path="res://scripts/enemy_bombardier.gd" id="1_ot3qs"]
@@ -142,6 +142,9 @@ radius = 280.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3lri"]
 radius = 200.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jv0vl"]
+radius = 90.0
+
 [node name="bombardier" type="CharacterBody2D" groups=["Enemy"]]
 position = Vector2(0, -25)
 script = ExtResource("1_ot3qs")
@@ -203,6 +206,15 @@ shape = SubResource("CircleShape2D_c3lri")
 [node name="RayCastFloor" type="RayCast2D" parent="."]
 position = Vector2(-3, 19)
 target_position = Vector2(0, 95)
+
+[node name="TooClose" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TooClose"]
+shape = SubResource("CircleShape2D_jv0vl")
+
+[node name="ExplodeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="body_entered" from="TackleArea" to="." method="_on_tackle_area_body_entered"]
 [connection signal="body_exited" from="TackleArea" to="." method="_on_tackle_area_body_exited"]

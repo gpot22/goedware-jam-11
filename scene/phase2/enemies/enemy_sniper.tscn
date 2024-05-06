@@ -169,7 +169,7 @@ radius = 600.0
 radius = 360.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrh27"]
-size = Vector2(705, 600)
+size = Vector2(705, 370)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dxtr"]
 size = Vector2(161, 32)
@@ -229,10 +229,9 @@ position = Vector2(-21, -29)
 shape = SubResource("CircleShape2D_wnunx")
 
 [node name="ScanPlatformArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScanPlatformArea"]
-position = Vector2(-368.5, -30)
+position = Vector2(-368.5, -25)
 shape = SubResource("RectangleShape2D_xrh27")
 
 [node name="WallCollision" type="Area2D" parent="."]
