@@ -68,6 +68,16 @@ func _process(delta):
 	else:
 		line.visible = false
 		
+func get_enemies_on_island(arr):
+	var enemy_count = {'beef': 0, 'bombardier': 0, 'sniper': 0, 'turret': 0}
+	for i in range(arr[0][0], arr[1][0]+1):
+		for j in range(arr[0][1], arr[1][1]+1):
+			for k in enemy_types:
+				for l in tiles_with_enemies[k]:
+					if [i, j] == l:
+						enemy_count[k] += 1
+	return enemy_count
+
 func get_island_size(arr):
 	return (arr[1][0] - arr[0][0] + 1) * (arr[1][1] - arr[0][1] + 1) 
 		
@@ -120,6 +130,7 @@ func handle_tint():
 			if Input.is_action_just_released('select'):
 				var rng = RandomNumberGenerator.new()
 				var island_size = get_island_size(j)
+				GlobalVariables.phase_2_enemies = get_enemies_on_island(j)
 				if island_size <= 9:
 					get_tree().change_scene_to_file('res://scene/phase2/levels/narrow' + str(rng.randi_range(1,3)) + '.tscn')
 				elif island_size <= 16:
