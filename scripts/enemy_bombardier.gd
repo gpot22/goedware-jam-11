@@ -198,6 +198,7 @@ func shoot(x_offset=0):
 	ap.stop()
 	
 func grenade_shower(n=4):
+	grenade_launcher.visible = true
 	var cooldown = 20
 	var x_offset
 	for i in range(n):
