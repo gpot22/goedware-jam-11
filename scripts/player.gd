@@ -61,7 +61,7 @@ var grapple_direction
 
 # PLAYER STATS
 var health
-var max_health = 160.0
+var max_health = 160.0 + 50.0 * (GlobalVariables.level-1)
 var items = []
 
 var animate_crosshair = false
