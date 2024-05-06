@@ -10,10 +10,10 @@ func _ready():
 	parent = get_parent().get_parent()
 	direction = -1 if not is_player() else 1
 
-	damage = 30
+	#damage = 30
 	magazine = 6
 	current_magazine = magazine
-	bullet_spread = 0.2
+	#bullet_spread = 0.2
 	shot_time = 0.35
 	reload_time = 1.2
 	

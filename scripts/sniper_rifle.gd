@@ -15,7 +15,7 @@ func _ready():
 	parent = get_parent().get_parent()
 	
 	first_shot_damage = 100
-	damage = 49
+	damage = 50 if is_player() else 30
 	magazine = 5
 	current_magazine = magazine
 	direction = 1

@@ -11,7 +11,7 @@ func _ready():
 	parent = get_parent().get_parent()
 	direction = 1
 	
-	damage = 10
+	damage = 25
 	magazine = 12
 	current_magazine = magazine
 	shot_time = 0.4
@@ -51,8 +51,6 @@ func shoot():
 	
 	can_shoot = false
 	anim_sprite.play('shoot')
-	#await anim_sprite.animation_finished
-	#anim_sprite.stop()
 	if get_tree() == null:
 		can_shoot = true
 		return

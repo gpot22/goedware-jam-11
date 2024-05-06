@@ -60,7 +60,7 @@ var grapple_direction
 
 # PLAYER STATS
 var health
-var max_health = 500.0
+var max_health = 160.0
 var items = []
 
 var animate_crosshair = false
@@ -369,8 +369,9 @@ func take_damage(dmg):
 
 func shotgun_recoil():
 	var mouse = get_global_mouse_position()
-	var x = 1 if mouse.x < global_position.x else -1
-	velocity.x = SHOTTY_RECOIL * x
+	var v = mouse - global_position
+	v = v/v.length()
+	velocity = v * -SHOTTY_RECOIL
 
 func die():
 	health = 0

@@ -27,7 +27,7 @@ var aim_time_max = 80
 var start_evade = false
 
 func _ready():
-	health = 100
+	health = 120
 	vel = 0
 	set_direction(-1)
 	position.x -= 40

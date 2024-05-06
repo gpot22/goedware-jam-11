@@ -12,7 +12,7 @@ func _ready():
 	parent = get_parent().get_parent()
 	direction = 1
 	
-	damage = 3
+	damage = 15
 	magazine = 15
 	current_magazine = magazine
 	bullet_spread = 0.25

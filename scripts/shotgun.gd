@@ -11,12 +11,12 @@ func _ready():
 	parent = get_parent().get_parent()
 	direction = 1
 	
-	damage = int(20 / bullets_per_shell)
+	damage = int(40 / bullets_per_shell)
 	magazine = 2
 	current_magazine = magazine
 	bullet_spread = 0.6
 	shot_time = 0.4
-	reload_time = 1.6
+	reload_time = 0.8
 	
 	
 func _physics_process(delta):

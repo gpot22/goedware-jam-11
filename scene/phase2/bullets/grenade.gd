@@ -32,12 +32,6 @@ func explode_damage():
 		var v: Vector2 = body.global_position - explosion_radius.global_position
 
 		var dmg = get_dmg(v.length())
-		#if mag < 70:
-			#dmg = 80
-		#elif mag < 110:
-			#dmg = 40
-		#else:
-			#dmg = 20
 		if body.has_method('take_damage'):
 			body.take_damage(dmg)
 
@@ -51,6 +45,7 @@ func get_dmg(r):
 		if r < val["r"]:
 			return val["dmg"]
 	return attrs[-1]["dmg"]
+	
 func _on_body_entered(body):
 	var explosion = explosion_effect.instantiate()
 	get_parent().get_parent().add_child(explosion)

@@ -33,7 +33,7 @@ var ready_to_explode = false
 var showering = false
 
 func _ready():
-	health = 100
+	health = 150
 	vel = 0
 	state = 'idle'
 	direction = -1

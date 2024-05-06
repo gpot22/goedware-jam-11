@@ -1,10 +1,10 @@
 extends StaticBody2D
 
 # ATTRIBUTES
-var health = 100
+var health = 360
 var state = 'idle'
 var player = null
-var damage = 20
+var damage = 10
 
 # STUFF
 @onready var base = $body/base

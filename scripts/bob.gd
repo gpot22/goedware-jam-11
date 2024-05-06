@@ -36,7 +36,7 @@ var to_idle = false
 var recoil_v
 
 func _ready():
-	health = 100
+	health = 240
 	state = 'idle'
 	set_direction(-1)
 	vel = 0
