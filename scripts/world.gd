@@ -23,7 +23,7 @@ var ENEMIES = {
 	'sniper': preload(ENEMY_DIR + '/enemy_sniper.tscn'),
 	'turret': preload(ENEMY_DIR + '/turret.tscn')
 }
-
+var used_points = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# set bg color
@@ -39,6 +39,7 @@ func _ready():
 		for i in range(test_level[enemy_name]):
 			var idx = rng.randi_range(0, len(points)-1-i)
 			points[idx].add_child(ENEMIES[enemy_name].instantiate())
+			used_points.append(points[idx])
 			points.pop_at(idx)
 		
 func get_spawn_points(enemy):
@@ -48,28 +49,17 @@ func get_spawn_points(enemy):
 		if not p.name.contains(enemy): continue
 		points.append(p)
 	return points
+
+func enemies_alive():
+	for p in used_points:
+		if p.get_child_count() != 0: return false
+	return true
 		
 	
 func _process(delta):
 	# update 
 	camera_2d.set_position(Vector2(player.get_position().x, player.get_position().y-35))
-
-#func generate_world_borders():
-	#var border_bottom_width = 20
-	#var border_side_height = 20
-	#var floor_y = 1440
-	##var 
-	#for i in range(border_bottom_width):
-		#var tile = floor.instantiate()
-		#var w = tile.get_child(0).shape.get_rect().size.x
-		##tile.absolute_position.x
-		#world_borders.add_child(tile)
-		##tile.absolute_position.x = w * i + w/2
-		#tile.global_position = Vector2(w*i+int(w/2), floor_y)
-		#print(Vector2(w*i+w/2, floor_y))
-		#
-	#for i in range(border_side_height):
-		#var tile = floor.instantiate()
-		##tile.r
+	if not enemies_alive():
+		pass  ## JAYLEN START HERE WOOO
 		
 
