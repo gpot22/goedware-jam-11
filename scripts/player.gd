@@ -91,6 +91,8 @@ func _process(delta):
 	
 # PLAYER LOOP
 func _physics_process(delta):
+	if health <= 0:
+		return
 	if !grappling:
 		apply_gravity(delta)
 	
@@ -329,6 +331,14 @@ func shotgun_recoil():
 	var mouse = get_global_mouse_position()
 	var x = 1 if mouse.x < global_position.x else -1
 	velocity.x = SHOTTY_RECOIL * x
+
+func die():
+	health = 0
+	$deathsprites.visible = true
+	sprite.visible = false
+	$WeaponPoint.visible = false
+	$ShotgunPoint.visible = false
+	ap.play('death')
 
 func _on_shotgun_area_body_entered(body):
 	if not body.is_in_group('Enemy'): return

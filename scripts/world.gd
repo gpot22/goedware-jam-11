@@ -19,7 +19,7 @@ var ENEMIES = {
 }
 var used_points = []
 
-var zoom_increment = 0.5
+var zoom_increment = 0.8
 var zoom_death_target = 2.0
 var zoom_current
 var zoom_next
@@ -58,6 +58,7 @@ func enemies_alive():
 		
 func player_death_phase(delta):
 	var safety = 0
+	player.die()
 	while zoom_current < zoom_death_target:
 		safety += 1
 		zoom_current = lerp(zoom_current, zoom_current + zoom_increment, zoom_increment*delta)
@@ -72,7 +73,8 @@ func _process(delta):
 		GlobalVariables.wallet += 1
 		GlobalVariables.level += 1
 		
-	if player_dead():
+	#if player_dead():
+	if Input.is_action_just_pressed('test'):
 		player_death_phase(delta)
 		if death_phase_finished:
 			pass
