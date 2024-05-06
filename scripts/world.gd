@@ -68,7 +68,8 @@ func player_death_phase(delta):
 		zoom_current = lerp(zoom_current, zoom_current + zoom_increment, zoom_increment*delta)
 		camera_2d.set_zoom(Vector2(zoom_current, zoom_current))
 		await get_tree().create_timer(0.01).timeout
-	await player.ap.animation_finished
+	if player.ap.is_playing():
+		await player.ap.animation_finished
 	death_phase_finished = true
 
 func player_celebrate_phase(delta):
@@ -77,10 +78,12 @@ func player_celebrate_phase(delta):
 		zoom_current = lerp(zoom_current, zoom_current + zoom_increment, zoom_increment*delta)
 		camera_2d.set_zoom(Vector2(zoom_current, zoom_current))
 		await get_tree().create_timer(0.01).timeout
-	#await player.ap.animation_finished
+	if player.ap.is_playing():
+		await player.ap.animation_finished
 	for i in range(3):
 		await player.celebrate_idle()
-		await player.ap.animation_finished
+		if player.ap.is_playing():
+			await player.ap.animation_finished
 	celebrate_phase_finished = true
 
 func _process(delta):
