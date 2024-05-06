@@ -93,6 +93,7 @@ func lost():
 	Input.set_custom_mouse_cursor(null)
 	phase_1_instance.get_node('lockbutton').texture = BUTTON_1
 	phase_1_instance.lock = false
+	GlobalVariables.equipped_weapons.clear()
 	add_child(phase_1_instance)
 
 func go_to_phase_1(from_shop):
@@ -100,6 +101,7 @@ func go_to_phase_1(from_shop):
 	Input.set_custom_mouse_cursor(null)
 	phase_1_instance.get_node('lockbutton').texture = BUTTON_1
 	phase_1_instance.lock = false
+	GlobalVariables.equipped_weapons.clear()
 	if from_shop:
 		Audio.play_music(phase_1_instance.song)
 		add_child(phase_1_instance)
