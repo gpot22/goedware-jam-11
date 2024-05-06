@@ -73,8 +73,7 @@ func _process(delta):
 		GlobalVariables.wallet += 1
 		GlobalVariables.level += 1
 		
-	#if player_dead():
-	if Input.is_action_just_pressed('test'):
+	if player_dead():
 		player_death_phase(delta)
 		if death_phase_finished:
 			pass
