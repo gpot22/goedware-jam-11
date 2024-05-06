@@ -75,7 +75,6 @@ func _physics_process(delta):
 				if attack_timer == 0:
 					attack()
 					attack_pending = false
-					shooting = true
 			elif not shooting:
 				vel = RUN_VEL
 	handle_movement(delta)
@@ -112,10 +111,10 @@ func set_direction(d):
 	ray_cast_wall2.position.x = abs(ray_cast_wall2.position.x)*d
 	ray_cast_wall2.scale.x = abs(ray_cast_wall2.scale.x)*-d
 	
-	no_recoil.position.x = abs(no_recoil.scale.x)*d
-	no_recoil.scale.x = abs(no_recoil.scale.x)*d
-	no_recoil_2.position.x = abs(no_recoil_2.scale.x)*d
-	no_recoil_2.scale.x = abs(no_recoil_2.scale.x)*d
+	no_recoil.position.x = abs(no_recoil.scale.x)*-d
+	no_recoil.scale.x = abs(no_recoil.scale.x)*-d
+	no_recoil_2.position.x = abs(no_recoil_2.scale.x)*-d
+	no_recoil_2.scale.x = abs(no_recoil_2.scale.x)*-d
 	
 	ray_cast_floor.position.x = abs(ray_cast_floor.position.x)*d
 	
@@ -148,6 +147,9 @@ func attack():
 	shoot()
 	if not recoil_hit_wall():
 		attack_recoil = true
+	else:
+		await get_tree().create_timer(0.6).timeout
+		shooting = false
 	recoil_v = RECOIL*direction
 	ap.play('attack')
 	
