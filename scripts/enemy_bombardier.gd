@@ -285,7 +285,7 @@ func _on_shooting_area_body_exited(body):
 	
 func _on_tackle_area_body_entered(body):
 	if body.name != 'Player': return
-	if must_tackle: return	
+	if must_tackle: return
 	if tackling: return
 	#if showering: return
 	player = body

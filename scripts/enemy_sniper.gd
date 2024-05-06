@@ -12,6 +12,7 @@ const GRAV = 3000
 @onready var ray_cast_wall = $CollisionShape2D/RayCastWall
 @onready var ray_cast_floor = $CollisionShape2D/RayCastFloor
 @onready var rifle = $'WeaponPoint/SniperRifle'
+@onready var wall_collision = $WallCollision
 
 var platforms = []
 var jumping = false
@@ -33,14 +34,25 @@ func _ready():
 	state = 'hostile'  ## idle, evade, hostile
 	rifle.visible = false
 	player = get_parent().get_parent().get_parent().get_node('Player')
-	
+
+func stop_evade():
+	for b in wall_collision.get_overlapping_bodies():
+		print(b)
+		if b.name != 'Player' and b != self:
+			return true
+	return false
 func _physics_process(delta):
 	apply_gravity(delta)
 	if $CollisionShape2D/RayCastFloor/floor.get_collider() != null and $CollisionShape2D/RayCastFloor/floor.get_collider().name.contains('platform'):
 		last_floor = $CollisionShape2D/RayCastFloor/floor.get_collider()
 	if state == 'evade':
 		rifle.visible = false
-		run_from_player()
+		#if wall_collision.get_overlapping_bodies()
+		if stop_evade():
+			state = 'hostile'
+			vel = 0
+		else:
+			run_from_player()
 			#state = 'hostile'
 	#
 	elif state == 'hostile':
@@ -140,6 +152,7 @@ func set_direction(d):
 	ray_cast_wall.position.x = abs(ray_cast_wall.position.x)*d
 	ray_cast_wall.target_position.x = abs(ray_cast_wall.target_position.x)*d
 	$ScanPlatformArea/CollisionShape2D.position.x = abs($ScanPlatformArea/CollisionShape2D.position.x)*d
+	$WallCollision/CollisionShape2D.position.x = abs($WallCollision/CollisionShape2D.position.x)*d
 	
 func handle_movement(delta):
 	if vel:
@@ -153,6 +166,7 @@ func is_on_edge():
 
 func is_on_bottom_floor():
 	return ray_cast_floor.is_colliding() and ray_cast_floor.get_collider().name.contains('floor')
+	
 ## STATE: EVADE
 func get_nearest_platform():
 	var surrounding_platforms = platforms.duplicate()
@@ -172,8 +186,6 @@ func get_nearest_platform():
 			min_v = cur_v
 			closest = p
 	return closest
-	
-		#custom_larget_vector()
 
 func custom_is_smaller_vector(smaller: Vector2, bigger: Vector2):
 	if weighted_magnitude(smaller) < weighted_magnitude(bigger):
@@ -205,27 +217,47 @@ func run_from_player():
 func get_jump_vi(xi, yi, xf, yf):
 	var dx = xf - xi
 	var dy = yf - yi
-	
-	var vix
-	if dx > 0:
-		vix = 500
-	else:
-		vix = -500
-	var t = dx/vix
+	#if dy < -30:  # jump up
+	var viy = -700
 	var ay = GRAV
-	var viy = dy/t - 0.5*ay*t
-	if dy < -100:
-		viy *= 1.4
-		vix *= 0.4
-	elif dy < 0:
-		viy *= 1.1
-		vix *= 0.9
-		
-	else:
-		viy *= 1.05
-		vix *= 0.95
+	
+	
+	var t =( -viy + sqrt(viy**2 -4*(ay/2)*(-dy)))/(ay)
+	
+	var vix = dx/t
+	if is_nan(vix):
+		viy *= 1.7
+		t =( -viy + sqrt(viy**2 -4*(ay/2)*(-dy)))/(ay)
+		vix = dx/t
+	
+	if is_nan(vix):
+		vix = 480 * dx/(abs(dx))
+	vix = max(min(700, vix), -700)
 	var v = Vector2(vix, viy)
 	return v
+	#var dx = xf - xi
+	#var dy = yf - yi
+	#
+	#var vix
+	#if dx > 0:
+		#vix = 800
+	#else:
+		#vix = -800
+	#var t = dx/vix
+	#var ay = GRAV
+	#var viy = dy/t - 0.5*ay*t
+	#if dy < -100:
+		#viy *= 1.4
+		#vix *= 0.4
+	#elif dy < 0:
+		#viy *= 1.1
+		#vix *= 0.9
+		#
+	#else:
+		#viy *= 1.05
+		#vix *= 0.95
+	#var v = Vector2(vix, viy)
+	#return v
 
 func take_damage(dmg):
 	var last_vel = vel

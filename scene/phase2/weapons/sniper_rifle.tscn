@@ -103,7 +103,7 @@ sprite_frames = SubResource("SpriteFrames_d5qc0")
 animation = &"shoot"
 
 [node name="BulletSpawn" type="Marker2D" parent="WeaponPivot/AnimatedSprite2D"]
-position = Vector2(58, 6)
+position = Vector2(-2, 6)
 
 [node name="LineOfSight" type="Line2D" parent="WeaponPivot/AnimatedSprite2D/BulletSpawn"]
 light_mask = 4
