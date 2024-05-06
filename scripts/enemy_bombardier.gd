@@ -35,6 +35,7 @@ func _ready():
 	vel = 0
 	state = 'idle'
 	direction = -1
+	player = get_parent().get_parent().get_parent().get_node('Player')
 
 func _physics_process(delta):
 	apply_gravity(delta)

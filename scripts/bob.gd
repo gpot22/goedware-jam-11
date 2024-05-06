@@ -42,7 +42,7 @@ func _ready():
 	gun = gun_obj.instantiate()
 	weapon_point.add_child(gun)
 	
-	player = get_parent().get_parent().get_node('Player')
+	player = get_parent().get_parent().get_parent().get_node('Player')
 	
 func _physics_process(delta):
 	apply_gravity(delta)

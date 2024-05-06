@@ -32,8 +32,7 @@ func _ready():
 	position.x -= 40
 	state = 'hostile'  ## idle, evade, hostile
 	rifle.visible = false
-	
-	player = get_parent().get_parent().get_node('Player')
+	player = get_parent().get_parent().get_parent().get_node('Player')
 	
 func _physics_process(delta):
 	apply_gravity(delta)

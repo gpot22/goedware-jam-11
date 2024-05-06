@@ -578,8 +578,6 @@ metadata/_edit_lock_ = true
 zoom = Vector2(0.45, 0.45)
 position_smoothing_enabled = true
 
-[node name="Enemies" type="Node" parent="."]
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0609198, 0.290021, 0.463875, 1)
 
@@ -844,3 +842,5 @@ texture = ExtResource("22_fnfin")
 
 [node name="square_platform3" parent="." instance=ExtResource("12_817ft")]
 position = Vector2(861, 1178)
+
+[node name="SpawnPoints" type="Node2D" parent="."]

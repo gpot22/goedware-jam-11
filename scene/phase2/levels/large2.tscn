@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ciis2v35y87rk"]
+[gd_scene load_steps=35 format=3 uid="uid://ciis2v35y87rk"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_ur4p2"]
 [ext_resource type="Texture2D" uid="uid://c61mkg62erhu5" path="res://assets/world_tileset.png" id="2_8cvbl"]
@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bpv787v2neuxu" path="res://assets/generic_background_3.png" id="7_ulhoq"]
 [ext_resource type="Texture2D" uid="uid://bi0r6r1rbtknb" path="res://assets/background_tile3.png" id="8_t4oeo"]
 [ext_resource type="PackedScene" uid="uid://cwrkcklv0yvjo" path="res://scene/phase2/player/player.tscn" id="9_pg0j2"]
-[ext_resource type="PackedScene" uid="uid://dwjkhg54nugkq" path="res://scene/phase2/enemies/enemy_beef.tscn" id="10_43qir"]
-[ext_resource type="PackedScene" uid="uid://wtywps23r4pk" path="res://scene/phase2/enemies/enemy_bombardier.tscn" id="11_nkqfv"]
-[ext_resource type="PackedScene" uid="uid://c5su8u53h77tj" path="res://scene/phase2/enemies/enemy_sniper.tscn" id="12_v7kcj"]
 [ext_resource type="PackedScene" uid="uid://cxctkgvmdw1ch" path="res://scene/phase2/platforms/long_platform.tscn" id="13_l54xp"]
 [ext_resource type="PackedScene" uid="uid://nbrersifbnc3" path="res://scene/phase2/platforms/medium_platform.tscn" id="14_o51lk"]
 [ext_resource type="PackedScene" uid="uid://cogndpnpo7xfl" path="res://scene/phase2/platforms/square_platform.tscn" id="15_h6m56"]
@@ -581,23 +578,6 @@ metadata/_edit_lock_ = true
 zoom = Vector2(0.45, 0.45)
 position_smoothing_enabled = true
 
-[node name="Enemies" type="Node" parent="."]
-
-[node name="beef" parent="Enemies" instance=ExtResource("10_43qir")]
-position = Vector2(2321, 443)
-
-[node name="beef2" parent="Enemies" instance=ExtResource("10_43qir")]
-position = Vector2(1838, 1909)
-
-[node name="beef3" parent="Enemies" instance=ExtResource("10_43qir")]
-position = Vector2(1245, 1998)
-
-[node name="bombardier" parent="Enemies" instance=ExtResource("11_nkqfv")]
-position = Vector2(2104, 845)
-
-[node name="sniper" parent="Enemies" instance=ExtResource("12_v7kcj")]
-position = Vector2(3361, 2057)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0609198, 0.290021, 0.463875, 1)
 
@@ -761,3 +741,5 @@ texture = SubResource("AnimatedTexture_4fg1e")
 
 [node name="hook" type="Sprite2D" parent="."]
 texture = ExtResource("25_dqor5")
+
+[node name="SpawnPoints" type="Node2D" parent="."]

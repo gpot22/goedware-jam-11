@@ -28,7 +28,7 @@ var aim_time_max = 40
 var aim_ready = true
 
 func _ready():
-	player = get_parent().get_parent().get_node('Player')
+	player = get_parent().get_parent().get_parent().get_node('Player')
 
 func _physics_process(delta):
 	state = 'hostile'
